@@ -66,9 +66,9 @@ public class Fox extends Species {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getSpecies() != this || (Cooldown.isOnCooldown("c1", p))) return;
+        if (Cooldown.isOnCooldown("c1", p) || data.getSpecies() != this) return;
 
-        ((LivingEntity) e.getEntity()).damage(NumberGenerator.generate(10, 15), p);
+        ((LivingEntity) e.getEntity()).damage(9);
 
         p.playSound(p.getLocation(), Sound.ENTITY_EVOKER_FANGS_ATTACK, 1, (float) 0.5);
 

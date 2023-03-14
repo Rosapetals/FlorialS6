@@ -3,6 +3,7 @@ package net.florial.listeners;
 import dev.morphia.query.filters.Filters;
 import net.florial.Florial;
 import net.florial.Refresh;
+import net.florial.features.thirst.ThirstManager;
 import net.florial.models.PlayerData;
 import net.florial.utils.GeneralUtils;
 import org.bukkit.Bukkit;
@@ -40,6 +41,8 @@ public class SpecieListener implements Listener {
             data.getSpecieType()
         );
         Bukkit.getPluginManager().callEvent(e);
+
+        Florial.getThirst().put(event.getPlayer().getUniqueId(), 20);
         GeneralUtils.runAsync(new BukkitRunnable() {@Override public void run() {Bukkit.getScheduler().runTaskLater(florial, data::refresh, 40L);}});
 
 

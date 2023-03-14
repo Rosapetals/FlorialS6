@@ -69,7 +69,7 @@ public class AnimalTrackingUI {
                     }
                 })
                 .build(Florial.getInstance())
-                .openAll();
+                .open(p);
 
     }
 

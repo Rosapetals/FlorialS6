@@ -54,7 +54,7 @@ public class Chocolateer {
                     }
                 })
                 .build(Florial.getInstance())
-                .openAll();
+                .open(p);
 
     }
 

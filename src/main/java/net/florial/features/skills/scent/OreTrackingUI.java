@@ -62,7 +62,7 @@ public class OreTrackingUI {
                     }
                 })
                 .build(Florial.getInstance())
-                .openAll();
+                .open(p);
 
     }
 

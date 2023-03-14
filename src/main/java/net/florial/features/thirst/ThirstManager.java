@@ -72,7 +72,7 @@ public class ThirstManager implements Listener {
 
         if (getThirst(p) == 20)
             p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,
-                    6000, 1, false, false, true));
+                    1200, 1, false, false, true));
     }
 
     private void deHydrate(Player p, int amount){

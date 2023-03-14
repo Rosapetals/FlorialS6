@@ -76,8 +76,7 @@ public class Skills {
                     }
                 })
                 .build(Florial.getInstance())
-                .openAll();
-
+                .open(p);
     }
 
     private static void backButton(Player p) {

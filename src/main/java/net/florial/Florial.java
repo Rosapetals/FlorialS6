@@ -54,6 +54,9 @@ public final class Florial extends JavaPlugin {
     }
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
+    //@Getter
+   // private JDA discordBot;
+
     @Getter private static Guild discordServer;
     @Getter
     private JDA discordBot;
@@ -81,7 +84,7 @@ public final class Florial extends JavaPlugin {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
 
-        initializeDiscord();
+       // initializeDiscord();
 
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) throw new NullPointerException("Economy service provider was not found");
@@ -91,7 +94,9 @@ public final class Florial extends JavaPlugin {
             lpapi = provider.getProvider();
         } else {
             throw new NullPointerException("No luckperms found");
-        }
+         }
+
+
     }
 
 
@@ -114,9 +119,6 @@ public final class Florial extends JavaPlugin {
         saveDefaultConfig();
         setupCommands();
         manager.invoke();
-
-        Bukkit.broadcastMessage("confirm");
-
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
@@ -203,6 +205,8 @@ public final class Florial extends JavaPlugin {
 
     private void initializeDiscord() {
         try {
+           // discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
+                 //   .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
             CommandClientBuilder builder = new CommandClientBuilder();
             builder.setPrefix("/");
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
