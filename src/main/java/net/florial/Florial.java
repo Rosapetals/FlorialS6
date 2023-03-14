@@ -231,9 +231,11 @@ public final class Florial extends JavaPlugin {
         if (getConfig().getString("discord.serverid") == null) {
             throw new RuntimeException("ADD THE DATA YA TURD");
         }
-//        discordServer = discordBot.getGuildById(Objects.requireNonNull(getConfig().getString("discord.serverid")));
-//        if (discordServer == null) throw new RuntimeException("Could not find discord server from ID, did you forget to add the information to the config file?");
-//        discordServer.updateCommands().addCommands(Commands.slash("uwu", "uwu")).queue();
+        discordServer = discordBot.getGuildById(getConfig().getString("discord.serverid"));
+        if (discordServer == null) {
+            throw new RuntimeException("Could not find discord server from ID, did you forget to add the information to the config file?");
+        }
+        //        discordServer.updateCommands().addCommands(Commands.slash("uwu", "uwu")).queue();
 
     }
 

@@ -14,6 +14,7 @@ import net.florial.models.PlayerData;
 import net.florial.utils.CC;
 import net.florial.utils.Message;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -60,7 +61,11 @@ public class PlayerListeners implements Listener {
                 prefix = "";
             }
         }
+
+        if (prefix == null) {
+            prefix = "Default";
+        }
         event.setCancelled(true);
-        Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + event.getPlayer().getName() + ": " + event.message())));
+        Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + event.getPlayer().getName().trim() + ": " + ((TextComponent) event.message()).content())));
     }
 }

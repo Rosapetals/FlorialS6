@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.florial.Florial;
+import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class DiscordMuteCommand extends SlashCommand {
 
     public DiscordMuteCommand() {
         this.name = "mute";
+        this.help = "Time a user out for a given length of time";
         List<OptionData> options = new ArrayList<>();
         options.add(new OptionData(OptionType.USER, "user", "The user you are muting").setRequired(true));
         options.add(new OptionData(OptionType.STRING, "reason", "The punishment reason").setRequired(true));
@@ -34,6 +36,7 @@ public class DiscordMuteCommand extends SlashCommand {
     @Override
     protected void execute(SlashCommandEvent slashCommandEvent) {
         Member member = Florial.getDiscordServer().getMemberById(slashCommandEvent.getUser().getId());
+        Bukkit.getLogger().info(member.toString());
         if (member == null) {
             slashCommandEvent.reply("There was an error trying to perform this command").queue();
             return;
@@ -45,6 +48,7 @@ public class DiscordMuteCommand extends SlashCommand {
         slashCommandEvent.deferReply().queue();
 
         Member victim = Florial.getDiscordServer().getMemberById(slashCommandEvent.getOption("user").getAsUser().getId());
+        Bukkit.getLogger().info(victim.toString());
         if (victim == null) {
             slashCommandEvent.reply("This user does not exist").queue();
             return;
@@ -83,6 +87,7 @@ public class DiscordMuteCommand extends SlashCommand {
         while (m.find()) {
             duration += Integer.parseInt(m.group(1).replaceAll("s", ""));
         }
+        Bukkit.getLogger().info(String.valueOf(duration));
         victim.timeoutFor(duration, TimeUnit.SECONDS).queue();
         slashCommandEvent.reply("").setEmbeds(new EmbedBuilder()
                 .setTitle("Punishment processed")
