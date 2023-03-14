@@ -48,8 +48,8 @@ public final class Florial extends JavaPlugin {
     }
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
-    @Getter
-    private JDA discordBot;
+    //@Getter
+   // private JDA discordBot;
 
     @Getter
     private final InventoryManager manager = new InventoryManager(this);
@@ -83,7 +83,9 @@ public final class Florial extends JavaPlugin {
             lpapi = provider.getProvider();
         } else {
             throw new NullPointerException("No luckperms found");
-        }
+         }
+
+
     }
 
 
@@ -98,9 +100,6 @@ public final class Florial extends JavaPlugin {
         saveDefaultConfig();
         setupCommands();
         manager.invoke();
-
-        Bukkit.broadcastMessage("confirm");
-
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
@@ -187,8 +186,8 @@ public final class Florial extends JavaPlugin {
 
     private void initializeDiscord() {
         try {
-            discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
-                    .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
+           // discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
+                 //   .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
         } catch (Exception e) {
             throw new RuntimeException("Could not initialize the discord bot, did you forget to add the information to the config file?");
         }

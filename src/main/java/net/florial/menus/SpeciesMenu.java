@@ -80,7 +80,7 @@ public class SpeciesMenu {
                     }
                 })
                 .build(Florial.getInstance())
-                .openAll();
+                .open(p);
 
     }
 

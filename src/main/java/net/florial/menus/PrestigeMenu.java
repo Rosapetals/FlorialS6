@@ -38,7 +38,7 @@ public class PrestigeMenu {
                     }
                 })
                 .build(Florial.getInstance())
-                .openAll();
+                .open(p);
 
     }
 
