@@ -14,7 +14,7 @@ import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.species.SpecieType;
 import net.florial.species.Species;
-import net.florial.utils.CustomItem;
+import net.florial.utils.general.CustomItem;
 import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
 import org.bukkit.Bukkit;
@@ -40,6 +40,9 @@ public class PlayerData {
     private int flories = 0;
     private int dna = 0;
     private int dnaXP = 0;
+
+    private int instincts = 0;
+
     private int specieId = 0;
 
     private int event = 0;
@@ -51,7 +54,7 @@ public class PlayerData {
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
 
-    public PlayerData(String uuid, int flories, int dna, int dnaXP, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix) {
+    public PlayerData(String uuid, int flories, int dna, int dnaXP, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix, int instincts) {
 
         this.UUID = uuid;
         this.flories = flories;
@@ -63,6 +66,7 @@ public class PlayerData {
         this.upgrades = upgrades;
         this.event = event;
         this.prefix = prefix;
+        this.instincts = instincts;
     }
 
     public PlayerData(String uuid) {

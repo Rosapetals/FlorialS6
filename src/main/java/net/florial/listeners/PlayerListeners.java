@@ -1,21 +1,15 @@
 package net.florial.listeners;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.events.PacketContainer;
-import com.destroystokyo.paper.block.TargetBlockInfo;
-import com.destroystokyo.paper.entity.TargetEntityInfo;
-import com.mongodb.client.model.Filters;
 import io.papermc.paper.event.player.AsyncChatEvent;
-import me.santio.utils.bukkit.impl.MessageUtils;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.models.PlayerData;
-import net.florial.utils.CC;
+import net.florial.scoreboard.Scoreboard;
+import net.florial.utils.general.CC;
 import net.florial.utils.Message;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
-import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,7 +23,8 @@ import java.util.UUID;
 public class PlayerListeners implements Listener {
 
     private static final ThirstManager ThirstManager = new ThirstManager();
-    private static final Florial florial = Florial.getInstance();
+
+    private static final Scoreboard Scoreboard = new Scoreboard();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -41,12 +36,20 @@ public class PlayerListeners implements Listener {
             Florial.getPlayerData().get(u).refresh();
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(playerData.toString()).send(p);
         });
+
+        if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
+
         ThirstManager.thirstRunnable(p);
+        Scoreboard.boardRunnable(u, p);
+
 
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
+
+        Florial.getBoards().remove(event.getPlayer().getUniqueId());
+
         PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
         data.save(true);
     }

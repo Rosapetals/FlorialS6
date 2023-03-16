@@ -7,16 +7,15 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
-import net.florial.utils.CC;
-import net.florial.utils.CustomItem;
-import net.florial.utils.MaterialDetector;
+import net.florial.utils.general.CC;
+import net.florial.utils.general.CustomItem;
+import net.florial.utils.game.MaterialDetector;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class OreTrackingUI {

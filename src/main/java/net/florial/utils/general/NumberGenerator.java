@@ -1,4 +1,4 @@
-package net.florial.utils;
+package net.florial.utils.general;
 
 public class NumberGenerator {
 

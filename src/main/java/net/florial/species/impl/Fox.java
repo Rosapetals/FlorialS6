@@ -4,7 +4,6 @@ import net.florial.Florial;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
-import net.florial.utils.NumberGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;

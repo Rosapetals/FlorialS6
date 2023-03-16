@@ -10,7 +10,6 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
 import net.florial.commands.discord.DiscordMuteCommand;
@@ -29,8 +28,11 @@ import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
 import net.florial.models.PlayerData;
+import net.florial.scoreboard.FastBoard;
+import net.florial.scoreboard.Scoreboard;
 import net.florial.species.SpecieType;
 import net.florial.utils.Cooldown;
+import net.florial.utils.general.VaultHandler;
 import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -44,7 +46,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public final class Florial extends JavaPlugin {
@@ -54,8 +55,7 @@ public final class Florial extends JavaPlugin {
     }
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
-    //@Getter
-   // private JDA discordBot;
+    @Getter private static final HashMap<UUID, FastBoard> boards = new HashMap<>();
 
     @Getter private static Guild discordServer;
     @Getter
@@ -69,11 +69,18 @@ public final class Florial extends JavaPlugin {
     private LuckPerms lpapi = null;
 
     private static final ThirstManager ThirstManager = new ThirstManager();
+    private static final net.florial.scoreboard.Scoreboard Scoreboard = new Scoreboard();
 
 
     @SneakyThrows
     @Override
     public void onEnable() {
+
+        RegisteredServiceProvider<Economy> rsp = Florial.getInstance().getServer()
+                .getServicesManager().getRegistration(Economy.class);
+
+        if (rsp == null) throw new NullPointerException("Economy service provider was not found");
+        economy = rsp.getProvider();
 
         init();
         manager.invoke();
@@ -83,12 +90,8 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-
        // initializeDiscord();
 
-        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) throw new NullPointerException("Economy service provider was not found");
-        economy = rsp.getProvider();
         RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
         if (provider != null) {
             lpapi = provider.getProvider();
@@ -102,14 +105,14 @@ public final class Florial extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        discordBot.shutdownNow();
-        while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+      //  discordBot.shutdownNow();
+       // while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
+         //   try {
+          //     Thread.sleep(20);
+         //   } catch (InterruptedException e) {
+          //      throw new RuntimeException(e);
+          //  }
+      //  }
         for (PlayerData data : playerData.values()) data.save(false);
         FlorialDatabase.closeConnection();
         saveConfig();
@@ -119,6 +122,9 @@ public final class Florial extends JavaPlugin {
         saveDefaultConfig();
         setupCommands();
         manager.invoke();
+        VaultHandler.initiate();
+
+        Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);

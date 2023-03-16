@@ -7,7 +7,11 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
-import net.florial.utils.*;
+import net.florial.utils.game.MobSpawn;
+import net.florial.utils.general.CC;
+import net.florial.utils.general.CustomItem;
+import net.florial.utils.general.GetChance;
+import net.florial.utils.general.GetCustomSkull;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -20,7 +24,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class AnimalTrackingUI {

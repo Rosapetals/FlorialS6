@@ -1,7 +1,7 @@
 package net.florial.features.skills.scent;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
-import net.florial.utils.GetTarget;
+import net.florial.utils.game.GetTarget;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
