@@ -20,7 +20,7 @@ public class ChocolateEatListener implements Listener {
         Player p = e.getPlayer();
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        data.setDnaXP(data.getDnaXP() + 250);
+        //data.setDnaXP(data.getDnaXP() + 250);
         p.playSound(p.getLocation(), Sound.BLOCK_MUD_BREAK, 1, 4);
         p.playSound(p.getLocation(), Sound.BLOCK_SCAFFOLDING_BREAK, 1, 2);
 

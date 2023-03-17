@@ -10,7 +10,6 @@ import net.florial.models.PlayerData;
 import net.florial.species.disguises.Morph;
 import net.florial.species.events.impl.SpeciesSwitchEvent;
 import net.florial.utils.GeneralUtils;
-import net.florial.utils.NumberGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -131,7 +130,9 @@ public abstract class Species implements Listener {
 
         if ((!(e.getEntity() instanceof Player p))) return;
 
-        if (!(Florial.getPlayerData().get(p.getUniqueId()).getSpecies().sharedAbilities().get(0))) return;
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        if (data.getSpecieType().getSpecie() == null || (!(data.getSpecies().sharedAbilities().get(0)))) return;
 
         e.setCancelled(true);
 

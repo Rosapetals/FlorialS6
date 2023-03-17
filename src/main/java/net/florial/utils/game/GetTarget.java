@@ -1,4 +1,4 @@
-package net.florial.utils;
+package net.florial.utils.game;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;

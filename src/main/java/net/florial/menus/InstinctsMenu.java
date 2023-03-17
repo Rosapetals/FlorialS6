@@ -6,8 +6,8 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
-import net.florial.utils.CC;
-import net.florial.utils.CustomItem;
+import net.florial.utils.general.CC;
+import net.florial.utils.general.CustomItem;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -16,11 +16,11 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class PrestigeMenu {
+public class InstinctsMenu {
 
     private static final SpeciesMenu SpeciesMenu = new SpeciesMenu();
 
-    public void prestigeMenu(Player p) {
+    public void instinctMenu(Player p) {
 
         RyseInventory.builder()
                 .title(CC.translate("&f七七七七七七七七七七七七七七七七\uE239"))

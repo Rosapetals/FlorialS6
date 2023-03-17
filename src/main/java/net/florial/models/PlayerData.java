@@ -10,11 +10,12 @@ import lombok.Setter;
 import net.florial.Florial;
 import net.florial.Refresh;
 import net.florial.database.FlorialDatabase;
+import net.florial.features.age.Age;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.species.SpecieType;
 import net.florial.species.Species;
-import net.florial.utils.CustomItem;
+import net.florial.utils.general.CustomItem;
 import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
 import org.bukkit.Bukkit;
@@ -39,30 +40,32 @@ public class PlayerData {
     @Getter @Setter
     private int flories = 0;
     private int dna = 0;
-    private int dnaXP = 0;
     private int specieId = 0;
 
     private int event = 0;
+
     @Nullable
     String pronouns = "";
     @Nullable
     String prefix = "";
 
+    Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
+    
 
-    public PlayerData(String uuid, int flories, int dna, int dnaXP, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix) {
+    public PlayerData(String uuid, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix, Age age) {
 
         this.UUID = uuid;
         this.flories = flories;
         this.dna = dna;
-        this.dnaXP = dnaXP;
         this.specieId = specieId;
         this.pronouns = pronouns;
         this.skills = skills;
         this.upgrades = upgrades;
         this.event = event;
         this.prefix = prefix;
+        this.age = age;
     }
 
     public PlayerData(String uuid) {
@@ -93,7 +96,7 @@ public class PlayerData {
     @BsonIgnore
     public void refresh() {
 
-        if (getSpecies() == null) return;
+        if (getSpecieType().getSpecie() == null) return;
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
             for (PotionEffect effect : getSpecies().effects()) {
@@ -117,24 +120,6 @@ public class PlayerData {
     }
 
     // dna section
-
-    public int getDnaXP() {
-        DnaLVLup();
-        return dnaXP;
-    }
-
-    public int getDna() {
-        DnaLVLup();
-        return dna;
-    }
-
-    @BsonIgnore
-    private void DnaLVLup(){
-        if (dnaXP <= 500) return;
-        dnaXP = 0;
-        dna = dna+1;
-
-    }
 
     public void overwrite() {
         if (Bukkit.getPlayer(UUID) == null) return;

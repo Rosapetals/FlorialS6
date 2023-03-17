@@ -1,4 +1,4 @@
-package net.florial.utils;
+package net.florial.utils.general;
 
 
 import net.md_5.bungee.api.ChatColor;
