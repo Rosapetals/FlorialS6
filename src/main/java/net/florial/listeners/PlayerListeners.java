@@ -16,6 +16,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.potion.PotionEffect;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -33,14 +34,16 @@ public class PlayerListeners implements Listener {
 
         FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
             Florial.getPlayerData().put(u, playerData);
-            Florial.getPlayerData().get(u).refresh();
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(playerData.toString()).send(p);
         });
 
-        if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
 
         ThirstManager.thirstRunnable(p);
-        Scoreboard.boardRunnable(u, p);
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
+            if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
+            Scoreboard.boardRunnable(u, p);
+            Florial.getPlayerData().get(u).refresh();
+            }, 100L);
 
 
     }

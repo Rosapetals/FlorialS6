@@ -27,7 +27,7 @@ public class SpeciesMenu {
     final net.florial.utils.general.GetCustomSkull GetCustomSkull = new GetCustomSkull();
     private static final Skills Skills = new Skills();
 
-    private static final PrestigeMenu PrestigeMenu = new PrestigeMenu();
+    private static final InstinctsMenu InstinctsMenu = new InstinctsMenu();
 
     public void speciesMenu(Player p) {
 
@@ -88,13 +88,9 @@ public class SpeciesMenu {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
 
-        switch(type) {
-            case 1:
-                Skills.skillMenu(p);
-                break;
-            case 2:
-                PrestigeMenu.prestigeMenu(p);
-                break;
+        switch (type) {
+            case 1 -> Skills.skillMenu(p);
+            case 2 -> InstinctsMenu.instinctMenu(p);
         }
     }
 

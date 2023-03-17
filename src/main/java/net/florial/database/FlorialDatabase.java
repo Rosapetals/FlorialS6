@@ -4,12 +4,14 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.UpdateResult;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
 import dev.morphia.ReplaceOptions;
+import dev.morphia.query.Query;
+import dev.morphia.query.QueryFactory;
 import dev.morphia.query.filters.Filters;
 import lombok.Getter;
 import lombok.val;
@@ -18,7 +20,9 @@ import net.florial.models.FilterEntry;
 import net.florial.models.PlayerData;
 import net.florial.utils.GeneralUtils;
 import net.kyori.adventure.text.Component;
+import org.bson.Document;
 import org.bson.UuidRepresentation;
+import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -31,7 +35,10 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import static com.mongodb.client.model.Filters.exists;
+import static dev.morphia.query.filters.Filters.eq;
 import static net.florial.models.PlayerData.getFieldValue;
+import static org.apache.commons.lang3.BooleanUtils.and;
 
 public class FlorialDatabase {
 
@@ -78,7 +85,7 @@ public class FlorialDatabase {
 
             @Override
             public void run() {
-                val temp = datastore.find(PlayerData.class).filter(Filters.eq("UUID", uuid.toString()));
+                val temp = datastore.find(PlayerData.class).filter(eq("UUID", uuid.toString()));
                 Bukkit.broadcast(Component.text(temp.stream().count()));
                 future.complete(temp.stream().findFirst().orElse(new PlayerData(uuid.toString())));
             }
@@ -109,6 +116,42 @@ public class FlorialDatabase {
         });
     }
 
+    public static void restartEvent(){
+
+        GeneralUtils.runAsync(new BukkitRunnable() {
+            @Override
+            public void run() {
+
+                datastore.find(PlayerData.class)
+                        .filter(Filters.exists("event"))
+                        .iterator()
+                        .forEachRemaining(document -> {
+                            document.setEvent(0);
+                            datastore.save(document);
+                        });
+            }
+
+        });
+    }
+
+    public static void removeField(String field) {
+        GeneralUtils.runAsync(new BukkitRunnable() {
+            @Override
+            public void run() {
+
+                Bson filter = exists(field);
+
+                datastore.getDatabase().getCollection("playerdata", PlayerData.class)
+                        .find()
+                        .forEach(document -> {
+                            datastore.getDatabase().getCollection("playerdata")
+                                    .updateOne(filter, Updates.unset(field));
+                            datastore.save(document);
+                        });
+            }
+        });
+    }
+
     public static CompletableFuture<List<String>> sortDataByField(String field, boolean descending, int limit) {
 
         CompletableFuture<List<String>> future = new CompletableFuture<>();
@@ -118,7 +161,7 @@ public class FlorialDatabase {
             public void run() {
                 List<PlayerData> playerList = new ArrayList<>();
                 datastore.find(PlayerData.class)
-                        .filter(Filters.gte(field, 0))
+                        .filter(Filters.exists(field))
                         .iterator()
                         .forEachRemaining(playerList::add);
 

@@ -12,8 +12,10 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
+import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.DiscordMuteCommand;
 import net.florial.commands.discord.DiscordUwUCommand;
+import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
 import net.florial.database.FlorialDatabase;
@@ -206,6 +208,8 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ChangeSkillsCommand());
         manager.registerCommand(new NuzzleCommand());
         manager.registerCommand(new ChocolateerCommand());
+        manager.registerCommand(new GrowCommand());
+        manager.registerCommand(new RemoveFieldCommand());
 
     }
 

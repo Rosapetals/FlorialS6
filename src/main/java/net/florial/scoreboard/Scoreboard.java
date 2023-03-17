@@ -23,10 +23,12 @@ public class Scoreboard implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(u);
 
+        String name = (data.getSpecieType().getSpecie() == null) ? "species" : data.getSpecies().getName();
+
         String text1 = CC.translate(" #ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl #ff1d3a&l| S6");
         String text3 = CC.translate("");
         String text4 = CC.translate("    #ffd7dc┍━━━━━━━━━━━━━━━━━━┑");
-        String text5 = CC.translate("   #ffb8c1 ︳ #ff5b70&lSPECIES:&f " + data.getSpecies().getName());
+        String text5 = CC.translate("   #ffb8c1 ︳ #ff5b70&lSPECIES:&f " + name);
         String text6 = CC.translate("   #ff99a6 ︳ #ffd7dc&lBALANCE:&f ￠" + MoneyFormatter.put((long) VaultHandler.getBalance(p)));
         String text7 = CC.translate("   #ff7a8b ︳ #ff5b70&lFLORIES:&f " + data.getFlories());
         String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
@@ -59,10 +61,12 @@ public class Scoreboard implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(u);
 
+        String name = (data.getSpecieType().getSpecie() == null) ? "species" : data.getSpecies().getName();
+
         String text1 = CC.translate(" #ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl #ff1d3a&l| S6");
         String text3 = CC.translate("");
         String text4 = CC.translate("    #ffd7dc┍━━━━━━━━━━━━━━━━━━┑");
-        String text5 = CC.translate("   #ffb8c1 ︳ #ff5b70&lSPECIES:&f " + data.getSpecies().getName());
+        String text5 = CC.translate("   #ffb8c1 ︳ #ff5b70&lSPECIES:&f " + name);
         String text6 = CC.translate("   #ff99a6 ︳ #ffd7dc&lBALANCE:&f ￠" + MoneyFormatter.put((long) VaultHandler.getBalance(p)));
         String text7 = CC.translate("   #ff7a8b ︳ #ff5b70&lFLORIES:&f " + data.getFlories());
         String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
