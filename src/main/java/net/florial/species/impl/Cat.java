@@ -4,8 +4,11 @@ import net.florial.Florial;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
-import net.kyori.adventure.text.Component;
-import org.bukkit.*;
+import net.florial.utils.math.AgeFormula;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -20,7 +23,7 @@ import org.bukkit.util.Vector;
 import java.util.*;
 
 public class Cat extends Species {
-    
+
     public Cat(int id) {
         super("Cat", id, 14, true);
     }
@@ -71,12 +74,16 @@ public class Cat extends Species {
 
         if (!(p.isSneaking()) || Florial.getPlayerData().get(p.getUniqueId()).getSpecies() != this || (Cooldown.isOnCooldown("c2", p))) return;
 
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        int ageValue = data.getAge().getIncrease();
+
         for (Entity ent : p.getNearbyEntities(7, 7, 7)) {
             if (!(e instanceof LivingEntity)) return;
-            ((LivingEntity) ent).addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1200, 1, false, false, true));
+            ((LivingEntity) ent).addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1200, ageValue/2, false, false, true));
         }
 
-        Cooldown.addCooldown("c1", p, 200);
+        Cooldown.addCooldown("c1", p, AgeFormula.get(200, ageValue));
 
 
     }
@@ -94,7 +101,7 @@ public class Cat extends Species {
         p.playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, (float) 0.4, 1);
         p.playSound(p.getLocation(), Sound.ENTITY_CAT_BEG_FOR_FOOD, 1, 1);
 
-        Cooldown.addCooldown("c1", p, 300);
+        Cooldown.addCooldown("c1", p, AgeFormula.get(300, data.getAge().getIncrease()));
 
 
     }
@@ -120,7 +127,7 @@ public class Cat extends Species {
                     Vector launchDirection = e.getLocation().toVector().subtract(attacker.getLocation().toVector()).normalize().multiply(1.2);
                     launchDirection.setY(0.5);
                     e.setVelocity(launchDirection);
-                    ((LivingEntity) e).damage(6D);
+                    ((LivingEntity) e).damage(4+data.getAge().getIncrease());
                 }
             }
         }

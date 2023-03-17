@@ -1,6 +1,6 @@
 package net.florial.listeners;
 
-import net.florial.utils.general.GetChance;
+import net.florial.utils.math.GetChance;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;

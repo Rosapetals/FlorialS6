@@ -2,7 +2,6 @@ package net.florial.features.skills.scent;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.utils.game.GetTarget;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
@@ -10,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -52,13 +50,7 @@ public class ScentManager implements Listener {
     }
 
     @EventHandler
-    public void scentProhibitClick(InventoryClickEvent e) {
-        if (e.getSlot() != 8 || e.getWhoClicked().getGameMode() != GameMode.SURVIVAL) return;
-        e.setCancelled(true);
-    }
-
-    @EventHandler
-    public void scentProhibiterDrop(PlayerDropItemEvent e) {
+    public void scentProhibitDrop(PlayerDropItemEvent e) {
         if (e.getItemDrop().getItemStack().getType() != Material.PAPER || (!NBTEditor.contains(e.getItemDrop().getItemStack(), "CustomModelData", 1))) return;
         e.setCancelled(true);
     }

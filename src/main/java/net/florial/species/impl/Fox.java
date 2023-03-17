@@ -4,6 +4,7 @@ import net.florial.Florial;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
+import net.florial.utils.math.AgeFormula;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -67,7 +68,7 @@ public class Fox extends Species {
 
         if (Cooldown.isOnCooldown("c1", p) || data.getSpecies() != this) return;
 
-        ((LivingEntity) e.getEntity()).damage(9);
+        ((LivingEntity) e.getEntity()).damage(4+data.getAge().getIncrease());
 
         p.playSound(p.getLocation(), Sound.ENTITY_EVOKER_FANGS_ATTACK, 1, (float) 0.5);
 
@@ -86,7 +87,7 @@ public class Fox extends Species {
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 600, 1, false, false, true));
 
-        Cooldown.addCooldown("c2", p, 30);
+        Cooldown.addCooldown("c2", p, AgeFormula.get(30, data.getAge().getIncrease()));
 
     }
     

@@ -10,6 +10,7 @@ import lombok.Setter;
 import net.florial.Florial;
 import net.florial.Refresh;
 import net.florial.database.FlorialDatabase;
+import net.florial.features.age.Age;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.species.SpecieType;
@@ -40,9 +41,6 @@ public class PlayerData {
     private int flories = 0;
     private int dna = 0;
     private int dnaXP = 0;
-
-    private int instincts = 0;
-
     private int specieId = 0;
 
     private int event = 0;
@@ -51,10 +49,12 @@ public class PlayerData {
     @Nullable
     String prefix = "";
 
+    Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
+    
 
-    public PlayerData(String uuid, int flories, int dna, int dnaXP, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix, int instincts) {
+    public PlayerData(String uuid, int flories, int dna, int dnaXP, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix, Age age) {
 
         this.UUID = uuid;
         this.flories = flories;
@@ -66,7 +66,7 @@ public class PlayerData {
         this.upgrades = upgrades;
         this.event = event;
         this.prefix = prefix;
-        this.instincts = instincts;
+        this.age = age;
     }
 
     public PlayerData(String uuid) {

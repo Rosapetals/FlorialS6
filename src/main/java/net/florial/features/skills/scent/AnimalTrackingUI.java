@@ -10,7 +10,7 @@ import net.florial.models.PlayerData;
 import net.florial.utils.game.MobSpawn;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
-import net.florial.utils.general.GetChance;
+import net.florial.utils.math.GetChance;
 import net.florial.utils.general.GetCustomSkull;
 import org.bukkit.Location;
 import org.bukkit.Sound;

@@ -1,4 +1,4 @@
-package net.florial.utils.general;
+package net.florial.utils.math;
 
 import java.util.Random;
 

@@ -90,7 +90,7 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-       // initializeDiscord();
+        initializeDiscord();
 
         RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
         if (provider != null) {
@@ -105,14 +105,14 @@ public final class Florial extends JavaPlugin {
 
     @Override
     public void onDisable() {
-      //  discordBot.shutdownNow();
-       // while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
-         //   try {
-          //     Thread.sleep(20);
-         //   } catch (InterruptedException e) {
-          //      throw new RuntimeException(e);
-          //  }
-      //  }
+        discordBot.shutdownNow();
+        while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
+            try {
+               Thread.sleep(20);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         for (PlayerData data : playerData.values()) data.save(false);
         FlorialDatabase.closeConnection();
         saveConfig();
@@ -211,8 +211,8 @@ public final class Florial extends JavaPlugin {
 
     private void initializeDiscord() {
         try {
-           // discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
-                 //   .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
+            discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
+                    .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
             CommandClientBuilder builder = new CommandClientBuilder();
             builder.setPrefix("/");
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));

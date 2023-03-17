@@ -14,7 +14,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class AttackSkillListener implements Listener {
 
     @EventHandler
-    public void attackskillboost(EntityDamageByEntityEvent e){
+    public void attackSkillBoost(EntityDamageByEntityEvent e){
 
         Entity damager = e.getDamager();
         Entity ent = e.getEntity();
