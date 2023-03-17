@@ -25,6 +25,7 @@ import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
 import net.florial.features.enemies.impl.Snapper;
 import net.florial.features.enemies.impl.Wisps;
+import net.florial.features.quests.Quest;
 import net.florial.features.skills.attack.AttackSkillListener;
 import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
@@ -58,6 +59,8 @@ public final class Florial extends JavaPlugin {
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
     @Getter private static final HashMap<UUID, FastBoard> boards = new HashMap<>();
+
+    @Getter private static final HashMap<UUID, Quest> questData = new HashMap<>();
 
     @Getter private static Guild discordServer;
     @Getter
@@ -252,4 +255,7 @@ public final class Florial extends JavaPlugin {
     public PlayerData getPlayerData(Player player) {return playerData.get(player.getUniqueId());}
 
     public static HashMap<UUID, Integer> getThirst(){return thirst;}
+
+    public static HashMap<UUID, Quest> getQuest(){return questData;}
+
 }

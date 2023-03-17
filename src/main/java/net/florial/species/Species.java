@@ -130,7 +130,9 @@ public abstract class Species implements Listener {
 
         if ((!(e.getEntity() instanceof Player p))) return;
 
-        if (!(Florial.getPlayerData().get(p.getUniqueId()).getSpecies().sharedAbilities().get(0))) return;
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        if (data.getSpecieType().getSpecie() == null || (!(data.getSpecies().sharedAbilities().get(0)))) return;
 
         e.setCancelled(true);
 
