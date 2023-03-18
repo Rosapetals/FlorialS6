@@ -17,6 +17,7 @@ import net.florial.commands.discord.DiscordConfessCommand;
 import net.florial.commands.discord.DiscordMuteCommand;
 import net.florial.commands.discord.DiscordPunishCommand;
 import net.florial.commands.discord.DiscordUwUCommand;
+import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
 import net.florial.database.FlorialDatabase;
@@ -26,11 +27,14 @@ import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
 import net.florial.features.enemies.impl.Snapper;
 import net.florial.features.enemies.impl.Wisps;
+import net.florial.features.quests.Quest;
 import net.florial.features.skills.attack.AttackSkillListener;
 import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
 import net.florial.models.PlayerData;
+import net.florial.scoreboard.FastBoard;
+import net.florial.scoreboard.Scoreboard;
 import net.florial.species.SpecieType;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
@@ -54,8 +58,9 @@ public final class Florial extends JavaPlugin {
     }
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
-    //@Getter
-   // private JDA discordBot;
+    @Getter private static final HashMap<UUID, FastBoard> boards = new HashMap<>();
+
+    @Getter private static final HashMap<UUID, Quest> questData = new HashMap<>();
 
     @Getter private static Guild discordServer;
     @Getter
@@ -80,6 +85,12 @@ public final class Florial extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        RegisteredServiceProvider<Economy> rsp = Florial.getInstance().getServer()
+                .getServicesManager().getRegistration(Economy.class);
+
+        if (rsp == null) throw new NullPointerException("Economy service provider was not found");
+        economy = rsp.getProvider();
+
         init();
         manager.invoke();
 
@@ -88,8 +99,7 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-
-       initializeDiscord();
+        initializeDiscord();
 
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) throw new NullPointerException("Economy service provider was not found");
@@ -126,7 +136,7 @@ public final class Florial extends JavaPlugin {
         manager.invoke();
         VaultHandler.initiate();
 
-        // Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
+        Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
@@ -144,6 +154,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChocolateEatListener(), this);
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new ScentManager(), this);
+        getServer().getPluginManager().registerEvents(new QuestListener(), this);
 
         SpecieType.getAllSpecies().forEach(species -> {
             if (species == null) return;
@@ -208,6 +219,9 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ChangeSkillsCommand());
         manager.registerCommand(new NuzzleCommand());
         manager.registerCommand(new ChocolateerCommand());
+        manager.registerCommand(new GrowCommand());
+        manager.registerCommand(new RemoveFieldCommand());
+        manager.registerCommand(new QuestCheckCommand());
         manager.registerCommand(new SetDiscordIDCommand());
 
     }
@@ -221,7 +235,7 @@ public final class Florial extends JavaPlugin {
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordPunishCommand(), new DiscordConfessCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();
@@ -263,4 +277,7 @@ public final class Florial extends JavaPlugin {
     public PlayerData getPlayerData(Player player) {return playerData.get(player.getUniqueId());}
 
     public static HashMap<UUID, Integer> getThirst(){return thirst;}
+
+    public static HashMap<UUID, Quest> getQuest(){return questData;}
+
 }

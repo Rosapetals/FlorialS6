@@ -18,7 +18,7 @@ public class MaterialDetector {
             for (int y = playerY - radius; y <= playerY + radius; y++) {
                 for (int z = playerZ - radius; z <= playerZ + radius; z++) {
                     Location blockLocation = new Location(player.getWorld(), x, y, z);
-                    if (player.getLocation().distance(blockLocation) <= radius) {
+                    if (player.getLocation().distanceSquared(blockLocation) <= radius * radius) {
                         Block block = player.getWorld().getBlockAt(blockLocation);
                         if (block.getType() == mat) amount++;
                     }

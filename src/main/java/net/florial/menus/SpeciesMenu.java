@@ -27,7 +27,9 @@ public class SpeciesMenu {
     final net.florial.utils.general.GetCustomSkull GetCustomSkull = new GetCustomSkull();
     private static final Skills Skills = new Skills();
 
-    private static final PrestigeMenu PrestigeMenu = new PrestigeMenu();
+    private static final InstinctsMenu InstinctsMenu = new InstinctsMenu();
+
+    private static final GrowthMenu GrowthMenu = new GrowthMenu();
 
     public void speciesMenu(Player p) {
 
@@ -71,11 +73,11 @@ public class SpeciesMenu {
                         //skills
                         contents.set(List.of(5, 4, 3), IntelligentItem.of(entries.get(0), event -> loadMenu(p, 1)));
 
-                        //prestige
-                        contents.set(List.of(34, 35), IntelligentItem.of(entries.get(1), event -> loadMenu(p, 2)));
+                        //growth
+                        contents.set(List.of(34, 35), IntelligentItem.of(entries.get(1), event -> loadMenu(p, 3)));
 
-                        //mutate
-                        contents.set(List.of(27, 28), IntelligentItem.of(entries.get(1), event -> loadMenu(p, 2)));
+                        //instincts
+                        contents.set(List.of(27, 28, 29), IntelligentItem.of(entries.get(1), event -> loadMenu(p, 2)));
 
                     }
                 })
@@ -88,13 +90,11 @@ public class SpeciesMenu {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
 
-        switch(type) {
-            case 1:
-                Skills.skillMenu(p);
-                break;
-            case 2:
-                PrestigeMenu.prestigeMenu(p);
-                break;
+        switch (type) {
+            case 1 -> Skills.skillMenu(p);
+            case 2 -> InstinctsMenu.instinctMenu(p);
+            case 3 -> GrowthMenu.growthMenu(p);
+
         }
     }
 

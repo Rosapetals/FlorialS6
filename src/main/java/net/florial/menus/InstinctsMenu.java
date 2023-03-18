@@ -16,11 +16,11 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class PrestigeMenu {
+public class InstinctsMenu {
 
     private static final SpeciesMenu SpeciesMenu = new SpeciesMenu();
 
-    public void prestigeMenu(Player p) {
+    public void instinctMenu(Player p) {
 
         RyseInventory.builder()
                 .title(CC.translate("&f七七七七七七七七七七七七七七七七\uE239"))

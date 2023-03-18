@@ -3,15 +3,13 @@ package net.florial;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Refresh {
@@ -51,9 +49,10 @@ public class Refresh {
         //let's loop through their specie's unique skill set and apply all necessary effects
         for (Map.Entry<Integer, PotionEffect> entry : data.getSpecies().specific().entrySet()) {
 
-            boolean applicable = specific >= entry.getKey() && p.addPotionEffect(entry.getValue());
+            boolean applicable = specific >= entry.getKey() && entry.getValue() != null & p.addPotionEffect(Objects.requireNonNull(entry.getValue()));
 
             if (!(applicable)) break;
+
         }
 
         // let's set their maxhealth now
@@ -68,9 +67,7 @@ public class Refresh {
         for (Map.Entry<Upgrade, Runnable> entry : upgradeHandlers.entrySet()) {
             Upgrade upgrade = entry.getKey();
             Runnable handler = entry.getValue();
-            if (upgrades.get(upgrade)) {
-                handler.run();
-            }
+            if (upgrades.get(upgrade)) handler.run();
         }
         //this runs twice for the aforementioned reasons.. let's see if we can get this down to running once in some way!
         p.setMaxHealth(maxhealth.get() + additions);

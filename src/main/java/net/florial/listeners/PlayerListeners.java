@@ -48,7 +48,11 @@ public class PlayerListeners implements Listener {
         // if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
 
         ThirstManager.thirstRunnable(p);
-        Scoreboard.boardRunnable(u, p);
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
+            if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
+            Scoreboard.boardRunnable(u, p);
+            Florial.getPlayerData().get(u).refresh();
+            }, 100L);
 
 
     }
