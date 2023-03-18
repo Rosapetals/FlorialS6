@@ -12,7 +12,7 @@ public enum Age {
     ELDER(5, 10);
 
     @Getter private final int id;
-    @Transient @Getter private final int increase;
+    @Getter private final int increase;
 
     Age(int id, int increase) {
         this.id = id;

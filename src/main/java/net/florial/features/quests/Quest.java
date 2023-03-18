@@ -2,14 +2,16 @@ package net.florial.features.quests;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.florial.Florial;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
 public class Quest {
 
-    private String name;
-    private QuestType type;
-    private int target;
+    @Getter private final String name;
+    @Getter private final QuestType type;
+    @Getter private final int target;
     @Getter
     private Material blockType;
     @Getter private EntityType mobType;
@@ -22,16 +24,14 @@ public class Quest {
         this.target = target;
         this.blockType = blockType;
         this.mobType = mobType;
-        this.progress = progress != null ? progress : 0;
-    }
+        this.progress = progress;
 
-    public boolean isCompleted() {
-        return progress >= target;
     }
 
     @Override
     public String toString() {
         return name + " (" + progress + "/" + target + ")";
     }
+
 
 }

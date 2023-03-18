@@ -55,9 +55,9 @@ public abstract class Mob implements Listener {
 
         if (event.getFormer().getType() != this.ireplace) return;
 
-        Collection<Entity> aminear = event.getW().getNearbyEntitiesByType(this.entity.getEntityClass(), event.getLoc(), 15);
+        Collection<Entity> amINear = event.getW().getNearbyEntitiesByType(this.entity.getEntityClass(), event.getLoc(), 20);
 
-        if (aminear.size() > 0) return;
+        if (amINear.size() > 0) return;
 
         LivingEntity me = (LivingEntity) MobSpawn.spawnMob(this.entity, event.getW(), event.getLoc());
         me.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.dmg);
@@ -72,7 +72,7 @@ public abstract class Mob implements Listener {
     }
 
     @EventHandler
-    public void whenIdie(MobDeathEvent event) {
+    public void whenIDie(MobDeathEvent event) {
 
         if (event.getEntity() != this.entity) return;
 
