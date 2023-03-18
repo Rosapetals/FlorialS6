@@ -6,3 +6,8 @@ discord:
   token:
   serverid:
   verificationChannel:
+  trustedStaffId:
+  staffId:
+  adminChannel:
+  chatbotChannel:
+  openaiToken:

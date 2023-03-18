@@ -37,7 +37,15 @@ public class PlayerListeners implements Listener {
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(playerData.toString()).send(p);
         });
 
-        if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
+        if (p.hasPermission("florial.staff")) {
+
+            if (Florial.getPlayerData().get(u).getDiscordId() == "") {
+                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
+            }
+            Florial.getInstance().getStaffToVerify().add(u);
+        }
+
+        // if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
 
         ThirstManager.thirstRunnable(p);
         Scoreboard.boardRunnable(u, p);
@@ -48,7 +56,7 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
 
-        Florial.getBoards().remove(event.getPlayer().getUniqueId());
+        // Florial.getBoards().remove(event.getPlayer().getUniqueId());
 
         PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
         data.save(true);

@@ -3,6 +3,7 @@ package net.florial;
 import co.aikar.commands.PaperCommandManager;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
+import com.theokanning.openai.service.OpenAiService;
 import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -12,7 +13,9 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
+import net.florial.commands.discord.DiscordConfessCommand;
 import net.florial.commands.discord.DiscordMuteCommand;
+import net.florial.commands.discord.DiscordPunishCommand;
 import net.florial.commands.discord.DiscordUwUCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
@@ -28,8 +31,6 @@ import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
 import net.florial.models.PlayerData;
-import net.florial.scoreboard.FastBoard;
-import net.florial.scoreboard.Scoreboard;
 import net.florial.species.SpecieType;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
@@ -44,9 +45,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.UnknownDependencyException;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public final class Florial extends JavaPlugin {
 
@@ -55,7 +54,8 @@ public final class Florial extends JavaPlugin {
     }
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
-    @Getter private static final HashMap<UUID, FastBoard> boards = new HashMap<>();
+    //@Getter
+   // private JDA discordBot;
 
     @Getter private static Guild discordServer;
     @Getter
@@ -69,18 +69,16 @@ public final class Florial extends JavaPlugin {
     private LuckPerms lpapi = null;
 
     private static final ThirstManager ThirstManager = new ThirstManager();
-    private static final net.florial.scoreboard.Scoreboard Scoreboard = new Scoreboard();
+
+    @Getter
+    private List<UUID> staffToVerify = new ArrayList<>();
+
+    @Getter private static OpenAiService openAi;
 
 
     @SneakyThrows
     @Override
     public void onEnable() {
-
-        RegisteredServiceProvider<Economy> rsp = Florial.getInstance().getServer()
-                .getServicesManager().getRegistration(Economy.class);
-
-        if (rsp == null) throw new NullPointerException("Economy service provider was not found");
-        economy = rsp.getProvider();
 
         init();
         manager.invoke();
@@ -90,8 +88,12 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-        initializeDiscord();
 
+       initializeDiscord();
+
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) throw new NullPointerException("Economy service provider was not found");
+        economy = rsp.getProvider();
         RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
         if (provider != null) {
             lpapi = provider.getProvider();
@@ -124,7 +126,7 @@ public final class Florial extends JavaPlugin {
         manager.invoke();
         VaultHandler.initiate();
 
-        Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
+        // Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
@@ -206,19 +208,20 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ChangeSkillsCommand());
         manager.registerCommand(new NuzzleCommand());
         manager.registerCommand(new ChocolateerCommand());
+        manager.registerCommand(new SetDiscordIDCommand());
 
     }
 
     private void initializeDiscord() {
         try {
-            discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
-                    .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
+           // discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
+                 //   .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
             CommandClientBuilder builder = new CommandClientBuilder();
             builder.setPrefix("/");
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordPunishCommand(), new DiscordConfessCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();
@@ -228,19 +231,31 @@ public final class Florial extends JavaPlugin {
                             GatewayIntent.GUILD_MESSAGE_REACTIONS,
                             GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_EMOJIS_AND_STICKERS, GatewayIntent.GUILD_PRESENCES, GatewayIntent.MESSAGE_CONTENT)
                     .setActivity(Activity.watching("the rosacage"))
-                    .addEventListeners(commandClient)
+                    .addEventListeners(commandClient, new DiscordListeners())
                     .build();
+            Bukkit.getLogger().info("Awaiting");
+            discordBot.awaitReady();
+            Bukkit.getLogger().info("Awaited");
         } catch (Exception e) {
             throw new RuntimeException("Could not initialize the discord bot, did you forget to add the information to the config file?");
         }
 
-        if (getConfig().getString("discord.serverid") == null) {
+
+        if (getConfig().getString("discord.serverid") == null ||
+                getConfig().getString("discord.staffId") == null ||
+                getConfig().getString("discord.verificationChannel") == null ||
+                getConfig().getString("discord.trustedStaffId") == null ||
+                getConfig().getString("discord.adminChannel") == null ||
+                getConfig().getString("discord.chatbotChannel") == null ||
+                getConfig().getString("discord.openaiToken") == null) {
             throw new RuntimeException("ADD THE DATA YA TURD");
         }
         discordServer = discordBot.getGuildById(getConfig().getString("discord.serverid"));
         if (discordServer == null) {
             throw new RuntimeException("Could not find discord server from ID, did you forget to add the information to the config file?");
         }
+
+        openAi = new OpenAiService(getConfig().getString("discord.openaiToken"));
         //        discordServer.updateCommands().addCommands(Commands.slash("uwu", "uwu")).queue();
 
     }

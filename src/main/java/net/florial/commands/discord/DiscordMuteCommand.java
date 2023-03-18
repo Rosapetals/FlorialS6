@@ -45,49 +45,48 @@ public class DiscordMuteCommand extends SlashCommand {
             slashCommandEvent.reply("No permissions").setEphemeral(true).queue();
             return;
         }
-        slashCommandEvent.deferReply().queue();
+        // slashCommandEvent.deferReply().queue();
 
-        Member victim = Florial.getDiscordServer().getMemberById(slashCommandEvent.getOption("user").getAsUser().getId());
-        Bukkit.getLogger().info(victim.toString());
+        Member victim = slashCommandEvent.getOption("user").getAsMember();
         if (victim == null) {
             slashCommandEvent.reply("This user does not exist").queue();
             return;
         }
+        Bukkit.getLogger().info(victim.toString());
+
         String durationText = slashCommandEvent.getOption("duration").getAsString();
         long duration = 0;
         Pattern pattern;
         Matcher m;
-        pattern = Pattern.compile("\"\\dmo\"gm");
+        pattern = Pattern.compile("\\dd");
         m = pattern.matcher(durationText);
         while (m.find()) {
-            duration += Integer.parseInt(m.group(1).replaceAll("mo", "")) * 2630000L;
+            duration += Integer.parseInt(m.group(0).replaceAll("d", "")) * 86400L;
         }
-        pattern = Pattern.compile("\"\\dd\"gm");
+        pattern = Pattern.compile("\\dw");
         m = pattern.matcher(durationText);
         while (m.find()) {
-            duration += Integer.parseInt(m.group(1).replaceAll("d", "")) * 86400L;
+            duration += Integer.parseInt(m.group(0).replaceAll("w", "")) * 604800L;
         }
-        pattern = Pattern.compile("\"\\dw\"gm");
+        pattern = Pattern.compile("\\dh");
         m = pattern.matcher(durationText);
         while (m.find()) {
-            duration += Integer.parseInt(m.group(1).replaceAll("w", "")) * 604800L;
+            duration += Integer.parseInt(m.group(0).replaceAll("h", "")) * 3600L;
         }
-        pattern = Pattern.compile("\"\\dh\"gm");
+        pattern = Pattern.compile("\\dm");
         m = pattern.matcher(durationText);
         while (m.find()) {
-            duration += Integer.parseInt(m.group(1).replaceAll("h", "")) * 3600L;
+            duration += Integer.parseInt(m.group(0).replaceAll("m", "")) * 60L;
         }
-        pattern = Pattern.compile("\"\\dm\"gm");
+        pattern = Pattern.compile("\\ds");
         m = pattern.matcher(durationText);
         while (m.find()) {
-            duration += Integer.parseInt(m.group(1).replaceAll("m", "")) * 60L;
-        }
-        pattern = Pattern.compile("\"\\dw\"gm");
-        m = pattern.matcher(durationText);
-        while (m.find()) {
-            duration += Integer.parseInt(m.group(1).replaceAll("s", ""));
+            duration += Integer.parseInt(m.group(0).replaceAll("s", ""));
         }
         Bukkit.getLogger().info(String.valueOf(duration));
+        if (duration > 1209600) {
+            duration = 1209600;
+        }
         victim.timeoutFor(duration, TimeUnit.SECONDS).queue();
         slashCommandEvent.reply("").setEmbeds(new EmbedBuilder()
                 .setTitle("Punishment processed")
@@ -95,7 +94,9 @@ public class DiscordMuteCommand extends SlashCommand {
                 .addField("Staff", slashCommandEvent.getUser().getName(), false)
                 .addField("Reason", slashCommandEvent.getOption("reason").getAsString(), false)
                 .addField("Duration", durationText, false)
+                .addField("If the above punishment was not correct:", "Discord limits us to a timeout maximum of 2 weeks, so your punishment length is capped at 2 weeks", false)
                 .setColor(0xffd4ee)
+                        .setImage(slashCommandEvent.getUser().getAvatarUrl())
                 .setFooter("Tulip is a furry uwu").build()
         ).queue();
     }

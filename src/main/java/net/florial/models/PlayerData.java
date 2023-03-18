@@ -37,6 +37,8 @@ public class PlayerData {
 
     @Getter
     private String UUID;
+    @Getter
+    private String discordId = "";
     @Getter @Setter
     private int flories = 0;
     private int dna = 0;
@@ -54,9 +56,10 @@ public class PlayerData {
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
     
 
-    public PlayerData(String uuid, int flories, int dna, int dnaXP, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix, Age age) {
+    public PlayerData(String uuid, String discordId, int flories, int dna, int dnaXP, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix, Age age) {
 
         this.UUID = uuid;
+        this.discordId = discordId;
         this.flories = flories;
         this.dna = dna;
         this.dnaXP = dnaXP;
@@ -72,8 +75,6 @@ public class PlayerData {
     public PlayerData(String uuid) {
         this.UUID = uuid;
     }
-
-    public PlayerData() {}
 
     public SpecieType getSpecieType() {
         return SpecieType.fromID(specieId);

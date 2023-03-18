@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" version="4">
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
       <configuration>
@@ -101,5 +101,13 @@
     <orderEntry type="library" name="Maven: pw.chew:jda-chewtils-examples:2.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: pw.chew:jda-chewtils-menu:2.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: pw.chew:jda-chewtils-oauth2:2.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: com.theokanning.openai-gpt3-java:service:0.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.theokanning.openai-gpt3-java:client:0.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.theokanning.openai-gpt3-java:api:0.11.1" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.retrofit2:retrofit:2.9.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.squareup.retrofit2:adapter-rxjava2:2.9.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: io.reactivex.rxjava2:rxjava:2.0.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.reactivestreams:reactive-streams:1.0.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.squareup.retrofit2:converter-jackson:2.9.0" level="project" />
   </component>
 </module>
