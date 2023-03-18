@@ -102,7 +102,7 @@ public class SpeciesMenu {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getSpecies().getId() == 0) {
+        if (data.getSpecieId() == 0) {
 
             SpeciesWrapper.setSpecies(p.getUniqueId(), SpecieType.valueOf(type.toUpperCase().replace(" ", "_")));
 

@@ -11,7 +11,6 @@ public class QuestCheckCommand extends BaseCommand {
     public static void questCheck(Player player) {
 
         player.sendMessage("" + Florial.getQuest().get(player.getUniqueId()).toString());
-        player.sendMessage("" + Florial.getQuestData().get(player.getUniqueId()));
         player.sendMessage("" + Florial.getQuest().get(player.getUniqueId()).getProgress());
     }
 }

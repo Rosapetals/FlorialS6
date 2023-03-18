@@ -1,9 +1,9 @@
 package net.florial.listeners;
 
 import net.florial.Florial;
-import net.florial.features.quests.Quest;
 import net.florial.features.quests.QuestType;
-import net.florial.models.PlayerData;
+import net.florial.features.quests.events.impl.QuestProgressEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,12 +17,15 @@ public class QuestListener implements Listener {
 
         if (!(Florial.getQuest().containsKey(event.getPlayer().getUniqueId()))) return;
 
-        Quest quest = Florial.getQuest().get(event.getPlayer().getUniqueId());
+        if (Florial.getQuest().get(event.getPlayer().getUniqueId()).getBlockType() != event.getBlock().getType()) return;
 
-        if (quest.getType() != QuestType.COLLECT || quest.getBlockType() != event.getBlock().getType()) return;
+        QuestProgressEvent progress = new QuestProgressEvent(
+                event.getPlayer(),
+                Florial.getQuest().get(event.getPlayer().getUniqueId()),
+                QuestType.KILL);
 
-        completionChecker(event.getPlayer(), quest);
-        event.getPlayer().sendMessage("yes");
+        Bukkit.getPluginManager().callEvent(progress);
+
     }
 
     @EventHandler
@@ -31,32 +34,15 @@ public class QuestListener implements Listener {
         Player killer = event.getEntity().getKiller();
         if (killer == null || !Florial.getQuest().containsKey(killer.getUniqueId())) return;
 
-        Quest quest = Florial.getQuest().get(killer.getUniqueId());
+        if (Florial.getQuest().get(killer.getUniqueId()).getMobType() == null) return;
 
-        if (quest.getType() != QuestType.KILL || quest.getMobType() != event.getEntityType()) return;
+        QuestProgressEvent progress = new QuestProgressEvent(
+                killer,
+                Florial.getQuest().get(killer.getUniqueId()),
+                QuestType.KILL);
 
-        completionChecker(killer, quest);
-
+        Bukkit.getPluginManager().callEvent(progress);
 
     }
 
-    private void completionChecker(Player p, Quest quest){
-
-        p.sendMessage("" + quest.getProgress());
-
-        quest.setProgress(quest.getProgress() + 1);
-
-        p.sendMessage("" + quest.getProgress());
-
-        Florial.getQuest().put(p.getUniqueId(), quest);
-
-        if (!(quest.getProgress() >= quest.getTarget())) return;
-
-        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
-
-        p.sendMessage("complete 2");
-
-        Florial.getQuest().remove(p.getUniqueId());
-        data.setGrowth(data.getGrowth() + 1);
-    }
 }

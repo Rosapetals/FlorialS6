@@ -13,6 +13,7 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
+import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.DiscordConfessCommand;
 import net.florial.commands.discord.DiscordMuteCommand;
 import net.florial.commands.discord.DiscordPunishCommand;
@@ -28,6 +29,7 @@ import net.florial.features.enemies.impl.Crawlies;
 import net.florial.features.enemies.impl.Snapper;
 import net.florial.features.enemies.impl.Wisps;
 import net.florial.features.quests.Quest;
+import net.florial.features.quests.QuestProgressManager;
 import net.florial.features.skills.attack.AttackSkillListener;
 import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
@@ -56,6 +58,7 @@ public final class Florial extends JavaPlugin {
     public static Florial getInstance() {
         return getPlugin(Florial.class);
     }
+    public static final Scoreboard Scoreboard = new Scoreboard();
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
     @Getter private static final HashMap<UUID, FastBoard> boards = new HashMap<>();
@@ -101,7 +104,7 @@ public final class Florial extends JavaPlugin {
         }
         initializeDiscord();
 
-        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+         rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) throw new NullPointerException("Economy service provider was not found");
         economy = rsp.getProvider();
         RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
@@ -155,6 +158,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new ScentManager(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
+        getServer().getPluginManager().registerEvents(new QuestProgressManager(), this);
 
         SpecieType.getAllSpecies().forEach(species -> {
             if (species == null) return;
