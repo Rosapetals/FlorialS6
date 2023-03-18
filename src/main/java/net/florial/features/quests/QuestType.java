@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 public enum QuestType {
-    COLLECT(100, 500),
-    KILL(10, 35);
+    COLLECT(3, 2),
+      KILL(3, 2);
 
     @Getter private final int maxAmount;
 

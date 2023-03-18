@@ -4,21 +4,16 @@ import net.florial.utils.math.NumberGenerator;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class QuestGenerator {
 
-    private  List<Material> blockTypes;
-    private List<EntityType> mobTypes;
-    private Random random;
+    private final List<Material> blockTypes = List.of(Material.SAND);
+    private final List<EntityType> mobTypes = List.of(EntityType.SHEEP);
+    private final Random random = new Random();
 
-    public QuestGenerator(List<Material> blockTypes, List<EntityType> mobTypes) {
-        this.blockTypes = blockTypes;
-        this.mobTypes = mobTypes;
-        this.random = new Random();
-    }
+    public QuestGenerator() {}
 
     public Quest generateQuest() {
         QuestType type = QuestType.randomQuestType();
@@ -27,11 +22,11 @@ public class QuestGenerator {
         switch (type) {
             case COLLECT -> {
                 Material blockType = blockTypes.get(random.nextInt(blockTypes.size()));
-                return new Quest("Collect " + target + " " + blockType.name().toLowerCase(), type, target, blockType, null, null);
+                return new Quest("Collect " + target + " " + blockType.name().toLowerCase(), type, target, blockType, null, 0);
             }
-            case KILL -> {
-                EntityType mobType = mobTypes.get(random.nextInt(mobTypes.size()));
-                return new Quest("Kill " + target + " " + mobType.name().toLowerCase(), type, target, null, mobType, null);
+             case KILL -> {
+                  EntityType mobType = mobTypes.get(random.nextInt(mobTypes.size()));
+                return new Quest("Kill " + target + " " + mobType.name().toLowerCase(), type, target, null, mobType, 0);
             }
         }
         return null;

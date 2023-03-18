@@ -34,27 +34,24 @@ public class PlayerData {
 
     @Id
     private ObjectId _id = new ObjectId();
-
     @Getter
     private String UUID;
     @Getter @Setter
     private int flories = 0;
     private int dna = 0;
     private int specieId = 0;
-
     private int event = 0;
-
+    private int growth = 0;
     @Nullable
     String pronouns = "";
     @Nullable
     String prefix = "";
-
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
     
 
-    public PlayerData(String uuid, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, String prefix, Age age) {
+    public PlayerData(String uuid, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, String prefix, Age age) {
 
         this.UUID = uuid;
         this.flories = flories;
@@ -64,6 +61,7 @@ public class PlayerData {
         this.skills = skills;
         this.upgrades = upgrades;
         this.event = event;
+        this.growth = growth;
         this.prefix = prefix;
         this.age = age;
     }

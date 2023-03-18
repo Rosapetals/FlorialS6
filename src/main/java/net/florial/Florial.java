@@ -147,6 +147,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChocolateEatListener(), this);
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new ScentManager(), this);
+        getServer().getPluginManager().registerEvents(new QuestListener(), this);
 
         SpecieType.getAllSpecies().forEach(species -> {
             if (species == null) return;
@@ -213,6 +214,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ChocolateerCommand());
         manager.registerCommand(new GrowCommand());
         manager.registerCommand(new RemoveFieldCommand());
+        manager.registerCommand(new QuestCheckCommand());
 
     }
 
