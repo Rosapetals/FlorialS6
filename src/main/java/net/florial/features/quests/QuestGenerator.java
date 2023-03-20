@@ -9,9 +9,12 @@ import java.util.Random;
 
 public class QuestGenerator {
 
-    private final List<Material> blockTypes = List.of(Material.SAND);
-    private final List<EntityType> mobTypes = List.of(EntityType.SHEEP);
-    private final Random random = new Random();
+    private static final List<Material> blockTypes = List.of(Material.SAND);
+    private static final List<EntityType> mobTypes = List.of(EntityType.SHEEP);
+    private static final List<Material> itemTypes = List.of(Material.GOLD_INGOT);
+    private static final List<Material> foodTypes = List.of(Material.BEEF);
+
+    private static final Random random = new Random();
 
     public QuestGenerator() {}
 
@@ -22,11 +25,19 @@ public class QuestGenerator {
         switch (type) {
             case COLLECT -> {
                 Material blockType = blockTypes.get(random.nextInt(blockTypes.size()));
-                return new Quest("Collect " + target + " " + blockType.name().toLowerCase(), type, target, blockType, null, 0);
+                return new Quest("Collect " + target + " " + blockType.name().toLowerCase(), type, target, blockType, null, null, 0);
             }
              case KILL -> {
-                  EntityType mobType = mobTypes.get(random.nextInt(mobTypes.size()));
-                return new Quest("Kill " + target + " " + mobType.name().toLowerCase(), type, target, null, mobType, 0);
+                 EntityType mobType = mobTypes.get(random.nextInt(mobTypes.size()));
+                 return new Quest("Kill " + target + " " + mobType.name().toLowerCase(), type, target, null,  mobType, null, 0);
+             }
+            case EAT -> {
+                Material itemType = foodTypes.get(random.nextInt(itemTypes.size()));
+                return new Quest("Collect and Eat " + target + " " + itemType.name().toLowerCase(), type, target, null, null, itemType, 0);
+            }
+            case DELIVER -> {
+                Material itemType = itemTypes.get(random.nextInt(itemTypes.size()));
+                return new Quest("Bring " + target + " " + itemType.name().toLowerCase() + " to the Collection Bin at /warp bin", type, target, null, null, itemType, 0);
             }
         }
         return null;

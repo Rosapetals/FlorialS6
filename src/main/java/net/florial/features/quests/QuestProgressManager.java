@@ -3,9 +3,12 @@ package net.florial.features.quests;
 import net.florial.Florial;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
 import net.florial.models.PlayerData;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+
+import java.util.UUID;
 
 public class QuestProgressManager implements Listener {
 
@@ -22,9 +25,18 @@ public class QuestProgressManager implements Listener {
 
     private void completionChecker(Player p, Quest quest){
 
-        quest.setProgress(quest.getProgress() + 1);
+        UUID u = p.getUniqueId();
+        BossBar questBar = Florial.getQuestBar().get(u);
 
-        Florial.getQuest().put(p.getUniqueId(), quest);
+        quest.setProgress(quest.getProgress() + 1);
+        Florial.getQuest().put(u, quest);
+
+        double scale = (double) quest.getProgress() / (double) quest.getTarget();
+
+        questBar.setProgress(scale);
+        questBar.setTitle("Quest Progress: " + quest);
+
+        p.sendMessage("" + scale + " " + questBar.getProgress());
 
         if (!(quest.getProgress() >= quest.getTarget())) return;
 
@@ -32,7 +44,11 @@ public class QuestProgressManager implements Listener {
 
         p.sendMessage("Completed quest!");
 
+        Florial.getQuestBar().get(u).removePlayer(p);
+        Florial.getQuestBar().remove(u);
+
         Florial.getQuest().remove(p.getUniqueId());
         data.setGrowth(data.getGrowth() + 1);
+        data.setDna(data.getDna() + 1);
     }
 }

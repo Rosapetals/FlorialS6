@@ -9,10 +9,12 @@ import net.florial.Florial;
 import net.florial.features.skills.Skills;
 import net.florial.models.PlayerData;
 import net.florial.species.SpecieType;
+import net.florial.species.Species;
 import net.florial.species.SpeciesWrapper;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.GetCustomSkull;
+import net.florial.utils.general.VaultHandler;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -43,7 +45,14 @@ public class SpeciesMenu {
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
                                                 "#ff79a1&lSKILLS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lPRESTIGE SHOP\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                                "#ff79a1&lPRESTIGE SHOP\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
+                                                "CASH TO DNA\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • YOUR CASH: #ffa2c4 "
+                                                + VaultHandler.getBalance(p) + "\n #ff79a1&l︳  CASH NEEDED:\n #ffa2c4&l︳ •#ffa2c4 $10,000 per DNA\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • INFO:" +
+                                                "\n #ffa2c4&l︳#ffa2c4 • Get cash by selling items in /sell" +
+                                                "\n #ffa2c4&l︳#ffa2c4 • Use DNA to buy Instincts, upgrade skills," +
+                                                "\n #ffa2c4&l︳#ffa2c4 • or to age up. The choice is yours."
+                                                + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
                         List<ItemStack> species = Stream.of(CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTkyNGJlNWY3NGI2NDMxNjYwZmQ1YzRjYzAzMzRkOTFlNzdlNzdmZGQ4OGQyNGVhODVlYjBmMzgzODRjN2YxYSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
@@ -66,9 +75,9 @@ public class SpeciesMenu {
                                                 "", "", "", "")), false)).toList();
 
 
-                        contents.set(List.of(21), IntelligentItem.of(species.get(0), event -> switchSpecies(p, "FOX")));
+                        contents.set(List.of(21), IntelligentItem.of(species.get(0), event -> Species.become(p, "FOX")));
 
-                        contents.set(List.of(23), IntelligentItem.of(species.get(1), event -> switchSpecies(p, "CAT")));
+                        contents.set(List.of(23), IntelligentItem.of(species.get(1), event -> Species.become(p, "CAT")));
 
                         //skills
                         contents.set(List.of(5, 4, 3), IntelligentItem.of(entries.get(0), event -> loadMenu(p, 1)));
@@ -78,6 +87,10 @@ public class SpeciesMenu {
 
                         //instincts
                         contents.set(List.of(27, 28, 29), IntelligentItem.of(entries.get(1), event -> loadMenu(p, 2)));
+
+                        //cash to dna
+                        contents.set(List.of(40), IntelligentItem.of(entries.get(2), event -> cashConvert(p)));
+
 
                     }
                 })
@@ -98,23 +111,26 @@ public class SpeciesMenu {
         }
     }
 
-    private static void switchSpecies(Player p, String type) {
+    private static void cashConvert(Player p){
 
-        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+        if (VaultHandler.getBalance(p) >= 10000) {
 
-        if (data.getSpecieId() == 0) {
+            PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-            SpeciesWrapper.setSpecies(p.getUniqueId(), SpecieType.valueOf(type.toUpperCase().replace(" ", "_")));
+            data.setDna(data.getDna() + 1);
 
-            p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 2, 1);
 
-            p.closeInventory();
+            VaultHandler.removeMoney(p, 10000);
 
         } else {
-            p.sendMessage("You already have a species! Remove it through /resetspecies for 25 DNA.");
-        }
+            p.closeInventory();
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 2, 1);
+            p.sendMessage("You need at least $10,000 to get 1 DNA.");
 
+        }
     }
+
 
         private static String format(List<String> iterations){
         return "  #ff79a1&l︳ " + iterations.get(0) +

@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Random;
 
 public enum QuestType {
-    COLLECT(3, 2),
-      KILL(3, 2);
+    COLLECT(6, 3),
+    KILL(6, 3),
+    EAT(6, 3),
+    DELIVER(6, 3);
 
     @Getter private final int maxAmount;
 

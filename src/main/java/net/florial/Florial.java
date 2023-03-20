@@ -3,6 +3,8 @@ package net.florial;
 import co.aikar.commands.PaperCommandManager;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.theokanning.openai.service.OpenAiService;
 import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
 import lombok.Getter;
@@ -44,9 +46,11 @@ import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.boss.BossBar;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.UnknownDependencyException;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -64,6 +68,8 @@ public final class Florial extends JavaPlugin {
     @Getter private static final HashMap<UUID, FastBoard> boards = new HashMap<>();
 
     @Getter private static final HashMap<UUID, Quest> questData = new HashMap<>();
+    @Getter private static final HashMap<UUID, BossBar> questBar = new HashMap<>();
+
 
     @Getter private static Guild discordServer;
     @Getter
@@ -113,7 +119,10 @@ public final class Florial extends JavaPlugin {
         } else {
             throw new NullPointerException("No luckperms found");
          }
-
+        Plugin worldGuardPlugin = Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+        if (!(worldGuardPlugin instanceof WorldGuardPlugin)) {
+            throw new NullPointerException("WorldGuard is not on this server.");
+        }
 
     }
 
@@ -168,7 +177,8 @@ public final class Florial extends JavaPlugin {
         if (!(Bukkit.getOnlinePlayers().size() > 0)) return;
         for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p.getUniqueId()).thenAccept(playerData -> {
             Florial.getPlayerData().put(p.getUniqueId(), playerData);});
-            ThirstManager.thirstRunnable(p);}
+            ThirstManager.thirstRunnable(p);
+            Scoreboard.boardRunnable(p.getUniqueId(), p);}
 
         if (!(Cooldown.getCooldownMap("c1") == null)) Cooldown.getCooldownMap("c1").clear();
         if (!(Cooldown.getCooldownMap("c2") == null)) Cooldown.getCooldownMap("c2").clear();
@@ -283,5 +293,7 @@ public final class Florial extends JavaPlugin {
     public static HashMap<UUID, Integer> getThirst(){return thirst;}
 
     public static HashMap<UUID, Quest> getQuest(){return questData;}
+    public static HashMap<UUID, BossBar> getQuestBar(){return questBar;}
+
 
 }

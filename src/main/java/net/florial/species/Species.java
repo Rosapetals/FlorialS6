@@ -12,6 +12,7 @@ import net.florial.species.events.impl.SpeciesSwitchEvent;
 import net.florial.utils.GeneralUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -41,7 +42,6 @@ public abstract class Species implements Listener {
             Map.entry(Material.SALMON, 13),
             Map.entry(Material.MUTTON, 20)
     );
-
 
 
     String name;
@@ -85,6 +85,26 @@ public abstract class Species implements Listener {
     public Set<String> descriptions() {
         return new HashSet<>();
     }
+
+    public static void become(Player p, String type) {
+
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        if (data.getSpecieId() == 0) {
+
+            SpeciesWrapper.setSpecies(p.getUniqueId(), SpecieType.valueOf(type.toUpperCase().replace(" ", "_")));
+
+            p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
+
+            p.closeInventory();
+
+        } else {
+            p.sendMessage("You already have a species! Remove it through /resetspecies for 25 DNA.");
+        }
+
+    }
+
+
 
     @EventHandler
     public void whenISwitch(SpeciesSwitchEvent event) {
