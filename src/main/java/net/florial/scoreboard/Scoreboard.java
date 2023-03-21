@@ -15,9 +15,9 @@ import java.util.UUID;
 
 public class Scoreboard implements Listener {
 
-    public Map<UUID, FastBoard> boards = new HashMap<>();
+    public static Map<UUID, FastBoard> boards = new HashMap<>();
 
-    public void createBoard(Player p) {
+    public static void createBoard(Player p) {
 
         UUID u = p.getUniqueId();
 
@@ -39,7 +39,7 @@ public class Scoreboard implements Listener {
         String text11 = CC.translate("    #ff7a8b┕━━━━━━━━━━━━━━━━━━┙");
         FastBoard board = new FastBoard(p);
         board.updateTitle("" + text1);
-        this.boards.put(p.getUniqueId(), board);
+        boards.put(p.getUniqueId(), board);
         board.updateLines(
                 "" + text3,
                 "" + text4,

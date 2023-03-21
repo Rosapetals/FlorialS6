@@ -111,7 +111,8 @@ public class FlorialDatabase {
         GeneralUtils.runAsync(new BukkitRunnable() {
             @Override
             public void run() {
-                datastore.replace(data, new ReplaceOptions().upsert(true));
+                datastore.find(PlayerData.class).filter(Filters.eq("UUID", data)).delete();
+                datastore.save(data);
             }
         });
     }
@@ -194,7 +195,8 @@ public class FlorialDatabase {
     }
 
     public static void createNewPlayerData(PlayerData data) {
-        datastore.replace(data, new ReplaceOptions().upsert(true));
+        datastore.find(PlayerData.class).filter(Filters.eq("UUID", data)).delete();
+        datastore.save(data);
     }
 
     public static void closeConnection() {
