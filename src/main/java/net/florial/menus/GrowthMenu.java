@@ -51,6 +51,10 @@ public class GrowthMenu {
                                                 "\n #ffa2c4&l︳#ffa2c4 • Complete " + requiredQuests + " and get " + requiredDNA + " DNA to Age Up"
                                                 + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
+                                                "GO BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "KIT", "BE BORN", "1", "2", "3", "4")), false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
                                                 "GO BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
                         //3,4,5,6
@@ -63,8 +67,11 @@ public class GrowthMenu {
                             p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);
                             Quest.give(p);
                         }));
-
-
+                        contents.set(List.of(9,10,18,19,28), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(16,17,25,26), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(36,37,45,46), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(43,44,52,53), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(21,22,23,30,31,32,33,39,40,41), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
                     }
                 })
                 .build(Florial.getInstance())
@@ -79,6 +86,21 @@ public class GrowthMenu {
         p.closeInventory();
 
         SpeciesMenu.speciesMenu(p);
+    }
+
+    private static String format(List<String> iterations){
+
+        return  "  #ff79a1&l︳ "
+                + iterations.get(0) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • HOW TO GET:\n #ff79a1&l︳ "
+                + iterations.get(1) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • INFO:" +
+                "\n #ffa2c4&l︳#ffa2c4 • "
+                + iterations.get(2) +
+                "\n #ffa2c4&l︳#ffa2c4 • "
+                + iterations.get(3) +
+                "\n #ffa2c4&l︳#ffa2c4 • "
+                + iterations.get(4) +
+                "\n #ffa2c4&l︳#ffa2c4 • "
+                + iterations.get(5) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙";
     }
 
 }

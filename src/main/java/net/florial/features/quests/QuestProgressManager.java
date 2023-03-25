@@ -31,12 +31,8 @@ public class QuestProgressManager implements Listener {
         quest.setProgress(quest.getProgress() + 1);
         Florial.getQuest().put(u, quest);
 
-        double scale = (double) quest.getProgress() / (double) quest.getTarget();
-
-        questBar.setProgress(scale);
+        questBar.setProgress((double) quest.getProgress() / (double) quest.getTarget());
         questBar.setTitle("Quest Progress: " + quest);
-
-        p.sendMessage("" + scale + " " + questBar.getProgress());
 
         if (!(quest.getProgress() >= quest.getTarget())) return;
 

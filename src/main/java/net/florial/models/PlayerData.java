@@ -120,8 +120,6 @@ public class PlayerData {
         }
     }
 
-    // dna section
-
     public void overwrite() {
         if (Bukkit.getPlayer(UUID) == null) return;
         Florial.getPlayerData().put(Bukkit.getPlayer(UUID).getUniqueId(), this);

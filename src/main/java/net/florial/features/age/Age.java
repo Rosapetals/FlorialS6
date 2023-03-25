@@ -2,6 +2,7 @@ package net.florial.features.age;
 
 import lombok.Getter;
 import net.florial.models.PlayerData;
+import net.florial.species.disguises.Morph;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -62,6 +63,8 @@ public enum Age {
             data.setDna(data.getDna() - requiredDNA);
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 2, 1);
+
+            Morph.activate(p, "" + data.getSpecies().getName(), "", false, "");
 
         } else {
             p.sendMessage("You can't age up anymore!");

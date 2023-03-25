@@ -23,7 +23,7 @@ public class Scoreboard implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(u);
 
-        String name = (data.getSpecieType().getSpecie() == null) ? "species" : data.getSpecies().getName();
+        String name = (data.getSpecieType().getSpecie() == null) ? "/species" : data.getSpecies().getName();
 
         String text1 = CC.translate(" #ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl #ff1d3a&l| S6");
         String text3 = CC.translate("");
@@ -61,7 +61,7 @@ public class Scoreboard implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(u);
 
-        String name = (data.getSpecieType().getSpecie() == null) ? "species" : data.getSpecies().getName();
+        String name = (data.getSpecieType().getSpecie() == null) ? "/species" : data.getSpecies().getName();
 
         String text1 = CC.translate(" #ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl #ff1d3a&l| S6");
         String text3 = CC.translate("");

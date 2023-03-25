@@ -8,6 +8,7 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.menus.SpeciesMenu;
 import net.florial.models.PlayerData;
+import net.florial.species.impl.Human;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import org.bukkit.Material;
@@ -92,12 +93,17 @@ public class Skills {
         int dna = data.getDna();
         Sound sound;
 
+        if (skill == Skill.SCENT && data.getSpecies() instanceof Human) return;
+
         if (dna < i) {
             p.sendMessage("Not enough DNA");
             sound = Sound.BLOCK_NOTE_BLOCK_BASS;
 
-        } else if (data.getSkills().get(skill) >= 5) {
+        } else if (skill.getLvl() >= 5) {
             p.sendMessage("Skill is maxed.");
+            sound = Sound.BLOCK_NOTE_BLOCK_BASS;
+        } else if (data.getAge().getId() > skill.getLvl()) {
+            p.sendMessage("Age Up to upgrade your skills further! (/grow)");
             sound = Sound.BLOCK_NOTE_BLOCK_BASS;
 
         } else {

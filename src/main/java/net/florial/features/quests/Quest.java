@@ -52,6 +52,7 @@ public class Quest {
 
         Florial.getQuest().put(u, questData);
 
+        Florial.getQuestBar().get(u).removePlayer(p);
         Florial.getQuestBar().remove(u);
 
         BossBar boss = Bukkit.createBossBar(
