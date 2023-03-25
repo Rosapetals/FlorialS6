@@ -17,6 +17,7 @@ public class SetDiscordIDCommand extends BaseCommand {
     @CommandPermission("florial.staff")
     public void onSetIdCommand(Player player, String id) {
         String parsedId = id.substring(0, 17);
+        Bukkit.getLogger().info(id);
         if (parsedId.matches(".*[a-z].*")) {
             MessageUtils.sendMessage(player, new Message("&cThat ID is not a valid discord ID"));
             return;

@@ -34,28 +34,32 @@ public class PlayerData {
 
     @Id
     private ObjectId _id = new ObjectId();
+
     @Getter
     private String UUID;
+    @Getter
+    private String discordId = "";
     @Getter @Setter
     private int flories = 0;
     private int dna = 0;
     private int specieId = 0;
+
     private int event = 0;
     private int growth = 0;
     @Nullable
     String pronouns = "";
     @Nullable
     String prefix = "";
-    @Getter
-    private String discordId = "";
+
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
-
+    
 
     public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, String prefix, Age age) {
 
         this.UUID = uuid;
+        this.discordId = discordId;
         this.flories = flories;
         this.dna = dna;
         this.specieId = specieId;
@@ -66,14 +70,11 @@ public class PlayerData {
         this.growth = growth;
         this.prefix = prefix;
         this.age = age;
-        this.discordId = discordId;
     }
 
     public PlayerData(String uuid) {
         this.UUID = uuid;
     }
-
-    public PlayerData() {}
 
     public SpecieType getSpecieType() {
         return SpecieType.fromID(specieId);
@@ -119,6 +120,7 @@ public class PlayerData {
             return 0;
         }
     }
+
 
     public void overwrite() {
         if (Bukkit.getPlayer(UUID) == null) return;
