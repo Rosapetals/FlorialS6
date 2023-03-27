@@ -23,10 +23,7 @@ public class SetDiscordIDCommand extends BaseCommand {
             return;
         }
 
-        FlorialDatabase.getPlayerData(player).thenAccept(playerData -> {
-            playerData.setDiscordId(parsedId);
-            playerData.save(false);
-        });
+        Florial.getPlayerData().get(player.getUniqueId()).setDiscordId(id);
         player.kick(Component.text("Please relog for changes to take effect"));
     }
 }

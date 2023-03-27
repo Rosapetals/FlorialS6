@@ -1,6 +1,7 @@
 package net.florial.listeners;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
+import lombok.val;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
@@ -14,11 +15,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Objects;
 import java.util.UUID;
+
+import static dev.morphia.query.filters.Filters.eq;
 
 public class PlayerListeners implements Listener {
 
@@ -37,6 +43,11 @@ public class PlayerListeners implements Listener {
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(playerData.toString()).send(p);
         });
 
+        if (Florial.getPlayerData().get(u) == null) {
+            val temp = FlorialDatabase.getDatastore().find(PlayerData.class).filter(eq("UUID", u.toString()));
+            Florial.getPlayerData().put(u, temp.stream().findFirst().orElse(new PlayerData(u.toString())));
+            new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
+        }
         if (p.hasPermission("florial.staff")) {
 
             if (Florial.getPlayerData().get(u).getDiscordId() == "") {
@@ -61,6 +72,8 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
 
+        Florial.getInstance().getStaffToVerify().remove(event.getPlayer().getUniqueId());
+
         // Florial.getBoards().remove(event.getPlayer().getUniqueId());
 
         PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
@@ -69,6 +82,11 @@ public class PlayerListeners implements Listener {
 
     @EventHandler
     public void onChat(AsyncChatEvent event) {
+        if (Florial.getInstance().getStaffToVerify().contains(event.getPlayer().getUniqueId())) {
+            event.setCancelled(true);
+            new Message("&c&lPlease verify through discord").send(event.getPlayer());
+        }
+
         String prefix = Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getPrefix();
         if (Objects.equals(prefix, "")) {
             try {
@@ -83,5 +101,36 @@ public class PlayerListeners implements Listener {
         }
         event.setCancelled(true);
         Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + event.getPlayer().getName().trim() + ": " + ((TextComponent) event.message()).content())));
+    }
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent event) {
+        if (Florial.getInstance().getStaffToVerify().contains(event.getPlayer().getUniqueId())) {
+            event.setCancelled(true);
+            new Message("&c&lPlease verify through discord").send(event.getPlayer());
+        }
+    }
+
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        if (Florial.getInstance().getStaffToVerify().contains(event.getPlayer().getUniqueId())) {
+            event.setCancelled(true);
+            new Message("&c&lPlease verify through discord").send(event.getPlayer());
+        }
+    }
+
+    @EventHandler
+    public void onDamage(EntityDamageByEntityEvent event) {
+        if (event.getDamager() instanceof Player) {
+            if (Florial.getInstance().getStaffToVerify().contains(((Player) event.getDamager()).getPlayer().getUniqueId())) {
+                event.setCancelled(true);
+                new Message("&c&lPlease verify through discord").send(((Player) event.getDamager()).getPlayer());
+            }
+        } else if (event.getEntity() instanceof Player) {
+            if (Florial.getInstance().getStaffToVerify().contains(((Player) event.getEntity()).getPlayer().getUniqueId())) {
+                event.setCancelled(true);
+                new Message("&c&lPlease verify through discord").send(((Player) event.getEntity()).getPlayer());
+            }
+        }
     }
 }

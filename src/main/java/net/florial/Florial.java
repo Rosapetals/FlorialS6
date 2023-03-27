@@ -16,10 +16,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
 import net.florial.commands.database.RemoveFieldCommand;
-import net.florial.commands.discord.DiscordConfessCommand;
-import net.florial.commands.discord.DiscordMuteCommand;
-import net.florial.commands.discord.DiscordPunishCommand;
-import net.florial.commands.discord.DiscordUwUCommand;
+import net.florial.commands.discord.*;
 import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
@@ -148,7 +145,7 @@ public final class Florial extends JavaPlugin {
         manager.invoke();
         VaultHandler.initiate();
 
-        Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
+        // Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
@@ -249,7 +246,7 @@ public final class Florial extends JavaPlugin {
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordVerifyCommand(), new DiscordPunishCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();

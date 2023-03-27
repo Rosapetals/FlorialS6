@@ -77,6 +77,7 @@ public class PlayerData {
     public PlayerData(String uuid) {
         this.UUID = uuid;
     }
+    public PlayerData() {}
 
     public SpecieType getSpecieType() {
         return SpecieType.fromID(specieId);
