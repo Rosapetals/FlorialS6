@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 import net.florial.Florial;
+import net.florial.features.age.Age;
 import net.florial.models.PlayerData;
 import net.florial.species.disguises.Morph;
 import net.florial.species.events.impl.SpeciesSwitchEvent;
@@ -113,7 +114,9 @@ public abstract class Species implements Listener {
 
         data.setSpecieId(event.getSpecie().getId());
 
-        Morph.activate(event.getPlayer(), "" + event.getSpecie(), "", false);
+        data.setAge(Age.KIT);
+
+        Morph.activate(event.getPlayer(), "" + event.getSpecie(), "", false, "baby");
 
         data.getSpecies().effects().forEach(effect -> data.getPlayer().removePotionEffect(effect.getType()));
 
@@ -136,7 +139,7 @@ public abstract class Species implements Listener {
 
         if (this.diet().contains(mat)) {
             p.setFoodLevel(p.getFoodLevel() + fillingValues.get(mat));
-            if (!(p.getSaturation() >= 20)) p.setSaturation(p.getSaturation() + fillingValues.get(mat)/2);
+            if (!(p.getSaturation() >= 20)) p.setSaturation(p.getSaturation() + (float) fillingValues.get(mat)/2);
         } else {
             p.setFoodLevel(p.getFoodLevel() + 1);
         }

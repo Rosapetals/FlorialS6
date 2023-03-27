@@ -42,7 +42,6 @@ public class PlayerData {
     @Getter @Setter
     private int flories = 0;
     private int dna = 0;
-    private int dnaXP = 0;
     private int specieId = 0;
 
     private int event = 0;
@@ -63,7 +62,6 @@ public class PlayerData {
         this.discordId = discordId;
         this.flories = flories;
         this.dna = dna;
-        this.dnaXP = dnaXP;
         this.specieId = specieId;
         this.pronouns = pronouns;
         this.skills = skills;
@@ -124,25 +122,6 @@ public class PlayerData {
         }
     }
 
-    // dna section
-
-    public int getDnaXP() {
-        DnaLVLup();
-        return dnaXP;
-    }
-
-    public int getDna() {
-        DnaLVLup();
-        return dna;
-    }
-
-    @BsonIgnore
-    private void DnaLVLup(){
-        if (dnaXP <= 500) return;
-        dnaXP = 0;
-        dna = dna+1;
-
-    }
 
     public void overwrite() {
         if (Bukkit.getPlayer(UUID) == null) return;

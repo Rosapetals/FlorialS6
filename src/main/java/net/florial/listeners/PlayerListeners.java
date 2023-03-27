@@ -5,6 +5,7 @@ import lombok.val;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
+import net.florial.menus.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.scoreboard.Scoreboard;
 import net.florial.utils.general.CC;
@@ -17,6 +18,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -31,6 +34,8 @@ public class PlayerListeners implements Listener {
     private static final ThirstManager ThirstManager = new ThirstManager();
 
     private static final Scoreboard Scoreboard = new Scoreboard();
+
+    private static final SpeciesMenu speciesMenu = new SpeciesMenu();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -56,14 +61,25 @@ public class PlayerListeners implements Listener {
             Florial.getInstance().getStaffToVerify().add(u);
         }
 
+        PlayerData data = Florial.getPlayerData().get(u);
         ThirstManager.thirstRunnable(p);
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
             if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
             Scoreboard.boardRunnable(u, p);
-            Florial.getPlayerData().get(u).refresh();
+            data.refresh();
             }, 100L);
 
         if (Florial.getQuestBar().containsKey(u)) Florial.getQuestBar().get(u).addPlayer(p);
+
+        if (data.getSpecieType().getSpecie() == null) speciesMenu.speciesMenu(p);
+
+        if (p.hasPermission("florial.staff")) {
+
+            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
+                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
+            }
+            Florial.getInstance().getStaffToVerify().add(u);
+        }
 
 
 
@@ -78,6 +94,16 @@ public class PlayerListeners implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
         data.save(true);
+    }
+
+    @EventHandler
+    public void closeInventory(InventoryCloseEvent e) {
+
+        if (e.getInventory().getType() != InventoryType.CHEST || (!(e.getReason().equals(InventoryCloseEvent.Reason.PLAYER)))) return;
+
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecieType().getSpecie() != null) return;
+
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> speciesMenu.speciesMenu((Player) e.getPlayer()), 20L);
     }
 
     @EventHandler

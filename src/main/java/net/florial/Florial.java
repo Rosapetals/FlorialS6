@@ -3,7 +3,6 @@ package net.florial;
 import co.aikar.commands.PaperCommandManager;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
-import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.theokanning.openai.service.OpenAiService;
 import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
@@ -21,8 +20,6 @@ import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
 import net.florial.database.FlorialDatabase;
-import net.florial.features.chocolates.ChocolateEatListener;
-import net.florial.features.chocolates.ChocolateerCommand;
 import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
 import net.florial.features.enemies.impl.Snapper;
@@ -160,7 +157,6 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Wisps(EntityType.WITCH), this);
         getServer().getPluginManager().registerEvents(new Crawlies(EntityType.CAVE_SPIDER), this);
 
-        getServer().getPluginManager().registerEvents(new ChocolateEatListener(), this);
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new ScentManager(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
@@ -224,12 +220,12 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ChangeSpeciesCommand());
         manager.registerCommand(new ResetSpeciesCommand());
         manager.registerCommand(new SpeciesCommand());
+        manager.registerCommand(new ShopCommand());
         manager.registerCommand(new ChangeDNACommand());
         manager.registerCommand(new LeaderboardCommand());
         manager.registerCommand(new ShowScentUICommand());
         manager.registerCommand(new ChangeSkillsCommand());
         manager.registerCommand(new NuzzleCommand());
-        manager.registerCommand(new ChocolateerCommand());
         manager.registerCommand(new GrowCommand());
         manager.registerCommand(new RemoveFieldCommand());
         manager.registerCommand(new QuestCheckCommand());
