@@ -1,6 +1,7 @@
 package net.florial.features.quests;
 
 import net.florial.Florial;
+import net.florial.features.age.Age;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
 import net.florial.models.PlayerData;
 import org.bukkit.boss.BossBar;
@@ -44,7 +45,8 @@ public class QuestProgressManager implements Listener {
         Florial.getQuestBar().remove(u);
 
         Florial.getQuest().remove(p.getUniqueId());
+
         data.setGrowth(data.getGrowth() + 1);
-        data.setDna(data.getDna() + 1);
+        data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
     }
 }

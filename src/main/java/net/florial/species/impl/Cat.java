@@ -30,10 +30,10 @@ public class Cat extends Species {
 
 
     @Override
-    public HashMap<Integer, Boolean> sharedAbilities() {
+    public Set<Integer> sharedAbilities() {
 
-        return new HashMap<>(Map.ofEntries(
-                Map.entry(1, true)));
+        return new HashSet<>(List.of(
+                1));
     }
     @Override
     public HashMap<Integer, PotionEffect> specific() {
@@ -94,9 +94,10 @@ public class Cat extends Species {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getSpecies() != this || (Cooldown.isOnCooldown("c1", p))) return;
+        if (data.getSpecies() != this || (Cooldown.isOnCooldown("c1", p)) || (!(p.getHealth() < 6))) return;
 
-        if (p.getHealth() < 2) p.setHealth(p.getHealth() + 7);
+        e.setCancelled(true);
+        p.setHealth(p.getHealth() + 7);
 
         p.playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, (float) 0.4, 1);
         p.playSound(p.getLocation(), Sound.ENTITY_CAT_BEG_FOR_FOOD, 1, 1);

@@ -68,6 +68,8 @@ public class OreTrackingUI {
     private static void oreLocate(Material mat, Player p, int scent, int required) {
         Sound sound;
 
+        p.closeInventory();
+
         if (scent >= required) {
 
             int nearby = MaterialDetector.detectMaterial(p, mat, scent*5);

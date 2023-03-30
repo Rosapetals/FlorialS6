@@ -1,4 +1,4 @@
-package net.florial.menus;
+package net.florial.menus.species;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import io.github.rysefoxx.inventory.plugin.content.IntelligentItem;
@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 
 public class InstinctsMenu {
 
-    private static final SpeciesMenu SpeciesMenu = new SpeciesMenu();
+    private static final net.florial.menus.species.SpeciesMenu SpeciesMenu = new SpeciesMenu();
 
     public void instinctMenu(Player p) {
 

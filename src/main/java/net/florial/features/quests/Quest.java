@@ -52,8 +52,7 @@ public class Quest {
 
         Florial.getQuest().put(u, questData);
 
-        Florial.getQuestBar().get(u).removePlayer(p);
-        Florial.getQuestBar().remove(u);
+        if (Florial.getQuestBar().containsKey(u)) {Florial.getQuestBar().get(u).removePlayer(p);}
 
         BossBar boss = Bukkit.createBossBar(
                 "Quest Progress: " + Florial.getQuest().get(p.getUniqueId()).toString(),

@@ -54,9 +54,9 @@ public class PlayerData {
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
-    
 
-    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, String prefix, Age age) {
+
+    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, @org.jetbrains.annotations.Nullable String prefix, Age age) {
 
         this.UUID = uuid;
         this.discordId = discordId;
@@ -76,7 +76,6 @@ public class PlayerData {
         this.UUID = uuid;
     }
     public PlayerData() {}
-
     public SpecieType getSpecieType() {
         return SpecieType.fromID(specieId);
     }

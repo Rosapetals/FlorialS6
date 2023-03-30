@@ -1,4 +1,4 @@
-package net.florial.menus;
+package net.florial.menus.species;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import io.github.rysefoxx.inventory.plugin.content.IntelligentItem;
@@ -6,11 +6,11 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
+import net.florial.features.age.Age;
 import net.florial.features.skills.Skills;
 import net.florial.models.PlayerData;
-import net.florial.species.SpecieType;
 import net.florial.species.Species;
-import net.florial.species.SpeciesWrapper;
+import net.florial.utils.Cooldown;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.GetCustomSkull;
@@ -29,9 +29,9 @@ public class SpeciesMenu {
     final net.florial.utils.general.GetCustomSkull GetCustomSkull = new GetCustomSkull();
     private static final Skills Skills = new Skills();
 
-    private static final InstinctsMenu InstinctsMenu = new InstinctsMenu();
+    private static final net.florial.menus.species.InstinctsMenu InstinctsMenu = new InstinctsMenu();
 
-    private static final GrowthMenu GrowthMenu = new GrowthMenu();
+    private static final net.florial.menus.species.GrowthMenu GrowthMenu = new GrowthMenu();
 
     public void speciesMenu(Player p) {
 
@@ -115,13 +115,17 @@ public class SpeciesMenu {
 
         if (VaultHandler.getBalance(p) >= 10000) {
 
+            if (Cooldown.isOnCooldown("c2", p)) return;
+
             PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-            data.setDna(data.getDna() + 1);
+            data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 2, 1);
 
             VaultHandler.removeMoney(p, 10000);
+
+            Cooldown.addCooldown("c2", p, 1);
 
         } else {
             p.closeInventory();

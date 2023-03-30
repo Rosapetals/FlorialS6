@@ -49,7 +49,7 @@ public class Refresh {
         //let's loop through their specie's unique skill set and apply all necessary effects
         for (Map.Entry<Integer, PotionEffect> entry : data.getSpecies().specific().entrySet()) {
 
-            boolean applicable = specific >= entry.getKey() && entry.getValue() != null & p.addPotionEffect(Objects.requireNonNull(entry.getValue()));
+            boolean applicable = specific >= entry.getKey() && entry.getValue() != null && p.addPotionEffect(entry.getValue());
 
             if (!(applicable)) break;
 

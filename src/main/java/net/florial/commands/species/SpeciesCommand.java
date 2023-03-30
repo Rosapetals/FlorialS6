@@ -2,7 +2,7 @@ package net.florial.commands.species;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
-import net.florial.menus.SpeciesMenu;
+import net.florial.menus.species.SpeciesMenu;
 import org.bukkit.entity.Player;
 
 public class SpeciesCommand extends BaseCommand {

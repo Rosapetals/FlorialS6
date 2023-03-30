@@ -5,7 +5,7 @@ import lombok.val;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
-import net.florial.menus.SpeciesMenu;
+import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.scoreboard.Scoreboard;
 import net.florial.utils.general.CC;
@@ -44,7 +44,6 @@ public class PlayerListeners implements Listener {
 
         FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
             Florial.getPlayerData().put(u, playerData);
-            Florial.getPlayerData().get(u).refresh();
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(playerData.toString()).send(p);
         });
 
@@ -53,18 +52,18 @@ public class PlayerListeners implements Listener {
             Florial.getPlayerData().put(u, temp.stream().findFirst().orElse(new PlayerData(u.toString())));
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
-        if (p.hasPermission("florial.staff")) {
+       // if (p.hasPermission("florial.staff")) {
 
-            if (Florial.getPlayerData().get(u).getDiscordId() == "") {
-                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
-            }
-            Florial.getInstance().getStaffToVerify().add(u);
-        }
+          //  if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
+            //    new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
+           // }
+           // Florial.getInstance().getStaffToVerify().add(u);
+       // }
 
         PlayerData data = Florial.getPlayerData().get(u);
         ThirstManager.thirstRunnable(p);
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
-            if (Florial.getBoards().get(u) == null) Scoreboard.createBoard(p);
+            if (Florial.getBoards().get(u) == null) net.florial.scoreboard.Scoreboard.createBoard(p);
             Scoreboard.boardRunnable(u, p);
             data.refresh();
             }, 100L);
@@ -72,16 +71,6 @@ public class PlayerListeners implements Listener {
         if (Florial.getQuestBar().containsKey(u)) Florial.getQuestBar().get(u).addPlayer(p);
 
         if (data.getSpecieType().getSpecie() == null) speciesMenu.speciesMenu(p);
-
-        if (p.hasPermission("florial.staff")) {
-
-            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
-                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
-            }
-            Florial.getInstance().getStaffToVerify().add(u);
-        }
-
-
 
     }
 

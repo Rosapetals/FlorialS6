@@ -9,13 +9,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 public class Scoreboard implements Listener {
-
-    public static Map<UUID, FastBoard> boards = new HashMap<>();
 
     public static void createBoard(Player p) {
 
@@ -31,15 +27,15 @@ public class Scoreboard implements Listener {
         String text5 = CC.translate("   #ffb8c1 ︳ #ff5b70&lSPECIES:&f " + name);
         String text6 = CC.translate("   #ff99a6 ︳ #ffd7dc&lBALANCE:&f ￠" + MoneyFormatter.put((long) VaultHandler.getBalance(p)));
         String text7 = CC.translate("   #ff7a8b ︳ #ff5b70&lFLORIES:&f " + data.getFlories());
-        String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
-        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE&f: " + data.getAge());
+        String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
+        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE&f: " + data.getAge());
         String text10 = CC.translate("    #ff1d3a┕━━━━━━━━━━━━━━━━━━┙");
         String text8 = CC.translate("   #ff3c55 ︳ #ff5b70&lplay.florial.us");
         String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.us/shop");
         String text11 = CC.translate("    #ff7a8b┕━━━━━━━━━━━━━━━━━━┙");
         FastBoard board = new FastBoard(p);
         board.updateTitle("" + text1);
-        boards.put(p.getUniqueId(), board);
+        Florial.getScoreboard().put(p.getUniqueId(), board);
         board.updateLines(
                 "" + text3,
                 "" + text4,
@@ -69,14 +65,14 @@ public class Scoreboard implements Listener {
         String text5 = CC.translate("   #ffb8c1 ︳ #ff5b70&lSPECIES:&f " + name);
         String text6 = CC.translate("   #ff99a6 ︳ #ffd7dc&lBALANCE:&f ￠" + MoneyFormatter.put((long) VaultHandler.getBalance(p)));
         String text7 = CC.translate("   #ff7a8b ︳ #ff5b70&lFLORIES:&f " + data.getFlories());
-        String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
-        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE:&f: " + data.getAge());
+        String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
+        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE:&f: " + data.getAge());
         String text10 = CC.translate("    #ff1d3a┕━━━━━━━━━━━━━━━━━━┙");
         String text8 = CC.translate("   #ff3c55 ︳ #ff5b70&lplay.florial.us");
         String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.us/shop");
         String text11 = CC.translate("    #ff7a8b┕━━━━━━━━━━━━━━━━━━┙");
         board.updateTitle("" + text1);
-        boards.put(u, board);
+        Florial.getScoreboard().put(u, board);
         board.updateLines(
                 "" + text3,
                 "" + text4,
@@ -95,7 +91,7 @@ public class Scoreboard implements Listener {
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(Florial.getInstance(), () -> {
             if (!p.isOnline()) return;
-            updateBoard(Florial.getBoards().get(u), p);
+            updateBoard(Florial.getScoreboard().get(u), p);
         }, 400L, 400);
     }
 }

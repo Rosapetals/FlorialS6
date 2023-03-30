@@ -14,8 +14,11 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
+import net.florial.commands.cheats.ChangeDNACommand;
+import net.florial.commands.cheats.ChangeSkillsCommand;
 import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
+import net.florial.commands.cheats.ChangeSpeciesCommand;
 import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
@@ -102,7 +105,7 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-        initializeDiscord();
+      //  initializeDiscord();
 
          rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) throw new NullPointerException("Economy service provider was not found");
@@ -123,14 +126,14 @@ public final class Florial extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        discordBot.shutdownNow();
-        while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
-            try {
-               Thread.sleep(20);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+      //  discordBot.shutdownNow();
+     //   while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
+          //  try {
+           //    Thread.sleep(20);
+          //  } catch (InterruptedException e) {
+              //  throw new RuntimeException(e);
+           // }
+     //   }
         for (PlayerData data : playerData.values()) data.save(false);
         FlorialDatabase.closeConnection();
         saveConfig();
@@ -142,7 +145,9 @@ public final class Florial extends JavaPlugin {
         manager.invoke();
         VaultHandler.initiate();
 
-        // Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(Scoreboard::createBoard), 110L);
+         Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(net.florial.scoreboard.Scoreboard::createBoard), 110L);
+
+        Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(net.florial.scoreboard.Scoreboard::createBoard), 110L);
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
@@ -167,18 +172,19 @@ public final class Florial extends JavaPlugin {
             getServer().getPluginManager().registerEvents(species, this);
         });
 
+        if (!(Cooldown.getCooldownMap("c1") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c1")).clear();
+        if (!(Cooldown.getCooldownMap("c2") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c2")).clear();
+        if (!(Cooldown.getCooldownMap("scent") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("scent")).clear();
+        if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
+        if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
+        if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
+
         if (!(Bukkit.getOnlinePlayers().size() > 0)) return;
-        for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p.getUniqueId()).thenAccept(playerData -> {
+        for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
             Florial.getPlayerData().put(p.getUniqueId(), playerData);});
             ThirstManager.thirstRunnable(p);
             Scoreboard.boardRunnable(p.getUniqueId(), p);}
 
-        if (!(Cooldown.getCooldownMap("c1") == null)) Cooldown.getCooldownMap("c1").clear();
-        if (!(Cooldown.getCooldownMap("c2") == null)) Cooldown.getCooldownMap("c2").clear();
-        if (!(Cooldown.getCooldownMap("scent") == null)) Cooldown.getCooldownMap("scent").clear();
-        if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
-        if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
-        if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
 
     }
 
@@ -228,7 +234,6 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new NuzzleCommand());
         manager.registerCommand(new GrowCommand());
         manager.registerCommand(new RemoveFieldCommand());
-        manager.registerCommand(new QuestCheckCommand());
         manager.registerCommand(new SetDiscordIDCommand());
 
     }
@@ -287,6 +292,8 @@ public final class Florial extends JavaPlugin {
 
     public static HashMap<UUID, Quest> getQuest(){return questData;}
     public static HashMap<UUID, BossBar> getQuestBar(){return questBar;}
+    public static HashMap<UUID, FastBoard> getScoreboard(){return boards;}
+
 
 
 }

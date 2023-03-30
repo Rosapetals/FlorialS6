@@ -1,4 +1,4 @@
-package net.florial.menus;
+package net.florial.menus.species;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import io.github.rysefoxx.inventory.plugin.content.IntelligentItem;
@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 
 public class GrowthMenu {
 
-    private static final SpeciesMenu SpeciesMenu = new SpeciesMenu();
+    private static final net.florial.menus.species.SpeciesMenu SpeciesMenu = new SpeciesMenu();
 
     public void growthMenu(Player p) {
 
@@ -53,9 +53,15 @@ public class GrowthMenu {
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
                                                 "GO BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "KIT", "BE BORN", "1", "2", "3", "4")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
-                                                "GO BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                                "KIT", "BE BORN", "Less Health", "Can't Upgrade Skills", "Only 2 Dens(/setden)", "Small")), false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "ADOLESCENT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "+1 Den(/setden)", "You're bigger now")), false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "YOUNG ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "75 DNA", "-")), false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "Instinct Panel; /instincts", "Species-Unique Area; /colony", "-")), false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "ELDER", "Click the Grow Button in this GUI", "2x DNA Multiplier", "+1 Upgrade Slot; All Skills", "+1 Den(/setden)", "Access Potion Area in Spawn")), false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
                         //3,4,5,6
                         contents.set(List.of(0, 1), IntelligentItem.of(entries.get(2), event -> loadMenu(p)));
@@ -68,10 +74,10 @@ public class GrowthMenu {
                             Quest.give(p);
                         }));
                         contents.set(List.of(9,10,18,19,28), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
-                        contents.set(List.of(16,17,25,26), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
-                        contents.set(List.of(36,37,45,46), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
-                        contents.set(List.of(43,44,52,53), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
-                        contents.set(List.of(21,22,23,30,31,32,33,39,40,41), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(16,17,25,26), IntelligentItem.of(entries.get(4), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(36,37,45,46), IntelligentItem.of(entries.get(5), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(43,44,52,53), IntelligentItem.of(entries.get(6), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
+                        contents.set(List.of(21,22,23,30,31,32,33,39,40,41), IntelligentItem.of(entries.get(7), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
                     }
                 })
                 .build(Florial.getInstance())

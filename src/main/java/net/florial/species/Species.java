@@ -66,8 +66,8 @@ public abstract class Species implements Listener {
     1 = no fall dmg
     2 = flight
      */
-    public Map<Integer, Boolean> sharedAbilities() {
-        return new HashMap<>();
+    public Set<Integer> sharedAbilities() {
+        return new HashSet<>();
     }
 
     public Map<Integer, PotionEffect> specific() {
@@ -114,7 +114,7 @@ public abstract class Species implements Listener {
 
         data.setSpecieId(event.getSpecie().getId());
 
-        data.setAge(Age.KIT);
+        data.setAge(data.getSpecieId() == 3 ? Age.YOUNG_ADULT : Age.KIT);
 
         Morph.activate(event.getPlayer(), "" + event.getSpecie(), "", false, "baby");
 
@@ -149,13 +149,13 @@ public abstract class Species implements Listener {
     @EventHandler
     public void noFallDamage(EntityDamageEvent e) {
 
-        if (e.getCause() != EntityDamageEvent.DamageCause.FALL) return;
-
-        if ((!(e.getEntity() instanceof Player p))) return;
+        if (e.getCause() != EntityDamageEvent.DamageCause.FALL || (!(e.getEntity() instanceof Player p))) return;
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getSpecieType().getSpecie() == null || (!(data.getSpecies().sharedAbilities().get(0)))) return;
+        if (data.getSpecies() != this || data.getSpecies().sharedAbilities() == null) return;
+
+        if ((!(this.sharedAbilities().contains(1)))) return;
 
         e.setCancelled(true);
 

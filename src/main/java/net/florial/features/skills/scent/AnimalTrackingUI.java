@@ -81,6 +81,8 @@ public class AnimalTrackingUI {
         Location loc = p.getLocation();
         World w = loc.getWorld();
 
+        p.closeInventory();
+
         if (scent < required) {
             p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             p.sendMessage("You need Scent level " + required + " for this, but you only have " + scent);
@@ -100,7 +102,7 @@ public class AnimalTrackingUI {
 
         double x = loc.getX() + (Math.random() * 25 + 15) * (Math.random() < 0.5 ? -1 : 1);
         double z = loc.getZ() + (Math.random() * 25 + 15) * (Math.random() < 0.5 ? -1 : 1);
-        Location spawnLoc = new Location(loc.getWorld(), x, loc.getWorld().getHighestBlockYAt((int)x + 1, (int)z), z);
+        Location spawnLoc = new Location(loc.getWorld(), x, loc.getWorld().getHighestBlockYAt((int)x + 2, (int)z), z);
 
 
         LivingEntity them = (LivingEntity) MobSpawn.spawnMob(e, w, spawnLoc);

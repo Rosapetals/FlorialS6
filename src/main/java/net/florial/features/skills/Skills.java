@@ -6,7 +6,7 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
-import net.florial.menus.SpeciesMenu;
+import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.species.impl.Human;
 import net.florial.utils.general.CC;
@@ -68,9 +68,9 @@ public class Skills {
 
                         contents.set(List.of(20,21), IntelligentItem.of(entries.get(1), event -> skill(p,30,data,Skill.STRENGTH)));
 
-                        contents.set(List.of(22), IntelligentItem.of(entries.get(2), event -> skill(p,50,data,Skill.RESISTANCE)));
+                        contents.set(List.of(23,24), IntelligentItem.of(entries.get(2), event -> skill(p,50,data,Skill.RESISTANCE)));
 
-                        contents.set(List.of(23,24), IntelligentItem.of(entries.get(3), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
+                        contents.set(List.of(22), IntelligentItem.of(entries.get(3), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
 
                         contents.set(List.of(25,26), IntelligentItem.of(entries.get(4), event -> skill(p,25,data,Skill.SPECIFIC)));
 
@@ -93,28 +93,29 @@ public class Skills {
         int dna = data.getDna();
         Sound sound;
 
-        if (skill == Skill.SCENT && data.getSpecies() instanceof Human) return;
+        if (skill == Skill.SCENT && data.getSpecies().getId() == 3) {
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
+            return;
+        }
 
         if (dna < i) {
             p.sendMessage("Not enough DNA");
             sound = Sound.BLOCK_NOTE_BLOCK_BASS;
-
+            data.setDna(dna - i);
         } else if (skill.getLvl() >= 5) {
             p.sendMessage("Skill is maxed.");
             sound = Sound.BLOCK_NOTE_BLOCK_BASS;
-        } else if (data.getAge().getId() > skill.getLvl()) {
+        } else if (!(data.getAge().getId() > skill.getLvl())) {
             p.sendMessage("Age Up to upgrade your skills further! (/grow)");
             sound = Sound.BLOCK_NOTE_BLOCK_BASS;
-
         } else {
-
             data.setDna(dna - i);
             data.getSkills().put(skill, data.getSkills().get(skill) + 1);
             p.sendMessage("Successfully upgraded!");
-            sound = Sound.BLOCK_AMETHYST_BLOCK_CHIME;
+            sound = Sound.ENTITY_PLAYER_LEVELUP;
         }
+
         p.playSound(p.getLocation(), sound, 1, 1);
-        p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);
     }
 
     private static String format(List<String> iterations){
