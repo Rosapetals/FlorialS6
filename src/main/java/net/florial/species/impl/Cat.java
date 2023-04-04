@@ -1,18 +1,18 @@
 package net.florial.species.impl;
 
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
 import net.florial.utils.math.AgeFormula;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -22,10 +22,11 @@ import org.bukkit.util.Vector;
 
 import java.util.*;
 
-public class Cat extends Species {
+public class Cat extends Species implements Listener {
 
     public Cat(int id) {
-        super("Cat", id, 14, true);
+        super("Cat", id, 14, true, DisguiseType.CAT);
+
     }
 
 

@@ -8,6 +8,7 @@ import net.florial.database.FlorialDatabase;
 import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.scoreboard.Scoreboard;
+import net.florial.utils.game.ChangeTablistSkin;
 import net.florial.utils.general.CC;
 import net.florial.utils.Message;
 import net.kyori.adventure.text.Component;
@@ -37,6 +38,8 @@ public class PlayerListeners implements Listener {
 
     private static final SpeciesMenu speciesMenu = new SpeciesMenu();
 
+    private static final ChangeTablistSkin morphSkin = new ChangeTablistSkin();
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
@@ -61,16 +64,16 @@ public class PlayerListeners implements Listener {
        // }
 
         PlayerData data = Florial.getPlayerData().get(u);
+
         ThirstManager.thirstRunnable(p);
-        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
-            if (Florial.getBoards().get(u) == null) net.florial.scoreboard.Scoreboard.createBoard(p);
-            Scoreboard.boardRunnable(u, p);
-            data.refresh();
-            }, 100L);
+
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), data::refresh, 100L);
 
         if (Florial.getQuestBar().containsKey(u)) Florial.getQuestBar().get(u).addPlayer(p);
 
         if (data.getSpecieType().getSpecie() == null) speciesMenu.speciesMenu(p);
+
+        //morphSkin.activate(p, "http://textures.minecraft.net/texture/7e3e03a9671840223a96a920914d1b87314044cc6d32aab7c27e1f640ecc21d5");
 
     }
 
@@ -79,7 +82,7 @@ public class PlayerListeners implements Listener {
 
         Florial.getInstance().getStaffToVerify().remove(event.getPlayer().getUniqueId());
 
-        // Florial.getBoards().remove(event.getPlayer().getUniqueId());
+        Florial.getBoards().remove(event.getPlayer().getUniqueId());
 
         PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
         data.save(true);

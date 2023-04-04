@@ -1,5 +1,6 @@
 package net.florial.species.impl;
 
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
@@ -11,6 +12,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.potion.PotionEffect;
@@ -18,12 +20,10 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.*;
 
-public class Fox extends Species {
+public class Fox extends Species implements Listener {
     
     public Fox(int id) {
-        super("Fox", id, 16, true);
-
-        Bukkit.getPluginManager().registerEvents(this, Florial.getInstance());
+        super("Fox", id, 16, true, DisguiseType.FOX);
 
     }
 

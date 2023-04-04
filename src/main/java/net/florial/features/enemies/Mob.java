@@ -14,6 +14,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
@@ -24,6 +25,8 @@ import java.util.List;
 @EqualsAndHashCode
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class Mob implements Listener {
+
+    private static boolean isRegistered = false;
 
     EntityType entity;
 
@@ -78,6 +81,7 @@ public abstract class Mob implements Listener {
 
         for (ItemStack i : this.drops) {event.getDrops().add(i);}
     }
+
 
 
 }

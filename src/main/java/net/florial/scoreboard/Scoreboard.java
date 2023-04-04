@@ -1,17 +1,34 @@
 package net.florial.scoreboard;
 
+import lombok.val;
 import net.florial.Florial;
+import net.florial.database.FlorialDatabase;
 import net.florial.models.PlayerData;
+import net.florial.utils.Message;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.MoneyFormatter;
 import net.florial.utils.general.VaultHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.UUID;
 
+import static dev.morphia.query.filters.Filters.eq;
+
 public class Scoreboard implements Listener {
+
+    @EventHandler
+    public void applyScoreboard(PlayerJoinEvent event) {
+        Player p = event.getPlayer();
+        UUID u = p.getUniqueId();
+
+        createBoard(p);
+        boardRunnable(u, p);
+
+    }
 
     public static void createBoard(Player p) {
 
@@ -35,7 +52,7 @@ public class Scoreboard implements Listener {
         String text11 = CC.translate("    #ff7a8b┕━━━━━━━━━━━━━━━━━━┙");
         FastBoard board = new FastBoard(p);
         board.updateTitle("" + text1);
-        Florial.getScoreboard().put(p.getUniqueId(), board);
+        Florial.getBoards().put(u, board);
         board.updateLines(
                 "" + text3,
                 "" + text4,
@@ -72,7 +89,7 @@ public class Scoreboard implements Listener {
         String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.us/shop");
         String text11 = CC.translate("    #ff7a8b┕━━━━━━━━━━━━━━━━━━┙");
         board.updateTitle("" + text1);
-        Florial.getScoreboard().put(u, board);
+        Florial.getBoards().put(u, board);
         board.updateLines(
                 "" + text3,
                 "" + text4,
@@ -91,7 +108,7 @@ public class Scoreboard implements Listener {
 
         Bukkit.getScheduler().runTaskTimerAsynchronously(Florial.getInstance(), () -> {
             if (!p.isOnline()) return;
-            updateBoard(Florial.getScoreboard().get(u), p);
+            updateBoard(Florial.getBoards().get(u), p);
         }, 400L, 400);
     }
 }

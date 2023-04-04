@@ -25,6 +25,9 @@ public class AttackSkillListener implements Listener {
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
         int attackSkill =  data.getSkills().get(Skill.STRENGTH);
+
+        //broke
+
         if (attackSkill > 1) ((Damageable) e.getEntity()).damage(2*attackSkill, p);
     }
 }

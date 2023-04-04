@@ -1,31 +1,100 @@
 package net.florial.species.disguises;
 
+import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
+import me.libraryaddict.disguise.disguisetypes.MobDisguise;
+import net.florial.species.Species;
+import net.florial.species.events.impl.SpeciesTablistEvent;
+import net.florial.utils.general.CC;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.model.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
+import org.bukkit.entity.Sittable;
+
+import java.util.List;
 
 public class Morph {
 
+    private final LuckPerms api = LuckPermsProvider.get();
+
+
+    public final List<String> skinTextures = List.of(
+            "http://textures.minecraft.net/texture/7e3e03a9671840223a96a920914d1b87314044cc6d32aab7c27e1f640ecc21d5",
+            "http://textures.minecraft.net/texture/490becff2f313999df856ee4b9cd4b90273df46c1867aac23b7a2395226652fe",
+            "http://textures.minecraft.net/texture/7197946165027d6e8c21353443e3b103eef4bee1a1c238984fe0afb066859d45",
+            "http://textures.minecraft.net/texture/29f16992f3a92c2e62fd38d5d851fd661ceb3e8a810200536ea4b12eb05f341e",
+            "http://textures.minecraft.net/texture/3b355ba38901ee86a23d61e9ce101658f2417d6b9b4c3812a904ade581cb4415",
+            "http://textures.minecraft.net/texture/24a8a7bf5e750f808e4fbd40894dfe746a07245dc16a113743ae35feb5b0f771",
+            "http://textures.minecraft.net/texture/2cbc0bf3bcb2c51ed4453b20e741a80dc5f065550b1e351c0eafadc502257af5",
+            "http://textures.minecraft.net/texture/27f596afb869f806f61085a499b7e75148913d3e60601f166258dfbcb82a3bbf",
+            "http://textures.minecraft.net/texture/6d62b4a45c5fa233a4639af6fb910afc1795eb0011e46266a0865d173ebde9ab",
+            "http://textures.minecraft.net/texture/5f539293ebeaba4c35f089357e5457f838fa4a5db4da83afbfc295ad2d6d6ea6",
+            "http://textures.minecraft.net/texture/1fcd2e0c2b5df9482ef45f5e1d3cf07778febdd8455d3f02d326029ad79f41cf"
+    );
+
+    public final List<String> textureNames = List.of(
+            "CALICO",
+            "BLACK",
+            "RAGDOLL",
+            "SIAMESE",
+            "TABBY",
+            "WHITE",
+            "RED",
+            "JELLIE",
+            "PERSIAN",
+            "ALL_BLACK",
+            "BRITISH_SHORTHAIR");
+
     /**
     positions:
-    sitting
-    sleeping
-    example for setting species: disguise(p, "fox", "", false, "");
-    example for modifying position: disguise(p, "", "sitting", true, "");
-    example for taking them out of sitting/sleeping: disguise(p, "", "sitting", false, "");
+
+     1  = sitting
+     2 = sleeping
+     3 = sneaking
 
      */
-    public static void activate(Player p, String type, String position, Boolean state, String age) {
-        if (!position.isBlank()) {
-            Bukkit.dispatchCommand(p, "modifydisguise set" + position + " " + state);
-            if (state) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 1000000, 1000, false, false, true));
-            } else {p.removePotionEffect(PotionEffectType.SLOW);}
-            return;
+    public void activate(Player p, Integer pos, Boolean state, Boolean modification, Species species) {
+
+        if (species.getMorph() == null) return;
+
+
+        if (modification) {
+
+            MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
+            FlagWatcher watcher = mobDisguise.getWatcher();
+
+            switch (pos) {
+                case 1 -> ((Sittable) watcher).setSitting(state);
+                case 2 -> watcher.setSleeping(state);
+                case 3 -> watcher.setSneaking(state);
+            }
+
+        } else {
+
+            MobDisguise mobDisguise = new MobDisguise(species.getMorph(), false);
+            FlagWatcher watcher = mobDisguise.getWatcher();
+
+            User user = api.getUserManager().getUser(p.getUniqueId());
+
+            String prefix = "";
+
+            assert user != null;
+            if (user.getCachedData().getMetaData().getPrefix() != null) {prefix = user.getCachedData().getMetaData().getPrefix();}
+
+            mobDisguise.setHearSelfDisguise(true);
+            mobDisguise.setEntity(p);
+            watcher.setCustomName(CC.translate(prefix + p.getDisplayName()));
+            mobDisguise.startDisguise();
+
+            SpeciesTablistEvent event = new SpeciesTablistEvent(
+                    p,
+                    true
+            );
+            Bukkit.getPluginManager().callEvent(event);
+
         }
-        Bukkit.dispatchCommand(p, "disguise " + type + " " + age);
-        Bukkit.dispatchCommand(p, "modifydisguise setType RED");
 
     }
 }

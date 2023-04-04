@@ -7,6 +7,7 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.theokanning.openai.service.OpenAiService;
 import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -36,7 +37,7 @@ import net.florial.listeners.*;
 import net.florial.models.PlayerData;
 import net.florial.scoreboard.FastBoard;
 import net.florial.scoreboard.Scoreboard;
-import net.florial.species.SpecieType;
+import net.florial.species.SpeciesEventManager;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
 import net.luckperms.api.LuckPerms;
@@ -59,6 +60,9 @@ public final class Florial extends JavaPlugin {
     public static Florial getInstance() {
         return getPlugin(Florial.class);
     }
+
+    @Setter @Getter
+    public boolean speciesRegistered = false;
     public static final Scoreboard Scoreboard = new Scoreboard();
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
@@ -147,14 +151,14 @@ public final class Florial extends JavaPlugin {
 
          Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(net.florial.scoreboard.Scoreboard::createBoard), 110L);
 
-        Bukkit.getScheduler().runTaskLater((this), () -> getServer().getOnlinePlayers().forEach(net.florial.scoreboard.Scoreboard::createBoard), 110L);
-
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
+        getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstListener(), this);
         getServer().getPluginManager().registerEvents(new ThirstManager(), this);
         getServer().getPluginManager().registerEvents(new MobsListener(), this);
         getServer().getPluginManager().registerEvents(new AnimalListener(), this);
+        getServer().getPluginManager().registerEvents(new Scoreboard(), this);
 
 
         getServer().getPluginManager().registerEvents(new Boar(EntityType.HOGLIN), this);
@@ -166,11 +170,6 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ScentManager(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
         getServer().getPluginManager().registerEvents(new QuestProgressManager(), this);
-
-        SpecieType.getAllSpecies().forEach(species -> {
-            if (species == null) return;
-            getServer().getPluginManager().registerEvents(species, this);
-        });
 
         if (!(Cooldown.getCooldownMap("c1") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c1")).clear();
         if (!(Cooldown.getCooldownMap("c2") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c2")).clear();
@@ -292,8 +291,5 @@ public final class Florial extends JavaPlugin {
 
     public static HashMap<UUID, Quest> getQuest(){return questData;}
     public static HashMap<UUID, BossBar> getQuestBar(){return questBar;}
-    public static HashMap<UUID, FastBoard> getScoreboard(){return boards;}
-
-
 
 }

@@ -57,7 +57,7 @@ public class GrowthMenu {
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "ADOLESCENT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "+1 Den(/setden)", "You're bigger now")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "YOUNG ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "75 DNA", "-")), false),
+                                                "YOUNG ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "-", "-")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "Instinct Panel; /instincts", "Species-Unique Area; /colony", "-")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(

@@ -75,9 +75,8 @@ public class SpeciesMenu {
                                                 "", "", "", "")), false)).toList();
 
 
+                        contents.set(List.of(23), IntelligentItem.of(species.get(1), event -> {Species.become(p, "CAT");}));
                         contents.set(List.of(21), IntelligentItem.of(species.get(0), event -> Species.become(p, "FOX")));
-
-                        contents.set(List.of(23), IntelligentItem.of(species.get(1), event -> Species.become(p, "CAT")));
 
                         //skills
                         contents.set(List.of(5, 4, 3), IntelligentItem.of(entries.get(0), event -> loadMenu(p, 1)));

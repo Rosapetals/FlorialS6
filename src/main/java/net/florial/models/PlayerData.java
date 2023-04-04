@@ -50,7 +50,7 @@ public class PlayerData {
     String pronouns = "";
     @Nullable
     String prefix = "";
-
+  //  @Getter @Setter SpeciesColor color;
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
@@ -70,6 +70,7 @@ public class PlayerData {
         this.growth = growth;
         this.prefix = prefix;
         this.age = age;
+        //this.color = color;
     }
 
     public PlayerData(String uuid) {

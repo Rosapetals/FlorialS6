@@ -1,5 +1,6 @@
 package net.florial;
 
+import net.florial.features.age.Age;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
@@ -9,7 +10,6 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Refresh {
@@ -28,7 +28,8 @@ public class Refresh {
 
         // now additions shall be.. have we anything to add to the max health?
         int additions = 0;
-        AtomicReference<Double> maxhealth = new AtomicReference<>(data.getSpecies().getMaxHealth());
+        AtomicReference<Double> maxHealth = new AtomicReference<>(data.getSpecies().getMaxHealth() + (data.getAge().getId() == 2 ? 1 :
+                data.getAge().getId() > 2 ? 2 : 0));
         HashMap<Skill, Integer> skills = data.getSkills();
         // shall we get upgrades? if it is null leave it blank! We needn't assign upgrades to players who will never get them, so let that not be null overtime
         HashMap<Upgrade, Boolean> upgrades = data.getUpgrades() != null ? data.getUpgrades() : new HashMap<>();
@@ -48,20 +49,16 @@ public class Refresh {
 
         //let's loop through their specie's unique skill set and apply all necessary effects
         for (Map.Entry<Integer, PotionEffect> entry : data.getSpecies().specific().entrySet()) {
-
             boolean applicable = specific >= entry.getKey() && entry.getValue() != null && p.addPotionEffect(entry.getValue());
-
-            if (!(applicable)) break;
-
-        }
+            if (!(applicable)) break;}
 
         // let's set their maxhealth now
-        p.setMaxHealth(maxhealth.get() + additions);
+        p.setMaxHealth(maxHealth.get() + additions);
 
         // OK! let's begin the Great Upgrade Check, and then just stop this whole code if our player hasn't got an upgrade yet!
         if (upgrades.isEmpty()) return;
         Map<Upgrade, Runnable> upgradeHandlers = new HashMap<>() {{
-            put(Upgrade.DOUBLEHEALTH, () -> maxhealth.set(Math.max(maxhealth.get(), 40)));
+            put(Upgrade.DOUBLEHEALTH, () -> maxHealth.set(Math.max(maxHealth.get(), 40)));
         }};
 
         for (Map.Entry<Upgrade, Runnable> entry : upgradeHandlers.entrySet()) {
@@ -70,7 +67,7 @@ public class Refresh {
             if (upgrades.get(upgrade)) handler.run();
         }
         //this runs twice for the aforementioned reasons.. let's see if we can get this down to running once in some way!
-        p.setMaxHealth(maxhealth.get() + additions);
+        p.setMaxHealth(maxHealth.get() + additions);
     }
 
     public static void load(Player player) {

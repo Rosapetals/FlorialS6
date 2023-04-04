@@ -14,6 +14,8 @@ public enum Age {
     ADULT(4, 100, 200, 8),
     ELDER(5, 200, 500, 10);
 
+    private static final Morph morph = new Morph();
+
     @Getter private final int id;
 
     @Getter private final int requiredQuests;
@@ -64,7 +66,7 @@ public enum Age {
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 2, 1);
 
-            Morph.activate(p, "" + data.getSpecies().getName(), "", false, "");
+            morph.activate(p, 0, false, false, data.getSpecies());
 
         } else {
             p.sendMessage("You can't age up anymore!");
