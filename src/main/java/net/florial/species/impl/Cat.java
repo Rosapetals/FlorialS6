@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -73,15 +74,15 @@ public class Cat extends Species implements Listener {
 
         Player p = e.getPlayer();
 
-        if (!(p.isSneaking()) || Florial.getPlayerData().get(p.getUniqueId()).getSpecies() != this || (Cooldown.isOnCooldown("c2", p))) return;
+        if (!(p.isSneaking()) || (!(e.getAction() == Action.RIGHT_CLICK_BLOCK)) || Florial.getPlayerData().get(p.getUniqueId()).getSpecies() != this || (Cooldown.isOnCooldown("c2", p))) return;
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
         int ageValue = data.getAge().getIncrease();
 
         for (Entity ent : p.getNearbyEntities(7, 7, 7)) {
-            if (!(e instanceof LivingEntity)) return;
-            ((LivingEntity) ent).addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1200, ageValue/2, false, false, true));
+            if (e instanceof LivingEntity) ((LivingEntity) ent).addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1200, ageValue/2, false, false, true));
+
         }
 
         Cooldown.addCooldown("c1", p, AgeFormula.get(200, ageValue));
@@ -125,7 +126,7 @@ public class Cat extends Species implements Listener {
                 attacker.spawnParticle(Particle.SWEEP_ATTACK, particleLoc, 2);
 
                 for (Entity e : attacker.getNearbyEntities(3, 3, 3)) {
-                    if (!(e instanceof LivingEntity)) return;
+                    if (!(e instanceof LivingEntity)) continue;
                     Vector launchDirection = e.getLocation().toVector().subtract(attacker.getLocation().toVector()).normalize().multiply(1.2);
                     launchDirection.setY(0.5);
                     e.setVelocity(launchDirection);

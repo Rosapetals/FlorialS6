@@ -3,22 +3,17 @@ package net.florial.species.disguises;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
+import me.libraryaddict.disguise.disguisetypes.watchers.FoxWatcher;
 import net.florial.species.Species;
 import net.florial.species.events.impl.SpeciesTablistEvent;
-import net.florial.utils.general.CC;
-import net.luckperms.api.LuckPerms;
-import net.luckperms.api.LuckPermsProvider;
-import net.luckperms.api.model.user.User;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Fox;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Sittable;
 
 import java.util.List;
 
 public class Morph {
-
-    private final LuckPerms api = LuckPermsProvider.get();
-
 
     public final List<String> skinTextures = List.of(
             "http://textures.minecraft.net/texture/7e3e03a9671840223a96a920914d1b87314044cc6d32aab7c27e1f640ecc21d5",
@@ -69,28 +64,25 @@ public class Morph {
                 case 1 -> ((Sittable) watcher).setSitting(state);
                 case 2 -> watcher.setSleeping(state);
                 case 3 -> watcher.setSneaking(state);
+                case 4 -> {
+                    if (species.getId() == 4) {
+                        ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
+                    } else {
+                        ((FoxWatcher) watcher).setType(Fox.Type.RED);
+                    }
+                }
             }
 
         } else {
 
             MobDisguise mobDisguise = new MobDisguise(species.getMorph(), false);
-            FlagWatcher watcher = mobDisguise.getWatcher();
-
-            User user = api.getUserManager().getUser(p.getUniqueId());
-
-            String prefix = "";
-
-            assert user != null;
-            if (user.getCachedData().getMetaData().getPrefix() != null) {prefix = user.getCachedData().getMetaData().getPrefix();}
 
             mobDisguise.setHearSelfDisguise(true);
             mobDisguise.setEntity(p);
-            watcher.setCustomName(CC.translate(prefix + p.getDisplayName()));
             mobDisguise.startDisguise();
 
             SpeciesTablistEvent event = new SpeciesTablistEvent(
-                    p,
-                    true
+                    p
             );
             Bukkit.getPluginManager().callEvent(event);
 

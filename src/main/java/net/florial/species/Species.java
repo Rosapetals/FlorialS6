@@ -1,17 +1,22 @@
 package net.florial.species;
 
+import com.earth2me.essentials.Essentials;
+import com.earth2me.essentials.config.EssentialsUserConfiguration;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
+import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
+import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
-import net.florial.features.age.Age;
 import net.florial.models.PlayerData;
-import net.florial.species.disguises.Morph;
-import net.florial.species.events.impl.SpeciesSwitchEvent;
-import net.florial.utils.GeneralUtils;
+import net.florial.utils.general.CC;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.model.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -21,7 +26,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.potion.PotionEffect;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,6 +38,9 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class Species implements Listener {
     private static final Florial florial = Florial.getInstance();
+
+    private static final LuckPerms api = LuckPermsProvider.get();
+
     private static final Map<Material, Integer> fillingValues = Map.ofEntries(
             Map.entry(Material.CHICKEN, 20),
             Map.entry(Material.PORKCHOP, 15),
@@ -103,6 +110,26 @@ public abstract class Species implements Listener {
         } else {
             p.sendMessage("You already have a species! Remove it through /resetspecies for 25 DNA.");
         }
+    }
+    public static void refreshTag(Player p) {
+
+        Bukkit.getServer().getScheduler();
+        Bukkit.getServer().getScheduler().runTaskLater(florial, () -> {
+
+            MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
+            FlagWatcher watcher = mobDisguise.getWatcher();
+
+            User user = api.getUserManager().getUser(p.getUniqueId());
+
+            String prefix = "";
+
+            assert user != null;
+            if (user.getCachedData().getMetaData().getPrefix() != null) {prefix = user.getCachedData().getMetaData().getPrefix();}
+
+            watcher.setCustomName(CC.translate(prefix + florial.ess.getUser(p).getNickname()));
+
+        }, 40);
+
     }
 
 

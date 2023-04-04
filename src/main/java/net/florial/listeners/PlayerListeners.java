@@ -8,6 +8,8 @@ import net.florial.database.FlorialDatabase;
 import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.scoreboard.Scoreboard;
+import net.florial.species.disguises.Morph;
+import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.game.ChangeTablistSkin;
 import net.florial.utils.general.CC;
 import net.florial.utils.Message;
@@ -34,11 +36,9 @@ public class PlayerListeners implements Listener {
 
     private static final ThirstManager ThirstManager = new ThirstManager();
 
-    private static final Scoreboard Scoreboard = new Scoreboard();
-
     private static final SpeciesMenu speciesMenu = new SpeciesMenu();
 
-    private static final ChangeTablistSkin morphSkin = new ChangeTablistSkin();
+    private static final Morph morph = new Morph();
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -71,10 +71,16 @@ public class PlayerListeners implements Listener {
 
         if (Florial.getQuestBar().containsKey(u)) Florial.getQuestBar().get(u).addPlayer(p);
 
-        if (data.getSpecieType().getSpecie() == null) speciesMenu.speciesMenu(p);
+        if (data.getSpecieType().getSpecie() == null) {
+            speciesMenu.speciesMenu(p);
+            return;
+        }
+        morph.activate(p, 4, false, true, data.getSpecies());
 
-        //morphSkin.activate(p, "http://textures.minecraft.net/texture/7e3e03a9671840223a96a920914d1b87314044cc6d32aab7c27e1f640ecc21d5");
-
+        SpeciesTablistEvent e = new SpeciesTablistEvent(
+                p
+        );
+        Bukkit.getPluginManager().callEvent(e);
     }
 
     @EventHandler

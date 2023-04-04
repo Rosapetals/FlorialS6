@@ -47,28 +47,29 @@ public class SpeciesEventManager implements Listener  {
 
         PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
 
-        if (!data.getSpecies().isCanSmell()) return;
+        if (data.getSpecies().getMorph() == null) return;
 
         Player p = event.getPlayer();
-        switch(data.getSpecieType().getId()) {
-            case 1:
+
+
+        switch (data.getSpecieType().getId()) {
+            case 1 -> {
                 MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
+
                 CatWatcher catWatcher = ((CatWatcher) mobDisguise.getWatcher());
-
                 int index = 0;
-
-                for(String match : morph.textureNames) {
+                for (String match : morph.textureNames) {
                     if (match.contains(catWatcher.getType().toString())) {
                         tabList.activate(p, morph.skinTextures.get(index));
                         break;
                     }
                     index++;
                 }
-                break;
-            case 2:
-                tabList.activate(p, "http://textures.minecraft.net/texture/797538c0e9a8c2c34bc20b03c62124b371e146615c59599b2e5399fd1ee8c082");
-                break;
-
+            }
+            case 2 ->
+                    tabList.activate(p, "http://textures.minecraft.net/texture/797538c0e9a8c2c34bc20b03c62124b371e146615c59599b2e5399fd1ee8c082");
         }
+
+        Species.refreshTag(p);
     }
 }

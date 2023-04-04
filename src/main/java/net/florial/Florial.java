@@ -1,6 +1,7 @@
 package net.florial;
 
 import co.aikar.commands.PaperCommandManager;
+import com.earth2me.essentials.Essentials;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
@@ -64,6 +65,7 @@ public final class Florial extends JavaPlugin {
     @Setter @Getter
     public boolean speciesRegistered = false;
     public static final Scoreboard Scoreboard = new Scoreboard();
+
     @Getter private static final HashMap<UUID, PlayerData> playerData = new HashMap<>();
     @Getter private static final HashMap<UUID, Integer> thirst = new HashMap<>();
     @Getter private static final HashMap<UUID, FastBoard> boards = new HashMap<>();
@@ -82,6 +84,9 @@ public final class Florial extends JavaPlugin {
     private Economy economy = null;
     @Getter
     private LuckPerms lpapi = null;
+
+    public Essentials ess;
+
 
     private static final ThirstManager ThirstManager = new ThirstManager();
 
@@ -124,6 +129,7 @@ public final class Florial extends JavaPlugin {
         if (!(worldGuardPlugin instanceof WorldGuardPlugin)) {
             throw new NullPointerException("WorldGuard is not on this server.");
         }
+        ess = (Essentials) Bukkit.getPluginManager().getPlugin("Essentials");
 
     }
 

@@ -17,6 +17,7 @@ public enum SpecieType {
     CAT(1, new Cat(1)),
     FOX(2, new Fox(2)),
     HUMAN(3, new Human(3)),
+    PEARLIN(4, null),
 
     // user made species
     ENDN(4, null),

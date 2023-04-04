@@ -16,11 +16,9 @@ public class SpeciesTablistEvent extends SpeciesEvent implements Cancellable {
     boolean cancelled = false;
     final Player player;
 
-    final Boolean birth;
-    public SpeciesTablistEvent(Player player, Boolean birth) {
+    public SpeciesTablistEvent(Player player) {
 
         this.player = player;
-        this.birth = birth;
     }
 
 }

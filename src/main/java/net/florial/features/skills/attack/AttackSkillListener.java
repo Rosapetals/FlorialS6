@@ -3,7 +3,6 @@ package net.florial.features.skills.attack;
 import net.florial.Florial;
 import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -21,6 +20,7 @@ public class AttackSkillListener implements Listener {
 
         if (!(damager instanceof Player || (!(ent  instanceof LivingEntity)))) return;
 
+        assert damager instanceof Player;
         Player p = (Player) damager;
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
@@ -28,6 +28,7 @@ public class AttackSkillListener implements Listener {
 
         //broke
 
-        if (attackSkill > 1) ((Damageable) e.getEntity()).damage(2*attackSkill, p);
+        if (attackSkill > 1) e.setDamage(e.getDamage() + attackSkill*2);
+
     }
 }
