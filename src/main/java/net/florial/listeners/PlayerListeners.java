@@ -2,17 +2,16 @@ package net.florial.listeners;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
 import lombok.val;
-import net.florial.features.thirst.ThirstManager;
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
+import net.florial.features.thirst.ThirstManager;
 import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
-import net.florial.scoreboard.Scoreboard;
 import net.florial.species.disguises.Morph;
 import net.florial.species.events.impl.SpeciesTablistEvent;
-import net.florial.utils.game.ChangeTablistSkin;
-import net.florial.utils.general.CC;
 import net.florial.utils.Message;
+import net.florial.utils.general.CC;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
@@ -20,9 +19,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -75,7 +74,7 @@ public class PlayerListeners implements Listener {
             speciesMenu.speciesMenu(p);
             return;
         }
-        morph.activate(p, 4, false, true, data.getSpecies());
+        if (data.getSpecies().getMorph() == DisguiseType.FOX) morph.activate(p, 4, false, true, data.getSpecies());
 
         SpeciesTablistEvent e = new SpeciesTablistEvent(
                 p
