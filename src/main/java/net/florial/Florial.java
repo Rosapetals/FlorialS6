@@ -72,6 +72,8 @@ public final class Florial extends JavaPlugin {
 
     @Getter private static final HashMap<UUID, Quest> questData = new HashMap<>();
     @Getter private static final HashMap<UUID, BossBar> questBar = new HashMap<>();
+    @Getter private static final HashMap<UUID, Boolean> bulkBuy = new HashMap<>();
+
 
 
     @Getter private static Guild discordServer;
@@ -297,5 +299,6 @@ public final class Florial extends JavaPlugin {
 
     public static HashMap<UUID, Quest> getQuest(){return questData;}
     public static HashMap<UUID, BossBar> getQuestBar(){return questBar;}
+
 
 }

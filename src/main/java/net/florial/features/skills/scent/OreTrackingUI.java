@@ -20,8 +20,6 @@ import java.util.stream.Stream;
 
 public class OreTrackingUI {
 
-    //wip
-
     private static final MaterialDetector MaterialDetector = new MaterialDetector();
 
     public void trackingUIOre(Player p) {

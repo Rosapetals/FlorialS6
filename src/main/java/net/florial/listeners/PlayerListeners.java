@@ -28,6 +28,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Objects;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static dev.morphia.query.filters.Filters.eq;
 
@@ -38,6 +40,9 @@ public class PlayerListeners implements Listener {
     private static final SpeciesMenu speciesMenu = new SpeciesMenu();
 
     private static final Morph morph = new Morph();
+
+    private static final Pattern PATTERN = Pattern.compile("n[i1$!]i?gg?[ea3]?r?", Pattern.CASE_INSENSITIVE);
+
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
@@ -122,7 +127,15 @@ public class PlayerListeners implements Listener {
         if (prefix == null) {
             prefix = "Default";
         }
-        event.setCancelled(true);
+
+        String message = ((TextComponent) event.message()).content();
+
+        message = message.replaceAll(" ", "");
+
+        Matcher matcher = PATTERN.matcher(message);
+
+        if (matcher.find()) event.getPlayer().sendMessage("bad");
+
         Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + event.getPlayer().getName().trim() + ": " + ((TextComponent) event.message()).content())));
     }
 

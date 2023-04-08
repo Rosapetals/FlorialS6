@@ -21,8 +21,6 @@ public class ScentUI {
     private static final AnimalTrackingUI trackingUI = new AnimalTrackingUI();
     private static final OreTrackingUI oretrackingUI = new OreTrackingUI();
 
-    private static final Florial florial = Florial.getInstance();
-
 
     public void scentUI(Player p) {
 
@@ -45,20 +43,16 @@ public class ScentUI {
                     }
                 })
                 .build(Florial.getInstance())
-                .openAll();
+                .open(p);
 
     }
 
     private static void loadMenu(Player p, int type) {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
-        switch(type) {
-        case 1:
-            trackingUI.trackingUI(p);
-            break;
-        case 2:
-            oretrackingUI.trackingUIOre(p);
-            break;
+        switch (type) {
+            case 1 -> trackingUI.trackingUI(p);
+            case 2 -> oretrackingUI.trackingUIOre(p);
         }
     }
 }

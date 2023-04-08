@@ -8,19 +8,26 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
+import net.florial.utils.general.VaultHandler;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 public class ShopMenu {
 
 
+
+
+
     private static final ResourceShopMenu resourceShop = new ResourceShopMenu();
     public void shopMenu(Player p) {
+
+        p.closeInventory();
 
         RyseInventory.builder()
                 .title(CC.translate("&f七七七七七七七七七七七七七七七七\uE603"))
@@ -28,6 +35,8 @@ public class ShopMenu {
                 .provider(new InventoryProvider() {
                     @Override
                     public void init(Player player, InventoryContents contents) {
+
+                        p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
                                         "#ff79a1&lRESOURCES\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
@@ -67,7 +76,7 @@ public class ShopMenu {
 
         switch (type) {
             case 1 -> resourceShop.resourceCategory(p);
-            //case 2 ->
+            //case 2 -> ShopMenu.shopMenu(p);
         }
 
     }
@@ -77,6 +86,40 @@ public class ShopMenu {
         return CustomItem.MakeItem(new ItemStack(mat), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ "
                 + mat + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • PRICE: #ffa2c4 "
                 + price + "\n #ff79a1&l︳  [CLICK HERE]:\n#ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false);
+
+    }
+
+    public static void purchase(Player p, Material mat, int price) {
+
+        p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
+        p.closeInventory();
+
+        if (VaultHandler.getBalance(p) >= price) {
+
+            UUID u = p.getUniqueId();
+            int amount = Florial.getBulkBuy().get(u) != null && Florial.getBulkBuy().get(u) ? 64 : 1;
+
+            VaultHandler.removeMoney(p, price);
+            p.getInventory().addItem(new ItemStack(mat, amount));
+
+        } else {
+
+            p.sendMessage("You need at least $" + price + " to buy this. You are " + (price - VaultHandler.getBalance(p)) + " short");
+
+        }
+    }
+
+    public static void enableBulkBuy(Player p) {
+
+        UUID u = p.getUniqueId();
+
+        boolean outcome = Florial.getBulkBuy().get(u) == null || !Florial.getBulkBuy().get(u);
+
+
+        Florial.getBulkBuy().put(u, outcome);
+
+        p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1, 1);
+
 
     }
 }
