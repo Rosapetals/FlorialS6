@@ -1,6 +1,7 @@
 package net.florial.features.thirst;
 
 import net.florial.Florial;
+import net.florial.utils.general.CC;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -41,15 +42,21 @@ public class ThirstManager implements Listener {
         int fullThirst = thirst / 2;
         int halfThirst = thirst % 2;
 
-        StringBuilder thirstdisplay = new StringBuilder();
+        StringBuilder thirstDisplay = new StringBuilder();
 
-        thirstdisplay.append("\uE236".repeat(Math.max(0, fullThirst)));
+        if (!p.getName().contains(".")) {
 
-        if (halfThirst == 1) thirstdisplay.append("\uE237");
+            thirstDisplay.append("\uE236".repeat(Math.max(0, fullThirst)));
+            if (halfThirst == 1) thirstDisplay.append("\uE237");
+            thirstDisplay.append("\uE330".repeat(Math.max(0, (10 - fullThirst - halfThirst))));
 
-        thirstdisplay.append("\uE330".repeat(Math.max(0, (10 - fullThirst - halfThirst))));
+        } else {
 
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("                                                         "+thirstdisplay));
+            thirstDisplay.append(CC.translate("&bThirst: " + thirst));
+
+        }
+
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("                                                         "+thirstDisplay));
     }
 
     public void thirstRunnable(Player p){

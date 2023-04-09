@@ -116,7 +116,7 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-      //  initializeDiscord();
+        initializeDiscord();
 
          rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) throw new NullPointerException("Economy service provider was not found");
@@ -138,14 +138,14 @@ public final class Florial extends JavaPlugin {
 
     @Override
     public void onDisable() {
-      //  discordBot.shutdownNow();
-     //   while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
-          //  try {
-           //    Thread.sleep(20);
-          //  } catch (InterruptedException e) {
-              //  throw new RuntimeException(e);
-           // }
-     //   }
+        discordBot.shutdownNow();
+        while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
+            try {
+               Thread.sleep(20);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         for (PlayerData data : playerData.values()) data.save(false);
         FlorialDatabase.closeConnection();
         saveConfig();
@@ -182,9 +182,11 @@ public final class Florial extends JavaPlugin {
         if (!(Cooldown.getCooldownMap("c1") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c1")).clear();
         if (!(Cooldown.getCooldownMap("c2") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c2")).clear();
         if (!(Cooldown.getCooldownMap("scent") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("scent")).clear();
+        if (!(Cooldown.getCooldownMap("spam") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("spam")).clear();
         if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
         if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
         if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
+        if (Cooldown.getCooldownMap("spam") == null) Cooldown.createCooldown("spam");
 
         if (!(Bukkit.getOnlinePlayers().size() > 0)) return;
         for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {

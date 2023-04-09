@@ -10,6 +10,7 @@ import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.species.disguises.Morph;
 import net.florial.species.events.impl.SpeciesTablistEvent;
+import net.florial.utils.Cooldown;
 import net.florial.utils.Message;
 import net.florial.utils.general.CC;
 import net.kyori.adventure.text.Component;
@@ -26,6 +27,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -41,7 +43,17 @@ public class PlayerListeners implements Listener {
 
     private static final Morph morph = new Morph();
 
-    private static final Pattern PATTERN = Pattern.compile("n[i1$!]i?gg?[ea3]?r?", Pattern.CASE_INSENSITIVE);
+    private static final Florial florial = Florial.getInstance();
+    private static final HashMap<UUID, Integer> previousMessages = new HashMap<>();
+
+    private static final String[] SLURS ={
+            "n[i1$!]i?gg?[ea3]?r?",
+            "(ph|f)agg?s?([e0aio]ts?|oted|otry)",
+            "n[i!j1e]+gg?(rs?|ett?e?s?|lets?|ress?e?s?|r[a0oe]s?|[ie@ao0!]rs?|r[o0]ids?|ab[o0]s?|erest)",
+            "trann(ys?|ies)?",
+            "\\bfagg?(s?\\b|ot|y|ier)"
+
+    };
 
 
     @EventHandler
@@ -59,13 +71,14 @@ public class PlayerListeners implements Listener {
             Florial.getPlayerData().put(u, temp.stream().findFirst().orElse(new PlayerData(u.toString())));
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
-       // if (p.hasPermission("florial.staff")) {
 
-          //  if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
-            //    new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
-           // }
-           // Florial.getInstance().getStaffToVerify().add(u);
-       // }
+        if (p.hasPermission("florial.staff")) {
+
+            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
+                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
+            }
+            Florial.getInstance().getStaffToVerify().add(u);
+        }
 
         PlayerData data = Florial.getPlayerData().get(u);
 
@@ -90,11 +103,15 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
 
-        Florial.getInstance().getStaffToVerify().remove(event.getPlayer().getUniqueId());
+        UUID u = event.getPlayer().getUniqueId();
 
-        Florial.getBoards().remove(event.getPlayer().getUniqueId());
+        Florial.getInstance().getStaffToVerify().remove(u);
 
-        PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
+        Florial.getBoards().remove(u);
+
+        previousMessages.remove(u);
+
+        PlayerData data = Florial.getPlayerData().get(u);
         data.save(true);
     }
 
@@ -110,33 +127,68 @@ public class PlayerListeners implements Listener {
 
     @EventHandler
     public void onChat(AsyncChatEvent event) {
-        if (Florial.getInstance().getStaffToVerify().contains(event.getPlayer().getUniqueId())) {
+
+        Player p = event.getPlayer();
+        UUID u = p.getUniqueId();
+
+        if (Florial.getInstance().getStaffToVerify().contains(u)) {
             event.setCancelled(true);
-            new Message("&c&lPlease verify through discord").send(event.getPlayer());
+            new Message("&c&lPlease verify through discord").send(p);
         }
 
-        String prefix = Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getPrefix();
+        if (florial.ess.getUser(p).isMuted()) return;
+
+        String prefix = Florial.getPlayerData().get(u).getPrefix();
         if (Objects.equals(prefix, "")) {
             try {
-                prefix = Objects.requireNonNull(Florial.getInstance().getLpapi().getUserManager().getUser(event.getPlayer().getUniqueId())).getCachedData().getMetaData().getPrefix();
+                prefix = Objects.requireNonNull(Florial.getInstance().getLpapi().getUserManager().getUser(u)).getCachedData().getMetaData().getPrefix();
             } catch (NullPointerException e) {
                 prefix = "";
             }
         }
 
+        String nickname = (florial.ess.getUser(p) != null) ? florial.ess.getUser(p).getNickname() : p.getName().trim();
+
+
         if (prefix == null) {
             prefix = "Default";
         }
 
+        event.setCancelled(true);
+
         String message = ((TextComponent) event.message()).content();
 
-        message = message.replaceAll(" ", "");
+        for (String pattern : SLURS) {
+            Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(message.replaceAll(" ", ""));
+            if (!(matcher.find())) continue;
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq");
+            return;
 
-        Matcher matcher = PATTERN.matcher(message);
+        }
 
-        if (matcher.find()) event.getPlayer().sendMessage("bad");
+        if (spamChecker(event.getPlayer())) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 15m You were muted for Possible Spam - Appeal: https://discord.com/invite/TRsjqSfHVq (Slow your messages!)");
+            return;
+        }
 
-        Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + event.getPlayer().getName().trim() + ": " + ((TextComponent) event.message()).content())));
+        Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + nickname + ": " + message)));
+    }
+
+    private static boolean spamChecker(Player p) {
+
+        UUID u = p.getUniqueId();
+
+        previousMessages.putIfAbsent(u, 0);
+        previousMessages.put(u, previousMessages.get(u) + 1);
+
+        if (Cooldown.isOnCooldown("spam", p) && previousMessages.get(u) > 3){
+            previousMessages.put(u, 0);
+            return true;
+        } else {
+            Cooldown.addCooldown("spam", p, 3);
+            return false;
+        }
+
     }
 
     @EventHandler
