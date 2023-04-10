@@ -1,7 +1,5 @@
 package net.florial.species;
 
-import com.earth2me.essentials.Essentials;
-import com.earth2me.essentials.config.EssentialsUserConfiguration;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -123,10 +121,12 @@ public abstract class Species implements Listener {
 
             String prefix = "";
 
+            String nickname = (florial.ess.getUser(p) != null) ? florial.ess.getUser(p).getNickname() : p.getName().trim();
+
             assert user != null;
             if (user.getCachedData().getMetaData().getPrefix() != null) {prefix = user.getCachedData().getMetaData().getPrefix();}
 
-            watcher.setCustomName(CC.translate(prefix + florial.ess.getUser(p).getNickname()));
+            watcher.setCustomName(CC.translate(prefix + nickname));
 
         }, 40);
 

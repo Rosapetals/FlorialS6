@@ -2,6 +2,8 @@ package net.florial.commands.species;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
 import org.bukkit.Sound;
@@ -21,6 +23,10 @@ public class ResetSpeciesCommand extends BaseCommand {
             data.setDna(data.getDna() - 25);
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1, 1);
+
+            MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
+
+            mobDisguise.stopDisguise();
 
 
         } else {

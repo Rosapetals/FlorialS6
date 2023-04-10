@@ -51,6 +51,8 @@ public class SpeciesEventManager implements Listener  {
 
         Player p = event.getPlayer();
 
+        if (p.getName().contains(".")) return;
+
 
         switch (data.getSpecieType().getId()) {
             case 1 -> {

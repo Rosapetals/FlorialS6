@@ -44,6 +44,7 @@ public class PlayerListeners implements Listener {
     private static final Morph morph = new Morph();
 
     private static final Florial florial = Florial.getInstance();
+
     private static final HashMap<UUID, Integer> previousMessages = new HashMap<>();
 
     private static final String[] SLURS ={
@@ -166,7 +167,7 @@ public class PlayerListeners implements Listener {
 
         }
 
-        if (spamChecker(event.getPlayer())) {
+        if (spamChecker(p)) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 15m You were muted for Possible Spam - Appeal: https://discord.com/invite/TRsjqSfHVq (Slow your messages!)");
             return;
         }

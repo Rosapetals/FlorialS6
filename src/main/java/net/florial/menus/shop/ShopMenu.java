@@ -20,11 +20,8 @@ import java.util.stream.Stream;
 
 public class ShopMenu {
 
+    private static final ShopBuilder shopBuilder = new ShopBuilder();
 
-
-
-
-    private static final ResourceShopMenu resourceShop = new ResourceShopMenu();
     public void shopMenu(Player p) {
 
         p.closeInventory();
@@ -43,7 +40,9 @@ public class ShopMenu {
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
                                                 "#ff79a1&lBOOKS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lDECORATIONS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                                "#ff79a1&lDECORATIONS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#ff79a1&lMISCELLANEOUS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
 
@@ -52,7 +51,7 @@ public class ShopMenu {
                         //15,16,25,24 (books)
                         //22 (special)
                         //1,7 (info)
-                        //31,32,39,40 (other)
+                        //31,32,39,40 misc
                         //34,35,43,44 (other)
 
                         contents.set(List.of(10,19,20,11), IntelligentItem.of(entries.get(0), event -> loadMenu(p, 1)));
@@ -60,6 +59,9 @@ public class ShopMenu {
                         contents.set(List.of(15,16,25,24), IntelligentItem.of(entries.get(1), event -> loadMenu(p, 2)));
 
                         contents.set(List.of(29,28,37,38), IntelligentItem.of(entries.get(2), event -> loadMenu(p, 3)));
+
+                        contents.set(List.of(31,32,39,40), IntelligentItem.of(entries.get(3), event -> loadMenu(p, 4)));
+
 
 
 
@@ -75,21 +77,26 @@ public class ShopMenu {
         p.closeInventory();
 
         switch (type) {
-            case 1 -> resourceShop.resourceCategory(p);
-            //case 2 -> ShopMenu.shopMenu(p);
+            case 1 -> shopBuilder.category(p, 1);
+            case 2 -> shopBuilder.category(p, 2);
+            case 3 -> shopBuilder.category(p, 3);
+            case 4 -> shopBuilder.category(p, 4);
+            case 5 -> shopBuilder.category(p, 5);
+            case 6 -> shopBuilder.category(p, 6);
+
         }
 
     }
 
-    public static ItemStack arrangeItem(int price, Material mat) {
+    public static ItemStack arrangeItem(int price, ItemStack i) {
 
-        return CustomItem.MakeItem(new ItemStack(mat), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ "
-                + mat + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • PRICE: #ffa2c4 "
+        return CustomItem.MakeItem(i, "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ "
+                + i.getType() + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • PRICE: #ffa2c4 "
                 + price + "\n #ff79a1&l︳  [CLICK HERE]:\n#ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false);
 
     }
 
-    public static void purchase(Player p, Material mat, int price) {
+    public static void purchase(Player p, ItemStack item, int price) {
 
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
@@ -99,8 +106,9 @@ public class ShopMenu {
             UUID u = p.getUniqueId();
             int amount = Florial.getBulkBuy().get(u) != null && Florial.getBulkBuy().get(u) ? 64 : 1;
 
-            VaultHandler.removeMoney(p, price);
-            p.getInventory().addItem(new ItemStack(mat, amount));
+            VaultHandler.removeMoney(p, price * amount);
+
+            for (int i = 0; i < amount; i++) {p.getInventory().addItem(item);}
 
         } else {
 
