@@ -1,10 +1,7 @@
 package net.florial.scoreboard;
 
-import lombok.val;
 import net.florial.Florial;
-import net.florial.database.FlorialDatabase;
 import net.florial.models.PlayerData;
-import net.florial.utils.Message;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.MoneyFormatter;
 import net.florial.utils.general.VaultHandler;
@@ -15,8 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.UUID;
-
-import static dev.morphia.query.filters.Filters.eq;
 
 public class Scoreboard implements Listener {
 
@@ -38,7 +33,7 @@ public class Scoreboard implements Listener {
 
         String name = (data.getSpecieType().getSpecie() == null) ? "/species" : data.getSpecies().getName();
 
-        String text1 = CC.translate(" #ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl #ff1d3a&l| S6");
+        String text1 = CC.translate(" #ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff1d3a&l| S6");
         String text3 = CC.translate("");
         String text4 = CC.translate("    #ffd7dc┍━━━━━━━━━━━━━━━━━━┑");
         String text5 = CC.translate("   #ffb8c1 ︳ #ff5b70&lSPECIES:&f " + name);

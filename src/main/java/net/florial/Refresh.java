@@ -1,6 +1,5 @@
 package net.florial;
 
-import net.florial.features.age.Age;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;

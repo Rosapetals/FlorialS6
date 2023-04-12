@@ -3,8 +3,8 @@ package net.florial.commands.cheats;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import net.florial.Florial;
-import net.florial.models.PlayerData;
 import net.florial.features.skills.Skill;
+import net.florial.models.PlayerData;
 import org.bukkit.entity.Player;
 
 import java.util.Arrays;

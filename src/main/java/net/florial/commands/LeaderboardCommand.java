@@ -6,7 +6,6 @@ import co.aikar.commands.annotation.Default;
 import me.santio.utils.bukkit.impl.MessageUtils;
 import me.santio.utils.minecraft.message.Message;
 import net.florial.database.FlorialDatabase;
-import net.florial.models.PlayerData;
 import org.bukkit.entity.Player;
 
 public class LeaderboardCommand extends BaseCommand {

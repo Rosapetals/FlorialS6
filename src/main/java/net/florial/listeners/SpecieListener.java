@@ -1,30 +1,17 @@
 package net.florial.listeners;
 
-import dev.morphia.query.filters.Filters;
 import net.florial.Florial;
-import net.florial.Refresh;
-import net.florial.features.thirst.ThirstManager;
 import net.florial.models.PlayerData;
+import net.florial.species.events.impl.SpeciesDeathEvent;
+import net.florial.species.events.impl.SpeciesKillEvent;
+import net.florial.species.events.impl.SpeciesRespawnEvent;
 import net.florial.utils.GeneralUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import net.florial.species.events.impl.SpeciesDeathEvent;
-import net.florial.species.events.impl.SpeciesKillEvent;
-import net.florial.species.events.impl.SpeciesRespawnEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import static net.florial.models.PlayerData.getFieldValue;
 
 public class SpecieListener implements Listener {
 

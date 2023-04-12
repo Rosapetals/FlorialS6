@@ -6,7 +6,6 @@ import co.aikar.commands.annotation.CommandPermission;
 import me.santio.utils.bukkit.impl.MessageUtils;
 import me.santio.utils.minecraft.message.Message;
 import net.florial.Florial;
-import net.florial.database.FlorialDatabase;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

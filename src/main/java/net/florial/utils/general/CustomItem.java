@@ -1,6 +1,5 @@
 package net.florial.utils.general;
 
-import net.florial.utils.general.CC;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

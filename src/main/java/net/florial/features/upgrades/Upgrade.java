@@ -4,9 +4,6 @@ import dev.morphia.annotations.Transient;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public enum Upgrade {
 
     // general

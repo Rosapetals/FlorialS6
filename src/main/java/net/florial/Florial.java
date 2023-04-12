@@ -18,9 +18,9 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
 import net.florial.commands.cheats.ChangeDNACommand;
 import net.florial.commands.cheats.ChangeSkillsCommand;
+import net.florial.commands.cheats.ChangeSpeciesCommand;
 import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
-import net.florial.commands.cheats.ChangeSpeciesCommand;
 import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
@@ -36,6 +36,7 @@ import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
 import net.florial.models.PlayerData;
+import net.florial.models.ShiftData;
 import net.florial.scoreboard.FastBoard;
 import net.florial.scoreboard.Scoreboard;
 import net.florial.species.SpeciesEventManager;
@@ -72,6 +73,10 @@ public final class Florial extends JavaPlugin {
 
     @Getter private static final HashMap<UUID, Quest> questData = new HashMap<>();
     @Getter private static final HashMap<UUID, BossBar> questBar = new HashMap<>();
+    @Getter private static final HashMap<UUID, ShiftData> staffWithShifts = new HashMap<>();
+    @Getter private static final HashMap<String, UUID> linkCodes = new HashMap<>();
+    @Getter private static final HashMap<String, Short> botState = new HashMap<>();
+    @Getter private static final HashMap<String, List<String>> answers = new HashMap<>();
     @Getter private static final HashMap<UUID, Boolean> bulkBuy = new HashMap<>();
 
 
@@ -132,6 +137,17 @@ public final class Florial extends JavaPlugin {
             throw new NullPointerException("WorldGuard is not on this server.");
         }
         ess = (Essentials) Bukkit.getPluginManager().getPlugin("Essentials");
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            @Override
+            public void run() {
+                getStaffWithShifts().forEach((uuid, shiftData) -> {
+                    if (!Bukkit.getOfflinePlayer(uuid).isOnline()) {
+                        getStaffWithShifts().remove(uuid);
+                    }
+                });
+            }
+        }, 12000L, 12000);
+
 
     }
 
@@ -194,6 +210,12 @@ public final class Florial extends JavaPlugin {
             ThirstManager.thirstRunnable(p);
             Scoreboard.boardRunnable(p.getUniqueId(), p);}
 
+        if (!(Cooldown.getCooldownMap("c1") == null)) Cooldown.getCooldownMap("c1").clear();
+        if (!(Cooldown.getCooldownMap("c2") == null)) Cooldown.getCooldownMap("c2").clear();
+        if (!(Cooldown.getCooldownMap("scent") == null)) Cooldown.getCooldownMap("scent").clear();
+        if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
+        if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
+        if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
 
     }
 
@@ -244,19 +266,20 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new GrowCommand());
         manager.registerCommand(new RemoveFieldCommand());
         manager.registerCommand(new SetDiscordIDCommand());
-
+        manager.registerCommand(new StartShiftCommand());
+        manager.registerCommand(new EndShiftCommand());
+        manager.registerCommand(new LinkCommand());
+        manager.registerCommand(new UnlinkCommand());
     }
 
     private void initializeDiscord() {
         try {
-           // discordBot = JDABuilder.createDefault(getConfig().getString("discord.token"))
-                 //   .enableIntents(GatewayIntent.DIRECT_MESSAGES, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT).setActivity(Activity.of(Activity.ActivityType.WATCHING, "the rosacage", "https://florial.tebex.io/")).build();
             CommandClientBuilder builder = new CommandClientBuilder();
             builder.setPrefix("/");
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordVerifyCommand(), new DiscordPunishCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();
@@ -282,7 +305,8 @@ public final class Florial extends JavaPlugin {
                 getConfig().getString("discord.trustedStaffId") == null ||
                 getConfig().getString("discord.adminChannel") == null ||
                 getConfig().getString("discord.chatbotChannel") == null ||
-                getConfig().getString("discord.openaiToken") == null) {
+                getConfig().getString("discord.openaiToken") == null ||
+                getConfig().getString("discord.shiftChannel") == null) {
             throw new RuntimeException("ADD THE DATA YA TURD");
         }
         discordServer = discordBot.getGuildById(getConfig().getString("discord.serverid"));

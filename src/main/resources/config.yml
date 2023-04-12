@@ -11,3 +11,6 @@ discord:
   adminChannel:
   chatbotChannel:
   openaiToken:
+  shiftChannel:
+  awaitingVerificationRole:
+  verifiedRole:

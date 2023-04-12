@@ -4,19 +4,13 @@ import com.jagrosh.jdautilities.command.SlashCommand;
 import com.jagrosh.jdautilities.command.SlashCommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
-import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.florial.Florial;
-import net.florial.models.PlayerData;
-import net.florial.utils.GeneralUtils;
-import net.florial.utils.Message;
 import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.awt.*;
+import java.time.Instant;
 
 @CommandInfo(
         name = "verify",
@@ -26,40 +20,31 @@ public class DiscordVerifyCommand extends SlashCommand {
 
     public DiscordVerifyCommand() {
         this.name = "verify";
-        this.help = "Authenticate yourself on the server";
-        this.aliases = new String[] {"authenticate", "auth"};
-        List<OptionData> options = new ArrayList<>();
-        options.add(new OptionData(OptionType.STRING, "username", "Ingame Username").setRequired(true));
-        this.options = options;
+        this.help = "Verify yourself on the server";
+        this.guildOnly = false;
+        this.ownerCommand = true;
     }
     @Override
-    protected void execute(SlashCommandEvent slashCommandEvent) {
-        Member member = Florial.getDiscordServer().getMemberById(slashCommandEvent.getUser().getId());
-        if (member == null) {
-            slashCommandEvent.reply("There was an error trying to perform this command").setEphemeral(true).queue();
-            return;
-        }
-        if (!member.getRoles().contains(Florial.getDiscordServer().getRoleById(Florial.getInstance().getConfig().getString("discord.staffId")))) {
-            slashCommandEvent.reply("No permissions").setEphemeral(true).queue();
-            return;
-        }
+    protected void execute(SlashCommandEvent event) {
+        EmbedBuilder e = new EmbedBuilder();
+        User user = event.getUser();
+        e.setTitle("\uD83D\uDC90 **Verification How-To and Guidelines** \uD83D\uDC90");
+        e.setFooter("Verifying keeps Florial safe.");
+        e.addField("**HOW TO VERIFY**", "Click the button below to verify. After that, the Tulip bot will DM you and ask you a few questions. After you answer them, it does not need to be approved and you will be let into the server. However, please answer honestly to the questions! If you are from our Minecraft server, ensure you do not misspell your username, because you only get one chance.", false);
+        e.addField("**GUIDELINES**", "By verifying in our server, you accept that you are 13 years or older as per Discord TOS requirements. While in this server, you may not break TOS, this involves promoting piracy, talking about illegal drugs or illegal drinking, or the promotion of the latter, and more. For a full list of what you can and cannot do here, please see https://discord.com/guidelines", false);
+        e.addField("**NOTICE**", "If you have come here to troll, please note that we will send you to The Void on-sight of any suspicious troll-like behavior. Once you are in here, you can not speak in or view any other channels except that one.", false);
+        e.setColor(Color.pink);
+        e.setImage("https://media.discordapp.net/attachments/803862530438332417/1053088710545121291/line.png");
+        e.setTimestamp(Instant.now());
+        event.getJDA().getTextChannelById("950565475107098654").sendMessage("").setEmbeds(e.build()).queue(); // and this
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), new Runnable() {
+            public void run() {
+                event.getJDA().getTextChannelById("950565475107098654").sendMessage("") // REMEMBER TO CHANGE THIS
+                        .addActionRow(
+                                Button.primary("verify", "\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38 Verify \uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38\uD83C\uDF38"))
+                        .queue();
+            }
+        }, 110L);
 
-        PlayerData targetUser = Florial.getInstance().getPlayerData(Bukkit.getPlayer(slashCommandEvent.getOption("username").getAsString()));
-        if (targetUser == null) {
-            slashCommandEvent.reply("This player is not currently online").setEphemeral(true).queue();
-            return;
-        }
-        if (!Florial.getInstance().getStaffToVerify().contains(UUID.fromString(targetUser.getUUID()))) {
-            slashCommandEvent.reply("This player does not need to be verified").setEphemeral(true).queue();
-            return;
-        }
-        if (!slashCommandEvent.getUser().getId().equals(targetUser.getDiscordId())) {
-            slashCommandEvent.reply("You do not have permission to authenticate this user").queue();
-            return;
-        }
-
-        Florial.getInstance().getStaffToVerify().remove(UUID.fromString(targetUser.getUUID()));
-        new Message("&aSuccessfully Authenticated").send(Bukkit.getPlayer(slashCommandEvent.getOption("username").getAsString()));
-        slashCommandEvent.reply("Successfully authenticated " + slashCommandEvent.getOption("username").getAsString()).queue();
     }
 }

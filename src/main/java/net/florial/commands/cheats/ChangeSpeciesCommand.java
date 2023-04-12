@@ -3,10 +3,9 @@ package net.florial.commands.cheats;
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import net.florial.species.SpecieType;
-import org.bukkit.entity.Player;
 import net.florial.species.SpeciesWrapper;
+import org.bukkit.entity.Player;
 
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 

@@ -4,7 +4,6 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.Default;
 import net.florial.Florial;
-import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import org.bukkit.entity.Player;

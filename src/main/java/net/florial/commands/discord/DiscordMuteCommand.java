@@ -6,10 +6,8 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
-import net.florial.Florial;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
@@ -35,8 +33,7 @@ public class DiscordMuteCommand extends SlashCommand {
     }
     @Override
     protected void execute(SlashCommandEvent slashCommandEvent) {
-        Member member = Florial.getDiscordServer().getMemberById(slashCommandEvent.getUser().getId());
-        Bukkit.getLogger().info(member.toString());
+        Member member = slashCommandEvent.getMember();
         if (member == null) {
             slashCommandEvent.reply("There was an error trying to perform this command").queue();
             return;

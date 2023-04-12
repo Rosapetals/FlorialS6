@@ -1,10 +1,8 @@
 package net.florial.models;
 
-import com.mongodb.client.MongoDatabase;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import lombok.Data;
-import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import org.bson.types.ObjectId;
 

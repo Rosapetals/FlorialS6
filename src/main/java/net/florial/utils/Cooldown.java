@@ -1,9 +1,9 @@
 package net.florial.utils;
 
+import org.bukkit.entity.Player;
+
 import java.util.HashMap;
 import java.util.UUID;
-
-import org.bukkit.entity.Player;
 
 public class Cooldown {
     public static HashMap<String, HashMap<UUID, Long>> cooldown = new HashMap();

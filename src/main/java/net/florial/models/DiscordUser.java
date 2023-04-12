@@ -4,6 +4,7 @@ import dev.morphia.ReplaceOptions;
 import dev.morphia.annotations.Entity;
 import dev.morphia.annotations.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import net.florial.database.FlorialDatabase;
 import net.florial.utils.GeneralUtils;
 import org.bson.codecs.pojo.annotations.BsonIgnore;
@@ -12,9 +13,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 @Data
 @Entity("discorduser")
+@NoArgsConstructor
 public class DiscordUser {
+
     @Id
-    private ObjectId id;
+    private ObjectId id = new ObjectId();
 
     private String uuid;
     private int exp;
@@ -30,26 +33,38 @@ public class DiscordUser {
         this.mcUUID = mcUUID;
     }
 
+    public DiscordUser(String id) {
+        this.uuid = id;
+        this.exp = 0;
+        this.level = 1;
+        this.coins = 0;
+        this.mcUUID = "";
+    }
     @BsonIgnore
     public void save(boolean async) {
         if (async) {
             GeneralUtils.runAsync(new BukkitRunnable() {
                 @Override
                 public void run() {
-                    FlorialDatabase.getDatastore().replace(this, new ReplaceOptions().upsert(true));
+                    FlorialDatabase.getDatastore().replace(getInstance(), new ReplaceOptions().upsert(true));
                 }
             });
         }
-        else FlorialDatabase.getDatastore().replace(this, new ReplaceOptions().upsert(true));
+        else FlorialDatabase.getDatastore().replace(getInstance(), new ReplaceOptions().upsert(true));
     }
 
     @BsonIgnore
     public void createNew() {
+        DiscordUser user = this;
         GeneralUtils.runAsync(new BukkitRunnable() {
             @Override
             public void run() {
-                FlorialDatabase.getDatastore().save(this);
+                FlorialDatabase.getDatastore().save(user);
             }
         });
+    }
+
+    public DiscordUser getInstance() {
+        return this;
     }
 }

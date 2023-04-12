@@ -64,6 +64,7 @@ public class PlayerListeners implements Listener {
 
         FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
             Florial.getPlayerData().put(u, playerData);
+            Florial.getPlayerData().get(u).refresh();
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(playerData.toString()).send(p);
         });
 
@@ -72,22 +73,27 @@ public class PlayerListeners implements Listener {
             Florial.getPlayerData().put(u, temp.stream().findFirst().orElse(new PlayerData(u.toString())));
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
-
         if (p.hasPermission("florial.staff")) {
 
-            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
-                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
+            if (Florial.getPlayerData().get(u).getDiscordId() == "") {
+                new Message("&c&lPlease link your account immediately using /link").send(p);
+            } else {
+                Florial.getInstance().getStaffToVerify().add(u);
             }
-            Florial.getInstance().getStaffToVerify().add(u);
         }
 
         PlayerData data = Florial.getPlayerData().get(u);
-
         ThirstManager.thirstRunnable(p);
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), data::refresh, 100L);
 
         if (Florial.getQuestBar().containsKey(u)) Florial.getQuestBar().get(u).addPlayer(p);
+
+        if (data.getSpecieType().getSpecie() == null) speciesMenu.speciesMenu(p);
+
+        Florial.getStaffWithShifts().forEach((uuid, shiftData) -> {
+            if (Bukkit.getOnlinePlayers().size() > shiftData.getHighestPlayerCount()) shiftData.setHighestPlayerCount(Bukkit.getOnlinePlayers().size());
+        });
 
         if (data.getSpecieType().getSpecie() == null) {
             speciesMenu.speciesMenu(p);
@@ -135,6 +141,7 @@ public class PlayerListeners implements Listener {
         if (Florial.getInstance().getStaffToVerify().contains(u)) {
             event.setCancelled(true);
             new Message("&c&lPlease verify through discord").send(p);
+            return;
         }
 
         if (florial.ess.getUser(p).isMuted()) return;

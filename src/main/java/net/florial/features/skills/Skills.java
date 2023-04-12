@@ -8,7 +8,6 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
-import net.florial.species.impl.Human;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import org.bukkit.Material;

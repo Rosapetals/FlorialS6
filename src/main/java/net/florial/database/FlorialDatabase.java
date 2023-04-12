@@ -4,23 +4,20 @@ import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
-import com.mongodb.client.*;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.UpdateResult;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
-import dev.morphia.ReplaceOptions;
-import dev.morphia.query.Query;
-import dev.morphia.query.QueryFactory;
 import dev.morphia.query.filters.Filters;
 import lombok.Getter;
 import lombok.val;
 import net.florial.Florial;
+import net.florial.models.DiscordUser;
 import net.florial.models.FilterEntry;
 import net.florial.models.PlayerData;
 import net.florial.utils.GeneralUtils;
-import net.kyori.adventure.text.Component;
-import org.bson.Document;
 import org.bson.UuidRepresentation;
 import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
@@ -38,7 +35,6 @@ import java.util.stream.Collectors;
 import static com.mongodb.client.model.Filters.exists;
 import static dev.morphia.query.filters.Filters.eq;
 import static net.florial.models.PlayerData.getFieldValue;
-import static org.apache.commons.lang3.BooleanUtils.and;
 
 public class FlorialDatabase {
 
@@ -69,6 +65,7 @@ public class FlorialDatabase {
         datastore = Morphia.createDatastore(mongo, Florial.getInstance().getConfig().getString("mongo.database"));
         datastore.getMapper().map(PlayerData.class);
         datastore.getMapper().map(FilterEntry.class);
+        datastore.getMapper().map(DiscordUser.class);
         datastore.ensureIndexes();
     }
 
@@ -86,13 +83,24 @@ public class FlorialDatabase {
             @Override
             public void run() {
                 val temp = datastore.find(PlayerData.class).filter(eq("UUID", uuid.toString()));
-                Bukkit.broadcast(Component.text(temp.stream().count()));
                 future.complete(temp.stream().findFirst().orElse(new PlayerData(uuid.toString())));
             }
         });
         return future;
     }
 
+    public static CompletableFuture<DiscordUser> getDiscordUserData(String id) {
+        CompletableFuture<DiscordUser> future = new CompletableFuture<>();
+        GeneralUtils.runAsync(new BukkitRunnable() {
+
+            @Override
+            public void run() {
+                val temp = datastore.find(DiscordUser.class).filter(eq("uuid", id));
+                future.complete(temp.stream().findFirst().orElse(null));
+            }
+        });
+        return future;
+    }
     /**
      * Returns the first found version of PlayerData from the database for the given UUID
      * @param player the player you want to get the PlayerData of
@@ -100,6 +108,25 @@ public class FlorialDatabase {
      */
     public static CompletableFuture<PlayerData> getPlayerData(Player player) {
         return getPlayerData(player.getUniqueId());
+    }
+
+    public static CompletableFuture<PlayerData> getCachedOrDBPlayerData(UUID uuid) {
+        CompletableFuture<PlayerData> future = new CompletableFuture<>();
+        GeneralUtils.runAsync(new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (Florial.getPlayerData().get(uuid) != null) {
+                    future.complete(Florial.getPlayerData().get(uuid));
+                }
+                val temp = datastore.find(PlayerData.class).filter(eq("UUID", uuid.toString()));
+                future.complete(temp.stream().findFirst().orElse(new PlayerData(uuid.toString())));
+            }
+        });
+        return future;
+    }
+
+    public static CompletableFuture<PlayerData> getCachedOrDBPlayerData(Player player) {
+        return getCachedOrDBPlayerData(player.getUniqueId());
     }
 
     /**

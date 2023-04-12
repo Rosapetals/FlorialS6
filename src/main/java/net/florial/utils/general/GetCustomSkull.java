@@ -1,10 +1,10 @@
 package net.florial.utils.general;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.Property;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
