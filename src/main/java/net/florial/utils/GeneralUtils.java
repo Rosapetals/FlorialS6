@@ -8,4 +8,14 @@ public class GeneralUtils {
     public static void runAsync(BukkitRunnable code) {
         code.runTaskAsynchronously(Florial.getInstance());
     }
+
+    public static void runAsync(Runnable code) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                code.run();
+            }
+        }.runTaskAsynchronously(Florial.getInstance());
+    }
+
 }
