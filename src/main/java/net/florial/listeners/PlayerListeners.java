@@ -2,7 +2,10 @@ package net.florial.listeners;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
 import lombok.val;
+import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
+import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
+import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.thirst.ThirstManager;
@@ -13,7 +16,6 @@ import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
 import net.florial.utils.Message;
 import net.florial.utils.general.CC;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -24,10 +26,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -125,6 +125,23 @@ public class PlayerListeners implements Listener {
     }
 
     @EventHandler
+    public void onRespawn(PlayerRespawnEvent e) {
+
+        Bukkit.getServer().getScheduler().runTaskLater(florial, () -> {
+
+            Player p = e.getPlayer();
+
+            MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
+            FlagWatcher watcher = mobDisguise.getWatcher();
+
+            mobDisguise.stopDisguise();
+            mobDisguise.startDisguise();
+
+        }, 40);
+
+    }
+
+    @EventHandler
     public void closeInventory(InventoryCloseEvent e) {
 
         if (e.getInventory().getType() != InventoryType.CHEST || (!(e.getReason().equals(InventoryCloseEvent.Reason.PLAYER)))) return;
@@ -157,6 +174,8 @@ public class PlayerListeners implements Listener {
             }
         }
 
+        String nickname = florial.ess.getUser(p).getNickname() != null ? florial.ess.getUser(p).getNickname() : p.getName();
+
 
         if (prefix == null) {
             prefix = "Default";
@@ -169,13 +188,14 @@ public class PlayerListeners implements Listener {
         for (String pattern : SLURS) {
             Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(message.replaceAll(" ", ""));
             if (!(matcher.find())) continue;
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq");
+            new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + message);}}.runTask(florial);
+
             return;
 
         }
 
         if (spamChecker(p)) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 15m You were muted for Possible Spam - Appeal: https://discord.com/invite/TRsjqSfHVq (Slow your messages!)");
+            new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 15m You were muted for Possible Spam - Appeal: https://discord.com/invite/TRsjqSfHVq (Slow your messages!)");}}.runTask(florial);
             return;
         }
 
@@ -192,10 +212,12 @@ public class PlayerListeners implements Listener {
         if (Cooldown.isOnCooldown("spam", p) && previousMessages.get(u) > 3){
             previousMessages.put(u, 0);
             return true;
-        } else {
+        } else if (!(Cooldown.isOnCooldown("spam", p))) {
             Cooldown.addCooldown("spam", p, 3);
+            previousMessages.put(u, 0);
             return false;
         }
+        return false;
 
     }
 

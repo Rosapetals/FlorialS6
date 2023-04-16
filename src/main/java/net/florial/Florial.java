@@ -39,7 +39,7 @@ import net.florial.models.PlayerData;
 import net.florial.models.ShiftData;
 import net.florial.scoreboard.FastBoard;
 import net.florial.scoreboard.Scoreboard;
-import net.florial.species.SpeciesEventManager;
+import net.florial.species.events.SpeciesEventManager;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
 import net.luckperms.api.LuckPerms;
@@ -121,7 +121,7 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-        initializeDiscord();
+      //  initializeDiscord();
 
          rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) throw new NullPointerException("Economy service provider was not found");
@@ -154,14 +154,14 @@ public final class Florial extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        discordBot.shutdownNow();
-        while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
-            try {
-               Thread.sleep(20);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
+      //  discordBot.shutdownNow();
+      //  while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
+          //  try {
+             //  Thread.sleep(20);
+          //  } catch (InterruptedException e) {
+               // throw new RuntimeException(e);
+           // }
+     //   }
         for (PlayerData data : playerData.values()) data.save(false);
         FlorialDatabase.closeConnection();
         saveConfig();

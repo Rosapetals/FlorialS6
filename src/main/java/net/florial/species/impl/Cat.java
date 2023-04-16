@@ -58,7 +58,7 @@ public class Cat extends Species implements Listener {
     public Set<String> descriptions() {
 
         return new HashSet<>(Arrays.asList(
-                "UNKNOWN", "still being decided"));
+                "Mobility", "Faster, climb, jump ability"));
     }
 
     @Override

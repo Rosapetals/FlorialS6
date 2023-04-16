@@ -6,6 +6,8 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
+import net.florial.features.upgrades.Upgrade;
+import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import org.bukkit.Material;
@@ -36,10 +38,14 @@ public class InstinctsMenu {
                     public void init(Player player, InventoryContents contents) {
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lBACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData")).toList();
+                                                "#ff79a1&lBACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                        "#ff79a1&lGAIN RANDOM INSTINCT\n#ff79a1&l︳#ff79a1 500 DNA\n#ff79a1&l︳[CLICK HERE]\n#ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData")).toList();
 
 
                         contents.set(List.of(18, 19), IntelligentItem.of(entries.get(0), event -> loadMenu(p)));
+                        contents.set(List.of(37,38,39,40,41,42,43), IntelligentItem.of(entries.get(1), event -> loadMenu(p)));
+
 
                     }
                 })
@@ -55,5 +61,25 @@ public class InstinctsMenu {
         p.closeInventory();
 
         SpeciesMenu.speciesMenu(p);
+    }
+
+    private static void chooseInstinct(Player p) {
+
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        if (data.getDna() >= 500) {
+
+            int id = 0;
+
+
+
+            data.getUpgrades().put(Upgrade.fromID(id), true);
+
+            data.setDna(data.getDna() - 500);
+
+        } else {
+
+        }
+
     }
 }
