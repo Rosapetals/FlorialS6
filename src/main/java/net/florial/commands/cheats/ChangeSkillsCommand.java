@@ -2,6 +2,7 @@ package net.florial.commands.cheats;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandPermission;
 import net.florial.Florial;
 import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class ChangeSkillsCommand extends BaseCommand {
 
     @CommandAlias("changeskill")
+    @CommandPermission("op")
     public void onInfoPanel(Player p, String s, int lvl){
 
         //test

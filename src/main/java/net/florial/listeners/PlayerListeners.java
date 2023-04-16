@@ -72,15 +72,6 @@ public class PlayerListeners implements Listener {
             Florial.getPlayerData().put(u, temp.stream().findFirst().orElse(new PlayerData(u.toString())));
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
-        if (p.hasPermission("florial.staff")) {
-
-            if (Florial.getPlayerData().get(u).getDiscordId() == "") {
-                new Message("&c&lPlease link your account immediately using /link").send(p);
-            } else {
-                Florial.getInstance().getStaffToVerify().add(u);
-            }
-        }
-
     //    if (p.hasPermission("florial.staff")) {
 
           //  if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {

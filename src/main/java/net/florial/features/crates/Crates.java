@@ -14,6 +14,8 @@ import java.util.*;
 
 public class Crates implements Listener {
 
+    //wip
+
     private static final Map<Integer, List<ItemStack>> crateDrops = new HashMap<>();
     private static final Location[] crateLocations = {
             new Location(Bukkit.getWorld("world"), 66, 64, -319)

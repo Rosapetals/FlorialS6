@@ -25,7 +25,6 @@ import java.util.stream.Stream;
 
 public class SpeciesMenu {
 
-    //work in progress
     final net.florial.utils.general.GetCustomSkull GetCustomSkull = new GetCustomSkull();
     private static final Skills Skills = new Skills();
 

@@ -2,6 +2,7 @@ package net.florial.commands.cheats;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandPermission;
 import net.florial.species.SpecieType;
 import net.florial.species.SpeciesWrapper;
 import org.bukkit.entity.Player;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 public class ChangeSpeciesCommand extends BaseCommand {
 
     @CommandAlias("setspecies")
+    @CommandPermission("op")
     public void onInfoPanel(Player p, String species) {
         SpecieType type;
 

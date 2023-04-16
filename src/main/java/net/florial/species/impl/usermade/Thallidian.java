@@ -21,6 +21,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,6 +43,13 @@ public class Thallidian extends Species implements Listener {
                 new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1000000, 2, false, false, true)));
     }
 
+    @Override
+    public Set<String> descriptions() {
+
+        return new HashSet<>(Arrays.asList(
+                "GreenThumb", "grow plants faster and faster by clicking them"));
+    }
+
     @EventHandler
     public void poisonTouch(EntityDamageByEntityEvent event) {
 
@@ -49,7 +57,7 @@ public class Thallidian extends Species implements Listener {
                 || (!(event.getEntity() instanceof LivingEntity target)
                 || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this)) return;
 
-        target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 1000000, 120, false, false, true));
+        target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 4800, 1, false, false, true));
 
     }
 

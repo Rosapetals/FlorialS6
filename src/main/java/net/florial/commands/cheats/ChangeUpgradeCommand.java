@@ -2,6 +2,7 @@ package net.florial.commands.cheats;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Default;
 import net.florial.Florial;
 import net.florial.features.upgrades.Upgrade;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @CommandAlias("upgrade")
+@CommandPermission("op")
 public class ChangeUpgradeCommand extends BaseCommand {
 
     @Default
