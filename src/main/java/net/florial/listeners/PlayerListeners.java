@@ -15,6 +15,8 @@ import net.florial.utils.Message;
 import net.florial.utils.general.CC;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -155,8 +157,6 @@ public class PlayerListeners implements Listener {
             }
         }
 
-        String nickname = (florial.ess.getUser(p) != null) ? florial.ess.getUser(p).getNickname() : p.getName().trim();
-
 
         if (prefix == null) {
             prefix = "Default";
@@ -179,7 +179,7 @@ public class PlayerListeners implements Listener {
             return;
         }
 
-        Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + nickname + ": " + message)));
+        Bukkit.broadcast(Component.text(CC.translate("&7" + prefix + " " + PlainTextComponentSerializer.plainText().serialize(p.displayName()) + ": " + message)));
     }
 
     private static boolean spamChecker(Player p) {

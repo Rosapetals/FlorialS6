@@ -62,14 +62,17 @@ public class SpeciesEventManager implements Listener  {
                 int index = 0;
                 for (String match : morph.textureNames) {
                     if (match.contains(catWatcher.getType().toString())) {
-                        tabList.activate(p, morph.skinTextures.get(index));
+                        // tabList.activate(p, morph.skinTextures.get(index));
                         break;
                     }
                     index++;
                 }
             }
             case 2 ->
-                    tabList.activate(p, "http://textures.minecraft.net/texture/797538c0e9a8c2c34bc20b03c62124b371e146615c59599b2e5399fd1ee8c082");
+            {
+                return;
+            }
+                    // tabList.activate(p, "http://textures.minecraft.net/texture/797538c0e9a8c2c34bc20b03c62124b371e146615c59599b2e5399fd1ee8c082");
         }
 
         Species.refreshTag(p);

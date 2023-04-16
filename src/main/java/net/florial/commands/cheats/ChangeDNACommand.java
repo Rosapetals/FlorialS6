@@ -4,6 +4,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
+import net.florial.species.SpecieType;
 import org.bukkit.entity.Player;
 
 public class ChangeDNACommand extends BaseCommand {
@@ -18,6 +19,5 @@ public class ChangeDNACommand extends BaseCommand {
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
         data.setDna(data.getDna() + a);
-
     }
 }

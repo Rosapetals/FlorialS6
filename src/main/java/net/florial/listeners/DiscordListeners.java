@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -20,6 +21,7 @@ import net.dv8tion.jda.api.requests.RestAction;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.models.DiscordUser;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
@@ -227,6 +229,26 @@ public class DiscordListeners extends ListenerAdapter {
                 event.getMessage().delete().queue();
 
             });
+        } else if (event.getComponentId().contains("ida")) {
+            String userid = event.getComponentId();
+            userid = userid.replaceAll("ida", "");
+            System.out.print(userid);
+            event.getJDA().retrieveUserById(userid).queue((user) -> {
+                event.reply("The member has been denied access, " + event.getUser() + ". Be sure to tell them why with the /send command.").setEphemeral(true).queue();
+                user.openPrivateChannel().queue((channel2) -> channel2.sendMessage("You were denied entry into Florial Official. Shortly, the reason will be stated.").queue());
+                Florial.getBotState().remove(user.getId());
+                event.getMessage().delete().queue();
+                Florial.getAnswers().remove(user.getId());
+            });
         }
+    }
+
+    @Override
+    public void onGuildMemberJoin(@NotNull GuildMemberJoinEvent event) {
+        FlorialDatabase.getDiscordUserData(event.getUser().getId()).thenAccept(discordUser -> {
+            if (discordUser == null) {
+                FlorialDatabase.getDatastore().insert(new DiscordUser(event.getUser().getId()));
+            }
+        });
     }
 }
