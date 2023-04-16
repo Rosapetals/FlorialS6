@@ -1,4 +1,4 @@
-package net.florial.species;
+package net.florial.species.events;
 
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
@@ -6,6 +6,7 @@ import me.libraryaddict.disguise.disguisetypes.watchers.CatWatcher;
 import net.florial.Florial;
 import net.florial.features.age.Age;
 import net.florial.models.PlayerData;
+import net.florial.species.Species;
 import net.florial.species.disguises.Morph;
 import net.florial.species.events.impl.SpeciesSwitchEvent;
 import net.florial.species.events.impl.SpeciesTablistEvent;
