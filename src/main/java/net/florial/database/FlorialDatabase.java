@@ -14,6 +14,7 @@ import dev.morphia.query.filters.Filters;
 import lombok.Getter;
 import lombok.val;
 import net.florial.Florial;
+import net.florial.models.ChequeData;
 import net.florial.models.DiscordUser;
 import net.florial.models.FilterEntry;
 import net.florial.models.PlayerData;
@@ -214,6 +215,31 @@ public class FlorialDatabase {
 
     }
 
+    public static CompletableFuture<ChequeData> getChequeData(UUID uuid) {
+        CompletableFuture<ChequeData> future = new CompletableFuture<>();
+        GeneralUtils.runAsync(new BukkitRunnable() {
+
+            @Override
+            public void run() {
+                val temp = datastore.find(ChequeData.class).filter(eq("addressee", uuid.toString()));
+                future.complete(temp.stream().findFirst().orElse(null));
+            }
+        });
+        return future;
+    }
+
+    public static CompletableFuture<ChequeData> getChequeData(String id) {
+        CompletableFuture<ChequeData> future = new CompletableFuture<>();
+        GeneralUtils.runAsync(new BukkitRunnable() {
+
+            @Override
+            public void run() {
+                val temp = datastore.find(ChequeData.class).filter(eq("discordid", id));
+                future.complete(temp.stream().findFirst().orElse(null));
+            }
+        });
+        return future;
+    }
     public static CompletableFuture<List<String>> sortDataByField(String field, boolean descending) {
         return sortDataByField(field, descending, 10);
     }

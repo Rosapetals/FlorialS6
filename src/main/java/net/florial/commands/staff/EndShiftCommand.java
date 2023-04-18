@@ -5,8 +5,12 @@ import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandPermission;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.florial.Florial;
+import net.florial.database.FlorialDatabase;
+import net.florial.models.ChequeData;
+import net.florial.models.PlayerData;
 import net.florial.models.ShiftData;
 import net.florial.utils.Message;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -28,6 +32,15 @@ public class EndShiftCommand extends BaseCommand {
                         .addField("Players on shift end", String.valueOf(Bukkit.getOnlinePlayers().size()), true)
                 .build()).queue();
         Florial.getStaffWithShifts().remove(player.getUniqueId());
+        ChequeData cheque = FlorialDatabase.getChequeData(player.getUniqueId()).join();
+        PlayerData playerData = FlorialDatabase.getCachedOrDBPlayerData(player.getUniqueId()).join();
+        if (cheque == null) cheque = new ChequeData(player.getUniqueId().toString(), true);
+        cheque.setDiscordId(playerData.getDiscordId());
+        cheque.setCash(cheque.getCash() + 10000);
+        cheque.setCoins(cheque.getCoins() + 5);
+        cheque.setFlories(cheque.getFlories() + 5);
+        cheque.save(true);
+        new Message("&aYour shift has been registered and the funds have been added to your cheque accordingly. Please use /cashout to claim your cheque").send(player);
     }
 
     private static String formatTimeSpan(long millis) {

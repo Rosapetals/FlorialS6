@@ -47,6 +47,7 @@ public class PlayerListeners implements Listener {
     private static final HashMap<UUID, Integer> previousMessages = new HashMap<>();
 
     private static final String[] SLURS ={
+
             "/b[NnΠñÑη]\\s*[ÏIÎÍÌ|iíîïì1!lyYÝýỳι]\\s*[KkGBgbg]\\s*[KkGGBgbg]\\s*[^lL]",
             "(ph|f)agg?s?([e0aio]ts?|oted|otry)",
             "n[i!j1e]+gg?(rs?|ett?e?s?|lets?|ress?e?s?|r[a0oe]s?|[ie@ao0!]rs?|r[o0]ids?|ab[o0]s?|erest)",
@@ -76,6 +77,11 @@ public class PlayerListeners implements Listener {
 
             if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
                 new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
+            }
+
+            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
+                new Message("&c&lPlease link your account immediately using /link").send(p);
+            } else {
                 Florial.getInstance().getStaffToVerify().add(u);
             }
         }
@@ -199,7 +205,7 @@ public class PlayerListeners implements Listener {
             return;
         }
 
-        Bukkit.broadcastMessage(CC.translate(prefix + " &F" + nickname + ": &f" + message));
+        Bukkit.broadcastMessage(CC.translate("&7" + prefix + " " + nickname + ": " + message));
     }
 
     private static boolean spamChecker(Player p) {

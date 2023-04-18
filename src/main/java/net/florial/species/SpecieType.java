@@ -56,4 +56,5 @@ public enum SpecieType {
     public static List<Species> getAllSpecies() {
         return Arrays.stream(values()).map(SpecieType::getSpecie).collect(Collectors.toList());
     }
+
 }
