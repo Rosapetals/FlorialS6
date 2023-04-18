@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 public enum QuestType {
-    COLLECT(6, 3),
+    CRAFT(6, 3),
     KILL(6, 3),
     EAT(6, 3),
     DELIVER(6, 3);

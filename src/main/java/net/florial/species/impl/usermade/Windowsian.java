@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +31,13 @@ public class Windowsian extends Species implements Listener {
                 new PotionEffect(PotionEffectType.FAST_DIGGING, 1000000, 0, false, false, true),
                 new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1000000, 1, false, false, true),
                 new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 9, false, false, true)));
+    }
+
+    @Override
+    public Set<String> descriptions() {
+
+        return new HashSet<>(Arrays.asList(
+                "NONE", "none"));
     }
 
 

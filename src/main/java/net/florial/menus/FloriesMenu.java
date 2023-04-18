@@ -1,30 +1,49 @@
-package net.florial.menus.species;
+package net.florial.menus;
 
 import io.github.rysefoxx.inventory.plugin.content.IntelligentItem;
 import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
+import net.florial.menus.shop.ShopMenu;
 import net.florial.species.Species;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.GetCustomSkull;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
-public class UserSpecies {
+public class FloriesMenu {
 
-    // wip
+    private static final Map<Integer, List<ItemStack>> florieItems = new HashMap<>();
+    private static final Map<Integer, List<Integer>> floriePrices = new HashMap<>();
+
+
+    static {
+
+        florieItems.put(1, List.of(
+
+                ShopMenu.arrangeItem(5000, new ItemStack(Material.PUMPKIN_SEEDS))
+        ));
+        floriePrices.put(1, List.of(
+                5000
+        ));
+    }
+
+
 
     final net.florial.utils.general.GetCustomSkull GetCustomSkull = new GetCustomSkull();
 
-    public void userSpeciesMenu(Player p) {
+    public void floriesMenu(Player p) {
 
         RyseInventory.builder()
-                .title(CC.translate("&f七七七七七七七七七七七七七七七七\uE238"))
+                .title(CC.translate("&f七七七七七七七七七七七七七七七七\uE608"))
                 .rows(6)
                 .provider(new InventoryProvider() {
                     @Override

@@ -18,7 +18,7 @@ public class Crates implements Listener {
 
     private static final Map<Integer, List<ItemStack>> crateDrops = new HashMap<>();
     private static final Location[] crateLocations = {
-            new Location(Bukkit.getWorld("world"), 66, 64, -319)
+            new Location(Bukkit.getWorld("world"), 6956, 59, 7033)
     };
 
     static {
@@ -54,6 +54,7 @@ public class Crates implements Listener {
 
 
     public static void checkItems(Player player, boolean requireAll, ItemStack[] items) {
+
         for (ItemStack item : items) {
             if (player.getInventory().firstEmpty() == -1) {
                 if (requireAll || !player.getInventory().contains(item)) {

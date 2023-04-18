@@ -3,10 +3,12 @@ package net.florial.species.disguises;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
+import me.libraryaddict.disguise.disguisetypes.watchers.CatWatcher;
 import me.libraryaddict.disguise.disguisetypes.watchers.FoxWatcher;
 import net.florial.species.Species;
 import net.florial.species.events.impl.SpeciesTablistEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Cat;
 import org.bukkit.entity.Fox;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Sittable;
@@ -80,6 +82,22 @@ public class Morph {
             mobDisguise.setHearSelfDisguise(true);
             mobDisguise.setEntity(p);
             mobDisguise.startDisguise();
+            FlagWatcher watcher = mobDisguise.getWatcher();
+
+            if (watcher instanceof FoxWatcher fox) {
+                if (species.getId() != 4) {
+                    fox.setType(Fox.Type.RED);
+                } else {
+                    fox.setType(Fox.Type.SNOW);
+                }
+
+            }
+
+            if (watcher instanceof CatWatcher cat) {
+                if (!(cat.getType().equals(Cat.Type.JELLIE))) return;
+                activate(p, 0, false, false, species);
+                return;
+            }
 
             SpeciesTablistEvent event = new SpeciesTablistEvent(
                     p

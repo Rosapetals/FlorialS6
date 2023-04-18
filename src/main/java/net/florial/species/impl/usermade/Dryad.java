@@ -54,7 +54,12 @@ public class Dryad extends Species implements Listener {
                 Material.SWEET_BERRIES, Material.TROPICAL_FISH));
     }
 
+    @Override
+    public Set<String> descriptions() {
 
+        return new HashSet<>(Arrays.asList(
+                "NONE", "none"));
+    }
 
     @EventHandler
     public void spawnRandomSapling(PlayerInteractEvent event) {

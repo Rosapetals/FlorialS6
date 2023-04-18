@@ -1,4 +1,4 @@
-package net.florial.commands;
+package net.florial.commands.menu;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;

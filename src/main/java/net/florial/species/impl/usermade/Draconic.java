@@ -1,6 +1,5 @@
 package net.florial.species.impl.usermade;
 
-import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
@@ -35,6 +34,12 @@ public class Draconic extends Species implements Listener {
                 2));
     }
 
+    @Override
+    public Set<String> descriptions() {
+
+        return new HashSet<>(Arrays.asList(
+                "NONE", "none"));
+    }
 
     @Override
     public Set<PotionEffect> effects() {
@@ -53,18 +58,13 @@ public class Draconic extends Species implements Listener {
                 Material.SALMON));
     }
 
-    @Override
-    public Set<String> descriptions() {
-        return new HashSet<>(Arrays.asList(
-                "undecided", "undecided"));
-    }
-
 
     @EventHandler
     public void slownessRoar(PlayerInteractEvent event) {
         if (event.getAction() != Action.LEFT_CLICK_AIR
         || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
-        || Cooldown.isOnCooldown("c1", event.getPlayer())) return;
+        || Cooldown.isOnCooldown("c1", event.getPlayer())
+        || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
 
 
             Player player = event.getPlayer();

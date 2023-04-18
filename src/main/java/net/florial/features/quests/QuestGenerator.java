@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class QuestGenerator {
 
-    private static final List<Material> blockTypes = List.of(Material.SAND);
+    private static final List<Material> craftTypes = List.of(Material.SAND);
     private static final List<EntityType> mobTypes = List.of(EntityType.SHEEP);
     private static final List<Material> itemTypes = List.of(Material.GOLD_INGOT);
     private static final List<Material> foodTypes = List.of(Material.BEEF);
@@ -23,9 +23,9 @@ public class QuestGenerator {
         int target = NumberGenerator.generate(type.getMinAmount(), type.getMaxAmount());
 
         switch (type) {
-            case COLLECT -> {
-                Material blockType = blockTypes.get(random.nextInt(blockTypes.size()));
-                return new Quest("Collect " + target + " " + blockType.name().toLowerCase(), type, target, blockType, null, null, 0);
+            case CRAFT -> {
+                Material craftType = craftTypes.get(random.nextInt(craftTypes.size()));
+                return new Quest("Craft " + target + " " + craftType.name().toLowerCase(), type, target, craftType, null, null, 0);
             }
              case KILL -> {
                  EntityType mobType = mobTypes.get(random.nextInt(mobTypes.size()));

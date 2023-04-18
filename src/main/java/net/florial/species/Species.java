@@ -24,6 +24,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.potion.PotionEffect;
@@ -78,6 +79,7 @@ public abstract class Species implements Listener {
     4 = night weakness
     5 = fire vulnerability
      */
+
     public Set<Integer> sharedAbilities() {
         return new HashSet<>();
     }
@@ -195,6 +197,7 @@ public abstract class Species implements Listener {
 
     @EventHandler
     public void flight(PlayerInteractEvent e) {
+
         if (e.getAction() != Action.LEFT_CLICK_AIR
         || (!(e.getPlayer().isSneaking()))) return;
 
@@ -203,7 +206,7 @@ public abstract class Species implements Listener {
         if (data.getSpecies() != this
                 || data.getSpecies().sharedAbilities() == null
                 || Cooldown.isOnCooldown("c2", e.getPlayer())
-                || this.sharedAbilities().contains(2)) return;
+                || (!(this.sharedAbilities().contains(2)))) return;
 
         Player p = e.getPlayer();
 
@@ -217,7 +220,7 @@ public abstract class Species implements Listener {
 
              p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 2);
 
-             String text = CC.translate("#FFCDDA&lF#FFA0B9&ll#FFA9BF&lo#FFB0C4&lr#FF84A3&li#FF6A90&la#FF5882&ll ⚫&f You are now flying!#fc7878 Left-Click + Sneak to get out of this!");
+             String text = CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r ➤&f You are now flying!#fc7878 Left-Click + Sneak to get out of this!");
 
              p.sendMessage(text);
 
@@ -226,6 +229,35 @@ public abstract class Species implements Listener {
         else if (p.isGliding()) {
             p.setGliding(false);
         }
+
+    }
+
+
+    @EventHandler
+    public void noFlightDamage(EntityDamageEvent e) {
+
+        if (!(e.getEntity() instanceof Player)
+            || e.getCause() != EntityDamageEvent.DamageCause.FLY_INTO_WALL) return;
+
+        PlayerData data = Florial.getPlayerData().get(e.getEntity().getUniqueId());
+
+        if (data.getSpecies() != this
+                || data.getSpecies().sharedAbilities() == null
+                || (!(this.sharedAbilities().contains(2)))) return;
+
+        e.setCancelled(true);
+    }
+
+    @EventHandler
+    public void elyTraFlightCanceller(EntityToggleGlideEvent e) {
+
+        PlayerData data = Florial.getPlayerData().get(e.getEntity().getUniqueId());
+
+        if (data.getSpecies().sharedAbilities() == null
+                || (!(this.sharedAbilities().contains(2)))
+                || data.getSpecies() != this) return;
+
+        e.setCancelled(true);
 
     }
 

@@ -21,9 +21,14 @@ import net.florial.commands.cheats.ChangeSkillsCommand;
 import net.florial.commands.cheats.ChangeSpeciesCommand;
 import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
+import net.florial.commands.menu.ShopCommand;
 import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
+import net.florial.commands.staff.EndShiftCommand;
+import net.florial.commands.staff.LinkCommand;
+import net.florial.commands.staff.StartShiftCommand;
+import net.florial.commands.staff.UnlinkCommand;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
@@ -121,7 +126,7 @@ public final class Florial extends JavaPlugin {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
-      //  initializeDiscord();
+        initializeDiscord();
 
          rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) throw new NullPointerException("Economy service provider was not found");
@@ -154,14 +159,14 @@ public final class Florial extends JavaPlugin {
 
     @Override
     public void onDisable() {
-      //  discordBot.shutdownNow();
-      //  while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
-          //  try {
-             //  Thread.sleep(20);
-          //  } catch (InterruptedException e) {
-               // throw new RuntimeException(e);
-           // }
-     //   }
+        discordBot.shutdownNow();
+        while (discordBot.getStatus() != JDA.Status.SHUTDOWN) {
+            try {
+               Thread.sleep(20);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         for (PlayerData data : playerData.values()) data.save(false);
         FlorialDatabase.closeConnection();
         saveConfig();
@@ -221,7 +226,7 @@ public final class Florial extends JavaPlugin {
 
     private void enableRecipes() {
        // registerRecipes("cheat_apple", true, "121", "   ", "   ", Arrays.asList(
-          //      new ItemStack(Material.APPLE),
+            //    new ItemStack(Material.APPLE),
              //   new ItemStack(Material.GOLD_BLOCK),
                // null, null, null, null, null, null, null), new ItemStack(Material.GOLDEN_APPLE));
     }
@@ -260,7 +265,6 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ShopCommand());
         manager.registerCommand(new ChangeDNACommand());
         manager.registerCommand(new LeaderboardCommand());
-        manager.registerCommand(new ShowScentUICommand());
         manager.registerCommand(new ChangeSkillsCommand());
         manager.registerCommand(new NuzzleCommand());
         manager.registerCommand(new GrowCommand());

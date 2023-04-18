@@ -37,7 +37,7 @@ public class Cat extends Species implements Listener {
     public Set<Integer> sharedAbilities() {
 
         return new HashSet<>(List.of(
-                1));
+                1, 2));
     }
     @Override
     public HashMap<Integer, PotionEffect> specific() {

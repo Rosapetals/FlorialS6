@@ -30,7 +30,7 @@ public class DiscordVerifyCommand extends SlashCommand {
         User user = event.getUser();
         e.setTitle("\uD83D\uDC90 **Verification How-To and Guidelines** \uD83D\uDC90");
         e.setFooter("Verifying keeps Florial safe.");
-        e.addField("**HOW TO VERIFY**", "Click the button below to verify. After that, the Tulip bot will DM you and ask you a few questions. After you answer them, it does not need to be approved and you will be let into the server. However, please answer honestly to the questions! If you are from our Minecraft server, ensure you do not misspell your username, because you only get one chance.", false);
+        e.addField("**HOW TO VERIFY**", "Click the button below to verify. After that, the Tulip bot will DM you and ask you a few questions. After you answer them, it will be approved shortly. However, please answer honestly to the questions! If you are from our Minecraft server, ensure you do not misspell your username, because you only get one chance.", false);
         e.addField("**GUIDELINES**", "By verifying in our server, you accept that you are 13 years or older as per Discord TOS requirements. While in this server, you may not break TOS, this involves promoting piracy, talking about illegal drugs or illegal drinking, or the promotion of the latter, and more. For a full list of what you can and cannot do here, please see https://discord.com/guidelines", false);
         e.addField("**NOTICE**", "If you have come here to troll, please note that we will send you to The Void on-sight of any suspicious troll-like behavior. Once you are in here, you can not speak in or view any other channels except that one.", false);
         e.setColor(Color.pink);

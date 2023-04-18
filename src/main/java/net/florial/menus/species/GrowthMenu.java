@@ -39,7 +39,7 @@ public class GrowthMenu {
                         int requiredQuests = age.getRequiredQuests();
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
-                                "QUEST SYSTEM\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • YOUR AGE: #ffa2c4 "
+                                "CLICK HERE TO GROW UP\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • YOUR AGE: #ffa2c4 "
                                 + age + "\n #ff79a1&l︳  INCREASE BY:\n #ffa2c4&l︳ •#ffa2c4 "
                                 + requiredDNA + " DNA\n #ffa2c4&l︳ • " + requiredQuests + " Quests\n#ffa2c4&l︳ • [CLICK HERE]\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • HOVER OVER:\n #ffa2c4&l︳#ffa2c4 the other menu options "
                                 + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),

@@ -21,6 +21,7 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,11 +51,18 @@ public class BassBeast extends Species implements Listener {
                 2));
     }
 
+    @Override
+    public Set<String> descriptions() {
+
+        return new HashSet<>(Arrays.asList(
+                "NONE", "none"));
+    }
+
     @EventHandler
     public void lightningSword(EntityDamageByEntityEvent event) {
 
         if (!(event.getDamager() instanceof Player p)
-                || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this
+                || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this
                 || (!(event.getEntity() instanceof LivingEntity target))) return;
 
 
@@ -73,7 +81,8 @@ public class BassBeast extends Species implements Listener {
 
         if (event.getAction() != Action.LEFT_CLICK_AIR
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
-                || Cooldown.isOnCooldown("c2", event.getPlayer())) return;
+                || Cooldown.isOnCooldown("c2", event.getPlayer())
+                || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
 
 
         Player player = event.getPlayer();

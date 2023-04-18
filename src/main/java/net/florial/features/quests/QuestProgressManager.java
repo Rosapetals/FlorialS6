@@ -24,7 +24,7 @@ public class QuestProgressManager implements Listener {
 
     }
 
-    private void completionChecker(Player p, Quest quest){
+    private static void completionChecker(Player p, Quest quest){
 
         UUID u = p.getUniqueId();
         BossBar questBar = Florial.getQuestBar().get(u);

@@ -46,10 +46,10 @@ public class Endn extends Species implements Listener {
 
     @Override
     public Set<String> descriptions() {
-        return new HashSet<>(Arrays.asList(
-                "undecided", "undecided"));
-    }
 
+        return new HashSet<>(Arrays.asList(
+                "NONE", "none"));
+    }
     @EventHandler
     public void randomTeleport(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK

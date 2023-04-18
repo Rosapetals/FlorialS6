@@ -29,6 +29,14 @@ public class Lynx extends Species implements Listener {
                 new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 1000000, 0, false, false, true)));
     }
 
+
+    @Override
+    public Set<String> descriptions() {
+
+        return new HashSet<>(Arrays.asList(
+                "NONE", "none"));
+    }
+
     @Override
     public Set<Material> diet() {
         return new HashSet<>(Arrays.asList(

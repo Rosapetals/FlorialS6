@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.florial.species.impl.Cat;
 import net.florial.species.impl.Fox;
 import net.florial.species.impl.Human;
+import net.florial.species.impl.Pearlin;
 import net.florial.species.impl.usermade.*;
 
 import java.util.Arrays;
@@ -18,19 +19,18 @@ public enum SpecieType {
     CAT(1, new Cat(1)),
     FOX(2, new Fox(2)),
     HUMAN(3, new Human(3)),
-    PEARLIN(4, null),
+    PEARLIN(4, new Pearlin(4)),
 
     // user made species
     ENDN(5, new Endn(5)),
     DRACONIC(6, new Draconic(6)),
-    NATUREFOX(7, new NatureFox(7)),
-    BASSBEAST(8, new BassBeast(8)),
-    DRYAD(9, new Dryad(9)),
-    MER(10, new Mer(10)),
-    LYNX(11, new Lynx(11)),
-    NEKORYU(12, new NekoRyu(12)),
-    WINDOWSIAN(13, new Windowsian(13)),
-    THALLIDIAN(14, new Thallidian(14));
+    BASSBEAST(7, new BassBeast(7)),
+    DRYAD(8, new Dryad(8)),
+    MER(9, new Mer(9)),
+    LYNX(10, new Lynx(10)),
+    NEKORYU(11, new NekoRyu(11)),
+    WINDOWSIAN(12, new Windowsian(12)),
+    THALLIDIAN(13, new Thallidian(13));
 
 
     //end

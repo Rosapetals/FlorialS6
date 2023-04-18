@@ -21,6 +21,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @ToString
@@ -28,11 +29,9 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public abstract class Mob implements Listener {
 
-    private static boolean isRegistered = false;
-
     EntityType entity;
 
-    EntityType ireplace;
+    EntityType iReplace;
 
     int health;
 
@@ -43,12 +42,12 @@ public abstract class Mob implements Listener {
     List<ItemStack> drops;
 
 
-    protected Mob(EntityType entity, EntityType ireplace, int health, int dmg, int toughness, List<ItemStack> drops) {
+    protected Mob(EntityType entity, EntityType iReplace, int health, int dmg, int toughness, List<ItemStack> drops) {
         this.entity = entity;
         this.health = health;
         this.dmg = dmg;
         this.toughness = toughness;
-        this.ireplace = ireplace;
+        this.iReplace = iReplace;
         this.drops = drops;
 
         Bukkit.getPluginManager().registerEvents(this, Florial.getInstance());
@@ -58,16 +57,16 @@ public abstract class Mob implements Listener {
     @EventHandler
     public void spawnMyself(MobSpawnEvent event) {
 
-        if (event.getFormer().getType() != this.ireplace) return;
+        if (event.getFormer().getType() != this.iReplace) return;
 
         Collection<Entity> amINear = event.getW().getNearbyEntitiesByType(this.entity.getEntityClass(), event.getLoc(), 20);
 
         if (amINear.size() > 0) return;
 
         LivingEntity me = (LivingEntity) MobSpawn.spawnMob(this.entity, event.getW(), event.getLoc());
-        me.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE).setBaseValue(this.dmg);
-        me.getAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS).setBaseValue(this.toughness);
-        me.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(this.health);
+        Objects.requireNonNull(me.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE)).setBaseValue(this.dmg);
+        Objects.requireNonNull(me.getAttribute(Attribute.GENERIC_ARMOR_TOUGHNESS)).setBaseValue(this.toughness);
+        Objects.requireNonNull(me.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(this.health);
 
         me.setRemoveWhenFarAway(true);
 

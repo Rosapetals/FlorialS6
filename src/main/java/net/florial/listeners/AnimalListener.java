@@ -42,7 +42,7 @@ public class AnimalListener implements Listener {
         if (!List.of(EntityType.SHEEP, EntityType.COW, EntityType.CHICKEN, EntityType.PIG, EntityType.RABBIT).contains(ent))
             return;
 
-        if (GetChance.getChance(15)) {
+        if (!(GetChance.getChance(15))) {
             e.setCancelled(true);
         } else {
             addPotionEffects(e.getEntity());

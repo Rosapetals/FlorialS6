@@ -21,17 +21,17 @@ public class Quest {
     @Getter private final QuestType type;
     @Getter private final int target;
     @Getter
-    private Material blockType;
+    private Material craftType;
     @Getter private EntityType mobType;
     @Getter private Material itemType;
    @Getter @Setter
    private Integer progress;
 
-    public Quest(String name, QuestType type, int target, Material blockType, EntityType mobType, Material itemType, Integer progress) {
+    public Quest(String name, QuestType type, int target, Material craftType, EntityType mobType, Material itemType, Integer progress) {
         this.name = name;
         this.type = type;
         this.target = target;
-        this.blockType = blockType;
+        this.craftType = craftType;
         this.mobType = mobType;
         this.itemType = itemType;
         this.progress = progress;

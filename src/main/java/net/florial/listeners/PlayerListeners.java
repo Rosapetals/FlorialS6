@@ -4,7 +4,6 @@ import io.papermc.paper.event.player.AsyncChatEvent;
 import lombok.val;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
-import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
@@ -48,6 +47,7 @@ public class PlayerListeners implements Listener {
     private static final HashMap<UUID, Integer> previousMessages = new HashMap<>();
 
     private static final String[] SLURS ={
+            "/b[NnΠñÑη]\\s*[ÏIÎÍÌ|iíîïì1!lyYÝýỳι]\\s*[KkGBgbg]\\s*[KkGGBgbg]\\s*[^lL]",
             "(ph|f)agg?s?([e0aio]ts?|oted|otry)",
             "n[i!j1e]+gg?(rs?|ett?e?s?|lets?|ress?e?s?|r[a0oe]s?|[ie@ao0!]rs?|r[o0]ids?|ab[o0]s?|erest)",
             "trann(ys?|ies)?",
@@ -72,12 +72,13 @@ public class PlayerListeners implements Listener {
             Florial.getPlayerData().put(u, temp.stream().findFirst().orElse(new PlayerData(u.toString())));
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
-    //    if (p.hasPermission("florial.staff")) {
+        if (p.hasPermission("florial.staff")) {
 
-          //  if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
-          //      new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
-        //    Florial.getInstance().getStaffToVerify().add(u);
-      //  }
+            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
+                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
+                Florial.getInstance().getStaffToVerify().add(u);
+            }
+        }
 
         PlayerData data = Florial.getPlayerData().get(u);
         ThirstManager.thirstRunnable(p);
@@ -93,9 +94,10 @@ public class PlayerListeners implements Listener {
         });
 
         if (data.getSpecieType().getSpecie() == null) {
-            speciesMenu.speciesMenu(p);
+            Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> speciesMenu.speciesMenu(p), 40L);
             return;
         }
+
         if (data.getSpecies().getMorph() == DisguiseType.FOX) morph.activate(p, 4, false, true, data.getSpecies());
 
         SpeciesTablistEvent e = new SpeciesTablistEvent(
@@ -127,7 +129,6 @@ public class PlayerListeners implements Listener {
             Player p = e.getPlayer();
 
             MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
-            FlagWatcher watcher = mobDisguise.getWatcher();
 
             mobDisguise.stopDisguise();
             mobDisguise.startDisguise();
@@ -157,10 +158,10 @@ public class PlayerListeners implements Listener {
             new Message("&c&lPlease verify through discord").send(p);
             return;
         }
-    //    if (Florial.getInstance().getStaffToVerify().contains(u)) {
-         //   event.setCancelled(true);
-         //   new Message("&c&lPlease verify through discord").send(p);
-      //  }
+        if (Florial.getInstance().getStaffToVerify().contains(u)) {
+            event.setCancelled(true);
+            new Message("&c&lPlease verify through discord").send(p);
+        }
 
         if (florial.ess.getUser(p).isMuted()) return;
 
@@ -239,12 +240,12 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onDamage(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player) {
-            if (Florial.getInstance().getStaffToVerify().contains(((Player) event.getDamager()).getPlayer().getUniqueId())) {
+            if (Florial.getInstance().getStaffToVerify().contains(Objects.requireNonNull(((Player) event.getDamager()).getPlayer()).getUniqueId())) {
                 event.setCancelled(true);
                 new Message("&c&lPlease verify through discord").send(((Player) event.getDamager()).getPlayer());
             }
         } else if (event.getEntity() instanceof Player) {
-            if (Florial.getInstance().getStaffToVerify().contains(((Player) event.getEntity()).getPlayer().getUniqueId())) {
+            if (Florial.getInstance().getStaffToVerify().contains(Objects.requireNonNull(((Player) event.getEntity()).getPlayer()).getUniqueId())) {
                 event.setCancelled(true);
                 new Message("&c&lPlease verify through discord").send(((Player) event.getEntity()).getPlayer());
             }

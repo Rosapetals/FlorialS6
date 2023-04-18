@@ -32,6 +32,8 @@ public enum Age {
 
     public static void up(Player p, PlayerData data, Age age, int requiredQuests, int requiredDNA){
 
+        p.closeInventory();
+
         if (!(data.getGrowth() >= requiredQuests)) {
             p.sendMessage("You have not completed enough quests. To age up, you need "
                     + requiredQuests + " completed quests. Complete quests through /grow. You currently have "
