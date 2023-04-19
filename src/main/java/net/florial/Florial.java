@@ -284,7 +284,7 @@ public final class Florial extends JavaPlugin {
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand(), new DiscordTaskCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();
