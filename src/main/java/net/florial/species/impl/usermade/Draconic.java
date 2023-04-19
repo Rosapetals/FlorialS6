@@ -51,11 +51,7 @@ public class Draconic extends Species implements Listener {
 
     @Override
     public Set<Material> diet() {
-        return new HashSet<>(Arrays.asList(
-                Material.BEEF, Material.PORKCHOP,
-                Material.CHICKEN, Material.MUTTON,
-                Material.TROPICAL_FISH, Material.COD,
-                Material.SALMON));
+        return new HashSet<>((Species.boneFoods));
     }
 
 

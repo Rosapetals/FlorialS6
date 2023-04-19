@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Crawlies extends Mob implements Listener {
     public Crawlies(EntityType entity) {
-        super(EntityType.CAVE_SPIDER, EntityType.ZOMBIE, 35, 4, 15, List.of(new ItemStack(Material.GUNPOWDER)));
+        super(EntityType.CAVE_SPIDER, EntityType.ZOMBIE, 35, 4, 15, List.of(new ItemStack(Material.STRING)));
 
     }
 

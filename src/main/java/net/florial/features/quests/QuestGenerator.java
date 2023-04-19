@@ -9,10 +9,47 @@ import java.util.Random;
 
 public class QuestGenerator {
 
-    private static final List<Material> craftTypes = List.of(Material.SAND);
-    private static final List<EntityType> mobTypes = List.of(EntityType.SHEEP);
-    private static final List<Material> itemTypes = List.of(Material.GOLD_INGOT);
-    private static final List<Material> foodTypes = List.of(Material.BEEF);
+    private static final List<Material> craftTypes = List.of(
+            Material.LEATHER_HELMET,
+            Material.CAMPFIRE,
+            Material.FURNACE,
+            Material.ARROW,
+            Material.BOW,
+            Material.BARREL,
+            Material.LOOM);
+    private static final List<EntityType> mobTypes = List.of(
+            EntityType.COW,
+            EntityType.SHEEP,
+            EntityType.CAVE_SPIDER,
+            EntityType.RAVAGER,
+            EntityType.HOGLIN,
+            EntityType.CHICKEN);
+    private static final List<Material> itemTypes = List.of(
+            Material.WHEAT,
+            Material.POTATOES,
+            Material.CARROT,
+            Material.PORKCHOP,
+            Material.BEEF,
+            Material.COD,
+            Material.SALMON,
+            Material.DRIED_KELP,
+            Material.COAL,
+            Material.RAW_GOLD,
+            Material.RAW_COPPER,
+            Material.BONE,
+            Material.SPIDER_EYE,
+            Material.OAK_LOG,
+            Material.ACACIA_LOG,
+            Material.SPRUCE_LOG,
+            Material.BONE
+            );
+    private static final List<Material> foodTypes = List.of(
+            Material.BEEF,
+            Material.SALMON,
+            Material.COD,
+            Material.CHICKEN,
+            Material.APPLE,
+            Material.PORKCHOP);
 
     private static final Random random = new Random();
 

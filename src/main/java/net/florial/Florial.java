@@ -19,16 +19,14 @@ import net.florial.commands.*;
 import net.florial.commands.cheats.ChangeDNACommand;
 import net.florial.commands.cheats.ChangeSkillsCommand;
 import net.florial.commands.cheats.ChangeSpeciesCommand;
+import net.florial.commands.cheats.RestorePlayerCommand;
 import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
 import net.florial.commands.menu.ShopCommand;
 import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
-import net.florial.commands.staff.EndShiftCommand;
-import net.florial.commands.staff.LinkCommand;
-import net.florial.commands.staff.StartShiftCommand;
-import net.florial.commands.staff.UnlinkCommand;
+import net.florial.commands.staff.*;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
@@ -275,6 +273,8 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new LinkCommand());
         manager.registerCommand(new UnlinkCommand());
         manager.registerCommand(new RestorePlayerCommand());
+        manager.registerCommand(new PlayTimeCommand());
+        manager.registerCommand(new CheckShiftCommand());
     }
 
     private void initializeDiscord() {

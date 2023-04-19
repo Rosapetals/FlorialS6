@@ -1,6 +1,5 @@
 package net.florial.species.impl.usermade;
 
-import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
@@ -61,8 +60,9 @@ public class BassBeast extends Species implements Listener {
     @EventHandler
     public void lightningSword(EntityDamageByEntityEvent event) {
 
-        if (!(event.getDamager() instanceof Player p)
-                || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this
+        if (!(event.getDamager() instanceof Player p)) return;
+
+        if (Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this
                 || (!(event.getEntity() instanceof LivingEntity target))) return;
 
 
@@ -95,8 +95,9 @@ public class BassBeast extends Species implements Listener {
     @EventHandler
     public void beeAllergy(EntityDamageByEntityEvent event) {
 
-        if (!(event.getDamager() instanceof Player)
-                || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this
+        if (!(event.getDamager() instanceof Player)) return;
+
+        if (Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this
                 || (!(event.getEntity() instanceof Bee))) return;
 
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Wisps extends Mob implements Listener {
     public Wisps(EntityType entity) {
-        super(EntityType.WITCH, EntityType.CREEPER, 45, 5, 20, List.of(new ItemStack(Material.GUNPOWDER)));
+        super(EntityType.WITCH, EntityType.CREEPER, 45, 5, 20, List.of(new ItemStack(Material.BONE)));
 
     }
 

@@ -9,23 +9,25 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+
+import java.util.Objects;
 
 public class QuestListener implements Listener {
 
     @EventHandler
-    public void questCollectChecker(BlockBreakEvent event) {
+    public void questCollectChecker(CraftItemEvent event) {
 
-        if (!(Florial.getQuest().containsKey(event.getPlayer().getUniqueId()))) return;
+        if (!(Florial.getQuest().containsKey(event.getWhoClicked().getUniqueId()))) return;
 
-        if (Florial.getQuest().get(event.getPlayer().getUniqueId()).getBlockType() != event.getBlock().getType()) return;
+        if (Florial.getQuest().get(event.getWhoClicked().getUniqueId()).getCraftType() != Objects.requireNonNull(event.getCurrentItem()).getType()) return;
 
-        Player p = event.getPlayer();
+        Player p = (Player) event.getWhoClicked();
 
-        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.COLLECT);
+        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.CRAFT);
 
     }
 

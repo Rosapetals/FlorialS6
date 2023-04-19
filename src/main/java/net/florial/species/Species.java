@@ -27,13 +27,11 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @ToString
@@ -44,6 +42,16 @@ public abstract class Species implements Listener {
 
     private static final LuckPerms api = LuckPermsProvider.get();
 
+    public static final List<Material> boneFoods = Arrays.asList(
+            Material.CHICKEN,
+            Material.PORKCHOP,
+            Material.BEEF,
+            Material.COD,
+            Material.SALMON,
+            Material.MUTTON,
+            Material.RABBIT
+    );
+
     private static final Map<Material, Integer> fillingValues = Map.ofEntries(
             Map.entry(Material.CHICKEN, 20),
             Map.entry(Material.PORKCHOP, 15),
@@ -51,7 +59,8 @@ public abstract class Species implements Listener {
             Map.entry(Material.SWEET_BERRIES, 10),
             Map.entry(Material.COD, 13),
             Map.entry(Material.SALMON, 13),
-            Map.entry(Material.MUTTON, 20)
+            Map.entry(Material.MUTTON, 20),
+            Map.entry(Material.RABBIT, 13)
     );
 
 
@@ -149,6 +158,8 @@ public abstract class Species implements Listener {
         Player p = event.getPlayer();
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        if (boneFoods.contains(event.getItem().getType())) p.getInventory().addItem(new ItemStack(Material.BONE));
 
         if (data.getSpecies() != this || data.getSpecies().diet() == null) return;
 

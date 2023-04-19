@@ -222,7 +222,7 @@ public class DiscordListeners extends ListenerAdapter {
                 //guild.getTextChannelById("803862530438332417").sendMessage("**" + user.getName() + ":** " + Core.getInstance().lists.get(user)).queue();
                 Bukkit.getScheduler().runTask(Florial.getInstance(), () -> {
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + username+ " parent add special");
-                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "restoreplayer flories 25 " + username);
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "restoreplayer " + username + " flories 25");
                 });
                 Florial.getAnswers().remove(user.getId());
                 Florial.getBotState().remove(user.getId());

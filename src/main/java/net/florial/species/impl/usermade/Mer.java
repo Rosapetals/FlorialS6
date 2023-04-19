@@ -1,6 +1,5 @@
 package net.florial.species.impl.usermade;
 
-import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
@@ -90,10 +89,9 @@ public class Mer extends Species implements Listener {
     @EventHandler
     public void damageBoostInWater(EntityDamageByEntityEvent event) {
 
-        if (!(event.getDamager() instanceof Player
-                || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this)) return;
+        if (!(event.getDamager() instanceof Player p)) return;
 
-        Player p = (Player) event.getDamager();
+        if (Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this) return;
 
         if (p.getWorld().getBlockAt(new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY() + 2, p.getLocation().getZ())).getType() != Material.WATER) return;
 
@@ -104,10 +102,9 @@ public class Mer extends Species implements Listener {
     @EventHandler
     public void landVulnerability(EntityDamageEvent event) {
 
-        if (!(event.getEntity() instanceof Player
-                || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this)) return;
+        if (!(event.getEntity() instanceof Player p)) return;
 
-        Player p = (Player) event.getEntity();
+        if (Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this) return;
 
         if (p.getWorld().getBlockAt(new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY() + 2, p.getLocation().getZ())).getType() == Material.WATER) return;
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Boar extends Mob implements Listener {
     public Boar(EntityType entity) {
-        super(EntityType.HOGLIN, EntityType.SKELETON, 100, 8, 20, List.of(new ItemStack(Material.GUNPOWDER)));
+        super(EntityType.HOGLIN, EntityType.SKELETON, 100, 8, 20, List.of(new ItemStack(Material.PORKCHOP)));
 
     }
 

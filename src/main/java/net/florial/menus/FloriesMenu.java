@@ -1,12 +1,10 @@
 package net.florial.menus;
 
-import io.github.rysefoxx.inventory.plugin.content.IntelligentItem;
 import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.menus.shop.ShopMenu;
-import net.florial.species.Species;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.GetCustomSkull;
@@ -20,6 +18,8 @@ import java.util.Map;
 import java.util.stream.Stream;
 
 public class FloriesMenu {
+
+    //heavy wip
 
     private static final Map<Integer, List<ItemStack>> florieItems = new HashMap<>();
     private static final Map<Integer, List<Integer>> floriePrices = new HashMap<>();
@@ -67,11 +67,6 @@ public class FloriesMenu {
                                         "#ffa2c4&lSMALL:#ffa2c4 Live with 6 hearts", "Make the most of it.",
                                         "#ffa2c4&lCARNIVORE:#ffa2c4 Vegetables aren't all that", "healthy.",
                                         "", "", "", "")), false)).toList();
-
-
-                        contents.set(List.of(23), IntelligentItem.of(species.get(1), event -> {
-                            Species.become(p, "CAT");}));
-                        contents.set(List.of(21), IntelligentItem.of(species.get(0), event -> Species.become(p, "FOX")));
 
 
                     }

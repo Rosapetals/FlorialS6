@@ -24,6 +24,8 @@ public class ResetSpeciesCommand extends BaseCommand {
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1, 1);
 
+            if (DisguiseAPI.getDisguise(p) == null) return;
+
             MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
 
             mobDisguise.stopDisguise();

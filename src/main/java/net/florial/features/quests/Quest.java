@@ -63,6 +63,8 @@ public class Quest {
         boss.addPlayer(p);
 
         Florial.getQuestBar().put(p.getUniqueId(), boss);
+
+        p.sendMessage("View the top of your screen to view quest progress. Don't like your quest? Click the GROW button again to get a new one!");
     }
 
 

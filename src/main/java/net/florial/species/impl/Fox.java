@@ -51,11 +51,7 @@ public class Fox extends Species implements Listener {
 
     @Override
     public Set<Material> diet() {
-        return new HashSet<>(Arrays.asList(
-                Material.BEEF, Material.PORKCHOP,
-                Material.CHICKEN, Material.MUTTON,
-                Material.SWEET_BERRIES, Material.COD,
-                Material.SALMON, Material.GLOW_BERRIES));
+        return new HashSet<>((Species.boneFoods));
     }
 
     @EventHandler
