@@ -4,17 +4,24 @@ import com.jagrosh.jdautilities.command.SlashCommand;
 import com.jagrosh.jdautilities.command.SlashCommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.api.utils.FileUpload;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.models.ChequeData;
 import net.florial.models.DiscordUser;
 
 import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import static io.netty.handler.codec.http.multipart.InterfaceHttpData.HttpDataType.FileUpload;
 
 @CommandInfo(name = "task")
 public class DiscordTaskCommand extends SlashCommand {
@@ -23,7 +30,7 @@ public class DiscordTaskCommand extends SlashCommand {
         this.name = "task";
         this.options = List.of(
                 new OptionData(OptionType.STRING, "task", "What was the task?", true),
-                new OptionData(OptionType.ATTACHMENT, "evidence1", "Evidence 1", true)
+                new OptionData(OptionType.ATTACHMENT, "evidence", "Evidence", true)
         );
     }
     @Override
@@ -38,12 +45,15 @@ public class DiscordTaskCommand extends SlashCommand {
                 .setTitle("Task Competed")
                 .addField("Staff", slashCommandEvent.getUser().getName(), true)
                 .setColor(Color.PINK)
-                .setImage(slashCommandEvent.getOption("evidence1").getAsAttachment().getUrl())
                 .setFooter("Your payment has been added to your cheque, please run /cashout in game to claim your payment")
                 .build();
 
+        Message.Attachment evidence = slashCommandEvent.getOption("evidence").getAsAttachment();
+        InputStream fileInputStream = evidence.getProxy().download().join();
+        FileUpload file = net.dv8tion.jda.api.utils.FileUpload.fromData(fileInputStream, "Evidence");
 
-        shiftChannel.sendMessageEmbeds(embed).queue();
+
+        shiftChannel.sendMessageEmbeds(embed).addFiles(file).queue();
         ChequeData cheque = FlorialDatabase.getChequeData(slashCommandEvent.getUser().getId()).join();
         DiscordUser discordUser = FlorialDatabase.getDiscordUserData(slashCommandEvent.getUser().getId()).join();
         if (cheque == null) cheque = new ChequeData(slashCommandEvent.getUser().getId(), false);
