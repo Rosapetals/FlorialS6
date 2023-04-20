@@ -51,7 +51,7 @@ public class Windowsian extends Species implements Listener {
     }
 
     @EventHandler
-    public void powerUsageBreak(EntityDamageByEntityEvent event) {
+    public void powerUsageAttack(EntityDamageByEntityEvent event) {
 
         if (!(event.getDamager() instanceof Player p)
             || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this) return;
@@ -60,5 +60,5 @@ public class Windowsian extends Species implements Listener {
 
     }
 
-    private static void powerUsage(Player p) {if (GetChance.getChance(50) && (p.getFoodLevel() > 0)) p.setFoodLevel(p.getFoodLevel() - 1);}
+    private static void powerUsage(Player p) {if (GetChance.chanceOf(50) && (p.getFoodLevel() > 0)) p.setFoodLevel(p.getFoodLevel() - 1);}
 }

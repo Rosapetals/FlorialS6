@@ -42,7 +42,7 @@ public abstract class Species implements Listener {
 
     private static final LuckPerms api = LuckPermsProvider.get();
 
-    public static final List<Material> boneFoods = Arrays.asList(
+    public static final Set<Material> boneFoods = new HashSet<>(Arrays.asList(
             Material.CHICKEN,
             Material.PORKCHOP,
             Material.BEEF,
@@ -50,7 +50,7 @@ public abstract class Species implements Listener {
             Material.SALMON,
             Material.MUTTON,
             Material.RABBIT
-    );
+    ));
 
     private static final Map<Material, Integer> fillingValues = Map.ofEntries(
             Map.entry(Material.CHICKEN, 20),
@@ -159,21 +159,35 @@ public abstract class Species implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (boneFoods.contains(event.getItem().getType())) p.getInventory().addItem(new ItemStack(Material.BONE));
-
         if (data.getSpecies() != this || data.getSpecies().diet() == null) return;
-
-        Material mat = event.getItem().getType();
 
         event.setCancelled(true);
 
-        if (this.diet().contains(mat)) {
+        ItemStack item = event.getItem();
 
-            int foodBonus = fillingValues.get(mat) != null ? fillingValues.get(mat) : 0;
+        if (item.getAmount() > 1) {
+            item.setAmount(item.getAmount() - 1);
+        } else {
+            p.getInventory().removeItem(item);
+        }
 
-            p.setFoodLevel(p.getFoodLevel() + foodBonus);
+        if (boneFoods.contains(event.getItem().getType())) p.getInventory().addItem(new ItemStack(Material.BONE, 1));
 
-            if (!(p.getSaturation() >= 20)) p.setSaturation(p.getSaturation() + (float) foodBonus/2);
+        if (this.diet().contains(item.getType())) {
+
+            Material mat = event.getItem().getType();
+
+            int foodValue = fillingValues.get(mat) != null ? fillingValues.get(mat) : 0;
+            int satValue = foodValue/2;
+
+            int foodLevel = (p.getFoodLevel() + foodValue > 19) ? 20 : p.getFoodLevel()+foodValue;
+            int satLevel = (p.getFoodLevel() + satValue > 19) ? 20 : p.getFoodLevel()+satValue;
+
+
+            p.setFoodLevel(foodLevel);
+            p.setSaturation(satLevel);
+
+
         } else {
             p.setFoodLevel(p.getFoodLevel() + 1);
         }

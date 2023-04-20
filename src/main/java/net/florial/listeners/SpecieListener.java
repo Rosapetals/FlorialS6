@@ -2,6 +2,7 @@ package net.florial.listeners;
 
 import net.florial.Florial;
 import net.florial.models.PlayerData;
+import net.florial.species.Species;
 import net.florial.species.events.impl.SpeciesDeathEvent;
 import net.florial.species.events.impl.SpeciesKillEvent;
 import net.florial.species.events.impl.SpeciesRespawnEvent;
@@ -21,15 +22,10 @@ public class SpecieListener implements Listener {
     private void onRespawn(PlayerRespawnEvent event) {
         PlayerData data = Florial.getPlayerData().get(event.getPlayer().getUniqueId());
         if (data == null) return;
-        
-        SpeciesRespawnEvent e = new SpeciesRespawnEvent(
-            event.getPlayer(),
-            data,
-            data.getSpecieType()
-        );
-        Bukkit.getPluginManager().callEvent(e);
+
 
         Florial.getThirst().put(event.getPlayer().getUniqueId(), 20);
+        Species.refreshTag(event.getPlayer());
         GeneralUtils.runAsync(new BukkitRunnable() {@Override public void run() {Bukkit.getScheduler().runTaskLater(florial, data::refresh, 40L);}});
 
 

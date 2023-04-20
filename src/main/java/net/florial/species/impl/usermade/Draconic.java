@@ -63,16 +63,16 @@ public class Draconic extends Species implements Listener {
         || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
 
 
-            Player player = event.getPlayer();
+        Player player = event.getPlayer();
 
-            player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0f, 1.0f);
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0f, 1.0f);
 
-            player.getWorld().getNearbyEntities(player.getLocation(), 10, 10, 10)
+        player.getWorld().getNearbyEntities(player.getLocation(), 10, 10, 10)
                 .stream()
                 .filter(entity -> !entity.equals(player))
                 .forEach(entity -> ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 10, 2)));
 
-            Cooldown.addCooldown("c1", player, 10);
+        Cooldown.addCooldown("c1", player, 10);
     }
 
 

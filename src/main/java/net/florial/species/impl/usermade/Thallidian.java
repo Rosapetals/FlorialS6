@@ -66,7 +66,7 @@ public class Thallidian extends Species implements Listener {
 
         if (!(event.getEntity() instanceof Player p)
                 || (!(event.getDamager() instanceof LivingEntity entity)
-                || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this)) return;
+                || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this)) return;
 
 
         Vector knockBack = p.getLocation().toVector().subtract(entity.getLocation().toVector()).normalize().multiply(6);

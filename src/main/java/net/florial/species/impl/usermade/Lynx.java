@@ -18,7 +18,7 @@ import java.util.Set;
 
 public class Lynx extends Species implements Listener {
     public Lynx(int id) {
-        super("Lynx", id, 32, true, null);
+        super("Lynx", id, 32, true, DisguiseType.CAT);
     }
 
     @Override

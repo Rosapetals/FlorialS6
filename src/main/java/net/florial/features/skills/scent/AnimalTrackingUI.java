@@ -95,7 +95,7 @@ public class AnimalTrackingUI {
             return;
         }
         int chance = 20 + (scent * 10);
-        if (GetChance.getChance(chance)) {
+        if (!(GetChance.chanceOf(chance))) {
             p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             return;
         }

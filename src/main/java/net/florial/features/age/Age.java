@@ -68,7 +68,7 @@ public enum Age {
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 2, 1);
 
-            morph.activate(p, 0, false, false, data.getSpecies());
+            morph.activate(p, 5, false, true, data.getSpecies());
 
         } else {
             p.sendMessage("You can't age up anymore!");

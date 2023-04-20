@@ -16,7 +16,7 @@ public class DiscordRoleCommand extends SlashCommand {
         this.guildOnly = true;
         this.options = List.of(
 
-        )
+        );
     }
     @Override
     protected void execute(SlashCommandEvent slashCommandEvent) {

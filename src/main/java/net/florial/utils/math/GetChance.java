@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class GetChance {
 
-    public static boolean getChance(int minimalChance) {
-        Random random = new Random();
-        return random.nextInt(99) + 1 >= minimalChance;
+    public static boolean chanceOf(int chance) {
+        return Math.random() < chance / 100.0;
+
     }
 
 }

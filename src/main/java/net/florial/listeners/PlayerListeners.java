@@ -206,7 +206,7 @@ public class PlayerListeners implements Listener {
             return;
         }
 
-        Bukkit.broadcastMessage(CC.translate("&7" + prefix + " " + nickname + ": " + message));
+        Bukkit.broadcastMessage(CC.translate(prefix + " &f" + nickname + ": " + message));
     }
 
     private static boolean spamChecker(Player p) {

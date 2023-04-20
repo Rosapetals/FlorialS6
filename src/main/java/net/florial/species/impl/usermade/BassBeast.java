@@ -95,11 +95,10 @@ public class BassBeast extends Species implements Listener {
     @EventHandler
     public void beeAllergy(EntityDamageByEntityEvent event) {
 
-        if (!(event.getDamager() instanceof Player)) return;
+        if (!(event.getEntity() instanceof Player)
+        || (!(event.getDamager() instanceof Bee))) return;
 
-        if (Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this
-                || (!(event.getEntity() instanceof Bee))) return;
-
+        if (Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this) return;
 
         event.setDamage(event.getDamage() + 6.0);
     }

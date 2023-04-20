@@ -8,10 +8,7 @@ import me.libraryaddict.disguise.disguisetypes.watchers.FoxWatcher;
 import net.florial.species.Species;
 import net.florial.species.events.impl.SpeciesTablistEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Cat;
-import org.bukkit.entity.Fox;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Sittable;
+import org.bukkit.entity.*;
 
 import java.util.List;
 
@@ -73,6 +70,7 @@ public class Morph {
                         ((FoxWatcher) watcher).setType(Fox.Type.RED);
                     }
                 }
+                case 5 -> ((Ageable) mobDisguise).setAdult();
             }
 
         } else {
@@ -84,6 +82,9 @@ public class Morph {
             mobDisguise.startDisguise();
             FlagWatcher watcher = mobDisguise.getWatcher();
 
+            if (species.getId() == 10) ((CatWatcher) watcher).setType(Cat.Type.PERSIAN);
+
+
             if (watcher instanceof FoxWatcher fox) {
                 if (species.getId() != 4) {
                     fox.setType(Fox.Type.RED);
@@ -94,15 +95,19 @@ public class Morph {
             }
 
             if (watcher instanceof CatWatcher cat) {
-                if (!(cat.getType().equals(Cat.Type.JELLIE))) return;
-                activate(p, 0, false, false, species);
-                return;
+                if (!(cat.getType().equals(Cat.Type.JELLIE))) {
+                    activate(p, 0, false, false, species);
+                    return;
+                }
             }
 
             SpeciesTablistEvent event = new SpeciesTablistEvent(
                     p
             );
             Bukkit.getPluginManager().callEvent(event);
+
+
+
 
         }
 

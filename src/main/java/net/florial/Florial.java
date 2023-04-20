@@ -22,10 +22,12 @@ import net.florial.commands.cheats.ChangeSpeciesCommand;
 import net.florial.commands.cheats.RestorePlayerCommand;
 import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
+import net.florial.commands.menu.FloriesMenuCommand;
 import net.florial.commands.menu.ShopCommand;
 import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
+import net.florial.commands.species.UserSpeciesCommand;
 import net.florial.commands.staff.*;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.enemies.impl.Boar;
@@ -275,6 +277,9 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new RestorePlayerCommand());
         manager.registerCommand(new PlayTimeCommand());
         manager.registerCommand(new CheckShiftCommand());
+        manager.registerCommand(new FloriesMenuCommand());
+        manager.registerCommand(new UserSpeciesCommand());
+
     }
 
     private void initializeDiscord() {
