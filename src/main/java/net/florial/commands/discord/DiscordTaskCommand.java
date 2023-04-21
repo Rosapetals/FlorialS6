@@ -60,7 +60,7 @@ public class DiscordTaskCommand extends SlashCommand {
         ChequeData cheque = FlorialDatabase.getChequeData(slashCommandEvent.getUser().getId()).join();
         DiscordUser discordUser = FlorialDatabase.getDiscordUserData(slashCommandEvent.getUser().getId()).join();
         if (cheque == null) cheque = new ChequeData(slashCommandEvent.getUser().getId(), false);
-        cheque.setDiscordId(discordUser.getMcUUID());
+        cheque.setAddressee(discordUser.getMcUUID());
         cheque.setCash(cheque.getCash() + 10000);
         cheque.setCoins(cheque.getCoins() + 5);
         cheque.setFlories(cheque.getFlories() + 5);

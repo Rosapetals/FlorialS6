@@ -251,6 +251,9 @@ public class PlayerListeners implements Listener {
 
 
         Bukkit.broadcastMessage(CC.translate("#ff3c55[" + town + "] " + prefix + " &f" + nickname + ": " + message));
+        String msg = message;
+        msg.replaceAll("@", "@-");
+        Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.chatlogChannel")).sendMessage(event.getPlayer().getName() + ": " + msg).queue();
     }
 
     private static boolean spamChecker(Player p) {
@@ -278,6 +281,7 @@ public class PlayerListeners implements Listener {
             event.setCancelled(true);
             new Message("&c&lPlease verify through discord").send(event.getPlayer());
         }
+        Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.commandlogChannel")).sendMessage(event.getPlayer().getName() + " executed command: " + event.getMessage()).queue();
     }
 
     @EventHandler
