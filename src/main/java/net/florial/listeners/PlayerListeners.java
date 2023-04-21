@@ -9,6 +9,7 @@ import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.thirst.ThirstManager;
+import net.florial.features.upgrades.Upgrade;
 import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.species.disguises.Morph;
@@ -23,6 +24,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -152,6 +154,19 @@ public class PlayerListeners implements Listener {
             mobDisguise.startDisguise();
 
         }, 40);
+
+    }
+
+    @EventHandler
+    public void valHallaBlessing(EntityDamageEvent e) {
+
+        if (e.getCause() != EntityDamageEvent.DamageCause.SUFFOCATION
+                && e.getCause() != EntityDamageEvent.DamageCause.FALL
+                && e.getCause() != EntityDamageEvent.DamageCause.FIRE) return;
+
+        if (e.getEntity() instanceof Player
+                && (!(Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() == null)
+                && (Florial.getPlayerData().get(e.getEntity().getUniqueId())).getUpgrades().get(Upgrade.NATUREIMMUNITY))) e.setCancelled(true);
 
     }
 

@@ -18,7 +18,15 @@ public enum Upgrade {
 
     //instincts
 
-    SNEAKY(4, false, 4);
+    SNEAKY(4, false, 4),
+    FOCUS(5, false, 5),
+    NEARDEATH(6, false, 6),
+    FALL(7, false, 7),
+    METABOLIZER(8, false, 8),
+    STRIKER(9, false, 9),
+    RESISTANT(10, false, 10),
+    FLESHEATER(11, false, 11);
+
 
 
     @Getter private final int upgrade;

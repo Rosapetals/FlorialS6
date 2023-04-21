@@ -10,6 +10,7 @@ import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
+import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.CC;
@@ -135,7 +136,8 @@ public abstract class Species implements Listener {
     }
     public static void refreshTag(Player p) {
 
-        if (Florial.getPlayerData().get(p.getUniqueId()).getSpecies().getMorph() == null) return;
+        if (Florial.getPlayerData().get(p.getUniqueId()).getSpecies().getMorph() == null
+        || DisguiseAPI.getDisguise(p) == null) return;
 
         Bukkit.getServer().getScheduler().runTaskLater(florial, () -> {
 
@@ -170,11 +172,12 @@ public abstract class Species implements Listener {
         event.setCancelled(true);
 
         ItemStack item = event.getItem();
+        ItemStack heldItem = p.getInventory().getItemInMainHand();
 
-        if (item.getAmount() > 1) {
-            item.setAmount(item.getAmount() - 1);
+        if (heldItem.getAmount() > 1) {
+            heldItem.setAmount(heldItem.getAmount() - 1);
         } else {
-            p.getInventory().removeItem(item);
+            p.getInventory().removeItem(heldItem);
         }
 
         if (boneFoods.contains(event.getItem().getType())) p.getInventory().addItem(new ItemStack(Material.BONE, 1));
@@ -185,6 +188,8 @@ public abstract class Species implements Listener {
 
             int foodValue = fillingValues.get(mat) != null ? fillingValues.get(mat) : 0;
             int satValue = foodValue/2;
+
+            if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.METABOLIZER)) foodValue = 20;
 
             int foodLevel = (p.getFoodLevel() + foodValue > 19) ? 20 : p.getFoodLevel()+foodValue;
             int satLevel = (p.getFoodLevel() + satValue > 19) ? 20 : p.getFoodLevel()+satValue;

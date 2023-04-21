@@ -5,6 +5,8 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
+import net.florial.features.upgrades.Upgrade;
+import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
@@ -93,6 +95,10 @@ public class SellMenu {
         }
 
         p.getInventory().remove(item.getType());
+
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.SELLINCREASE)) amount = amount*2;
 
         VaultHandler.addMoney(p, amount * price);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 2);
