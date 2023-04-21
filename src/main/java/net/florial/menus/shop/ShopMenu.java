@@ -6,6 +6,7 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
+import net.florial.utils.Cooldown;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
@@ -99,7 +100,6 @@ public class ShopMenu {
     public static void purchase(Player p, ItemStack item, int price) {
 
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
-        p.closeInventory();
 
         if (VaultHandler.getBalance(p) >= price) {
 
@@ -109,9 +109,10 @@ public class ShopMenu {
             VaultHandler.removeMoney(p, price * amount);
 
             for (int i = 0; i < amount; i++) {p.getInventory().addItem(item);}
+            Cooldown.addCooldown("menu", p, 1);
 
-        } else {
-
+        } else if (!(Cooldown.isOnCooldown("menu", p))) {
+            p.closeInventory();
             p.sendMessage("You need at least $" + price + " to buy this. You are " + (price - VaultHandler.getBalance(p)) + " short");
 
         }

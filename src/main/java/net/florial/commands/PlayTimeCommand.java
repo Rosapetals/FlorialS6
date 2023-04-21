@@ -24,7 +24,7 @@ public class PlayTimeCommand extends BaseCommand {
         int minutes = seconds / 60;
         int hours = minutes / 60;
 
-        player.sendMessage((CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r ➤&f " + target.getName() + "'s &f playtime: #ff5b70" + hours + "&f hours")));
+        player.sendMessage((CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f " + target.getName() + "'s &f playtime: #ff5b70" + hours + "&f hours")));
 
 
 

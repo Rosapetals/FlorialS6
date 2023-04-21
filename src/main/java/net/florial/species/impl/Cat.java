@@ -2,6 +2,7 @@ package net.florial.species.impl;
 
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
+import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
@@ -37,13 +38,16 @@ public class Cat extends Species implements Listener {
     public Set<Integer> sharedAbilities() {
 
         return new HashSet<>(List.of(
-                1, 2));
+                1));
     }
     @Override
     public HashMap<Integer, PotionEffect> specific() {
 
         return new HashMap<>(Map.ofEntries(
-                Map.entry(1, new PotionEffect(PotionEffectType.SPEED, 1, 0, false, false, true))));
+                Map.entry(2, new PotionEffect(PotionEffectType.SPEED, 1, 1, false, false, true)),
+                Map.entry(3, new PotionEffect(PotionEffectType.SPEED, 1, 2, false, false, true))
+
+        ));
     }
 
     @Override
@@ -132,5 +136,32 @@ public class Cat extends Species implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void catClimb(PlayerInteractEvent e) {
+
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK
+                && Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == this
+                && (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC) > 3
+                && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR)) pounce(e.getPlayer());
+
+    }
+
+    @EventHandler
+    public void catPounce(PlayerInteractEvent e) {
+
+        if (e.getAction() == Action.LEFT_CLICK_AIR
+                && e.getPlayer().isSneaking()
+                && Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == this
+                && (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC) > 4
+                && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR)) pounce(e.getPlayer());
+
+    }
+
+    private static void pounce(Player p) {
+
+        Vector unitVector = new Vector(p.getLocation().getDirection().getX(), 0, p.getLocation().getDirection().getZ()).normalize();
+        p.setVelocity(unitVector.multiply(4));
     }
 }

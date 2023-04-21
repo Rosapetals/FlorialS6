@@ -58,10 +58,11 @@ public class Skills {
                                                 "More health : higher dmg")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "" + descriptions.get(0), "" + data.getSkills().get(Skill.SPECIFIC), "#ffa2c4 25 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
-                                                "" + descriptions.get(1))), false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                                "" + descriptions.get(1))), false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", " #ff79a1&l︳ BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
-                        contents.set(List.of(36,37), IntelligentItem.of(entries.get(0), event -> backButton(p)));
+                        contents.set(List.of(36,37), IntelligentItem.of(entries.get(5), event -> backButton(p)));
 
                         contents.set(List.of(18,19), IntelligentItem.of(entries.get(0), event -> skill(p,25,data,Skill.SCENT)));
 
@@ -90,7 +91,10 @@ public class Skills {
 
     private static void skill(Player p, int i, PlayerData data, Skill skill) {
         int dna = data.getDna();
-        Sound sound;
+
+        p.closeInventory();
+
+        int skillData = data.getSkills().get(skill);
 
         if (skill == Skill.SCENT && data.getSpecies().getId() == 3) {
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
@@ -99,22 +103,27 @@ public class Skills {
 
         if (dna < i) {
             p.sendMessage("Not enough DNA");
-            sound = Sound.BLOCK_NOTE_BLOCK_BASS;
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             data.setDna(dna - i);
-        } else if (skill.getLvl() >= 5) {
-            p.sendMessage("Skill is maxed.");
-            sound = Sound.BLOCK_NOTE_BLOCK_BASS;
-        } else if (!(data.getAge().getId() > skill.getLvl())) {
-            p.sendMessage("Age Up to upgrade your skills further! (/grow)");
-            sound = Sound.BLOCK_NOTE_BLOCK_BASS;
-        } else {
-            data.setDna(dna - i);
-            data.getSkills().put(skill, data.getSkills().get(skill) + 1);
-            p.sendMessage("Successfully upgraded!");
-            sound = Sound.ENTITY_PLAYER_LEVELUP;
+            return;
         }
 
-        p.playSound(p.getLocation(), sound, 1, 1);
+         if (!(data.getAge().getId() > skillData)) {
+             p.sendMessage("Age Up to upgrade your skills further! (/grow)");
+             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
+             return;
+         }
+        if (skillData >= 5) {
+            p.sendMessage("Skill is maxed.");
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
+            return;
+        }
+
+        data.setDna(dna - i);
+        data.getSkills().put(skill, skillData + 1);
+        data.getSkills().put(Skill.SURVIVAL, data.getSkills().get(Skill.SURVIVAL) + 1);
+        p.sendMessage("Successfully upgraded!");
+        p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
     }
 
     private static String format(List<String> iterations){

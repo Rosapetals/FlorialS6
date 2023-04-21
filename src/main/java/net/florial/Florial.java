@@ -16,20 +16,20 @@ import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
-import net.florial.commands.cheats.ChangeDNACommand;
-import net.florial.commands.cheats.ChangeSkillsCommand;
-import net.florial.commands.cheats.ChangeSpeciesCommand;
-import net.florial.commands.cheats.RestorePlayerCommand;
+import net.florial.commands.cheats.*;
 import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
 import net.florial.commands.menu.FloriesMenuCommand;
 import net.florial.commands.menu.ShopCommand;
+import net.florial.commands.menu.SkillsMenuCommand;
+import net.florial.commands.ranks.*;
 import net.florial.commands.species.GrowCommand;
 import net.florial.commands.species.ResetSpeciesCommand;
 import net.florial.commands.species.SpeciesCommand;
 import net.florial.commands.species.UserSpeciesCommand;
 import net.florial.commands.staff.*;
 import net.florial.database.FlorialDatabase;
+import net.florial.features.crates.Crates;
 import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
 import net.florial.features.enemies.impl.Snapper;
@@ -122,7 +122,7 @@ public final class Florial extends JavaPlugin {
         manager.invoke();
 
         FlorialDatabase.initializeDatabase();
-        enableRecipes();
+        //enableRecipes();
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
@@ -182,11 +182,21 @@ public final class Florial extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new PlayerListeners(), this);
         getServer().getPluginManager().registerEvents(new SpecieListener(), this);
-        getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstListener(), this);
-        getServer().getPluginManager().registerEvents(new ThirstManager(), this);
         getServer().getPluginManager().registerEvents(new MobsListener(), this);
+        getServer().getPluginManager().registerEvents(new UpgradeListener(), this);
         getServer().getPluginManager().registerEvents(new AnimalListener(), this);
+        getServer().getPluginManager().registerEvents(new DrillListener(), this);
+        getServer().getPluginManager().registerEvents(new ClickablesListener(), this);
+        getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
+        getServer().getPluginManager().registerEvents(new QuestListener(), this);
+
+        getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
+        getServer().getPluginManager().registerEvents(new ThirstManager(), this);
+        getServer().getPluginManager().registerEvents(new ScentManager(), this);
+        getServer().getPluginManager().registerEvents(new QuestProgressManager(), this);
+
+        getServer().getPluginManager().registerEvents(new Crates(), this);
         getServer().getPluginManager().registerEvents(new Scoreboard(), this);
 
 
@@ -194,11 +204,6 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Snapper(EntityType.RAVAGER), this);
         getServer().getPluginManager().registerEvents(new Wisps(EntityType.WITCH), this);
         getServer().getPluginManager().registerEvents(new Crawlies(EntityType.CAVE_SPIDER), this);
-
-        getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
-        getServer().getPluginManager().registerEvents(new ScentManager(), this);
-        getServer().getPluginManager().registerEvents(new QuestListener(), this);
-        getServer().getPluginManager().registerEvents(new QuestProgressManager(), this);
 
         if (!(Cooldown.getCooldownMap("c1") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c1")).clear();
         if (!(Cooldown.getCooldownMap("c2") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c2")).clear();
@@ -217,19 +222,29 @@ public final class Florial extends JavaPlugin {
 
         if (!(Cooldown.getCooldownMap("c1") == null)) Cooldown.getCooldownMap("c1").clear();
         if (!(Cooldown.getCooldownMap("c2") == null)) Cooldown.getCooldownMap("c2").clear();
+        if (!(Cooldown.getCooldownMap("c3") == null)) Cooldown.getCooldownMap("c3").clear();
+        if (!(Cooldown.getCooldownMap("c4") == null)) Cooldown.getCooldownMap("c4").clear();
+        if (!(Cooldown.getCooldownMap("menu") == null)) Cooldown.getCooldownMap("menu").clear();
+        if (!(Cooldown.getCooldownMap("fly") == null)) Cooldown.getCooldownMap("fly").clear();
         if (!(Cooldown.getCooldownMap("scent") == null)) Cooldown.getCooldownMap("scent").clear();
+        if (!(Cooldown.getCooldownMap("drill") == null)) Cooldown.getCooldownMap("drill").clear();
         if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
         if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
+        if (Cooldown.getCooldownMap("c3") == null) Cooldown.createCooldown("c3");
+        if (Cooldown.getCooldownMap("menu") == null) Cooldown.createCooldown("menu");
+        if (Cooldown.getCooldownMap("fly") == null) Cooldown.createCooldown("fly");
         if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
+        if (Cooldown.getCooldownMap("drill") == null) Cooldown.createCooldown("drill");
+        if (Cooldown.getCooldownMap("c4") == null) Cooldown.createCooldown("c4");
 
     }
 
-    private void enableRecipes() {
-       // registerRecipes("cheat_apple", true, "121", "   ", "   ", Arrays.asList(
-            //    new ItemStack(Material.APPLE),
+  //  private void enableRecipes() {
+        //registerRecipes("cheat_apple", true, "121", "   ", "   ", Arrays.asList(
+             //   new ItemStack(Material.APPLE),
              //   new ItemStack(Material.GOLD_BLOCK),
                // null, null, null, null, null, null, null), new ItemStack(Material.GOLDEN_APPLE));
-    }
+   // }
 
     @SuppressWarnings("SameParameterValue")
     private void registerRecipes(String key, boolean isShaped, String column1, String column2, String column3, List<ItemStack> ritems, ItemStack output) {
@@ -279,6 +294,23 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new CheckShiftCommand());
         manager.registerCommand(new FloriesMenuCommand());
         manager.registerCommand(new UserSpeciesCommand());
+        manager.registerCommand(new ShapeShiftCommand());
+        manager.registerCommand(new ChangeAgeCommand());
+        manager.registerCommand(new SkillsMenuCommand());
+        manager.registerCommand(new DiamondFixWaterCommand());
+        manager.registerCommand(new IridiumForestGenCommand());
+        manager.registerCommand(new IridiumPumpkinCommand());
+        manager.registerCommand(new GradientChatCommand());
+        manager.registerCommand(new IridiumFlyCommand());
+        manager.registerCommand(new SwitchSpeciesCommand());
+        manager.registerCommand(new IridiumKeyAllCommand());
+        manager.registerCommand(new SwitchNickNameCommand());
+        manager.registerCommand(new SitCommand());
+        manager.registerCommand(new SleepCommand());
+        manager.registerCommand(new PrefixCommand());
+        manager.registerCommand(new SellCommand());
+
+
 
     }
 

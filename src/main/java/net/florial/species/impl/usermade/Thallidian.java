@@ -69,7 +69,7 @@ public class Thallidian extends Species implements Listener {
                 || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this)) return;
 
 
-        Vector knockBack = p.getLocation().toVector().subtract(entity.getLocation().toVector()).normalize().multiply(6);
+        Vector knockBack = p.getLocation().toVector().subtract(entity.getLocation().toVector()).normalize().multiply(12);
         entity.setVelocity(knockBack);
     }
 

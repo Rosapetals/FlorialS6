@@ -9,11 +9,17 @@ import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import me.libraryaddict.disguise.disguisetypes.watchers.CatWatcher;
 import me.libraryaddict.disguise.disguisetypes.watchers.FoxWatcher;
+import net.florial.species.Species;
+import net.florial.species.disguises.Morph;
+import net.florial.species.events.impl.SpeciesTablistEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Cat;
 import org.bukkit.entity.Fox;
 import org.bukkit.entity.Player;
 
 public class ShapeShiftCommand extends BaseCommand {
+
+    private static final Morph morph = new Morph();
 
 
     @CommandAlias("shapeshift")
@@ -50,6 +56,8 @@ public class ShapeShiftCommand extends BaseCommand {
             case FOX -> ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
             case CAT -> ((CatWatcher) watcher).setType(Cat.Type.JELLIE);
         }
+
+        Species.refreshTag(p);
 
 
     }

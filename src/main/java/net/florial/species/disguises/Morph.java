@@ -1,10 +1,12 @@
 package net.florial.species.disguises;
 
 import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import me.libraryaddict.disguise.disguisetypes.watchers.CatWatcher;
 import me.libraryaddict.disguise.disguisetypes.watchers.FoxWatcher;
+import me.libraryaddict.disguise.disguisetypes.watchers.SlimeWatcher;
 import net.florial.species.Species;
 import net.florial.species.events.impl.SpeciesTablistEvent;
 import org.bukkit.Bukkit;
@@ -46,8 +48,6 @@ public class Morph {
 
      1  = sitting
      2 = sleeping
-     3 = sneaking
-
      */
     public void activate(Player p, Integer pos, Boolean state, Boolean modification, Species species) {
 
@@ -59,13 +59,17 @@ public class Morph {
             MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
             FlagWatcher watcher = mobDisguise.getWatcher();
 
+
             switch (pos) {
                 case 1 -> ((Sittable) watcher).setSitting(state);
                 case 2 -> watcher.setSleeping(state);
-                case 3 -> watcher.setSneaking(state);
                 case 4 -> {
                     if (species.getId() == 4) {
-                        ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
+                        if (mobDisguise.getType() == DisguiseType.FOX) {
+                            ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
+                        } else {
+                            ((CatWatcher) watcher).setType(Cat.Type.JELLIE);
+                        }
                     } else {
                         ((FoxWatcher) watcher).setType(Fox.Type.RED);
                     }
@@ -83,6 +87,7 @@ public class Morph {
             FlagWatcher watcher = mobDisguise.getWatcher();
 
             if (species.getId() == 10) ((CatWatcher) watcher).setType(Cat.Type.PERSIAN);
+            if (species.getId() == 13) ((SlimeWatcher) watcher).setSize(2);
 
 
             if (watcher instanceof FoxWatcher fox) {
@@ -95,7 +100,7 @@ public class Morph {
             }
 
             if (watcher instanceof CatWatcher cat) {
-                if (!(cat.getType().equals(Cat.Type.JELLIE))) {
+                if (cat.getType().equals(Cat.Type.JELLIE)) {
                     activate(p, 0, false, false, species);
                     return;
                 }

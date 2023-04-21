@@ -54,9 +54,13 @@ public class PlayerData {
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
+    @Getter @Setter String gradient1 = "";
+
+    @Getter @Setter String gradient2 = "";
 
 
-    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, @org.jetbrains.annotations.Nullable String prefix, Age age) {
+
+    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, @org.jetbrains.annotations.Nullable String prefix, Age age, String gradient1, String gradient2) {
 
         this.UUID = uuid;
         this.discordId = discordId;
@@ -70,7 +74,8 @@ public class PlayerData {
         this.growth = growth;
         this.prefix = prefix;
         this.age = age;
-        //this.color = color;
+        this.gradient1 = gradient1;
+        this.gradient2 = gradient2;
     }
 
     public PlayerData(String uuid) {

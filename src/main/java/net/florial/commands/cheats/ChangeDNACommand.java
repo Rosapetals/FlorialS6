@@ -13,7 +13,7 @@ public class ChangeDNACommand extends BaseCommand {
     //test class
 
     @CommandAlias("changedna")
-    @CommandPermission("op")
+    @CommandPermission("tester")
     public void changeDnaCommand(Player p, int a) {
 
         //test

@@ -20,7 +20,7 @@ import java.util.*;
 public class Endn extends Species implements Listener {
 
     public Endn(int id) {
-        super("Endn", id, 22, false, DisguiseType.ENDERMAN);
+        super("Endn", id, 24, false, DisguiseType.ENDERMAN);
     }
 
 

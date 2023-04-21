@@ -81,7 +81,7 @@ public class BassBeast extends Species implements Listener {
 
         if (event.getAction() != Action.LEFT_CLICK_AIR
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
-                || Cooldown.isOnCooldown("c2", event.getPlayer())
+                || Cooldown.isOnCooldown("c3", event.getPlayer())
                 || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
 
 
@@ -89,7 +89,7 @@ public class BassBeast extends Species implements Listener {
 
         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0f, 1.0f);
 
-        Cooldown.addCooldown("c2", player, 10);
+        Cooldown.addCooldown("c3", player, 10);
     }
 
     @EventHandler
@@ -110,7 +110,7 @@ public class BassBeast extends Species implements Listener {
         if (Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this) return;
 
         if (event.getItem().getType() != Material.POTATO
-                || event.getItem().getType() != Material.CARROT) return;
+                && event.getItem().getType() != Material.CARROT) return;
 
         event.setCancelled(true);
     }

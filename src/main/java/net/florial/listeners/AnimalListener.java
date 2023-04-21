@@ -1,8 +1,10 @@
 package net.florial.listeners;
 
+import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
 import net.florial.species.Species;
 import net.florial.utils.GeneralUtils;
+import net.florial.utils.general.CustomItem;
 import net.florial.utils.math.GetChance;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -75,6 +77,8 @@ public class AnimalListener implements Listener {
         ItemStack firstEdible = e.getDrops().stream().filter(edible).findFirst().orElse(new ItemStack(Material.RABBIT));
         e.getDrops().removeIf(edible);
 
+        if (ent == EntityType.HOGLIN) firstEdible = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PORKCHOP), "&fRaw Boar", "", false), 1, "CustomModelData");
+
         ItemFrame itemFrame = en.getWorld().spawn(en.getLocation(), ItemFrame.class);
         itemFrame.setVisible(false);
         itemFrame.setFacingDirection(BlockFace.UP);
@@ -91,11 +95,9 @@ public class AnimalListener implements Listener {
 
         if (!(e.getEntity() instanceof ItemFrame) || (!(e.getDamager() instanceof Player p))) return;
 
-        Material mat = ((ItemFrame) e.getEntity()).getItem().getType();
+        if (!ALLOWED_MATERIALS.contains(((ItemFrame) e.getEntity()).getItem().getType())) return;
 
-        if (!ALLOWED_MATERIALS.contains(mat)) return;
-
-        p.getInventory().addItem(new ItemStack(mat));
+        p.getInventory().addItem(((ItemFrame) e.getEntity()).getItem());
         p.playSound(p.getLocation(), Sound.BLOCK_SLIME_BLOCK_PLACE, 1, (float) 1.3);
         e.getEntity().remove();
     }

@@ -14,11 +14,14 @@ public class HydrateEvent extends ThirstEvent {
     ItemStack i;
     Integer thirst;
 
+    Integer hydration;
 
-    public HydrateEvent(Player player, ItemStack i, Integer thirst) {
+
+    public HydrateEvent(Player player, ItemStack i, Integer thirst, Integer hydration) {
         this.player = player;
         this.i = i;
         this.thirst = thirst;
+        this.hydration = hydration;
 
     }
 

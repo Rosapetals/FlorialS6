@@ -117,6 +117,12 @@ public abstract class Species implements Listener {
 
         p.closeInventory();
 
+        if (data.getSpecieId() == 4) {
+            p.sendMessage("You need the Pearlite! rank from florial.tebex.io to get this psecies!");
+            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
+            return;
+        }
+
         if (data.getSpecieId() == 0) {
 
             SpeciesWrapper.setSpecies(p.getUniqueId(), SpecieType.valueOf(type.toUpperCase().replace(" ", "_")));
@@ -159,7 +165,7 @@ public abstract class Species implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getSpecies() != this || data.getSpecies().diet() == null) return;
+        if (data.getSpecies() != this || data.getSpecies().diet() == null || data.getSpecies().diet().isEmpty()) return;
 
         event.setCancelled(true);
 
@@ -245,9 +251,7 @@ public abstract class Species implements Listener {
 
              p.playSound(p.getLocation(), Sound.ENTITY_BAT_TAKEOFF, 1, 2);
 
-             String text = CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r ➤&f You are now flying!#fc7878 Left-Click + Sneak to get out of this!");
-
-             p.sendMessage(text);
+             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You are now flying!#ff3c55 Left-Click + Sneak to get out of this!"));
 
              Cooldown.addCooldown("c2", p, 4);
         }

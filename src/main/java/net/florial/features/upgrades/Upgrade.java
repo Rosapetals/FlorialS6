@@ -11,10 +11,14 @@ public enum Upgrade {
 
     HASTE(1, false, 1),
     DOUBLEHEALTH(2, false, 2),
+    NATUREIMMUNITY(3, false, 3),
+    STRONGNOSE(4, false, 4),
+    SELLINCREASE(5, false, 5),
+
 
     //instincts
 
-    SNEAKY(3, false, 3);
+    SNEAKY(4, false, 4);
 
 
     @Getter private final int upgrade;

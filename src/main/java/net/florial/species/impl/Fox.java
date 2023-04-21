@@ -2,18 +2,22 @@ package net.florial.species.impl;
 
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
+import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
 import net.florial.utils.math.AgeFormula;
+import net.florial.utils.math.GetChance;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -83,6 +87,20 @@ public class Fox extends Species implements Listener {
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 600, 1, false, false, true));
 
         Cooldown.addCooldown("c2", p, AgeFormula.get(30, data.getAge().getIncrease()));
+
+    }
+
+    @EventHandler
+    public void doubleMaterials(BlockBreakEvent e) {
+
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this
+            || (!(Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC) > 3))) return;
+
+        int value = Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC);
+
+        int chance = (value == 4) ? 30 : (value == 5) ? 50 : 0;
+
+        if (GetChance.chanceOf(chance)) e.getBlock().getDrops().add(new ItemStack(e.getBlock().getType()));
 
     }
     

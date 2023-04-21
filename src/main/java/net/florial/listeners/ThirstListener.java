@@ -25,7 +25,8 @@ public class ThirstListener  implements Listener {
         HydrateEvent e = new HydrateEvent(
                 p,
                 i,
-                ThirstManager.getThirst(p)
+                ThirstManager.getThirst(p),
+                2
 
         );
 
@@ -42,7 +43,8 @@ public class ThirstListener  implements Listener {
         HydrateEvent e = new HydrateEvent(
                 p,
                 i,
-                ThirstManager.getThirst(p)
+                ThirstManager.getThirst(p),
+                2
 
         );
 

@@ -2,6 +2,7 @@ package net.florial.listeners;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
 import lombok.val;
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
@@ -15,13 +16,18 @@ import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
 import net.florial.utils.Message;
 import net.florial.utils.general.CC;
+<<<<<<< Updated upstream
 import net.kyori.adventure.text.Component;
+=======
+import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
+>>>>>>> Stashed changes
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
@@ -115,6 +121,12 @@ public class PlayerListeners implements Listener {
     }
 
     @EventHandler
+    public void menuDrop(PlayerDropItemEvent e) {if (e.getPlayer().getOpenInventory().getTitle().contains("七")) e.setCancelled(true);}
+    @EventHandler
+    public void menuClick(InventoryClickEvent e) {if (e.getWhoClicked().getOpenInventory().getTitle().contains("七")) e.setCancelled(true);}
+
+
+    @EventHandler
     public void onQuit(PlayerQuitEvent event) {
 
         UUID u = event.getPlayer().getUniqueId();
@@ -131,6 +143,8 @@ public class PlayerListeners implements Listener {
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
+
+        if (DisguiseAPI.getDisguise(e.getPlayer()) == null) return;
 
         Bukkit.getServer().getScheduler().runTaskLater(florial, () -> {
 
@@ -160,6 +174,7 @@ public class PlayerListeners implements Listener {
 
         Player p = event.getPlayer();
         UUID u = p.getUniqueId();
+        PlayerData data = Florial.getPlayerData().get(u);
 
         if (Florial.getInstance().getStaffToVerify().contains(u)) {
             event.setCancelled(true);
@@ -173,7 +188,7 @@ public class PlayerListeners implements Listener {
 
         if (florial.ess.getUser(p).isMuted()) return;
 
-        String prefix = Florial.getPlayerData().get(u).getPrefix();
+        String prefix = data.getPrefix();
         if (Objects.equals(prefix, "")) {
             try {
                 prefix = Objects.requireNonNull(Florial.getInstance().getLpapi().getUserManager().getUser(u)).getCachedData().getMetaData().getPrefix();
@@ -196,7 +211,8 @@ public class PlayerListeners implements Listener {
         for (String pattern : SLURS) {
             Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(message.replaceAll(" ", ""));
             if (!(matcher.find())) continue;
-            new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + message);}}.runTask(florial);
+            String finalMessage = message;
+            new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + finalMessage);}}.runTask(florial);
 
             return;
 
@@ -207,7 +223,23 @@ public class PlayerListeners implements Listener {
             return;
         }
 
-        Bukkit.broadcastMessage(CC.translate(prefix + " &f" + nickname + ": " + message));
+        if (!(data.getGradient1().isBlank())) {
+            message = message.replaceAll("&", "and");
+            message = message.replaceAll("%%", "percent");
+            if (!(message.length() < 2)) {
+                message = IridiumColorAPI.process("<GRADIENT:" +  data.getGradient1() +">"+message+"</GRADIENT:" + data.getGradient2()+">");
+            } else {
+                message = CC.translate("#" + data.getGradient1() + message);
+            }
+
+        }
+
+        String town = "%townyadvanced_town%";
+        if (town.isBlank()) town = "[]";
+        town = PlaceholderAPI.setPlaceholders(p, town);
+
+
+        Bukkit.broadcastMessage(CC.translate("#ff3c55[" + town + "] " + prefix + " &f" + nickname + ": " + message));
     }
 
     private static boolean spamChecker(Player p) {

@@ -68,7 +68,10 @@ public class QuestListener implements Listener {
 
         Player p = event.getPlayer();
 
-        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.DELIVER);
+        for (int i = 0; i < event.getItemDrop().getItemStack().getAmount(); i++) {callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.DELIVER);}
+
+        event.getItemDrop().remove();
+
 
     }
 

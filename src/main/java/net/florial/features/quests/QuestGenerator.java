@@ -26,7 +26,7 @@ public class QuestGenerator {
             EntityType.CHICKEN);
     private static final List<Material> itemTypes = List.of(
             Material.WHEAT,
-            Material.POTATOES,
+            Material.POTATO,
             Material.CARROT,
             Material.PORKCHOP,
             Material.BEEF,

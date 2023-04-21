@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 @CommandAlias("upgrade")
-@CommandPermission("op")
+@CommandPermission("tester")
 public class ChangeUpgradeCommand extends BaseCommand {
 
     @Default

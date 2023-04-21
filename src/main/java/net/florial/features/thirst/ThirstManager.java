@@ -20,7 +20,7 @@ public class ThirstManager implements Listener {
     public void DrinkWater(HydrateEvent event) {
         Player p = event.getPlayer();
         if (event.getThirst() >= 20) return;
-        Hydrate(p, 2);
+        Hydrate(p, event.getHydration());
         p.playSound(p.getLocation(), Sound.ENTITY_GENERIC_DRINK, 3, 2);
         if (p.hasPotionEffect(PotionEffectType.WITHER)) p.removePotionEffect(PotionEffectType.WITHER);
     }
@@ -74,7 +74,7 @@ public class ThirstManager implements Listener {
         return Florial.getThirst().get(p.getUniqueId());
     }
 
-    private void Hydrate(Player p, int amount){
+    private static void Hydrate(Player p, int amount){
         Florial.getThirst().put(p.getUniqueId(), getThirst(p) + amount);
 
         if (getThirst(p) == 20)
@@ -82,7 +82,7 @@ public class ThirstManager implements Listener {
                     1200, 1, false, false, true));
     }
 
-    private void deHydrate(Player p, int amount){
+    private static void deHydrate(Player p, int amount){
         Florial.getThirst().put(p.getUniqueId(), getThirst(p) - amount);
     }
 

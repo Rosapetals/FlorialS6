@@ -8,6 +8,7 @@ import net.florial.Florial;
 import net.florial.models.PlayerData;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
 public class ResetSpeciesCommand extends BaseCommand {
 
@@ -30,6 +31,7 @@ public class ResetSpeciesCommand extends BaseCommand {
 
             mobDisguise.stopDisguise();
 
+            for (PotionEffect effect : p.getActivePotionEffects()) {p.removePotionEffect(effect.getType());}
 
         } else {
             p.sendMessage("You need at least 25 DNA for this!");
