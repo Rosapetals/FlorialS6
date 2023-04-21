@@ -113,7 +113,7 @@ public class ShopMenu {
 
         } else if (!(Cooldown.isOnCooldown("menu", p))) {
             p.closeInventory();
-            p.sendMessage("You need at least $" + price + " to buy this. You are " + (price - VaultHandler.getBalance(p)) + " short");
+            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least $" + price + " to buy this. You are " + (price - VaultHandler.getBalance(p)) + " short");
 
         }
     }

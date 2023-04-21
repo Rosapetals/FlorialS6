@@ -145,7 +145,7 @@ public class InstinctsMenu {
             }
 
             if (amount > 6) {
-                p.sendMessage("You already have all of the upgrades!");
+                p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You already have all of the upgrades!");
                 return;
             }
 
@@ -160,12 +160,12 @@ public class InstinctsMenu {
 
             data.setDna(data.getDna() - 500);
 
-            p.sendMessage("You successfully got the " + Upgrade.fromID(id) + " instinct! Hover over it in /instincts to see the advantages!");
+            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You successfully got the " + Upgrade.fromID(id) + " instinct! Hover over it in /instincts to see the advantages!");
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 1);
 
         } else {
 
-            p.sendMessage("You need 500 DNA to roll for a random instinct.");
+            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need 500 DNA to roll for a random instinct.");
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
 
 

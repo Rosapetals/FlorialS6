@@ -4,6 +4,7 @@ import net.florial.Florial;
 import net.florial.features.age.Age;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
 import net.florial.models.PlayerData;
+import org.bukkit.Sound;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,7 +40,8 @@ public class QuestProgressManager implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        p.sendMessage("Completed quest!");
+        p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Completed quest!");
+        p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 2);
 
         Florial.getQuestBar().get(u).removePlayer(p);
         Florial.getQuestBar().remove(u);

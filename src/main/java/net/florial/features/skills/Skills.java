@@ -102,19 +102,19 @@ public class Skills {
         }
 
         if (dna < i) {
-            p.sendMessage("Not enough DNA");
+            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Not enough DNA");
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             data.setDna(dna - i);
             return;
         }
 
          if (!(data.getAge().getId() > skillData)) {
-             p.sendMessage("Age Up to upgrade your skills further! (/grow)");
+             p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Age Up to upgrade your skills further! (/grow)");
              p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
              return;
          }
         if (skillData >= 5) {
-            p.sendMessage("Skill is maxed.");
+            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Skill is maxed.");
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             return;
         }
@@ -122,7 +122,7 @@ public class Skills {
         data.setDna(dna - i);
         data.getSkills().put(skill, skillData + 1);
         data.getSkills().put(Skill.SURVIVAL, data.getSkills().get(Skill.SURVIVAL) + 1);
-        p.sendMessage("Successfully upgraded!");
+        p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully upgraded!");
         p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
     }
 

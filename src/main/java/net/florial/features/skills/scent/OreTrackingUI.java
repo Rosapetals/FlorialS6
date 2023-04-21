@@ -72,12 +72,12 @@ public class OreTrackingUI {
 
             int nearby = MaterialDetector.detectMaterial(p, mat, scent*5);
 
-            p.sendMessage("Amount Nearby: " + nearby);
+            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Amount Nearby: " + nearby);
             sound = Sound.ENTITY_PLAYER_BREATH;
 
         } else {
             sound = Sound.BLOCK_NOTE_BLOCK_BASS;
-            p.sendMessage("You need Scent level " +  required + " for this, but you only have " + scent);
+            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need Scent level " +  required + " for this, but you only have " + scent);
         }
         p.playSound(p.getLocation(), sound, 1, 1);
 

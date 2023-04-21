@@ -189,7 +189,7 @@ public abstract class Species implements Listener {
             int foodValue = fillingValues.get(mat) != null ? fillingValues.get(mat) : 0;
             int satValue = foodValue/2;
 
-            if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.METABOLIZER)) foodValue = 20;
+            if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.METABOLIZER) != null) foodValue = 20;
 
             int foodLevel = (p.getFoodLevel() + foodValue > 19) ? 20 : p.getFoodLevel()+foodValue;
             int satLevel = (p.getFoodLevel() + satValue > 19) ? 20 : p.getFoodLevel()+satValue;
