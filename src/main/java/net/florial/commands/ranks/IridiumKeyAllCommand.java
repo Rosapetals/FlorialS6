@@ -29,10 +29,8 @@ public class IridiumKeyAllCommand extends BaseCommand {
         ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "CustomModelData");
         key3 = NBTEditor.set(key3, 3, "Crate");
 
-        ItemStack key4 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lVote Crate Key", "", false), 4, "CustomModelData");
-        key4 = NBTEditor.set(key4, 4, "Crate");
 
-        for (Player player : Bukkit.getOnlinePlayers()) {player.getInventory().addItem(key1, key2, key3, key4);}
+        for (Player player : Bukkit.getOnlinePlayers()) {player.getInventory().addItem(key1, key2, key3);}
 
         p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 2);
 
