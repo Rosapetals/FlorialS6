@@ -166,7 +166,7 @@ public class PlayerListeners implements Listener {
 
         if (e.getEntity() instanceof Player
                 && (!(Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() == null)
-                && (Florial.getPlayerData().get(e.getEntity().getUniqueId())).getUpgrades().get(Upgrade.NATUREIMMUNITY))) e.setCancelled(true);
+                && (Florial.getPlayerData().get(e.getEntity().getUniqueId())).getUpgrades().get(Upgrade.NATUREIMMUNITY) != null)) e.setCancelled(true);
 
     }
 
