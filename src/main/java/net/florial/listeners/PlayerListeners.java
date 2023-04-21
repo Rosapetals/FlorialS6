@@ -16,11 +16,7 @@ import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
 import net.florial.utils.Message;
 import net.florial.utils.general.CC;
-<<<<<<< Updated upstream
-import net.kyori.adventure.text.Component;
-=======
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
->>>>>>> Stashed changes
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
