@@ -98,7 +98,7 @@ public class SellMenu {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.SELLINCREASE)) amount = amount*2;
+        if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.SELLINCREASE) != null) amount = amount*2;
 
         VaultHandler.addMoney(p, amount * price);
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 2);

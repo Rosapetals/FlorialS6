@@ -20,6 +20,7 @@ import net.florial.commands.cheats.*;
 import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
 import net.florial.commands.menu.FloriesMenuCommand;
+import net.florial.commands.menu.InstinctsMenuCommand;
 import net.florial.commands.menu.ShopCommand;
 import net.florial.commands.menu.SkillsMenuCommand;
 import net.florial.commands.ranks.*;
@@ -309,6 +310,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new SleepCommand());
         manager.registerCommand(new PrefixCommand());
         manager.registerCommand(new SellCommand());
+        manager.registerCommand(new InstinctsMenuCommand());
 
 
 

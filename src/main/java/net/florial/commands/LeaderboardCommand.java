@@ -2,6 +2,7 @@ package net.florial.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandPermission;
 import co.aikar.commands.annotation.Default;
 import me.santio.utils.bukkit.impl.MessageUtils;
 import me.santio.utils.minecraft.message.Message;
@@ -13,6 +14,7 @@ public class LeaderboardCommand extends BaseCommand {
     //test class
 
     @CommandAlias("florieslb")
+    @CommandPermission("op")
     public class LeaderBoardCommand extends BaseCommand {
         @Default
         public static void onlb(Player player) {

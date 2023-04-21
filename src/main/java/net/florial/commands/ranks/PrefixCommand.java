@@ -23,7 +23,7 @@ public class PrefixCommand extends BaseCommand {
             p.playSound(p, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
 
         } else {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " meta set prefix 100 \"" + s + " \"");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " meta setprefix 100 \"" + s + " \"");
             p.sendMessage((CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully set your prefix to " + s + "!")));
             p.playSound(p, Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 1);
         }

@@ -74,7 +74,7 @@ public class Refresh {
         for (Map.Entry<Upgrade, Runnable> entry : upgradeHandlers.entrySet()) {
             Upgrade upgrade = entry.getKey();
             Runnable handler = entry.getValue();
-            if (upgrades.get(upgrade)) handler.run();
+            if (upgrades.get(upgrade) != null) handler.run();
         }
         //this runs twice for the aforementioned reasons.. let's see if we can get this down to running once in some way!
         p.setMaxHealth(maxHealth.get() + additions);

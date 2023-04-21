@@ -12,5 +12,5 @@ public class InstinctsMenuCommand extends BaseCommand {
 
     @CommandAlias("instincts")
     @Default
-    public void onOpenShop(Player player) {instinctsMenu.instinctMenu(player);}
+    public void onInstinctsOpen(Player player) {instinctsMenu.instinctMenu(player);}
 }

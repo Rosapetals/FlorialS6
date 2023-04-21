@@ -43,7 +43,7 @@ public class Scoreboard implements Listener {
         String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE&f: " + data.getAge());
         String text10 = CC.translate("    #ff1d3a┕━━━━━━━━━━━━━━━━━━┙");
         String text8 = CC.translate("   #ff3c55 ︳ #ff5b70&lplay.florial.us");
-        String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.us/shop");
+        String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.tebex.io");
         String text11 = CC.translate("    #ff7a8b┕━━━━━━━━━━━━━━━━━━┙");
         FastBoard board = new FastBoard(p);
         board.updateTitle("" + text1);
@@ -81,7 +81,7 @@ public class Scoreboard implements Listener {
         String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE:&f: " + data.getAge());
         String text10 = CC.translate("    #ff1d3a┕━━━━━━━━━━━━━━━━━━┙");
         String text8 = CC.translate("   #ff3c55 ︳ #ff5b70&lplay.florial.us");
-        String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.us/shop");
+        String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.tebex.io");
         String text11 = CC.translate("    #ff7a8b┕━━━━━━━━━━━━━━━━━━┙");
         board.updateTitle("" + text1);
         Florial.getBoards().put(u, board);

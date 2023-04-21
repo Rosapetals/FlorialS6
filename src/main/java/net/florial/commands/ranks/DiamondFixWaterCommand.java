@@ -22,6 +22,8 @@ public class DiamondFixWaterCommand extends BaseCommand {
 
         Bukkit.dispatchCommand(p, "fixwater 10");
 
+        p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Succesful!");
+
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset worldedit.*"), 40L);
 
 

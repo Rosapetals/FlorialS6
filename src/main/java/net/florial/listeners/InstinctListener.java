@@ -2,9 +2,7 @@ package net.florial.listeners;
 
 import net.florial.Florial;
 import net.florial.features.upgrades.Upgrade;
-import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
-import net.florial.utils.math.AgeFormula;
 import net.florial.utils.math.GetChance;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -24,9 +22,8 @@ public class InstinctListener implements Listener {
     @EventHandler
     public void sneakyInstinct(PlayerToggleSneakEvent e) {
 
-        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getUpgrades() == null
-                || (!(Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getUpgrades().get(Upgrade.SNEAKY))))
-            return;
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getUpgrades() == null) return;
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getUpgrades().get(Upgrade.SNEAKY) == null) return;
 
         if (e.isSneaking()) {
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1000000, 1, false, false, true));
@@ -41,9 +38,8 @@ public class InstinctListener implements Listener {
 
         if (!(e.getEntity() instanceof Player p)) return;
 
-        if (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() == null
-                || (!(Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades().get(Upgrade.NEARDEATH))))
-            return;
+        if (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() == null) return;
+        if (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades().get(Upgrade.NEARDEATH) == null) return;
 
         e.setCancelled(true);
 
@@ -69,9 +65,9 @@ public class InstinctListener implements Listener {
         if (!(e.getEntity() instanceof Player p) ||
                 e.getCause() != EntityDamageEvent.DamageCause.FALL) return;
 
-        if (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() == null
-                || (!(Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades().get(Upgrade.FALL))))
-            return;
+        if (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades() == null) return;
+
+        if  (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades().get(Upgrade.FALL) == null) return;
 
         e.setCancelled(true);
 
@@ -79,13 +75,15 @@ public class InstinctListener implements Listener {
     }
 
     @EventHandler
-    public void feetInstinct(EntityDamageByEntityEvent e) {
+    public void strikerInstinct(EntityDamageByEntityEvent e) {
 
         if (!(e.getDamager() instanceof Player p)) return;
 
-        if (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() == null
-                || (!(Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades().get(Upgrade.STRIKER))
-                || Cooldown.isOnCooldown("c3", p))) return;
+        if (Florial.getPlayerData().get(e.getDamager().getUniqueId()).getUpgrades() == null) return;
+
+        if (Florial.getPlayerData().get(e.getDamager().getUniqueId()).getUpgrades().get(Upgrade.STRIKER) == null) return;
+
+        if (Cooldown.isOnCooldown("c3", p)) return;
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 600, 1, false, false, true));
 
@@ -102,8 +100,9 @@ public class InstinctListener implements Listener {
         && e.getCause() != EntityDamageEvent.DamageCause.LAVA
         && e.getCause() != EntityDamageEvent.DamageCause.FREEZE) return;
 
-        if (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades() != null
-                || (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades().get(Upgrade.RESISTANT))) e.setCancelled(true);
+        if (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades() == null) return;
+
+        if (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades().get(Upgrade.RESISTANT) != null) e.setCancelled(true);
 
 
     }
@@ -116,8 +115,10 @@ public class InstinctListener implements Listener {
         if (!(e.getDamager() instanceof Zoglin
         && (!(e.getDamager() instanceof Witch)))) return;
 
-        if (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades() != null
-                || (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades().get(Upgrade.FLESHEATER))) e.setCancelled(true);
+        if (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades() == null) return;
+        if (Florial.getPlayerData().get(p.getUniqueId()).getUpgrades().get(Upgrade.FLESHEATER) == null) return;
+
+        e.setCancelled(true);
 
         e.setDamage(2);
         p.setFoodLevel(20);

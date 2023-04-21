@@ -119,7 +119,7 @@ public class Cat extends Species implements Listener {
 
             if (data.getSpecies() != this) return;
 
-            if (attacker.getInventory().getItemInMainHand().getType() == Material.AIR) {
+            if (attacker.getInventory().getItemInMainHand().getType() == Material.AIR || (!(Cooldown.isOnCooldown("c1", attacker)))) {
 
                 Location particleLoc = attacker.getLocation().clone()
                     .add(0.0, 1.0, 0.0)
@@ -134,6 +134,8 @@ public class Cat extends Species implements Listener {
                     e.setVelocity(launchDirection);
                     ((LivingEntity) e).damage(4+data.getAge().getIncrease());
                 }
+
+                Cooldown.addCooldown("c1", attacker, 10);
             }
         }
     }

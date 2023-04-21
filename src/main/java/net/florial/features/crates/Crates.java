@@ -91,10 +91,9 @@ public class Crates implements Listener {
 
                 key2,
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lChocolate Egg", "", false), 15,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lEaster Egg", "", false), 16,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lEaster Basket", "", false), 17,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBunny Plushie", "", false), 18,"CustomModelData")
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lChocolate Egg", "", false), 47,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lEaster Egg", "", false), 48,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.BUNDLE), "#ff7a8b&lEaster Basket", "", false), 46,"CustomModelData")
 
 
 
@@ -102,7 +101,7 @@ public class Crates implements Listener {
 
         crateDrops.put(4, List.of(
 
-                CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 10), "#ff7a8b&lFlories [Left-Click]", "", false),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER), "#ff7a8b&lFlories [Left-Click]", "", false), 50,"CustomModelData"),
 
                 new ItemStack(Material.GOLDEN_APPLE, 10),
                 new ItemStack(Material.EXPERIENCE_BOTTLE, 600),
@@ -152,8 +151,6 @@ public class Crates implements Listener {
 
 
     }
-
-
 
 
 

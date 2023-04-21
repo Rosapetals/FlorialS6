@@ -18,8 +18,10 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class FloriesMenu {
 
@@ -142,6 +144,9 @@ public class FloriesMenu {
 
             } else {
                 if (name.contains("-U")) {
+
+                    if (data.getUpgrades() == null) data.setUpgrades(new HashMap<>(Map.of(Upgrade.DOUBLEHEALTH, false)));
+
 
                     int value = NBTEditor.getInt(item, "CustomModelData");
 

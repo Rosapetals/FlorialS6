@@ -8,6 +8,7 @@ import net.florial.Florial;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
+import net.florial.utils.Cooldown;
 import net.florial.utils.game.MobSpawn;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
@@ -78,6 +79,10 @@ public class AnimalTrackingUI {
 
         p.closeInventory();
 
+        if (Cooldown.isOnCooldown("c3", p)) {
+            p.sendMessage("You are on cooldown! Upgrade your scent skill in /skills to get a shorter cooldown.");
+            return;
+        }
 
         if (scent < required) {
             p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
@@ -85,12 +90,14 @@ public class AnimalTrackingUI {
             return;
         }
 
-        int chance = Florial.getPlayerData().get(p.getUniqueId()).getUpgrades().get(Upgrade.STRONGNOSE) ? 40 + (scent * 10) : 20 + (scent * 10);
+        int chance = Florial.getPlayerData().get(p.getUniqueId()).getUpgrades().get(Upgrade.STRONGNOSE) != null ? 40 + (scent * 10) : 20 + (scent * 10);
 
         if (!(GetChance.chanceOf(chance))) {
             p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             return;
         }
+
+        Cooldown.addCooldown("c3", p, 60-(scent*10));
 
         double x = loc.getX() + (Math.random() * 25 + 15) * (Math.random() < 0.5 ? -1 : 1);
         double z = loc.getZ() + (Math.random() * 25 + 15) * (Math.random() < 0.5 ? -1 : 1);

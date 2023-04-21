@@ -1,15 +1,19 @@
 package net.florial.listeners;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
+import net.florial.Florial;
 import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
+import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
 import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -19,7 +23,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37
+            32, 34, 35, 36, 37, 45, 50
     );
 
 
@@ -38,6 +42,8 @@ public class ClickablesListener implements Listener {
             case 35 -> infiniteCookie(e.getPlayer());
             case 36 -> waterJug(e.getPlayer());
             case 37 -> weatherManipulation(e.getPlayer());
+            case 45 -> specialEat(e.getPlayer());
+            case 50 -> gainTulips(e.getPlayer());
         }
     }
 
@@ -89,6 +95,40 @@ public class ClickablesListener implements Listener {
 
         p.setSaturation(20);
         p.setFoodLevel(20);
+    }
+
+    private static void specialEat(Player p) {
+
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        removeItem(p.getInventory().getItemInMainHand(), p);
+
+        data.setDna(data.getDna() + 5);
+
+        p.playSound(p.getLocation(), Sound.ITEM_HONEY_BOTTLE_DRINK, 1, (float) 7);
+
+    }
+
+    private static void gainTulips(Player p) {
+
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        p.getInventory().setItemInMainHand(null);
+
+        data.setDna(data.getDna() + 5);
+
+        p.playSound(p.getLocation(), Sound.ITEM_HONEY_BOTTLE_DRINK, 1, (float) 7);
+
+    }
+
+    private static void removeItem(ItemStack heldItem, Player p) {
+
+        if (heldItem.getAmount() > 1) {
+            heldItem.setAmount(heldItem.getAmount() - 1);
+        } else {
+            p.getInventory().removeItem(heldItem);
+        }
+
     }
 
 }

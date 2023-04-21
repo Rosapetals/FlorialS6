@@ -16,7 +16,9 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class InstinctsMenu {
@@ -128,13 +130,17 @@ public class InstinctsMenu {
 
         if (data.getDna() >= 500) {
 
+            p.closeInventory();
+
             p.sendMessage("try");
 
             int startId = 4;
             int amount = 0;
 
+            if (data.getUpgrades() == null) data.setUpgrades(new HashMap<>(Map.of(Upgrade.DOUBLEHEALTH, false)));
+
             for (int i = 0; i < 7; i++) {
-                if (data.getUpgrades().get(Upgrade.fromID(startId))) amount++;
+                if (data.getUpgrades().get(Upgrade.fromID(startId)) != null) amount++;
                 startId++;
             }
 
@@ -145,10 +151,11 @@ public class InstinctsMenu {
 
             int id = Upgrade.randomInstinct(4, 11);
 
-            if (data.getUpgrades().get(Upgrade.fromID(id))) {
+            if (data.getUpgrades().get(Upgrade.fromID(id)) != null) {
                 chooseInstinct(p);
                 return;
             }
+
             data.getUpgrades().put(Upgrade.fromID(id), true);
 
             data.setDna(data.getDna() - 500);

@@ -118,7 +118,7 @@ public abstract class Species implements Listener {
 
         p.closeInventory();
 
-        if (data.getSpecieId() == 4) {
+        if (SpecieType.valueOf(type.toUpperCase()).getId() == 4) {
             p.sendMessage("You need the Pearlite! rank from florial.tebex.io to get this psecies!");
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             return;
