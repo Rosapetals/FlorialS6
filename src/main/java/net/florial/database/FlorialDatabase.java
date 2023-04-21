@@ -234,7 +234,7 @@ public class FlorialDatabase {
 
             @Override
             public void run() {
-                val temp = datastore.find(ChequeData.class).filter(eq("discordid", id));
+                val temp = datastore.find(ChequeData.class).filter(eq("discordId", id));
                 future.complete(temp.stream().findFirst().orElse(null));
             }
         });

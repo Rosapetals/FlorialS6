@@ -16,6 +16,7 @@ import net.florial.models.ChequeData;
 import net.florial.models.DiscordUser;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -44,13 +45,15 @@ public class DiscordTaskCommand extends SlashCommand {
         MessageEmbed embed = new EmbedBuilder()
                 .setTitle("Task Competed")
                 .addField("Staff", slashCommandEvent.getUser().getName(), true)
+                .addField("Task", slashCommandEvent.getOption("task").getAsString(), true)
                 .setColor(Color.PINK)
                 .setFooter("Your payment has been added to your cheque, please run /cashout in game to claim your payment")
                 .build();
 
         Message.Attachment evidence = slashCommandEvent.getOption("evidence").getAsAttachment();
+        String extension = evidence.getFileExtension();
         InputStream fileInputStream = evidence.getProxy().download().join();
-        FileUpload file = net.dv8tion.jda.api.utils.FileUpload.fromData(fileInputStream, "Evidence");
+        FileUpload file = net.dv8tion.jda.api.utils.FileUpload.fromData(fileInputStream, "Evidence." + extension);
 
 
         shiftChannel.sendMessageEmbeds(embed).addFiles(file).queue();
