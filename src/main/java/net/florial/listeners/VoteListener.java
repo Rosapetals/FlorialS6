@@ -4,7 +4,6 @@ import com.vexsoftware.votifier.model.VotifierEvent;
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
-import net.florial.utils.Cooldown;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
@@ -26,13 +25,9 @@ public class VoteListener implements Listener {
         Player p = Bukkit.getPlayer(event.getVote().getUsername());
         UUID u = p.getUniqueId();
 
-        if (Cooldown.isOnCooldown("c4", p)) return;
-
         PlayerData data = Florial.getPlayerData().get(u);
 
         data.setFlories(data.getFlories() + 2);
-
-        Cooldown.addCooldown("c4", p, 2);
 
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 2, (float) 1);
 

@@ -208,6 +208,10 @@ public class PlayerListeners implements Listener {
             }
         }
 
+
+        String suffix = Objects.requireNonNull(Florial.getInstance().getLpapi().getUserManager().getUser(u)).getCachedData().getMetaData().getSuffix();
+        suffix = (suffix != null) ? suffix : "";
+
         String nickname = florial.ess.getUser(p).getNickname() != null ? florial.ess.getUser(p).getNickname() : p.getName();
 
 
@@ -223,6 +227,7 @@ public class PlayerListeners implements Listener {
             Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(message.replaceAll(" ", ""));
             if (!(matcher.find())) continue;
             String finalMessage = message;
+            if (message.contains("get")) break;
             new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + finalMessage);}}.runTask(florial);
 
             return;
@@ -250,7 +255,7 @@ public class PlayerListeners implements Listener {
         town = PlaceholderAPI.setPlaceholders(p, town);
 
 
-        Bukkit.broadcastMessage(CC.translate("#ff3c55[" + town + "] " + prefix + " &f" + nickname + ": " + message));
+        Bukkit.broadcastMessage(CC.translate("#ff3c55[" + town + "] " + prefix + " &f" + nickname + suffix + ":&f " + message));
         String msg = message;
         msg.replaceAll("@", "@-");
         Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.chatlogChannel")).sendMessage(event.getPlayer().getName() + ": " + msg).queue();
@@ -305,5 +310,11 @@ public class PlayerListeners implements Listener {
                 new Message("&c&lPlease verify through discord").send(((Player) event.getEntity()).getPlayer());
             }
         }
+    }
+
+    @EventHandler
+    public void healRefresh(PlayerCommandPreprocessEvent e) {
+
+        if (e.getMessage().contains("heal")) Florial.getPlayerData().get(e.getPlayer().getUniqueId()).refresh();
     }
 }

@@ -25,7 +25,7 @@ public class ScentManager implements Listener {
 
         if (e.getAction() != Action.LEFT_CLICK_AIR && e.getAction() != Action.RIGHT_CLICK_AIR) return;
 
-        if (e.getItem() == null || (!NBTEditor.contains(e.getItem(), "CustomModelData", 1)) || e.getItem().getType() != Material.PAPER) return;
+        if (e.getItem() == null || NBTEditor.getInt(e.getItem(), "CustomModelData") != 1 || e.getItem().getType() != Material.PAPER) return;
 
         Player p = e.getPlayer();
 

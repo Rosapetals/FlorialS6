@@ -6,7 +6,9 @@ import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
+import net.florial.utils.general.VaultHandler;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,7 +25,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50
+            32, 34, 35, 36, 37, 45, 50, 47, 48, 10, 11, 12, 13, 14
     );
 
 
@@ -42,8 +44,11 @@ public class ClickablesListener implements Listener {
             case 35 -> infiniteCookie(e.getPlayer());
             case 36 -> waterJug(e.getPlayer());
             case 37 -> weatherManipulation(e.getPlayer());
-            case 45 -> specialEat(e.getPlayer());
-            case 50 -> gainTulips(e.getPlayer());
+            case 45, 47, 48 -> specialEat(e.getPlayer());
+            case 10, 11, 12 -> useMoneyVoucher(e.getPlayer());
+            case 13, 14 -> useDNAVoucher(e.getPlayer());
+            case 50 -> gainFlories(e.getPlayer());
+
         }
     }
 
@@ -109,15 +114,13 @@ public class ClickablesListener implements Listener {
 
     }
 
-    private static void gainTulips(Player p) {
+    private static void gainFlories(Player p) {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
         p.getInventory().setItemInMainHand(null);
 
-        data.setDna(data.getDna() + 5);
-
-        p.playSound(p.getLocation(), Sound.ITEM_HONEY_BOTTLE_DRINK, 1, (float) 7);
+        data.setFlories(data.getFlories() + 5);
 
     }
 
@@ -126,8 +129,35 @@ public class ClickablesListener implements Listener {
         if (heldItem.getAmount() > 1) {
             heldItem.setAmount(heldItem.getAmount() - 1);
         } else {
-            p.getInventory().removeItem(heldItem);
+            p.getInventory().setItemInMainHand(null);
         }
+
+    }
+
+    private static void useMoneyVoucher(Player p) {
+
+        ItemStack heldItem = p.getInventory().getItemInMainHand();
+
+        removeItem(heldItem, p);
+
+        String lore = heldItem.getItemMeta().getLore().get(0);
+        lore = ChatColor.stripColor(lore);
+
+        VaultHandler.addMoney(p, Integer.valueOf(lore));
+
+    }
+
+    private static void useDNAVoucher(Player p) {
+
+        ItemStack heldItem = p.getInventory().getItemInMainHand();
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        removeItem(heldItem, p);
+
+        String lore = heldItem.getItemMeta().getLore().get(0);
+        lore = ChatColor.stripColor(lore);
+
+        data.setDna(data.getDna() + Integer.valueOf(lore));
 
     }
 

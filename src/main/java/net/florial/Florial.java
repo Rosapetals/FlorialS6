@@ -6,6 +6,7 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.theokanning.openai.service.OpenAiService;
+import io.github.bananapuncher714.nbteditor.NBTEditor;
 import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,10 +48,12 @@ import net.florial.scoreboard.FastBoard;
 import net.florial.scoreboard.Scoreboard;
 import net.florial.species.events.SpeciesEventManager;
 import net.florial.utils.Cooldown;
+import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
 import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.EntityType;
@@ -123,7 +126,9 @@ public final class Florial extends JavaPlugin {
         manager.invoke();
 
         FlorialDatabase.initializeDatabase();
-        //enableRecipes();
+
+        enableRecipes();
+
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             throw new UnknownDependencyException("Vault was not found on this site");
         }
@@ -230,6 +235,7 @@ public final class Florial extends JavaPlugin {
         if (!(Cooldown.getCooldownMap("fly") == null)) Cooldown.getCooldownMap("fly").clear();
         if (!(Cooldown.getCooldownMap("scent") == null)) Cooldown.getCooldownMap("scent").clear();
         if (!(Cooldown.getCooldownMap("drill") == null)) Cooldown.getCooldownMap("drill").clear();
+        if (!(Cooldown.getCooldownMap("key") == null)) Cooldown.getCooldownMap("key").clear();
         if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
         if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
         if (Cooldown.getCooldownMap("c3") == null) Cooldown.createCooldown("c3");
@@ -238,15 +244,26 @@ public final class Florial extends JavaPlugin {
         if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
         if (Cooldown.getCooldownMap("drill") == null) Cooldown.createCooldown("drill");
         if (Cooldown.getCooldownMap("c4") == null) Cooldown.createCooldown("c4");
+        if (Cooldown.getCooldownMap("key") == null) Cooldown.createCooldown("key");
+
 
     }
 
-  //  private void enableRecipes() {
-        //registerRecipes("cheat_apple", true, "121", "   ", "   ", Arrays.asList(
-             //   new ItemStack(Material.APPLE),
-             //   new ItemStack(Material.GOLD_BLOCK),
-               // null, null, null, null, null, null, null), new ItemStack(Material.GOLDEN_APPLE));
-   // }
+    private void enableRecipes() {
+
+        ItemStack key1 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lTulip Crate Key", "", false), 1, "CustomModelData");
+        ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "CustomModelData");
+        key1= NBTEditor.set(key1, 1, "Crate");
+        registerRecipes("tulip_key", true, "111", "121", "111", Arrays.asList(
+                new ItemStack(Material.GOLD_INGOT),
+                new ItemStack(Material.PINK_TULIP),
+                null, null, null, null, null, null, null), key1);
+
+        registerRecipes("xp_key", true, "111", "121", "111", Arrays.asList(
+                new ItemStack(Material.LAPIS_LAZULI),
+                key1,
+                null, null, null, null, null, null, null), NBTEditor.set(key2, 1, "Crate"));
+    }
 
     @SuppressWarnings("SameParameterValue")
     private void registerRecipes(String key, boolean isShaped, String column1, String column2, String column3, List<ItemStack> ritems, ItemStack output) {
@@ -268,7 +285,7 @@ public final class Florial extends JavaPlugin {
             ritems.forEach((itemStack) ->
                     shapelessRecipe.addIngredient(new RecipeChoice.ExactChoice(itemStack)));
         }
-        Bukkit.removeRecipe(new NamespacedKey(this, key));
+        Bukkit.removeRecipe(NamespacedKey.minecraft(key));
         Bukkit.addRecipe(recipe);
 
     }
@@ -307,11 +324,14 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new SwitchSpeciesCommand());
         manager.registerCommand(new IridiumKeyAllCommand());
         manager.registerCommand(new SwitchNickNameCommand());
-        manager.registerCommand(new SitCommand());
-        manager.registerCommand(new SleepCommand());
         manager.registerCommand(new PrefixCommand());
         manager.registerCommand(new SellCommand());
         manager.registerCommand(new InstinctsMenuCommand());
+        manager.registerCommand(new VoteCommand());
+        manager.registerCommand(new RankFlySpeedCommand());
+        manager.registerCommand(new ProfileCommand());
+        manager.registerCommand(new KeyAllCommand());
+        manager.registerCommand(new ViewSelfCommand());
 
 
 

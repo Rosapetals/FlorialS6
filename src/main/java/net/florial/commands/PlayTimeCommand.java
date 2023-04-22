@@ -17,7 +17,9 @@ public class PlayTimeCommand extends BaseCommand {
 
 
     @Default
-    public static void onGetPlaytime(Player player, @Optional @Flags("other") Player target) {
+    public static void onGetPlaytime(Player player, @Optional @Flags("other") Player arg1) {
+
+        Player target = (arg1 == null) ? player : arg1;
 
         int playtime = target.getStatistic(Statistic.PLAY_ONE_MINUTE);
         int seconds = playtime / 20;

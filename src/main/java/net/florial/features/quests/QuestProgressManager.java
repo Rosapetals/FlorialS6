@@ -50,5 +50,7 @@ public class QuestProgressManager implements Listener {
 
         data.setGrowth(data.getGrowth() + 1);
         data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
+        p.setLevel(p.getLevel() + 3);
+
     }
 }

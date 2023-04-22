@@ -130,6 +130,15 @@ public abstract class Species implements Listener {
 
             p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
 
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Now that you have a species.. Well.. You're only a KIT."));
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Take quests from /grow to age up by pressing the + button in /grow. Then, age up by pressing the 'GROW' button in /grow."));
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Do /skills and upgrade each skill to gain more benefits"));
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Don't understand? That's okay! Just ask for help or take your time."));
+
+
+
+
+
         } else {
             p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You already have a species! Remove it through /resetspecies for 25 DNA.");
         }
@@ -167,7 +176,7 @@ public abstract class Species implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getSpecies() != this || data.getSpecies().diet() == null || data.getSpecies().diet().isEmpty()) return;
+        if (data.getSpecies() != this) return;
 
         event.setCancelled(true);
 
@@ -182,11 +191,11 @@ public abstract class Species implements Listener {
 
         if (boneFoods.contains(event.getItem().getType())) p.getInventory().addItem(new ItemStack(Material.BONE, 1));
 
-        if (this.diet().contains(item.getType())) {
+        if (this.diet() == null || this.diet().isEmpty() || this.diet().contains(item.getType())) {
 
             Material mat = event.getItem().getType();
 
-            int foodValue = fillingValues.get(mat) != null ? fillingValues.get(mat) : 0;
+            int foodValue = fillingValues.get(mat) != null ? fillingValues.get(mat) : 5;
             int satValue = foodValue/2;
 
             if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.METABOLIZER) != null) foodValue = 20;

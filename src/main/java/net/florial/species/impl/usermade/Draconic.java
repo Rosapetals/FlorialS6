@@ -69,7 +69,7 @@ public class Draconic extends Species implements Listener {
 
         player.getWorld().getNearbyEntities(player.getLocation(), 10, 10, 10)
                 .stream()
-                .filter(entity -> !entity.equals(player) && (!(entity instanceof LivingEntity)))
+                .filter(entity -> !entity.equals(player) && entity instanceof LivingEntity)
                 .forEach(entity -> ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20 * 10, 2)));
 
         Cooldown.addCooldown("c1", player, 10);

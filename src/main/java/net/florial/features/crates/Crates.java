@@ -19,13 +19,12 @@ import java.util.List;
 public class Crates implements Listener {
 
     private static final Map<Integer, List<ItemStack>> crateDrops = new HashMap<>();
-    private static final Location[] crateLocations = {
+    private static final List<Location> crateLocations = List.of(
             new Location(Bukkit.getWorld("world"), 6935, 73, 7168),
             new Location(Bukkit.getWorld("world"), 6938, 73, 7167),
             new Location(Bukkit.getWorld("world"), 6941, 73, 7170),
-            new Location(Bukkit.getWorld("world"), 6940, 73, 7173)
+            new Location(Bukkit.getWorld("world"), 6940, 73, 7173));
 
-    };
 
     static {
 
@@ -47,11 +46,11 @@ public class Crates implements Listener {
                 key3,
                 key4,
 
-                CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 10), "#ff7a8b&lFlories [Left-Click]", "", false),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 5), "#ff7a8b&lFlories [Left-Click]", "", false), 50, "CustomModelData"),
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l50000", false), 10, "CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l30000", false), 11, "CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l10000", false), 12, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l10000", false), 10, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l15000", false), 11, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l5000", false), 12, "CustomModelData"),
 
                 new ItemStack(Material.DIAMOND),
                 new ItemStack(Material.QUARTZ, 10),
@@ -68,7 +67,7 @@ public class Crates implements Listener {
                 new ItemStack(Material.EXPERIENCE_BOTTLE, 600),
                 new ItemStack(Material.EXPERIENCE_BOTTLE, 64),
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l50", false), 13, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l10", false), 13, "CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l20", false), 14, "CustomModelData"),
 
                 new ItemStack(Material.GOLDEN_APPLE, 64),
@@ -121,11 +120,19 @@ public class Crates implements Listener {
     public void crateOpen(PlayerInteractEvent e) {
 
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK ||
-                !(Arrays.asList(crateLocations).contains((Objects.requireNonNull(e.getClickedBlock()).getLocation())))) return;
+                !(crateLocations.contains((Objects.requireNonNull(e.getClickedBlock()).getLocation())))) return;
 
         ItemStack heldItem = e.getPlayer().getInventory().getItemInMainHand();
 
         if (!NBTEditor.contains(heldItem, "Crate")) return;
+
+        int value = NBTEditor.getInt(heldItem, "Crate");
+
+        if (crateLocations.get(0).equals(e.getClickedBlock().getLocation()) && value != 1) return;
+        if (crateLocations.get(1).equals(e.getClickedBlock().getLocation()) && value != 2) return;
+        if (crateLocations.get(2).equals(e.getClickedBlock().getLocation()) && value != 3) return;
+        if (crateLocations.get(3).equals(e.getClickedBlock().getLocation()) && value != 4) return;
+
 
         List<ItemStack> openingDrops = crateDrops.get(NBTEditor.getInt(heldItem, "Crate"));
 
@@ -134,15 +141,16 @@ public class Crates implements Listener {
         if (heldItem.getAmount() > 1) {
             heldItem.setAmount(heldItem.getAmount() - 1);
         } else {
-            p.getInventory().remove(heldItem);
+            p.getInventory().setItemInMainHand(null);
         }
 
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 1, 2);
 
+        Random rand = new Random();
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
 
-            checkItems(p, true, List.of(openingDrops.get(0)));
+            checkItems(p, true, List.of(openingDrops.get(rand.nextInt(openingDrops.size()))));
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BIT, 1, 2);
             FireWorkSpawner.spawn(3, Color.FUCHSIA, Color.WHITE, p);
 

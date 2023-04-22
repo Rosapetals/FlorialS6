@@ -3,6 +3,7 @@ package net.florial.features.quests;
 import lombok.Getter;
 import lombok.Setter;
 import net.florial.Florial;
+import net.florial.utils.general.CC;
 import net.florial.utils.general.VaultHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -64,7 +65,7 @@ public class Quest {
                 Florial.getQuestBar().get(u).removePlayer(p);
                 VaultHandler.removeMoney(p, cost);
             } else {
-                p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Based upon your current balance, you need $" + cost + " to roll for a new quest. You are short by $" + (cost-balance));
+                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Based upon your current balance, you need $" + cost + " to roll for a new quest. You are short by $" + (cost-balance)));
                 return;
             }
 
@@ -80,7 +81,7 @@ public class Quest {
 
         Florial.getQuestBar().put(p.getUniqueId(), boss);
 
-        p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f View the top of your screen to view quest progress. Don't like your quest? Click the GET QUEST button again to get a new one for some money!");
+        p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f View the top of your screen to view quest progress. Don't like your quest? Click the GET QUEST button again to get a new one for some money!"));
     }
 
 

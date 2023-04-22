@@ -17,12 +17,11 @@ public class IridiumForestGenCommand extends BaseCommand {
     public void iridiumForestGen(Player p) {
 
 
-        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission set worldedit.*"), 40L);
-
-
-        Bukkit.dispatchCommand(p, "forestgen 10");
-
-        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " permission unset worldedit.*"), 40L);
+        Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission set worldedit.*");
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
+            Bukkit.dispatchCommand(p, "forestgen 10");
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission unset worldedit.*");
+        }, 40L);
 
 
 

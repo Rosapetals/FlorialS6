@@ -163,7 +163,7 @@ public class Cat extends Species implements Listener {
 
     private static void pounce(Player p) {
 
-        Vector unitVector = new Vector(p.getLocation().getDirection().getX(), 0, p.getLocation().getDirection().getZ()).normalize();
-        p.setVelocity(unitVector.multiply(4));
+        Vector unitVector = new Vector(0, p.getLocation().getDirection().getY(), 0).normalize();
+        p.setVelocity(unitVector.multiply(5));
     }
 }
