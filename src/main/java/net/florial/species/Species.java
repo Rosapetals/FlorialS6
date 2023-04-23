@@ -120,7 +120,7 @@ public abstract class Species implements Listener {
 
         if (SpecieType.valueOf(type.toUpperCase()).getId() == 4 && (!(p.hasPermission("pearlite")))) {
             p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You need the Pearlite rank from florial.tebex.io to get this species!");
-            p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
+            p.playSound(p, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             return;
         }
 
@@ -134,6 +134,9 @@ public abstract class Species implements Listener {
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Take quests from /grow to age up by pressing the + button in /grow. Then, age up by pressing the 'GROW' button in /grow."));
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Do /skills and upgrade each skill to gain more benefits"));
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Don't understand? That's okay! Just ask for help or take your time."));
+            p.playSound(p, Sound.BLOCK_AMETHYST_BLOCK_HIT, 1, 1);
+
+            Bukkit.dispatchCommand(p, "wild");
 
 
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Boar extends Mob implements Listener {
     public Boar(EntityType entity) {
-        super(EntityType.HOGLIN, EntityType.SKELETON, 100, 8, 20, List.of(NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PORKCHOP), "&fRaw Boar", "", false), 1, "CustomModelData")));
+        super(EntityType.HOGLIN, EntityType.SKELETON, 20, 6, 10, List.of(NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PORKCHOP), "&fRaw Boar", "", false), 1, "CustomModelData")));
 
     }
 

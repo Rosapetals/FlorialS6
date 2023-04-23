@@ -80,13 +80,13 @@ public class AnimalTrackingUI {
         p.closeInventory();
 
         if (Cooldown.isOnCooldown("c3", p)) {
-            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You are on cooldown! Upgrade your scent skill in /skills to get a shorter cooldown.");
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You are on cooldown! Upgrade your scent skill in /skills to get a shorter cooldown."));
             return;
         }
 
         if (scent < required) {
             p.playSound(loc, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
-            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You need Scent level " + required + " for this, but you only have " + scent);
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You need Scent level " + required + " for this, but you only have " + scent));
             return;
         }
 

@@ -54,7 +54,7 @@ public class Skills {
                                                 "RESISTANCE", "" + data.getSkills().get(Skill.RESISTANCE), "#ffa2c4 50 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
                                                 "Increase in Resistance")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "SURVIVAL", "" + data.getSkills().get(Skill.SURVIVAL), "#ffa2c4 25 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
+                                                "SURVIVAL", "" + data.getSkills().get(Skill.SURVIVAL), "#ffa2c4 Will increase as you upgrade other skills",
                                                 "More health : higher dmg")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "" + descriptions.get(0), "" + data.getSkills().get(Skill.SPECIFIC), "#ffa2c4 25 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
@@ -104,7 +104,6 @@ public class Skills {
         if (dna < i) {
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Not enough DNA"));
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
-            data.setDna(dna - i);
             return;
         }
 

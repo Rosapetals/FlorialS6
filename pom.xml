@@ -276,5 +276,11 @@
             <artifactId>NuVotifier</artifactId>
             <version>2.7.2</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.NetzkroneHD</groupId>
+            <artifactId>WGRegionEvents</artifactId>
+            <version>v1.7.3</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

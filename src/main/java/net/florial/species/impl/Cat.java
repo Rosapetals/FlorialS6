@@ -132,7 +132,7 @@ public class Cat extends Species implements Listener {
                     Vector launchDirection = e.getLocation().toVector().subtract(attacker.getLocation().toVector()).normalize().multiply(1.2);
                     launchDirection.setY(0.5);
                     e.setVelocity(launchDirection);
-                    ((LivingEntity) e).damage(4+data.getAge().getIncrease());
+                    event.setDamage((4+data.getAge().getIncrease()));
                 }
 
                 Cooldown.addCooldown("c1", attacker, 10);
@@ -163,7 +163,7 @@ public class Cat extends Species implements Listener {
 
     private static void pounce(Player p) {
 
-        Vector unitVector = new Vector(0, p.getLocation().getDirection().getY(), 0).normalize();
-        p.setVelocity(unitVector.multiply(5));
+        Vector unitVector = new Vector(0, p.getLocation().getDirection().getY() + 1, 0).normalize();
+        p.setVelocity(unitVector.multiply(1));
     }
 }

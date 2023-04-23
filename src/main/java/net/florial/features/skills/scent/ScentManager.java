@@ -2,6 +2,7 @@ package net.florial.features.skills.scent;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.utils.game.GetTarget;
+import net.florial.utils.general.CC;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
@@ -42,7 +43,7 @@ public class ScentManager implements Listener {
         LivingEntity entity = GetTarget.of(player);
         if (entity == null) return;
 
-        player.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤#ff5b70 Health of Target: &f" + entity.getHealth());
+        player.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤#ff5b70 Health of Target: &f" + entity.getHealth()));
 
     }
 

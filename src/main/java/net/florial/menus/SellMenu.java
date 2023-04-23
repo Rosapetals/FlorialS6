@@ -101,6 +101,7 @@ public class SellMenu {
         if (data.getUpgrades() != null && data.getUpgrades().get(Upgrade.SELLINCREASE) != null) amount = amount*2;
 
         VaultHandler.addMoney(p, amount * price);
+
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 2);
 
 

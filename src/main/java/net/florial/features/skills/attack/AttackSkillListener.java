@@ -18,7 +18,7 @@ public class AttackSkillListener implements Listener {
         Entity damager = e.getDamager();
         Entity ent = e.getEntity();
 
-        if (!(damager instanceof Player || (!(ent  instanceof LivingEntity)))) return;
+        if (!(damager instanceof Player p || (!(ent  instanceof LivingEntity)))) return;
 
         assert damager instanceof Player;
         Player p = (Player) damager;

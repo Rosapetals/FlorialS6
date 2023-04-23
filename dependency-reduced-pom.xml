@@ -193,6 +193,12 @@
       <version>7.2.12</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>com.github.NetzkroneHD</groupId>
+      <artifactId>WGRegionEvents</artifactId>
+      <version>v1.7.3</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <properties>
     <java.version>17</java.version>

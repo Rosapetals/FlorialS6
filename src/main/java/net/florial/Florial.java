@@ -197,6 +197,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
         getServer().getPluginManager().registerEvents(new VoteListener(), this);
+        getServer().getPluginManager().registerEvents(new PoolListener(), this);
 
         getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstManager(), this);
@@ -318,6 +319,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new SkillsMenuCommand());
         manager.registerCommand(new DiamondFixWaterCommand());
         manager.registerCommand(new IridiumForestGenCommand());
+        manager.registerCommand(new ChangeFloriesCommand());
         manager.registerCommand(new IridiumPumpkinCommand());
         manager.registerCommand(new GradientChatCommand());
         manager.registerCommand(new IridiumFlyCommand());
@@ -332,6 +334,9 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ProfileCommand());
         manager.registerCommand(new KeyAllCommand());
         manager.registerCommand(new ViewSelfCommand());
+        manager.registerCommand(new NoFontCommand());
+        manager.registerCommand(new PackOffCommand());
+
 
 
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Snapper extends Mob implements Listener {
     public Snapper(EntityType entity) {
-        super(EntityType.RAVAGER, EntityType.SPIDER, 100, 8, 20, List.of(new ItemStack(Material.ROTTEN_FLESH)));
+        super(EntityType.RAVAGER, EntityType.SPIDER, 20, 5, 15, List.of(new ItemStack(Material.ROTTEN_FLESH)));
 
     }
 

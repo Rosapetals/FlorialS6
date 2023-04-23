@@ -67,7 +67,7 @@ public class Fox extends Species implements Listener {
 
         if (Cooldown.isOnCooldown("c1", p) || data.getSpecies() != this) return;
 
-        ((LivingEntity) e.getEntity()).damage(4+data.getAge().getIncrease());
+        e.setDamage((4+data.getAge().getIncrease()));
 
         p.playSound(p.getLocation(), Sound.ENTITY_EVOKER_FANGS_ATTACK, 1, (float) 0.5);
 

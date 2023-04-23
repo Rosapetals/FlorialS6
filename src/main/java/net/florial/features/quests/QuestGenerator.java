@@ -10,11 +10,11 @@ import java.util.Random;
 public class QuestGenerator {
 
     private static final List<Material> craftTypes = List.of(
-            Material.LEATHER_HELMET,
+            Material.BLAST_FURNACE,
             Material.CAMPFIRE,
             Material.FURNACE,
             Material.ARROW,
-            Material.BOW,
+            Material.SMOKER,
             Material.BARREL,
             Material.LOOM);
     private static final List<EntityType> mobTypes = List.of(
@@ -51,6 +51,12 @@ public class QuestGenerator {
             Material.APPLE,
             Material.PORKCHOP);
 
+    private static final List<Material> fishTypes = List.of(
+            Material.COD,
+            Material.SALMON,
+            Material.TROPICAL_FISH
+    );
+
     private static final Random random = new Random();
 
     public QuestGenerator() {}
@@ -75,6 +81,10 @@ public class QuestGenerator {
             case DELIVER -> {
                 Material itemType = itemTypes.get(random.nextInt(itemTypes.size()));
                 return new Quest("Bring " + target + " " + itemType.name().toLowerCase() + " to the Collection Bin at /warp bin", type, target, null, null, itemType, 0);
+            }
+            case FISH -> {
+                Material fishType = fishTypes.get(random.nextInt(fishTypes.size()));
+                return new Quest("Fish " + target + " " + fishType.name().toLowerCase() + " to complete this Quest", type, target, null, null, fishType, 0);
             }
         }
         return null;

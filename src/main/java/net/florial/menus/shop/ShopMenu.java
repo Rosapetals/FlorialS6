@@ -101,19 +101,25 @@ public class ShopMenu {
 
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
 
-        if (VaultHandler.getBalance(p) >= price) {
+        if ((!(Cooldown.isOnCooldown("menu", p)))) {
 
             UUID u = p.getUniqueId();
+
             int amount = Florial.getBulkBuy().get(u) != null && Florial.getBulkBuy().get(u) ? 64 : 1;
+
+            if (VaultHandler.getBalance(p) >= price*amount) {
+
+            } else {
+                p.closeInventory();
+                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least $" + price*amount + " to buy this. You are " + ((price*amount) - VaultHandler.getBalance(p)) + " short"));
+                return;
+            }
 
             VaultHandler.removeMoney(p, price * amount);
 
             for (int i = 0; i < amount; i++) {p.getInventory().addItem(item);}
-            Cooldown.addCooldown("menu", p, 1);
 
-        } else if (!(Cooldown.isOnCooldown("menu", p))) {
-            p.closeInventory();
-            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least $" + price + " to buy this. You are " + (price - VaultHandler.getBalance(p)) + " short");
+            Cooldown.addCooldown("menu", p, 1);
 
         }
     }

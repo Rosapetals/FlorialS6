@@ -6,12 +6,14 @@ import net.florial.features.quests.QuestType;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
 import net.florial.utils.general.RegionDetector;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 
 import java.util.Objects;
@@ -72,6 +74,20 @@ public class QuestListener implements Listener {
 
         event.getItemDrop().remove();
 
+
+    }
+
+    @EventHandler
+    public void questFish(PlayerFishEvent event) {
+        if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH
+            || (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId()))) return;
+
+        if (Florial.getQuest().get(event.getPlayer().getUniqueId()).getType() != QuestType.FISH
+        || Florial.getQuest().get(event.getPlayer().getUniqueId()).getItemType() != ((Item) Objects.requireNonNull(event.getCaught())).getItemStack().getType()) return;
+
+        Player p = event.getPlayer();
+
+        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.FISH);
 
     }
 

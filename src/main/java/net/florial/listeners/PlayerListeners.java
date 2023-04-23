@@ -20,6 +20,7 @@ import net.florial.utils.general.CC;
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -79,7 +80,7 @@ public class PlayerListeners implements Listener {
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
 
-        if (p.hasPermission("florial.staff")) {
+        if (p.hasPermission("florial.staff") && (!(p.getName().contains("rosathor")))) {
 
             if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
                 new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
@@ -239,6 +240,8 @@ public class PlayerListeners implements Listener {
             return;
         }
 
+        message = (p.hasPermission("white") && (data.getGradient1().isBlank())) ? "&f" + message : (data.getGradient1().isBlank()) ? "&7" + message : message;
+
         if (!(data.getGradient1().isBlank())) {
             message = message.replaceAll("&", "and");
             message = message.replaceAll("%%", "percent");
@@ -256,7 +259,8 @@ public class PlayerListeners implements Listener {
 
 
         Bukkit.broadcastMessage(CC.translate("#ff3c55[" + town + "] " + prefix + " &f" + nickname + suffix + ":&f " + message));
-        String msg = message;
+        String msg = ChatColor.stripColor(message);
+
         msg.replaceAll("@", "@-");
         Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.chatlogChannel")).sendMessage(event.getPlayer().getName() + ": " + msg).queue();
     }

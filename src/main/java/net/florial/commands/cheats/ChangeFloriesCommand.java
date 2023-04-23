@@ -7,12 +7,11 @@ import co.aikar.commands.annotation.Flags;
 import co.aikar.commands.annotation.Optional;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
-import net.florial.species.SpecieType;
 import org.bukkit.entity.Player;
 
-public class ChangeDNACommand extends BaseCommand {
+public class ChangeFloriesCommand extends BaseCommand {
 
-    @CommandAlias("changedna")
+    @CommandAlias("changeflories")
     @CommandPermission("op")
     public void changeDnaCommand(Player p, @Optional @Flags("other") Player target, int a) {
 
@@ -20,7 +19,7 @@ public class ChangeDNACommand extends BaseCommand {
 
         PlayerData data = Florial.getPlayerData().get(target.getUniqueId());
 
-        data.setDna(data.getDna() + a);
+        data.setFlories(data.getFlories() + a);
 
         p.sendMessage("succesful");
     }

@@ -129,7 +129,7 @@ public class FloriesMenu {
 
         if (data.getFlories() >= price) {
 
-            String name = item.getItemMeta().getLore().get(1);
+            String name = item.getItemMeta().getLore().get(0);
             name = ChatColor.stripColor(name);
 
             if (name.contains("command") || name.contains("rank") && (!(name.contains("-U")))) {
@@ -146,7 +146,6 @@ public class FloriesMenu {
                 if (name.contains("-U")) {
 
                     if (data.getUpgrades() == null) data.setUpgrades(new HashMap<>(Map.of(Upgrade.DOUBLEHEALTH, false)));
-
 
                     int value = NBTEditor.getInt(item, "CustomModelData");
 

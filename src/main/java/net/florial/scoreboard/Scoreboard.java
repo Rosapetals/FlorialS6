@@ -40,7 +40,7 @@ public class Scoreboard implements Listener {
         String text6 = CC.translate("   #ff99a6 ︳ #ffd7dc&lBALANCE:&f ￠" + MoneyFormatter.put((long) VaultHandler.getBalance(p)));
         String text7 = CC.translate("   #ff7a8b ︳ #ff5b70&lFLORIES:&f " + data.getFlories());
         String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
-        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE&f: " + data.getAge());
+        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE&f: " + data.getAge() + " - /grow");
         String text10 = CC.translate("    #ff1d3a┕━━━━━━━━━━━━━━━━━━┙");
         String text8 = CC.translate("   #ff3c55 ︳ #ff5b70&lplay.florial.us");
         String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.tebex.io");
@@ -78,7 +78,7 @@ public class Scoreboard implements Listener {
         String text6 = CC.translate("   #ff99a6 ︳ #ffd7dc&lBALANCE:&f ￠" + MoneyFormatter.put((long) VaultHandler.getBalance(p)));
         String text7 = CC.translate("   #ff7a8b ︳ #ff5b70&lFLORIES:&f " + data.getFlories());
         String text12 = CC.translate("   #ff5b70 ︳ #ffd7dc&lDNA&f: " + data.getDna());
-        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE:&f: " + data.getAge());
+        String text13 = CC.translate("   #ff3c55 ︳ #ff5b70&lAGE:&f: " + data.getAge() + " - /grow");
         String text10 = CC.translate("    #ff1d3a┕━━━━━━━━━━━━━━━━━━┙");
         String text8 = CC.translate("   #ff3c55 ︳ #ff5b70&lplay.florial.us");
         String text9 = CC.translate("   #ff5b70 ︳ #ffb5b7&lflorial.tebex.io");
