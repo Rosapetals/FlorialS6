@@ -11,6 +11,6 @@ public class RemoveFieldCommand extends BaseCommand {
     private static final FlorialDatabase database = new FlorialDatabase();
 
     @CommandAlias("fieldremove")
-    @CommandPermission("op")
+    @CommandPermission("beyondop")
     public void onInfoPanel(Player p, String s) {database.removeField(s);}
 }

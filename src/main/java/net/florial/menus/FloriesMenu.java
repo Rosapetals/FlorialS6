@@ -165,7 +165,7 @@ public class FloriesMenu {
 
             }
 
-            data.setDna(data.getFlories() - price);
+            data.setFlories(data.getFlories() - price);
             p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 1, (float) 1.3);
 
 

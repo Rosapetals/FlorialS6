@@ -4,7 +4,7 @@ import net.florial.Florial;
 import net.florial.features.quests.Quest;
 import net.florial.features.quests.QuestType;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
-import net.florial.utils.general.RegionDetector;
+import net.florial.utils.game.RegionDetector;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -32,6 +32,9 @@ public class QuestListener implements Listener {
         callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.CRAFT);
 
     }
+
+
+
 
     @EventHandler
     public void questMobKill(EntityDeathEvent event) {

@@ -11,6 +11,13 @@ public enum QuestType {
     EAT(15, 35),
     DELIVER(25, 100),
     FISH(5, 10);
+
+    // specialQuests
+
+   // BURROW(100, 600),
+   // POUNCE(50, 75),
+  //  PLAYER_KILL(1, 5);
+
     @Getter private final int maxAmount;
 
     @Getter private final int minAmount;

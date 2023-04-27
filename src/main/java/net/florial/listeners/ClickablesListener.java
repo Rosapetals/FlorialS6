@@ -25,7 +25,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 47, 48, 10, 11, 12, 13, 14
+            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14
     );
 
 
@@ -44,8 +44,8 @@ public class ClickablesListener implements Listener {
             case 35 -> infiniteCookie(e.getPlayer());
             case 36 -> waterJug(e.getPlayer());
             case 37 -> weatherManipulation(e.getPlayer());
-            case 45, 47, 48 -> specialEat(e.getPlayer());
-            case 10, 11, 12 -> useMoneyVoucher(e.getPlayer());
+            case 45, 2, 3, 5 -> specialEat(e.getPlayer());
+            case 4 -> useMoneyVoucher(e.getPlayer());
             case 13, 14 -> useDNAVoucher(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
 

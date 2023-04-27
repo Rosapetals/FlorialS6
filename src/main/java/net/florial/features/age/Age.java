@@ -3,6 +3,7 @@ package net.florial.features.age;
 import lombok.Getter;
 import net.florial.models.PlayerData;
 import net.florial.species.disguises.Morph;
+import net.florial.utils.general.CC;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -35,16 +36,16 @@ public enum Age {
         p.closeInventory();
 
         if (!(data.getGrowth() >= requiredQuests)) {
-            p.sendMessage("You have not completed enough quests. To age up, you need "
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You have not completed enough quests. To age up, you need "
                     + requiredQuests + " completed quests. Complete quests through /grow. You currently have "
-                    + data.getGrowth() + " quests completed.");
+                    + data.getGrowth() + " quests completed."));
             return;
         }
 
         if (!(data.getDna() >= requiredDNA)) {
-            p.sendMessage("You are lacking DNA. To age up, you need "
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You are lacking DNA. To age up, you need "
                     + requiredDNA + " DNA! To get DNA, complete quests or convert cash to DNA in /species. You currently have"
-                    + data.getDna() + " DNA.");
+                    + data.getDna() + " DNA."));
             return;
         }
 
@@ -60,7 +61,7 @@ public enum Age {
         
         if (newAge != null) {
 
-            p.sendMessage("You have aged up to " + newAge + "!");
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You have aged up to #ff5b70" + newAge + "!"));
 
             data.setAge(newAge);
             data.setGrowth(0);
@@ -71,7 +72,7 @@ public enum Age {
             morph.activate(p, 5, false, true, data.getSpecies());
 
         } else {
-            p.sendMessage("You can't age up anymore!");
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You can't age up anymore!"));
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 2, 1);
 
         }

@@ -26,7 +26,7 @@ public class IridiumKeyAllCommand extends BaseCommand {
     @Default
     public void iridiumKeyAll(Player p) {
 
-        if (didKeyAll.get(p.getUniqueId()) == null || (!(didKeyAll.get(p.getUniqueId())))) {
+        if (didKeyAll.get(p.getUniqueId()) != null && (didKeyAll.get(p.getUniqueId()))) {
 
             p.sendMessage((CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You are on cooldown for 1 day.")));
             if (!(p.hasPermission("op"))) return;

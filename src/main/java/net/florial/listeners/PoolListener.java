@@ -29,6 +29,7 @@ public class PoolListener implements Listener {
 
         VaultHandler.addMoney(p, 100*bonus);
         data.setDna(data.getDna()+bonus);
+        if (data.getSpecieId() == 10) p.giveExp(1000);
 
         Cooldown.addCooldown("c3", p, 120);
 

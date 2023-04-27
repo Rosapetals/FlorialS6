@@ -25,8 +25,11 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Cat extends Species implements Listener {
+
+    private static final HashMap<Entity, Boolean> wasClawed = new HashMap<>();
 
     public Cat(int id) {
         super("Cat", id, 14, true, DisguiseType.CAT);
@@ -113,30 +116,45 @@ public class Cat extends Species implements Listener {
 
     @EventHandler
     public void onPlayerAttack(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player attacker) {
 
-            PlayerData data = Florial.getPlayerData().get(attacker.getUniqueId());
+        if (!(event.getDamager() instanceof Player attacker)) {
+            return;
+        }
 
-            if (data.getSpecies() != this) return;
+        if (wasClawed.get(event.getEntity()) != null) {
+            wasClawed.remove(event.getEntity());
+            return;
+        }
 
-            if (attacker.getInventory().getItemInMainHand().getType() == Material.AIR || (!(Cooldown.isOnCooldown("c1", attacker)))) {
+        PlayerData data = Florial.getPlayerData().get(attacker.getUniqueId());
 
-                Location particleLoc = attacker.getLocation().clone()
+        if (data.getSpecies() != this) {
+            return;
+        }
+
+        if (attacker.getInventory().getItemInMainHand().getType() == Material.AIR || (!(Cooldown.isOnCooldown("c1", attacker)))) {
+            Location particleLoc = attacker.getLocation().clone()
                     .add(0.0, 1.0, 0.0)
                     .add(attacker.getLocation().getDirection().clone().normalize().multiply(0.75));
+            attacker.spawnParticle(Particle.SWEEP_ATTACK, particleLoc, 2);
 
-                attacker.spawnParticle(Particle.SWEEP_ATTACK, particleLoc, 2);
+            double damage = 2 + data.getAge().getIncrease();
+            double radius = 3;
 
-                for (Entity e : attacker.getNearbyEntities(3, 3, 3)) {
-                    if (!(e instanceof LivingEntity)) continue;
-                    Vector launchDirection = e.getLocation().toVector().subtract(attacker.getLocation().toVector()).normalize().multiply(1.2);
-                    launchDirection.setY(0.5);
-                    e.setVelocity(launchDirection);
-                    event.setDamage((4+data.getAge().getIncrease()));
-                }
+            Predicate<Entity> predicate = e -> e instanceof LivingEntity && !e.equals(attacker);
 
-                Cooldown.addCooldown("c1", attacker, 10);
+            List<Entity> entities = (List<Entity>) attacker.getWorld().getNearbyEntities(attacker.getLocation(), radius, radius, radius, predicate);
+
+            for (Entity e : entities) {
+                if (!(e instanceof LivingEntity)) continue;
+                Vector launchDirection = e.getLocation().toVector().subtract(attacker.getLocation().toVector()).normalize().multiply(1.2);
+                launchDirection.setY(0.5);
+                e.setVelocity(launchDirection);
+                wasClawed.put(e, true);
+                ((LivingEntity) e).damage(damage, attacker);
             }
+
+            Cooldown.addCooldown("c1", attacker, 10);
         }
     }
 

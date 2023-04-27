@@ -50,14 +50,14 @@ public class EndShiftCommand extends BaseCommand {
                 .build()).queue();
 
         Florial.getStaffWithShifts().remove(player.getUniqueId());
-        ChequeData cheque = FlorialDatabase.getChequeData(player.getUniqueId()).join();
-        PlayerData playerData = FlorialDatabase.getCachedOrDBPlayerData(player.getUniqueId()).join();
-        if (cheque == null) cheque = new ChequeData(player.getUniqueId().toString(), true);
-        cheque.setDiscordId(playerData.getDiscordId());
-        cheque.setCash(cheque.getCash() + 10000);
-        cheque.setCoins(cheque.getCoins() + 5);
-        cheque.setFlories(cheque.getFlories() + 5);
-        cheque.save(true);
+     //   ChequeData cheque = FlorialDatabase.getChequeData(player.getUniqueId()).join();
+     //   PlayerData playerData = FlorialDatabase.getCachedOrDBPlayerData(player.getUniqueId()).join();
+     //   if (cheque == null) cheque = new ChequeData(player.getUniqueId().toString(), true);
+      //  cheque.setDiscordId(playerData.getDiscordId());
+      //  cheque.setCash(cheque.getCash() + 10000);
+      //  cheque.setCoins(cheque.getCoins() + 5);
+      //  cheque.setFlories(cheque.getFlories() + 5);
+     //   cheque.save(true);
 
         player.sendMessage(CC.translate(("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff5b70&l➤&f Your shift has been registered and the funds have been added to your cheque accordingly. Please use /cashout to claim your cheque")));
     }

@@ -25,7 +25,8 @@ public enum Upgrade {
     METABOLIZER(8, false, 8),
     STRIKER(9, false, 9),
     RESISTANT(10, false, 10),
-    FLESHEATER(11, false, 11);
+    FLESHEATER(11, false, 11),
+    SOPHISTICATION(12, false, 12);
 
 
 

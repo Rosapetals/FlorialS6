@@ -138,16 +138,24 @@ public class PlayerListeners implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(u);
         data.save(true);
+
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {if (!event.getPlayer().isOnline())  Florial.getStaffWithShifts().remove(u);}, 6000L);
+
+
+
     }
 
     @EventHandler
-    public void onRespawn(PlayerRespawnEvent e) {
+    public void onRespawn(PlayerRespawnEvent e) {preventSliding(e.getPlayer());}
 
-        if (DisguiseAPI.getDisguise(e.getPlayer()) == null) return;
+    @EventHandler
+    public void dimensionChange(PlayerChangedWorldEvent e) {preventSliding(e.getPlayer());}
+
+    private static void preventSliding(Player p) {
+
+        if (DisguiseAPI.getDisguise(p) == null) return;
 
         Bukkit.getServer().getScheduler().runTaskLater(florial, () -> {
-
-            Player p = e.getPlayer();
 
             MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
 
@@ -188,6 +196,32 @@ public class PlayerListeners implements Listener {
         UUID u = p.getUniqueId();
         PlayerData data = Florial.getPlayerData().get(u);
 
+        event.setCancelled(true);
+
+        String message = ((TextComponent) event.message()).content();
+        if (florial.ess.getUser(p).isMuted()) return;
+
+        for (String pattern : SLURS) {
+            Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(message.replaceAll(" ", ""));
+            if (!(matcher.find())) continue;
+            String finalMessage = message;
+            if (message.contains("get")) break;
+            new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + finalMessage);}}.runTask(florial);
+
+            return;
+
+        }
+
+        if (Florial.getBoardLocation().get(u) != null) {
+            String finalMessage1 = ChatColor.stripColor(message);
+            new BukkitRunnable() {@Override public void run() {
+                BoardListener.writeBoard(p, finalMessage1, Florial.getBoardLocation().get(u));
+                Florial.getBoardLocation().remove(u);
+
+            }}.runTask(florial);
+            return;
+        }
+
         if (Florial.getInstance().getStaffToVerify().contains(u)) {
             event.setCancelled(true);
             new Message("&c&lPlease verify through discord").send(p);
@@ -197,8 +231,6 @@ public class PlayerListeners implements Listener {
             event.setCancelled(true);
             new Message("&c&lPlease verify through discord").send(p);
         }
-
-        if (florial.ess.getUser(p).isMuted()) return;
 
         String prefix = data.getPrefix();
         if (Objects.equals(prefix, "")) {
@@ -220,20 +252,6 @@ public class PlayerListeners implements Listener {
             prefix = "Default";
         }
 
-        event.setCancelled(true);
-
-        String message = ((TextComponent) event.message()).content();
-
-        for (String pattern : SLURS) {
-            Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(message.replaceAll(" ", ""));
-            if (!(matcher.find())) continue;
-            String finalMessage = message;
-            if (message.contains("get")) break;
-            new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + finalMessage);}}.runTask(florial);
-
-            return;
-
-        }
 
         if (spamChecker(p)) {
             new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 15m You were muted for Possible Spam - Appeal: https://discord.com/invite/TRsjqSfHVq (Slow your messages!)");}}.runTask(florial);

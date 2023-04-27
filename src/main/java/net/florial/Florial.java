@@ -18,7 +18,6 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
 import net.florial.commands.cheats.*;
-import net.florial.commands.database.RemoveFieldCommand;
 import net.florial.commands.discord.*;
 import net.florial.commands.menu.FloriesMenuCommand;
 import net.florial.commands.menu.InstinctsMenuCommand;
@@ -53,6 +52,7 @@ import net.florial.utils.general.VaultHandler;
 import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.boss.BossBar;
@@ -87,6 +87,7 @@ public final class Florial extends JavaPlugin {
     @Getter private static final HashMap<String, Short> botState = new HashMap<>();
     @Getter private static final HashMap<String, List<String>> answers = new HashMap<>();
     @Getter private static final HashMap<UUID, Boolean> bulkBuy = new HashMap<>();
+    @Getter private static final HashMap<UUID, Location> signLocation = new HashMap<>();
 
 
 
@@ -148,16 +149,6 @@ public final class Florial extends JavaPlugin {
             throw new NullPointerException("WorldGuard is not on this server.");
         }
         ess = (Essentials) Bukkit.getPluginManager().getPlugin("Essentials");
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
-            @Override
-            public void run() {
-                getStaffWithShifts().forEach((uuid, shiftData) -> {
-                    if (!Bukkit.getOfflinePlayer(uuid).isOnline()) {
-                        getStaffWithShifts().remove(uuid);
-                    }
-                });
-            }
-        }, 12000L, 12000);
 
 
     }
@@ -196,8 +187,10 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ClickablesListener(), this);
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
-        getServer().getPluginManager().registerEvents(new VoteListener(), this);
+        getServer().getPluginManager().registerEvents(new VoteRewardsListener(), this);
         getServer().getPluginManager().registerEvents(new PoolListener(), this);
+        getServer().getPluginManager().registerEvents(new ColonyResourceListener(), this);
+        getServer().getPluginManager().registerEvents(new BoardListener(), this);
 
         getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstManager(), this);
@@ -213,13 +206,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Wisps(EntityType.WITCH), this);
         getServer().getPluginManager().registerEvents(new Crawlies(EntityType.CAVE_SPIDER), this);
 
-        if (!(Cooldown.getCooldownMap("c1") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c1")).clear();
-        if (!(Cooldown.getCooldownMap("c2") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("c2")).clear();
-        if (!(Cooldown.getCooldownMap("scent") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("scent")).clear();
         if (!(Cooldown.getCooldownMap("spam") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("spam")).clear();
-        if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
-        if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
-        if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
         if (Cooldown.getCooldownMap("spam") == null) Cooldown.createCooldown("spam");
 
         if (!(Bukkit.getOnlinePlayers().size() > 0)) return;
@@ -263,7 +250,7 @@ public final class Florial extends JavaPlugin {
         registerRecipes("xp_key", true, "111", "121", "111", Arrays.asList(
                 new ItemStack(Material.LAPIS_LAZULI),
                 key1,
-                null, null, null, null, null, null, null), NBTEditor.set(key2, 1, "Crate"));
+                null, null, null, null, null, null, null), NBTEditor.set(key2, 2, "Crate"));
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -303,7 +290,6 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ChangeSkillsCommand());
         manager.registerCommand(new NuzzleCommand());
         manager.registerCommand(new GrowCommand());
-        manager.registerCommand(new RemoveFieldCommand());
         manager.registerCommand(new SetDiscordIDCommand());
         manager.registerCommand(new StartShiftCommand());
         manager.registerCommand(new EndShiftCommand());
@@ -395,6 +381,8 @@ public final class Florial extends JavaPlugin {
 
     public static HashMap<UUID, Quest> getQuest(){return questData;}
     public static HashMap<UUID, BossBar> getQuestBar(){return questBar;}
+
+    public static HashMap<UUID, Location> getBoardLocation(){return signLocation;}
 
 
 }

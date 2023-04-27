@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -123,6 +124,14 @@ public class InstinctListener implements Listener {
         e.setDamage(2);
         p.setFoodLevel(20);
 
+
+    }
+
+    @EventHandler
+    public void onPlayerExpChange(PlayerExpChangeEvent event) {
+
+        if (Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getUpgrades() == null) return;
+        if (Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getUpgrades().get(Upgrade.SOPHISTICATION) != null) event.setAmount(event.getAmount() * 3);
 
     }
 }

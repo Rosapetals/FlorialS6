@@ -119,7 +119,7 @@ public abstract class Species implements Listener {
         p.closeInventory();
 
         if (SpecieType.valueOf(type.toUpperCase()).getId() == 4 && (!(p.hasPermission("pearlite")))) {
-            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You need the Pearlite rank from florial.tebex.io to get this species!");
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You need the Pearlite rank from florial.tebex.io to get this species!"));
             p.playSound(p, Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             return;
         }
@@ -143,7 +143,7 @@ public abstract class Species implements Listener {
 
 
         } else {
-            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You already have a species! Remove it through /resetspecies for 25 DNA.");
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You already have a species! Remove it through /resetspecies for 25 DNA."));
         }
     }
     public static void refreshTag(Player p) {

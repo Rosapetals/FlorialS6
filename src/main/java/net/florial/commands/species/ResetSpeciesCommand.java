@@ -6,6 +6,7 @@ import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
+import net.florial.utils.general.CC;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -34,7 +35,7 @@ public class ResetSpeciesCommand extends BaseCommand {
             for (PotionEffect effect : p.getActivePotionEffects()) {p.removePotionEffect(effect.getType());}
 
         } else {
-            p.sendMessage("You need at least 25 DNA for this!");
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least 25 DNA for this!"));
         }
 
     }

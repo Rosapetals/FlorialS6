@@ -119,7 +119,7 @@ public class ShopMenu {
 
             for (int i = 0; i < amount; i++) {p.getInventory().addItem(item);}
 
-            Cooldown.addCooldown("menu", p, 1);
+            Cooldown.addCooldown("menu", p, 2);
 
         }
     }

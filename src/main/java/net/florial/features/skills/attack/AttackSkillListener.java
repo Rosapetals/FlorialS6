@@ -3,7 +3,6 @@ package net.florial.features.skills.attack;
 import net.florial.Florial;
 import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,13 +14,11 @@ public class AttackSkillListener implements Listener {
     @EventHandler
     public void attackSkillBoost(EntityDamageByEntityEvent e){
 
-        Entity damager = e.getDamager();
-        Entity ent = e.getEntity();
+        if (!(e.getDamager() instanceof Player p)) return;
 
-        if (!(damager instanceof Player p || (!(ent  instanceof LivingEntity)))) return;
+        if (!(e.getEntity()  instanceof LivingEntity)) return;
 
-        assert damager instanceof Player;
-        Player p = (Player) damager;
+
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
         int attackSkill =  data.getSkills().get(Skill.STRENGTH);

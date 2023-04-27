@@ -21,7 +21,6 @@ import net.dv8tion.jda.api.requests.RestAction;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.models.DiscordUser;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 

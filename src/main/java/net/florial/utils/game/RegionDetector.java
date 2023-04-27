@@ -1,4 +1,4 @@
-package net.florial.utils.general;
+package net.florial.utils.game;
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
