@@ -53,7 +53,7 @@ public enum Age {
         Age newAge = null;
 
         for (Age e : values())  {
-            if (e.id != id) {
+            if (e.id > id) {
                 newAge = e;
                 break;
             }

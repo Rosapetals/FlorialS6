@@ -75,7 +75,7 @@ public class QuestGenerator {
                  return new Quest("Kill " + target + " " + mobType.name().toLowerCase(), type, target, null,  mobType, null, 0);
              }
             case EAT -> {
-                Material itemType = foodTypes.get(random.nextInt(itemTypes.size()));
+                Material itemType = foodTypes.get(random.nextInt(foodTypes.size()));
                 return new Quest("Collect and Eat " + target + " " + itemType.name().toLowerCase(), type, target, null, null, itemType, 0);
             }
             case DELIVER -> {

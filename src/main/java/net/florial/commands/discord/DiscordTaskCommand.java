@@ -36,7 +36,7 @@ public class DiscordTaskCommand extends SlashCommand {
     }
     @Override
     protected void execute(SlashCommandEvent slashCommandEvent) {
-        if (!slashCommandEvent.getMember().getRoles().contains(Florial.getDiscordServer().getRoleById(Florial.getInstance().getConfig().getString("discord.trustedStaffId")))) {
+        if (!slashCommandEvent.getMember().getRoles().contains(Florial.getDiscordServer().getRoleById("909186243772956732"))) {
             slashCommandEvent.reply("No permissions").setEphemeral(true).queue();
             return;
         }
