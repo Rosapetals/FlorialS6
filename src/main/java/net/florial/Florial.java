@@ -320,6 +320,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new InstinctsMenuCommand());
         manager.registerCommand(new VoteCommand());
         manager.registerCommand(new RankFlySpeedCommand());
+        manager.registerCommand(new RankGiveCommand());
         manager.registerCommand(new ProfileCommand());
         manager.registerCommand(new KeyAllCommand());
         manager.registerCommand(new ViewSelfCommand());

@@ -4,6 +4,7 @@ import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
+import me.libraryaddict.disguise.disguisetypes.watchers.AgeableWatcher;
 import me.libraryaddict.disguise.disguisetypes.watchers.CatWatcher;
 import me.libraryaddict.disguise.disguisetypes.watchers.FoxWatcher;
 import me.libraryaddict.disguise.disguisetypes.watchers.SlimeWatcher;
@@ -61,12 +62,21 @@ public class Morph {
 
 
             switch (pos) {
-                case 1 -> ((Sittable) watcher).setSitting(state);
-                case 2 -> watcher.setSleeping(state);
+                case 1 -> {
+                    if (species.getId() == 4) {
+                        watcher.setSneaking(state);
+                        ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
+                    } else {
+                        watcher.setSneaking(true);
+                        ((FoxWatcher) watcher).setType(Fox.Type.RED);
+
+                    }
+                }
                 case 4 -> {
                     if (species.getId() == 4) {
                         if (mobDisguise.getType() == DisguiseType.FOX) {
                             ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
+                            ((FoxWatcher) watcher).setCrouching(true);
                         } else {
                             ((CatWatcher) watcher).setType(Cat.Type.JELLIE);
                         }
@@ -74,7 +84,7 @@ public class Morph {
                         ((FoxWatcher) watcher).setType(Fox.Type.RED);
                     }
                 }
-                case 5 -> ((Ageable) mobDisguise).setAdult();
+                case 5 -> ((AgeableWatcher)watcher).setAdult();
             }
 
         } else {

@@ -6,15 +6,17 @@ import net.florial.features.quests.QuestType;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
 import net.florial.utils.game.RegionDetector;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerFishEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.event.player.*;
 
 import java.util.Objects;
 
@@ -85,12 +87,51 @@ public class QuestListener implements Listener {
         if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH
             || (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId()))) return;
 
-        if (Florial.getQuest().get(event.getPlayer().getUniqueId()).getType() != QuestType.FISH
-        || Florial.getQuest().get(event.getPlayer().getUniqueId()).getItemType() != ((Item) Objects.requireNonNull(event.getCaught())).getItemStack().getType()) return;
+        if (Florial.getQuest().get(event.getPlayer().getUniqueId()).getItemType() != ((Item) Objects.requireNonNull(event.getCaught())).getItemStack().getType()) return;
 
         Player p = event.getPlayer();
 
         callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.FISH);
+
+    }
+
+    @EventHandler
+    public void questBurrow(PlayerInteractEvent event) {
+
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK ||
+                (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId())
+                        || (!RegionDetector.detect(event.getPlayer().getLocation()).contains("fox")))) return;
+
+        Player p = event.getPlayer();
+        Quest quest = Florial.getQuest().get(p.getUniqueId());
+        Block b = event.getClickedBlock();
+
+        if (quest == null
+                || quest.getType() != QuestType.BURROW
+                || p.getFoodLevel() < 1
+                || b == null
+                || (!(b.getType().toString().contains("DIRT")))) return;
+
+        Material originalMaterial = b.getType();
+        b.setType(Material.SPRUCE_STAIRS);
+        p.setFoodLevel(p.getFoodLevel() - 1);
+
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> b.setType(originalMaterial), 100L);
+
+        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.BURROW);
+        p.playSound(p.getLocation(), Sound.BLOCK_ROOTED_DIRT_BREAK, 1, 2);
+        p.playSound(p.getLocation(), Sound.BLOCK_PACKED_MUD_BREAK, 1, 2);
+
+    }
+
+    @EventHandler
+    public void questWild(PlayerCommandPreprocessEvent event){
+        if (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId())
+                        || (!(event.getMessage().contains("wild")))) return;
+
+        Player p = event.getPlayer();
+
+        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.WILD);
 
     }
 

@@ -10,6 +10,8 @@ import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
+import net.florial.features.quests.Quest;
+import net.florial.features.quests.QuestType;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
@@ -134,13 +136,21 @@ public abstract class Species implements Listener {
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Take quests from /grow to age up by pressing the + button in /grow. Then, age up by pressing the 'GROW' button in /grow."));
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Do /skills and upgrade each skill to gain more benefits"));
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Don't understand? That's okay! Just ask for help or take your time."));
-            p.playSound(p, Sound.BLOCK_AMETHYST_BLOCK_HIT, 1, 1);
 
-            Bukkit.dispatchCommand(p, "wild");
-
-
-
-
+            switch(data.getSpecieId()){
+                case 1 -> {
+                    Bukkit.dispatchCommand(p, "warp cat");
+                    p.playSound(p.getLocation(), Sound.ENTITY_CAT_AMBIENT, 1, 2);
+                    Quest.give(p, true, new Quest("Do /wild | Reward: $1,000", QuestType.WILD, 1, null, null, null, 0));
+                }
+                case 2 -> {
+                    Bukkit.dispatchCommand(p, "warp fox");
+                    p.playSound(p.getLocation(), Sound.ENTITY_FOX_AMBIENT, 1, 2);
+                    Quest.give(p, true, new Quest("Do /wild | Reward: $1,000", QuestType.WILD, 1, null, null, null, 0));
+                }
+                case 3 -> Bukkit.dispatchCommand(p, "wild");
+            }
+            p.playSound(p, Sound.BLOCK_AMETHYST_BLOCK_HIT, (float) 0.3, 1);
 
         } else {
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You already have a species! Remove it through /resetspecies for 25 DNA."));

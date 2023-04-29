@@ -5,6 +5,7 @@ import net.florial.Florial;
 import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
+import net.florial.species.disguises.Morph;
 import net.florial.utils.Cooldown;
 import net.florial.utils.math.AgeFormula;
 import net.florial.utils.math.GetChance;
@@ -17,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -24,6 +26,8 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.*;
 
 public class Fox extends Species implements Listener {
+
+    private static final Morph morph = new Morph();
     
     public Fox(int id) {
         super("Fox", id, 16, true, DisguiseType.FOX);
@@ -103,5 +107,13 @@ public class Fox extends Species implements Listener {
         if (GetChance.chanceOf(chance)) e.getBlock().getDrops().add(new ItemStack(e.getBlock().getType()));
 
     }
-    
+
+    @EventHandler
+    public void onFoxSneak(PlayerToggleSneakEvent e) {
+
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == this) morph.activate(e.getPlayer(), 1, e.isSneaking(), true, this);
+
+    }
+
+
 }

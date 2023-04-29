@@ -71,7 +71,7 @@ public class GrowthMenu {
                         }));
                         contents.set(List.of(12,13,14), IntelligentItem.of(entries.get(1), event -> {
                             p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);
-                            Quest.give(p);
+                            Quest.give(p, false, null);
                         }));
                         contents.set(List.of(9,10,18,19,28), IntelligentItem.of(entries.get(3), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));
                         contents.set(List.of(16,17,25,26), IntelligentItem.of(entries.get(4), event -> {p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 2, 1);}));

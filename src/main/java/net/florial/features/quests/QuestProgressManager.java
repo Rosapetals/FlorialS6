@@ -5,6 +5,7 @@ import net.florial.features.age.Age;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
+import net.florial.utils.general.VaultHandler;
 import org.bukkit.Sound;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
@@ -20,7 +21,7 @@ public class QuestProgressManager implements Listener {
 
         Quest quest = event.getQuest();
 
-        if (quest.getType() != event.getType()) return;
+        if (quest == null || quest.getType() != event.getType()) return;
 
         completionChecker(event.getPlayer(), quest);
 
@@ -52,6 +53,7 @@ public class QuestProgressManager implements Listener {
         data.setGrowth(data.getGrowth() + 1);
         data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
         p.setLevel(p.getLevel() + 3);
+        if (quest.getType() == QuestType.WILD) VaultHandler.addMoney(p, 1000);
 
     }
 }
