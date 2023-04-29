@@ -130,6 +130,7 @@ public class DiscordListeners extends ListenerAdapter {
 
             FlorialDatabase.getDiscordUserData(event.getAuthor().getId()).thenAccept(discordUser -> {
                 if (discordUser == null) {
+                    System.out.println("it was null");
                     new DiscordUser(event.getAuthor().getId()).createNew();
                 } else {
                     if (num == 2) {
