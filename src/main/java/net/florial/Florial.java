@@ -316,7 +316,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new SwitchSpeciesCommand());
         manager.registerCommand(new IridiumKeyAllCommand());
         manager.registerCommand(new SwitchNickNameCommand());
-      // manager.registerCommand(new PrefixCommand());
+        manager.registerCommand(new PrefixCommand());
         manager.registerCommand(new SellCommand());
         manager.registerCommand(new InstinctsMenuCommand());
         manager.registerCommand(new VoteCommand());

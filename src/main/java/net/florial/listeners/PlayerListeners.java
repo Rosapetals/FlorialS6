@@ -80,18 +80,14 @@ public class PlayerListeners implements Listener {
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
 
-        if (p.hasPermission("florial.staff") && (!(p.getName().contains("rosathor")))) {
-
-            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
-                new Message("&c&lPlease run /setDiscordId <Your ID> and then relog").send(p);
-            }
+        /*if (p.hasPermission("florial.staff") && (!(p.getName().contains("rosathor")))) {
 
             if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
                 new Message("&c&lPlease link your account immediately using /link").send(p);
             } else {
                 Florial.getInstance().getStaffToVerify().add(u);
             }
-        }
+        }*/
 
         PlayerData data = Florial.getPlayerData().get(u);
         ThirstManager.thirstRunnable(p);
@@ -279,7 +275,7 @@ public class PlayerListeners implements Listener {
         Bukkit.broadcastMessage(CC.translate("#ff3c55[" + town + "] " + prefix + " &f" + nickname + suffix + ":&f " + message));
         String msg = ChatColor.stripColor(message);
 
-        msg.replaceAll("@", "@-");
+        msg = msg.replaceAll("@", "@-");
         Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.chatlogChannel")).sendMessage(event.getPlayer().getName() + ": " + msg).queue();
     }
 
