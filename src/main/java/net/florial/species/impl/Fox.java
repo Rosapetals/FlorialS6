@@ -111,7 +111,7 @@ public class Fox extends Species implements Listener {
     @EventHandler
     public void onFoxSneak(PlayerToggleSneakEvent e) {
 
-        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == this) morph.activate(e.getPlayer(), 1, e.isSneaking(), true, this);
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecieId() == 2 || Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecieId() == 4) morph.activate(e.getPlayer(), 1, e.isSneaking(), true, this);
 
     }
 

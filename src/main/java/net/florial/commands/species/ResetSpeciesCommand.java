@@ -5,11 +5,14 @@ import co.aikar.commands.annotation.CommandAlias;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
+import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
+
+import java.util.HashMap;
 
 public class ResetSpeciesCommand extends BaseCommand {
 
@@ -21,8 +24,8 @@ public class ResetSpeciesCommand extends BaseCommand {
         if (data.getDna() >= 25) {
 
             data.setSpecieId(0);
-
-            data.setDna(data.getDna() - 25);
+            data.setDna(0);
+            data.getSkills().replaceAll((s, v) -> 0);
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1, 1);
 

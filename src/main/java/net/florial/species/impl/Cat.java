@@ -183,5 +183,7 @@ public class Cat extends Species implements Listener {
 
         Vector unitVector = new Vector(0, p.getLocation().getDirection().getY() + 1, 0).normalize();
         p.setVelocity(unitVector.multiply(1));
+        p.playSound(p, Sound.ENTITY_BAT_TAKEOFF, 1, (float) 0.8);
+
     }
 }

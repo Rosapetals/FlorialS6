@@ -202,7 +202,10 @@ public abstract class Species implements Listener {
             p.getInventory().removeItem(heldItem);
         }
 
-        if (boneFoods.contains(event.getItem().getType())) p.getInventory().addItem(new ItemStack(Material.BONE, 1));
+        if (boneFoods.contains(event.getItem().getType())) {
+            p.getInventory().addItem(new ItemStack(Material.BONE, 1));
+            p.playSound(p, Sound.ENTITY_SKELETON_AMBIENT, (float) 0.8, (float) 0.8);
+        }
 
         if (this.diet() == null || this.diet().isEmpty() || this.diet().contains(item.getType())) {
 

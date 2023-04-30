@@ -63,13 +63,9 @@ public class Morph {
 
             switch (pos) {
                 case 1 -> {
-                    if (species.getId() == 4) {
-                        watcher.setSneaking(state);
-                        ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
-                    } else {
-                        watcher.setSneaking(true);
-                        ((FoxWatcher) watcher).setType(Fox.Type.RED);
-
+                    if (species.getId() == 4 || species.getId() == 2) {
+                        if (mobDisguise.getType() != DisguiseType.FOX) return;
+                        ((FoxWatcher) watcher).setCrouching(state);
                     }
                 }
                 case 4 -> {

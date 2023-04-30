@@ -14,8 +14,8 @@ public enum QuestType {
 
     // specialQuests
 
-    BURROW(100, 600),
-    POUNCE(50, 75),
+    BURROW(50, 250),
+    POUNCE(50, 100),
     HARVEST(50, 100),
 
     // guidanceQuests

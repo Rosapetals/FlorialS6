@@ -99,6 +99,14 @@ public class UserSpeciesMenu {
                                         "#ffa2c4&lREPLANTER:#ffa2c4 Crops are automatically", "replanted when you harvest them.",
                                         "#ffa2c4&lOMNINOMNOMVOROUS!:#ffa2c4 You eat everything!", "Make the most of it.",
                                         "#ffa2c4&lBy __Scythe__", "", "", "", "", "")), false),
+                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2UzZGQ0OTYxNWRlZGQxNWY1YTlhYWE3OTkyNTIwZGI5NzFhY2IyNjQxZGRhZWViMmM2N2JkMWIzODhiMjg2OCJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        "#ffa2c4&lMAGIC DUCK", "#ffa2c4&lKNOWLEDGE-EATER:#ffa2c4 Left-Click while holding a", "book to eat it!",
+                                        "#ffa2c4&lPOISONOUS:#ffa2c4 Left-Click an entity from afar", "to give them poison & wither. Cooldown.",
+                                        "#ffa2c4&lPRIDEFUL:#ffa2c4 When killing a mob, gain Strength,", "Speed, & Resistance II.",
+                                        "#ffa2c4&lFLYISH:#ffa2c4 Slow Falling II.", "",
+                                        "#ffa2c4&lSWIMMER:#ffa2c4 Dolphin's Grace II.", "",
+                                        "#ffa2c4&lRESTRICTIONS:#ffa2c4 Can only eat fish, potions,", "or books.",
+                                        "#ffa2c4&lHUNGRY:#ffa2c4 Extra hungry outside of water.", "#ffa2c4&lBy DuckOfKnowledge", "", "", "", "")), false),
                         CustomItem.MakeItem(new ItemStack(Material.BARRIER), "&c&lNo Species Here!", "&c&lWant to make your OWN species?" +
                                 "\n&c Buy A Species at florial.tebex.io for\n&c ONLY &c&l&n$20!\n&c&lOr $30 AND get the top rank too!", false)).toList();
 
@@ -112,6 +120,7 @@ public class UserSpeciesMenu {
                         contents.set(List.of(15), IntelligentItem.of(species.get(6), event -> Species.become(p, "NEKORYU")));
                         contents.set(List.of(16), IntelligentItem.of(species.get(7), event -> Species.become(p, "WINDOWSIAN")));
                         contents.set(List.of(17), IntelligentItem.of(species.get(8), event -> Species.become(p, "THALLIDIAN")));
+                        contents.set(List.of(17), IntelligentItem.of(species.get(9), event -> Species.become(p, "MAGIC_DUCK")));
 
                         int index = 17;
                         for (int i = 0; i < 27; i++) {

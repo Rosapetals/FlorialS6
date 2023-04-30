@@ -17,6 +17,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.util.Vector;
 
 import java.util.Objects;
 
@@ -116,11 +117,34 @@ public class QuestListener implements Listener {
         b.setType(Material.SPRUCE_STAIRS);
         p.setFoodLevel(p.getFoodLevel() - 1);
 
-        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> b.setType(originalMaterial), 100L);
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> b.setType(originalMaterial), 60L);
 
         callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.BURROW);
         p.playSound(p.getLocation(), Sound.BLOCK_ROOTED_DIRT_BREAK, 1, 2);
         p.playSound(p.getLocation(), Sound.BLOCK_PACKED_MUD_BREAK, 1, 2);
+
+    }
+
+    @EventHandler
+    public void questPounce(PlayerInteractEvent event) {
+
+        if (event.getAction() != Action.RIGHT_CLICK_BLOCK ||
+                (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId())
+                        || (!RegionDetector.detect(event.getPlayer().getLocation()).contains("cat"))
+                        || (!(Objects.requireNonNull(event.getClickedBlock()).getType().toString().contains("STONE"))
+                        || event.getPlayer().getFoodLevel() > 0))) return;
+
+        Player p = event.getPlayer();
+
+        Vector unitVector = new Vector(0, p.getLocation().getDirection().getY() + 1, 0).normalize();
+        p.setVelocity(unitVector.multiply(1));
+        p.playSound(p, Sound.ENTITY_BAT_TAKEOFF, 1, (float) 0.8);
+        p.setFoodLevel(p.getFoodLevel() - 1);
+        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.POUNCE);
+
+
+
+
 
     }
 

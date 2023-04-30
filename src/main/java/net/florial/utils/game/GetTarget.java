@@ -13,7 +13,7 @@ import java.util.List;
 public class GetTarget {
 
 
-    public LivingEntity of(Player player){
+    public static LivingEntity of(Player player){
         int range = 60;
         List<Entity> nearbyE = player.getNearbyEntities(range, range, range);
         ArrayList<LivingEntity> livingE = new ArrayList<>();

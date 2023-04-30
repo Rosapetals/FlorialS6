@@ -52,8 +52,18 @@ public class QuestProgressManager implements Listener {
 
         data.setGrowth(data.getGrowth() + 1);
         data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
-        p.setLevel(p.getLevel() + 3);
-        if (quest.getType() == QuestType.WILD) VaultHandler.addMoney(p, 1000);
+
+        QuestType type = quest.getType();
+
+        if (type.getMinAmount() == 50) p.setLevel(5);
+
+        if (type == QuestType.WILD) {
+            VaultHandler.addMoney(p, 1000);
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Life wasn't kind to you, you're only a #ff3c55&lKIT"));
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Take quests from #ff3c55&l/grow&f to age up by pressing the #ff3c55&l+&f button in /grow. Then, age up by pressing the #ff3c55&l'GROW'&f button in /grow."));
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Do #ff3c55&l/skills&f and upgrade each skill to gain more benefits"));
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Don't understand? That's okay! Just ask for help or take your time."));
+        }
 
     }
 }

@@ -30,7 +30,9 @@ public enum SpecieType {
     LYNX(10, new Lynx(10)),
     NEKORYU(11, new NekoRyu(11)),
     WINDOWSIAN(12, new Windowsian(12)),
-    THALLIDIAN(13, new Thallidian(13));
+    THALLIDIAN(13, new Thallidian(13)),
+    MAGIC_DUCK(14, new MagicDuck(14));
+
 
 
     //end
