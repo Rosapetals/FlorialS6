@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.*;
@@ -132,7 +133,7 @@ public class QuestListener implements Listener {
                 (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId())
                         || (!RegionDetector.detect(event.getPlayer().getLocation()).contains("cat"))
                         || (!(Objects.requireNonNull(event.getClickedBlock()).getType().toString().contains("STONE"))
-                        || event.getPlayer().getFoodLevel() > 0))) return;
+                        || event.getPlayer().getFoodLevel() < 1))) return;
 
         Player p = event.getPlayer();
 
@@ -141,11 +142,21 @@ public class QuestListener implements Listener {
         p.playSound(p, Sound.ENTITY_BAT_TAKEOFF, 1, (float) 0.8);
         p.setFoodLevel(p.getFoodLevel() - 1);
         callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.POUNCE);
+    }
 
+    @EventHandler
+    public void questHarvest(BlockBreakEvent event) {
 
+        if (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId())
+                        || (!RegionDetector.detect(event.getPlayer().getLocation()).contains("human"))
+                        || event.getPlayer().getFoodLevel() < 1) return;
 
+        Player p = event.getPlayer();
 
-
+        event.setCancelled(true);
+        p.playSound(p, Sound.BLOCK_CROP_BREAK, 1, (float) 0.8);
+        p.setFoodLevel(p.getFoodLevel() - 1);
+        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.HARVEST);
     }
 
     @EventHandler

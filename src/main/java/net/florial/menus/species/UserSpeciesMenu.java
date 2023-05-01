@@ -120,12 +120,12 @@ public class UserSpeciesMenu {
                         contents.set(List.of(15), IntelligentItem.of(species.get(6), event -> Species.become(p, "NEKORYU")));
                         contents.set(List.of(16), IntelligentItem.of(species.get(7), event -> Species.become(p, "WINDOWSIAN")));
                         contents.set(List.of(17), IntelligentItem.of(species.get(8), event -> Species.become(p, "THALLIDIAN")));
-                        contents.set(List.of(17), IntelligentItem.of(species.get(9), event -> Species.become(p, "MAGIC_DUCK")));
+                        contents.set(List.of(18), IntelligentItem.of(species.get(9), event -> Species.become(p, "MAGIC_DUCK")));
 
-                        int index = 17;
-                        for (int i = 0; i < 27; i++) {
+                        int index = 18;
+                        for (int i = 0; i < 26; i++) {
                             index++;
-                            contents.set(index, IntelligentItem.of(species.get(9), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
+                            contents.set(index, IntelligentItem.of(species.get(10), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
                         }
 
 

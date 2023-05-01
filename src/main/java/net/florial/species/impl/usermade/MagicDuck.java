@@ -79,7 +79,7 @@ public class MagicDuck extends Species implements Listener {
     @EventHandler
     public void strengthOnKill(EntityDeathEvent e) {
 
-        if (e.getEntity().getKiller() == null || e.getEntity().getKiller().getName() == null) return;
+        if (e.getEntity().getKiller() == null || Florial.getPlayerData().get(e.getEntity().getUniqueId()) == null) return;
 
         if (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getSpecies() != this
             || Cooldown.isOnCooldown("c2", (Player) e.getEntity())) return;

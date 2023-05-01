@@ -24,10 +24,7 @@ import net.florial.commands.menu.InstinctsMenuCommand;
 import net.florial.commands.menu.ShopCommand;
 import net.florial.commands.menu.SkillsMenuCommand;
 import net.florial.commands.ranks.*;
-import net.florial.commands.species.GrowCommand;
-import net.florial.commands.species.ResetSpeciesCommand;
-import net.florial.commands.species.SpeciesCommand;
-import net.florial.commands.species.UserSpeciesCommand;
+import net.florial.commands.species.*;
 import net.florial.commands.staff.*;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.crates.Crates;
@@ -41,6 +38,7 @@ import net.florial.features.skills.attack.AttackSkillListener;
 import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
+import net.florial.listeners.EventListener;
 import net.florial.models.PlayerData;
 import net.florial.models.ShiftData;
 import net.florial.scoreboard.FastBoard;
@@ -192,6 +190,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ColonyResourceListener(), this);
         getServer().getPluginManager().registerEvents(new BoardListener(), this);
         getServer().getPluginManager().registerEvents(new TrainListener(), this);
+        getServer().getPluginManager().registerEvents(new EventListener(), this);
 
         getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstManager(), this);
@@ -255,6 +254,10 @@ public final class Florial extends JavaPlugin {
                 new ItemStack(Material.LAPIS_LAZULI),
                 key1,
                 null, null, null, null, null, null, null), NBTEditor.set(key2, 2, "Crate"));
+        registerRecipes("event_dandelion", false, "12 ", "   ", "   ", Arrays.asList(
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "&eDandelion Seeds", "&e&oCraft with bonemeal.", false), 6, "CustomModelData"),
+                new ItemStack(Material.BONE_MEAL),
+                null, null, null, null, null, null, null), NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.DANDELION), "&eDandelion", "&e&oTrade these in /event", false), 71, "CustomModelData"));
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -274,8 +277,8 @@ public final class Florial extends JavaPlugin {
             }
         } else {
             ShapelessRecipe shapelessRecipe = (ShapelessRecipe) recipe;
-            ritems.forEach((itemStack) ->
-                    shapelessRecipe.addIngredient(new RecipeChoice.ExactChoice(itemStack)));
+            ritems.forEach((itemStack) -> {
+                if (itemStack != null) shapelessRecipe.addIngredient(new RecipeChoice.ExactChoice(itemStack));});
         }
         Bukkit.removeRecipe(NamespacedKey.minecraft(key));
         Bukkit.addRecipe(recipe);
@@ -327,6 +330,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ViewSelfCommand());
         manager.registerCommand(new NoFontCommand());
         manager.registerCommand(new PackOffCommand());
+        manager.registerCommand(new ColonyCommand());
 
 
 

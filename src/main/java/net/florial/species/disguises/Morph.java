@@ -72,7 +72,6 @@ public class Morph {
                     if (species.getId() == 4) {
                         if (mobDisguise.getType() == DisguiseType.FOX) {
                             ((FoxWatcher) watcher).setType(Fox.Type.SNOW);
-                            ((FoxWatcher) watcher).setCrouching(true);
                         } else {
                             ((CatWatcher) watcher).setType(Cat.Type.JELLIE);
                         }
@@ -92,8 +91,11 @@ public class Morph {
             mobDisguise.startDisguise();
             FlagWatcher watcher = mobDisguise.getWatcher();
 
-            if (species.getId() == 10) ((CatWatcher) watcher).setType(Cat.Type.PERSIAN);
-            if (species.getId() == 13) ((SlimeWatcher) watcher).setSize(2);
+            if (species.getId() == 10) {
+                ((CatWatcher) watcher).setType(Cat.Type.PERSIAN);
+            } else {
+                if (species.getId() == 13) ((SlimeWatcher) watcher).setSize(2);
+            }
 
 
             if (watcher instanceof FoxWatcher fox) {

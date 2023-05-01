@@ -9,11 +9,13 @@ import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -27,6 +29,16 @@ public class ClickablesListener implements Listener {
 
             32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14
     );
+
+    @EventHandler
+    public void clickableNoPlace(BlockPlaceEvent e) {
+
+        if (e.getPlayer().getInventory().getItemInMainHand().getType() != Material.PLAYER_HEAD
+        || nbtData.contains(NBTEditor.getInt(e.getPlayer().getInventory().getItemInMainHand(), "CustomModelData"))) return;
+
+        e.setCancelled(true);
+
+    }
 
 
     @EventHandler
@@ -120,7 +132,7 @@ public class ClickablesListener implements Listener {
 
         p.getInventory().setItemInMainHand(null);
 
-        data.setFlories(data.getFlories() + 5);
+        data.setFlories(data.getFlories() + 1);
 
     }
 

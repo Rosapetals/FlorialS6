@@ -81,7 +81,7 @@ public class ColonyResourceListener implements Listener {
             p.playSound(p.getLocation(), Sound.BLOCK_ROOTED_DIRT_STEP, 2, (float) 1);
             e.setCancelled(true);
 
-        } else if (p.getGameMode() == GameMode.SURVIVAL) {
+        } else if (p.getGameMode() == GameMode.SURVIVAL && e.getBlock().getType() != Material.WHEAT) {
             e.setCancelled(true);
         }
 

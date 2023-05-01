@@ -55,7 +55,7 @@ public class QuestProgressManager implements Listener {
 
         QuestType type = quest.getType();
 
-        if (type.getMinAmount() == 50) p.setLevel(5);
+        if (type.getMinAmount() == 50) p.setLevel(p.getLevel() + 5);
 
         if (type == QuestType.WILD) {
             VaultHandler.addMoney(p, 1000);

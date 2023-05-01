@@ -31,7 +31,6 @@ public class DrillListener implements Listener {
         if (value == 30) {
             if (e.getClickedBlock() == null) return;
             p.breakBlock(e.getClickedBlock());
-            return;
 
         } else {
             if (!(p.getWorld().getBlockAt(p.getLocation()).getType() == Material.WATER)) return;

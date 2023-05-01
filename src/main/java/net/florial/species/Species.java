@@ -52,7 +52,13 @@ public abstract class Species implements Listener {
             Material.COD,
             Material.SALMON,
             Material.MUTTON,
-            Material.RABBIT
+            Material.RABBIT,
+            Material.COOKED_CHICKEN,
+            Material.COOKED_BEEF,
+            Material.COOKED_PORKCHOP,
+            Material.COOKED_COD,
+            Material.COOKED_SALMON,
+            Material.COOKED_MUTTON
     ));
 
     private static final Map<Material, Integer> fillingValues = Map.ofEntries(
