@@ -17,9 +17,13 @@ public class IridiumFlyCommand extends BaseCommand {
 
         if (!(Cooldown.isOnCooldown("fly", p))) {
 
+            target.setAllowFlight(true);
             target.setFlying(true);
 
-            Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> target.setFlying(false), 6000);
+            Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
+                target.setFlying(false);
+                target.setAllowFlight(false);
+            }, 6000);
 
             p.sendMessage("Successfully gave flight to " + target.getName() + "!");
 

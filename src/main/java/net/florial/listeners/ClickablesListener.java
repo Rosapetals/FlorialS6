@@ -7,10 +7,9 @@ import net.florial.features.thirst.ThirstManager;
 import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,19 +21,18 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
-
 public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14
+            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8
     );
 
     @EventHandler
     public void clickableNoPlace(BlockPlaceEvent e) {
 
         if (e.getPlayer().getInventory().getItemInMainHand().getType() != Material.PLAYER_HEAD
-        || nbtData.contains(NBTEditor.getInt(e.getPlayer().getInventory().getItemInMainHand(), "CustomModelData"))) return;
+        || (!(nbtData.contains(NBTEditor.getInt(e.getPlayer().getInventory().getItemInMainHand(), "CustomModelData"))))) return;
 
         e.setCancelled(true);
 
@@ -56,9 +54,10 @@ public class ClickablesListener implements Listener {
             case 35 -> infiniteCookie(e.getPlayer());
             case 36 -> waterJug(e.getPlayer());
             case 37 -> weatherManipulation(e.getPlayer());
-            case 45, 2, 3, 5 -> specialEat(e.getPlayer());
+            case 45, 2, 3, 5, 7 -> specialEat(e.getPlayer());
             case 4 -> useMoneyVoucher(e.getPlayer());
             case 13, 14 -> useDNAVoucher(e.getPlayer());
+            case 8 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
 
         }
@@ -122,7 +121,7 @@ public class ClickablesListener implements Listener {
 
         data.setDna(data.getDna() + 5);
 
-        p.playSound(p.getLocation(), Sound.ITEM_HONEY_BOTTLE_DRINK, 1, (float) 7);
+        p.playSound(p.getLocation(), Sound.ITEM_HONEY_BOTTLE_DRINK, 1, (float) 8);
 
     }
 
@@ -130,9 +129,9 @@ public class ClickablesListener implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        p.getInventory().setItemInMainHand(null);
+        data.setFlories(data.getFlories() + p.getInventory().getItemInMainHand().getAmount());
 
-        data.setFlories(data.getFlories() + 1);
+        p.getInventory().setItemInMainHand(null);
 
     }
 
@@ -170,6 +169,20 @@ public class ClickablesListener implements Listener {
         lore = ChatColor.stripColor(lore);
 
         data.setDna(data.getDna() + Integer.valueOf(lore));
+
+    }
+
+    private static void useFloatie(Player p) {
+
+        if (p.getWorld().getBlockAt(new Location(p.getWorld(), p.getLocation().getX(), p.getLocation().getY() + 2, p.getLocation().getZ())).getType() != Material.WATER) return;
+
+
+        Block block = p.getLocation().getBlock().getRelative(BlockFace.DOWN); // get the block under the player
+        Material originalMaterial = block.getType();
+        block.setType(Material.SOUL_SAND);
+
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> block.setType(originalMaterial), 60L);
+
 
     }
 

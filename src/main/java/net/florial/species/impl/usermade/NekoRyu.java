@@ -96,8 +96,10 @@ public class NekoRyu extends Species implements Listener {
     @EventHandler
     public void fireAspect(PlayerInteractEvent event) {
 
+        if (Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
+            && Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecieId() != 15) return;
+
         if (event.getAction() != Action.LEFT_CLICK_AIR
-                || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
                 || event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) return;
 
         if (!(event.getPlayer().getInventory().getItemInMainHand().getItemMeta().hasEnchant(Enchantment.FIRE_ASPECT))) event.getPlayer().getInventory().getItemInMainHand().addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 3);

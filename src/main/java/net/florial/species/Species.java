@@ -12,6 +12,8 @@ import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.features.quests.Quest;
 import net.florial.features.quests.QuestType;
+import net.florial.features.thirst.HydrateEvent;
+import net.florial.features.thirst.ThirstManager;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
@@ -61,6 +63,19 @@ public abstract class Species implements Listener {
             Material.COOKED_MUTTON
     ));
 
+    private static final Set<Material> hydratingFoods = new HashSet<>(Arrays.asList(
+            Material.HONEY_BOTTLE,
+            Material.MILK_BUCKET,
+            Material.POTION,
+            Material.MELON,
+            Material.SWEET_BERRIES,
+            Material.MUSHROOM_STEW,
+            Material.RABBIT_STEW,
+            Material.SUSPICIOUS_STEW
+    ));
+
+
+
     private static final Map<Material, Integer> fillingValues = Map.ofEntries(
             Map.entry(Material.CHICKEN, 20),
             Map.entry(Material.PORKCHOP, 15),
@@ -71,6 +86,8 @@ public abstract class Species implements Listener {
             Map.entry(Material.MUTTON, 20),
             Map.entry(Material.RABBIT, 13)
     );
+    
+    
 
 
     String name;
@@ -145,12 +162,12 @@ public abstract class Species implements Listener {
 
             switch(data.getSpecieId()){
                 case 1 -> {
-                    Bukkit.dispatchCommand(p, "warp cat");
+                    Bukkit.dispatchCommand(p, "warp catspawn");
                     p.playSound(p.getLocation(), Sound.ENTITY_CAT_AMBIENT, 1, 2);
                     Quest.give(p, true, new Quest("Do /wild | Reward: $1,000", QuestType.WILD, 1, null, null, null, 0));
                 }
                 case 2 -> {
-                    Bukkit.dispatchCommand(p, "warp fox");
+                    Bukkit.dispatchCommand(p, "warp foxspawn");
                     p.playSound(p.getLocation(), Sound.ENTITY_FOX_AMBIENT, 1, 2);
                     Quest.give(p, true, new Quest("Do /wild | Reward: $1,000", QuestType.WILD, 1, null, null, null, 0));
                 }
@@ -164,8 +181,9 @@ public abstract class Species implements Listener {
     }
     public static void refreshTag(Player p) {
 
-        if (Florial.getPlayerData().get(p.getUniqueId()).getSpecies().getMorph() == null
-        || DisguiseAPI.getDisguise(p) == null) return;
+        if (Florial.getPlayerData().get(p.getUniqueId()).getSpecies() == null
+                || Florial.getPlayerData().get(p.getUniqueId()).getSpecies().getMorph() == null
+                || DisguiseAPI.getDisguise(p) == null) return;
 
         Bukkit.getServer().getScheduler().runTaskLater(florial, () -> {
 
@@ -199,7 +217,7 @@ public abstract class Species implements Listener {
 
         event.setCancelled(true);
 
-        ItemStack item = event.getItem();
+        Material type = event.getItem().getType();
         ItemStack heldItem = p.getInventory().getItemInMainHand();
 
         if (heldItem.getAmount() > 1) {
@@ -208,12 +226,17 @@ public abstract class Species implements Listener {
             p.getInventory().removeItem(heldItem);
         }
 
-        if (boneFoods.contains(event.getItem().getType())) {
+        if (boneFoods.contains(type)) {
             p.getInventory().addItem(new ItemStack(Material.BONE, 1));
             p.playSound(p, Sound.ENTITY_SKELETON_AMBIENT, (float) 0.8, (float) 0.8);
         }
+        
+        if (hydratingFoods.contains(type)) {
+            HydrateEvent e = new HydrateEvent(p, event.getItem(), ThirstManager.getThirst(p), 2);
+            Bukkit.getPluginManager().callEvent(e);
+        }
 
-        if (this.diet() == null || this.diet().isEmpty() || this.diet().contains(item.getType())) {
+        if (this.diet() == null || this.diet().isEmpty() || this.diet().contains(type)) {
 
             Material mat = event.getItem().getType();
 

@@ -16,29 +16,11 @@ public class ThirstListener  implements Listener {
 
 
     @EventHandler
-    private void OnDrink(PlayerItemConsumeEvent event) {
-        ItemStack i = event.getItem();
-        Player p = event.getPlayer();
-
-        if (i.getType() != Material.POTION) return;
-
-        HydrateEvent e = new HydrateEvent(
-                p,
-                i,
-                ThirstManager.getThirst(p),
-                2
-
-        );
-
-        Bukkit.getPluginManager().callEvent(e);
-    }
-
-    @EventHandler
     private void OnDrink(PlayerInteractEvent event) {
         Player p = event.getPlayer();
         ItemStack i = p.getInventory().getItemInMainHand();
 
-        if (LineOfSight.get(p, Material.WATER, 5) == false || i.getType() != Material.AIR) return;
+        if (!LineOfSight.get(p, Material.WATER, 5) || i.getType() != Material.AIR) return;
 
         HydrateEvent e = new HydrateEvent(
                 p,

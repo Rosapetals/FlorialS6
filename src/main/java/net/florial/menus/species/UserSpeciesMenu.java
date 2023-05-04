@@ -107,6 +107,12 @@ public class UserSpeciesMenu {
                                         "#ffa2c4&lSWIMMER:#ffa2c4 Dolphin's Grace II.", "",
                                         "#ffa2c4&lRESTRICTIONS:#ffa2c4 Can only eat fish, potions,", "or books.",
                                         "#ffa2c4&lHUNGRY:#ffa2c4 Extra hungry outside of water.", "#ffa2c4&lBy DuckOfKnowledge", "", "", "", "")), false),
+                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjg5ZGJiODkwNWI1YzNmYTc4ZDE5MmE4NGI4ODU5M2U0MzAxMGY0MTdkYzU0NTg4MDBkNjRjNmVkOTFiYmU2NCJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        "#ffa2c4&lSUN DRAGON", "#ffa2c4&lFIRE-BREATH:#ffa2c4 Left-Click with an empty hand", "to shoot a fireball. Cooldown.",
+                                        "#ffa2c4&lWINGS:#ffa2c4 Shift+Left-Click while looking up", "to fly.",
+                                        "#ffa2c4&lFIRE MAGIC:#ffa2c4 Left-Click with any item to", "apply Fire Aspect III.",
+                                        "#ffa2c4&lBy AstolfoWw",
+                                        "", "", "", "", "", "", "", "", "", "", "")), false),
                         CustomItem.MakeItem(new ItemStack(Material.BARRIER), "&c&lNo Species Here!", "&c&lWant to make your OWN species?" +
                                 "\n&c Buy A Species at florial.tebex.io for\n&c ONLY &c&l&n$20!\n&c&lOr $30 AND get the top rank too!", false)).toList();
 
@@ -121,11 +127,13 @@ public class UserSpeciesMenu {
                         contents.set(List.of(16), IntelligentItem.of(species.get(7), event -> Species.become(p, "WINDOWSIAN")));
                         contents.set(List.of(17), IntelligentItem.of(species.get(8), event -> Species.become(p, "THALLIDIAN")));
                         contents.set(List.of(18), IntelligentItem.of(species.get(9), event -> Species.become(p, "MAGIC_DUCK")));
+                        contents.set(List.of(19), IntelligentItem.of(species.get(10), event -> Species.become(p, "SUNDRAGON")));
 
-                        int index = 18;
-                        for (int i = 0; i < 26; i++) {
+
+                        int index = 19;
+                        for (int i = 0; i < 25; i++) {
                             index++;
-                            contents.set(index, IntelligentItem.of(species.get(10), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
+                            contents.set(index, IntelligentItem.of(species.get(11), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
                         }
 
 

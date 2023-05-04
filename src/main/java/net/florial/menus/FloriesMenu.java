@@ -41,7 +41,7 @@ public class FloriesMenu {
             floriesArrange(300, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzM4YjBiMGYxZjM1YzU2YjdkNjRlMGUyYjk2NjE4MDFmOTEyZjMxOGZhOWM4YzFkODNlOTE3ZGI0ZjJlNjUyMSJ9fX0"),
                     "", "", false), 33, "CustomModelData"), List.of(
                     "VALHALLA'S BLESSING", "Immune to certain natural damages like", "falling, suffocation, and fire. Forever use.", "")),
-            floriesArrange(50, CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhjMjE4YzNmMjFiYmMxYzZmODZhNDc5NTk1ODM3ZTg3M2E3NzA3YjVhYTk4YjQ5ZTAxMDgzMTNlNzFlIn19fQ"),
+            floriesArrange(75, CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhjMjE4YzNmMjFiYmMxYzZmODZhNDc5NTk1ODM3ZTg3M2E3NzA3YjVhYTk4YjQ5ZTAxMDgzMTNlNzFlIn19fQ"),
                     "", "", false), List.of(
                     "/fly command", "fly", "Permanent access to /fly", "")),
             floriesArrange(50, CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhjMjE4YzNmMjFiYmMxYzZmODZhNDc5NTk1ODM3ZTg3M2E3NzA3YjVhYTk4YjQ5ZTAxMDgzMTNlNzFlIn19fQ"),
@@ -79,15 +79,18 @@ public class FloriesMenu {
                     "STRONG NOSE-U", "Higher chances for scent to work.", "Forever Upgrade.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWVjODhjNzZlM2Q5YTFlYmQ3ZjRhMmU1NWVjYmNjNDJhOGQyM2Y2OTY3ODRhYTQxMGYwOTUxMmEzYjUzYSJ9fX0"),
                     "", "", false), 42, "CustomModelData"), List.of(
-                    "HASTE II-U", "Gives permanent Haste II.", "Forever Upgrade.", ""))
+                    "HASTE II-U", "Gives permanent Haste II.", "Forever Upgrade.", "")),
+            floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
+                    "", "", false), 8, "CustomModelData"), List.of(
+                    "FLOATIE", "Left-Click while underwater to", "immediately go to the surface", "Infinite uses."))
 
 
 
     );
 
     private static final List<Integer> floriePrices = List.of(
-            100, 100, 100, 300, 50, 50, 50, 50, 200,
-            100, 100, 100, 100, 75, 60, 100
+            100, 100, 100, 300, 75, 50, 50, 50, 200,
+            100, 100, 100, 100, 75, 60, 100, 100
 
     );
 

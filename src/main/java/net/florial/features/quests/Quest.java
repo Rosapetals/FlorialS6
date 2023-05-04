@@ -73,7 +73,7 @@ public class Quest {
 
         BossBar boss = Bukkit.createBossBar(
                 "Quest Progress: " + Florial.getQuest().get(p.getUniqueId()).toString(),
-                BarColor.RED,
+                BarColor.WHITE,
                 BarStyle.SOLID);
 
         boss.setProgress(0.0);

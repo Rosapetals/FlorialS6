@@ -164,25 +164,30 @@ public class Cat extends Species implements Listener {
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK
                 && Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == this
                 && (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC) > 3
-                && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR)) pounce(e.getPlayer());
+                && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR)) pounce(e.getPlayer(), 1);
 
     }
 
     @EventHandler
     public void catPounce(PlayerInteractEvent e) {
 
-        if (e.getAction() == Action.LEFT_CLICK_AIR
-                && e.getPlayer().isSneaking()
-                && Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == this
-                && (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC) > 4
-                && e.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR)) pounce(e.getPlayer());
+        if (e.getAction() != Action.LEFT_CLICK_AIR
+                || (!(e.getPlayer().isSneaking())
+                || Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this
+                || (!(Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC) > 4)
+                || Cooldown.isOnCooldown("c2", e.getPlayer())
+                || e.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR))) return;
+
+        Player p = e.getPlayer();
+        pounce(p, 3);
+        Cooldown.addCooldown("c2", p, 5);
 
     }
 
-    private static void pounce(Player p) {
+    private static void pounce(Player p, int height) {
 
         Vector unitVector = new Vector(0, p.getLocation().getDirection().getY() + 1, 0).normalize();
-        p.setVelocity(unitVector.multiply(1));
+        p.setVelocity(unitVector.multiply(height));
         p.playSound(p, Sound.ENTITY_BAT_TAKEOFF, 1, (float) 0.8);
 
     }

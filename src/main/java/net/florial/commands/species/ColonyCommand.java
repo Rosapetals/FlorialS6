@@ -2,6 +2,8 @@ package net.florial.commands.species;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 
 import net.florial.models.PlayerData;
@@ -25,7 +27,23 @@ public class ColonyCommand extends BaseCommand {
             return;
         }
 
-        Bukkit.dispatchCommand(p, "warp " + data.getSpecies().getName());
+        if (data.getSpecieId() != 4) {
+            Bukkit.dispatchCommand(p, "warp " + data.getSpecies().getName());
+        } else {
+
+            if (DisguiseAPI.getDisguise(p) == null) {
+                Bukkit.dispatchCommand(p, "warp human");
+                return;
+            }
+
+            if (DisguiseAPI.getDisguise(p).getType() == DisguiseType.CAT) {
+                Bukkit.dispatchCommand(p, "warp cat");
+            } else {
+                Bukkit.dispatchCommand(p, "warp fox");
+            }
+
+        }
+
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_CHIME, 1, 2);
 
     }

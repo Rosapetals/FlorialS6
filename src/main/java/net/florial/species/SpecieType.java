@@ -31,7 +31,8 @@ public enum SpecieType {
     NEKORYU(11, new NekoRyu(11)),
     WINDOWSIAN(12, new Windowsian(12)),
     THALLIDIAN(13, new Thallidian(13)),
-    MAGIC_DUCK(14, new MagicDuck(14));
+    MAGIC_DUCK(14, new MagicDuck(14)),
+    SUNDRAGON(15, new SunDragon(15));
 
 
 

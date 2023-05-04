@@ -27,10 +27,10 @@ public class SellMenu {
             arrangeItem(5, new ItemStack(Material.IRON_INGOT)),
             arrangeItem(35, new ItemStack(Material.BROWN_MUSHROOM)),
             arrangeItem(35, new ItemStack(Material.RED_MUSHROOM)),
-            arrangeItem(50, new ItemStack(Material.BLAZE_ROD)),
+            arrangeItem(20, new ItemStack(Material.BLAZE_ROD)),
             arrangeItem(5, new ItemStack(Material.BONE)),
-            arrangeItem(10, new ItemStack(Material.GOLD_INGOT)),
-            arrangeItem(10, new ItemStack(Material.CHARCOAL))
+            arrangeItem(11, new ItemStack(Material.GOLD_INGOT)),
+            arrangeItem(11, new ItemStack(Material.CHARCOAL))
 
 
 
@@ -39,7 +39,7 @@ public class SellMenu {
             );
 
     private static final List<Integer> sellPrices = List.of(
-            3, 5, 5, 35, 35, 50, 5, 10, 10
+            3, 5, 5, 35, 35, 20, 5, 11, 11
 
 
     );

@@ -48,12 +48,12 @@ public class QuestProgressManager implements Listener {
         Florial.getQuestBar().get(u).removePlayer(p);
         Florial.getQuestBar().remove(u);
 
+        QuestType type = quest.getType();
         Florial.getQuest().remove(p.getUniqueId());
 
         data.setGrowth(data.getGrowth() + 1);
         data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
 
-        QuestType type = quest.getType();
 
         if (type.getMinAmount() == 50) p.setLevel(p.getLevel() + 5);
 

@@ -1,6 +1,9 @@
 package net.florial.listeners;
 
 import de.netzkronehd.wgregionevents.events.RegionEnteredEvent;
+import me.libraryaddict.disguise.DisguiseAPI;
+import me.libraryaddict.disguise.disguisetypes.DisguiseType;
+import me.libraryaddict.disguise.disguisetypes.TargetedDisguise;
 import net.florial.Florial;
 import net.florial.features.quests.Quest;
 import net.florial.features.quests.QuestType;
@@ -11,8 +14,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class TrainListener implements Listener {
-
-
 
     @EventHandler
     public void onRegionEntered(RegionEnteredEvent e) {
@@ -27,6 +28,18 @@ public class TrainListener implements Listener {
             case 1 -> Quest.give(p, true, new Quest("Pounce on the rocks", QuestType.POUNCE, NumberGenerator.generate(QuestType.POUNCE.getMinAmount(), QuestType.POUNCE.getMaxAmount()), null, null, null, 0));
             case 2 -> Quest.give(p, true, new Quest("Burrow by Right-Clicking dirt", QuestType.BURROW, NumberGenerator.generate(QuestType.BURROW.getMinAmount(), QuestType.BURROW.getMaxAmount()), null, null, null, 0));
             case 3 -> Quest.give(p, true, new Quest("Harvest crops", QuestType.HARVEST, NumberGenerator.generate(QuestType.HARVEST.getMinAmount(), QuestType.HARVEST.getMaxAmount()), null, null, null, 0));
+            case 4 -> {
+                if (DisguiseAPI.getDisguise(p) == null) {
+                    Quest.give(p, true, new Quest("Harvest crops", QuestType.HARVEST, NumberGenerator.generate(QuestType.HARVEST.getMinAmount(), QuestType.HARVEST.getMaxAmount()), null, null, null, 0));
+                    return;
+                }
+
+                if (DisguiseAPI.getDisguise(p).getType() == DisguiseType.CAT) {
+                    Quest.give(p, true, new Quest("Pounce on the rocks", QuestType.POUNCE, NumberGenerator.generate(QuestType.POUNCE.getMinAmount(), QuestType.POUNCE.getMaxAmount()), null, null, null, 0));
+                } else {
+                   Quest.give(p, true, new Quest("Burrow by Right-Clicking dirt", QuestType.BURROW, NumberGenerator.generate(QuestType.BURROW.getMinAmount(), QuestType.BURROW.getMaxAmount()), null, null, null, 0));
+                }
+            }
 
         }
 

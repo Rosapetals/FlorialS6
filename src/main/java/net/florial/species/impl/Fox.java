@@ -1,5 +1,6 @@
 package net.florial.species.impl;
 
+import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.features.skills.Skill;
@@ -111,6 +112,8 @@ public class Fox extends Species implements Listener {
     @EventHandler
     public void onFoxSneak(PlayerToggleSneakEvent e) {
 
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == null) return;
+        if (DisguiseAPI.getDisguise(e.getPlayer()) == null || DisguiseAPI.getDisguise(e.getPlayer()).getType() != DisguiseType.FOX) return;
         if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecieId() == 2 || Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecieId() == 4) morph.activate(e.getPlayer(), 1, e.isSneaking(), true, this);
 
     }

@@ -116,7 +116,7 @@ public class QuestListener implements Listener {
 
         Material originalMaterial = b.getType();
         b.setType(Material.SPRUCE_STAIRS);
-        p.setFoodLevel(p.getFoodLevel() - 1);
+        p.setFoodLevel(p.getFoodLevel() > 9 ? p.getFoodLevel() - 10 : 0);
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> b.setType(originalMaterial), 60L);
 
@@ -140,7 +140,7 @@ public class QuestListener implements Listener {
         Vector unitVector = new Vector(0, p.getLocation().getDirection().getY() + 1, 0).normalize();
         p.setVelocity(unitVector.multiply(1));
         p.playSound(p, Sound.ENTITY_BAT_TAKEOFF, 1, (float) 0.8);
-        p.setFoodLevel(p.getFoodLevel() - 1);
+        p.setFoodLevel(p.getFoodLevel() > 9 ? p.getFoodLevel() - 10 : 0);
         callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.POUNCE);
     }
 
@@ -148,15 +148,18 @@ public class QuestListener implements Listener {
     public void questHarvest(BlockBreakEvent event) {
 
         if (!Florial.getQuest().containsKey(event.getPlayer().getUniqueId())
-                        || (!RegionDetector.detect(event.getPlayer().getLocation()).contains("human"))
-                        || event.getPlayer().getFoodLevel() < 1) return;
+                        || (!RegionDetector.detect(event.getPlayer().getLocation()).contains("human"))) return;
+
+        if (event.getBlock().getType() == Material.WHEAT) event.setCancelled(true);
+        if (event.getPlayer().getFoodLevel() < 1) return;
 
         Player p = event.getPlayer();
 
-        event.setCancelled(true);
         p.playSound(p, Sound.BLOCK_CROP_BREAK, 1, (float) 0.8);
-        p.setFoodLevel(p.getFoodLevel() - 1);
+        p.setFoodLevel(p.getFoodLevel() > 9 ? p.getFoodLevel() - 10 : 0);
         callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.HARVEST);
+
+
     }
 
     @EventHandler

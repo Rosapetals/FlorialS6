@@ -331,6 +331,8 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new NoFontCommand());
         manager.registerCommand(new PackOffCommand());
         manager.registerCommand(new ColonyCommand());
+        manager.registerCommand(new EventCommand());
+        manager.registerCommand(new ViewPlayerCommand());
 
 
 
