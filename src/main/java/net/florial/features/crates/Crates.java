@@ -90,7 +90,7 @@ public class Crates implements Listener {
 
                 key2,
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 5), "#ff7a8b&lFlories [Left-Click]", "", false), 50,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 50,"CustomModelData"),
 
 
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lVanilla Ice-Cream Cone [Left-Click]", "", false), 2,"CustomModelData"),
@@ -109,7 +109,7 @@ public class Crates implements Listener {
 
                 new ItemStack(Material.GOLDEN_APPLE, 10),
                 new ItemStack(Material.EXPERIENCE_BOTTLE, 600),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l5", false), 14, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l2", false), 14, "CustomModelData"),
 
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l3000", false), 4, "CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l7000", false), 4, "CustomModelData"),

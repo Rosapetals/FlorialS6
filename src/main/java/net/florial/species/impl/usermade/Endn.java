@@ -75,7 +75,7 @@ public class Endn extends Species implements Listener {
     @EventHandler
     public void enderManImmunity(EntityDamageByEntityEvent e) {
         if (e.getEntity() instanceof Player && e.getDamager() instanceof Enderman
-        && Florial.getPlayerData().get(e.getEntity().getUniqueId()).getSpecies() != this) e.setCancelled(true);
+        && Florial.getPlayerData().get(e.getEntity().getUniqueId()).getSpecies() == this) e.setCancelled(true);
 
     }
 }

@@ -111,7 +111,7 @@ public class ShopBuilder {
 
         materialLists.put(3, List.of(
                 ShopMenu.arrangeItem(100, new ItemStack(Material.WHITE_TULIP)),
-                ShopMenu.arrangeItem(100, new ItemStack(Material.PINK_TULIP)),
+                ShopMenu.arrangeItem(5000, new ItemStack(Material.PINK_TULIP)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.RED_TULIP)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.ORANGE_TULIP)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.POPPY)),
@@ -151,7 +151,7 @@ public class ShopBuilder {
                 ));
 
         priceLists.put(3, List.of(
-                100, 100, 100, 100, 100, 1000,
+                100, 5000, 100, 100, 100, 1000,
                 1000, 1000, 500, 500, 500, 350,
                 200, 200, 200, 200, 200, 100,
                 100, 100, 100, 100, 50, 50, 50,

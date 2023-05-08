@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @CommandInfo(
         name = "confess",
@@ -39,7 +40,7 @@ public class DiscordProfileCommand extends SlashCommand {
     @Override
     protected void execute(SlashCommandEvent slashCommandEvent) {
         GeneralUtils.runAsync(() -> {
-            Member target = slashCommandEvent.getOption("user").getAsMember();
+            Member target = Objects.requireNonNull(slashCommandEvent.getOption("user")).getAsMember();
             if (target == null) {
                 slashCommandEvent.reply("User not found").setEphemeral(true).queue();
                 return;
@@ -57,10 +58,11 @@ public class DiscordProfileCommand extends SlashCommand {
             }
             MessageEmbed embed = new EmbedBuilder()
                     .setTitle(target.getNickname() + "'s profile")
+                    .setImage(target.getAvatarUrl())
                     .addField("Join Date", target.getTimeJoined().format(DateTimeFormatter.ofPattern("d MMM uuuu")), false)
-                    .addField("Level", String.valueOf(data.getLevel()), false)
-                    .addField("Exp", data.getExp() + "/100", false)
-                    .addField("Coins", String.valueOf(data.getCoins()), false)
+                    .addField(":small_red_triangle: Level", String.valueOf(data.getLevel()), false)
+                    .addField(":small_red_triangle: Experience", data.getExp() + "/100", false)
+                    .addField(":coin: Coins", String.valueOf(data.getCoins()), false)
                     .addField("Minecraft Account", linkedAccount, false)
                     .setColor(Color.PINK)
                     .build();

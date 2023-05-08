@@ -27,6 +27,8 @@ public class ProfileCommand extends BaseCommand {
 
         p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r"));
         p.sendMessage(CC.translate("#ff3c55&l➤ Species: &f " + data.getSpecies().getName()));
+        assert data.getPronouns() != null;
+        p.sendMessage(CC.translate("#ff3c55&l➤ Pronouns: &f " + (data.getPronouns().isEmpty() ? "None" : data.getPronouns())));
         p.sendMessage(CC.translate("#ff3c55&l➤ Age: &f " + data.getAge()));
         p.sendMessage(CC.translate("#ff3c55&l➤ DNA: &f " + data.getDna()));
         p.sendMessage(CC.translate("#ff3c55&l➤ Flories: &f " + data.getFlories()));

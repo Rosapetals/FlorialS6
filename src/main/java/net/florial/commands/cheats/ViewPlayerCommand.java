@@ -1,10 +1,7 @@
 package net.florial.commands.cheats;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Default;
-import co.aikar.commands.annotation.Flags;
-import co.aikar.commands.annotation.Optional;
+import co.aikar.commands.annotation.*;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.TargetedDisguise;
 import net.florial.utils.general.CC;
@@ -14,6 +11,7 @@ public class ViewPlayerCommand extends BaseCommand {
 
 
     @CommandAlias("adminview")
+    @CommandPermission("staff")
     @Default
     public void disableDisguiseForMe(Player p, @Optional @Flags("other") Player arg1) {
 

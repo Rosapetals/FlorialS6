@@ -31,6 +31,8 @@ public class QuestListener implements Listener {
 
         if (Florial.getQuest().get(event.getWhoClicked().getUniqueId()).getCraftType() != Objects.requireNonNull(event.getCurrentItem()).getType()) return;
 
+        if (event.getCursor() != null && (!(event.getCursor().getType().isAir()))) return;
+
         Player p = (Player) event.getWhoClicked();
 
         callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.CRAFT);

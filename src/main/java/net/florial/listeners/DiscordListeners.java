@@ -1,8 +1,5 @@
 package net.florial.listeners;
 
-import com.theokanning.openai.OpenAiHttpException;
-import com.theokanning.openai.completion.CompletionRequest;
-import com.theokanning.openai.completion.CompletionResult;
 import dev.morphia.query.filters.Filters;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -21,13 +18,14 @@ import net.dv8tion.jda.api.requests.RestAction;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.models.DiscordUser;
+import net.florial.utils.general.CC;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class DiscordListeners extends ListenerAdapter {
@@ -36,7 +34,6 @@ public class DiscordListeners extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event) {
 
         if (event.getAuthor().isBot()) return;
-        TextChannel chatBotChannel = Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.chatbotChannel"));
 
         if (event.getMessage().isFromType(ChannelType.PRIVATE)) {
             Message message = event.getMessage();
@@ -87,46 +84,20 @@ public class DiscordListeners extends ListenerAdapter {
                     Florial.getBotState().remove(user.getId());
                     break;
             }
+        }
 
-        // AI Chatbot code
         if (event.getChannelType() == ChannelType.TEXT) {
-            if (event.getChannel().asTextChannel() == chatBotChannel) {
-                if (event.getMessage().getContentRaw().startsWith(",")) return;
-                chatBotChannel.sendTyping().queue();
-                String prompt = String.format("""
-                        Your name is Tulip, you are a strict, lovable, mysterious and logical demigodess with an inner soft side for anyone who does not like to show themselves, you keep the peace, but only silently, but can't stop death or wars from happening. During conversation, do not act inappropriately or suggestive towards anyone.
-                                        
-                        User: Who are you?
-                        Tulip: I lurk around our world, I'm a mediator, but I don't like to show myself. I suppose I'm a god, but not one anybody believes in.
-                        User: Am I cute?
-                        Tulip: I'm not sure how am I expected to answer that.. but I think yes!
-                        User: Is this a furry server?
-                        Tulip: I don't know what that is.
-                        User: How old are you?
-                        Tulip: I do not know...
-                        User: What is the purpose of reality?
-                        Tulip: We were sent here to live, where mortals die, and immortals do not die
-                        User: %s
-                        Tulip: """, event.getMessage().getContentRaw());
 
-                try {
-                    CompletionRequest request = CompletionRequest.builder()
-                            .prompt(prompt)
-                            .model("curie")
-                            .maxTokens(50)
-                            .stop(List.of("User:"))
-                            .build();
-                    CompletionResult result = Florial.getOpenAi().createCompletion(request);
-                    result.getChoices().forEach(System.out::println);
-                    event.getMessage().reply((Florial.getOpenAi().createCompletion(request).getChoices().get(0).getText())).queue();
-                } catch (OpenAiHttpException e) {
-                    event.getMessage().reply("This isn't an AI generated response, tell Rosa that we've run out of OpenAI credit\n\n ||" + e.getMessage() + "||").queue();
-                }
-            }
+            if (event.getChannel().getId().contains("910011802883092521")) {
+
+                String name = (Objects.requireNonNull(event.getMember()).getNickname() == null) ? event.getMember().getEffectiveName() : event.getMember().getNickname();
+
+                Bukkit.broadcastMessage(CC.translate("&9[Discord]#ff3c55 " + name + ":&f " + event.getMessage().getContentRaw()));
 
             }
 
-            int num = new Random().nextInt(0, 3);
+
+            int num = new Random().nextInt(0, 6);
 
             FlorialDatabase.getDiscordUserData(event.getAuthor().getId()).thenAccept(discordUser -> {
                 if (discordUser == null) {
@@ -136,7 +107,7 @@ public class DiscordListeners extends ListenerAdapter {
                     if (num == 2) {
                         discordUser.setCoins(discordUser.getCoins() + 1);
                     }
-                    discordUser.setExp(discordUser.getExp() + 10);
+                    discordUser.setExp(discordUser.getExp() + 1);
                     if (discordUser.getExp() >= 100) {
                         discordUser.setExp(0);
                         discordUser.setLevel(discordUser.getLevel() + 1);

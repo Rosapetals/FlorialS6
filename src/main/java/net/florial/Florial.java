@@ -163,6 +163,7 @@ public final class Florial extends JavaPlugin {
             }
         }
         for (PlayerData data : playerData.values()) data.save(false);
+        for (Player p : Bukkit.getOnlinePlayers()) {Bukkit.dispatchCommand(p, "/endshift");}
         FlorialDatabase.closeConnection();
         saveConfig();
     }
@@ -333,6 +334,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ColonyCommand());
         manager.registerCommand(new EventCommand());
         manager.registerCommand(new ViewPlayerCommand());
+        manager.registerCommand(new PronounCommand());
 
 
 
@@ -346,7 +348,7 @@ public final class Florial extends JavaPlugin {
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand(), new DiscordTaskCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand(), new DiscordTaskCommand(), new DiscordWarnCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();

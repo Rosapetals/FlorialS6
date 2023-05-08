@@ -17,6 +17,7 @@ import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
 import net.florial.utils.Message;
 import net.florial.utils.general.CC;
+import net.florial.utils.general.FilterUtils;
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
@@ -35,8 +36,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static dev.morphia.query.filters.Filters.eq;
 
@@ -51,16 +50,6 @@ public class PlayerListeners implements Listener {
     private static final Florial florial = Florial.getInstance();
 
     private static final HashMap<UUID, Integer> previousMessages = new HashMap<>();
-
-    private static final String[] SLURS ={
-
-            "/b[NnΠñÑη]\\s*[ÏIÎÍÌ|iíîïì1!lyYÝýỳι]\\s*[KkGBgbg]\\s*[KkGGBgbg]\\s*[^lL]",
-            "(ph|f)agg?s?([e0aio]ts?|oted|otry)",
-            "n[i!j1e]+gg?(rs?|ett?e?s?|lets?|ress?e?s?|r[a0oe]s?|[ie@ao0!]rs?|r[o0]ids?|ab[o0]s?|erest)",
-            "trann(ys?|ies)?",
-            "\\bfagg?(s?\\b|ot|y|ier)"
-
-    };
 
 
     @EventHandler
@@ -195,18 +184,12 @@ public class PlayerListeners implements Listener {
         event.setCancelled(true);
 
         String message = ((TextComponent) event.message()).content();
+
         if (florial.ess.getUser(p).isMuted()) return;
 
-        for (String pattern : SLURS) {
-            Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(message.replaceAll(" ", ""));
-            if (!(matcher.find())) continue;
-            String finalMessage = message;
-            if (message.contains("get")) break;
-            new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + finalMessage);}}.runTask(florial);
 
-            return;
+        if (FilterUtils.check(p, message)) return;
 
-        }
 
         if (Florial.getBoardLocation().get(u) != null) {
             String finalMessage1 = ChatColor.stripColor(message);
