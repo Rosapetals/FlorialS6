@@ -21,7 +21,6 @@ public class QuestGenerator {
             EntityType.COW,
             EntityType.SHEEP,
             EntityType.CAVE_SPIDER,
-            EntityType.RAVAGER,
             EntityType.HOGLIN,
             EntityType.CHICKEN);
     private static final List<Material> itemTypes = List.of(

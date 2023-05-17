@@ -30,7 +30,6 @@ import net.florial.database.FlorialDatabase;
 import net.florial.features.crates.Crates;
 import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
-import net.florial.features.enemies.impl.Snapper;
 import net.florial.features.enemies.impl.Wisps;
 import net.florial.features.quests.Quest;
 import net.florial.features.quests.QuestProgressManager;
@@ -163,7 +162,7 @@ public final class Florial extends JavaPlugin {
             }
         }
         for (PlayerData data : playerData.values()) data.save(false);
-        for (Player p : Bukkit.getOnlinePlayers()) {Bukkit.dispatchCommand(p, "/endshift");}
+        for (Player p : Bukkit.getOnlinePlayers()) {Bukkit.dispatchCommand(p, "endshift");}
         FlorialDatabase.closeConnection();
         saveConfig();
     }
@@ -203,7 +202,6 @@ public final class Florial extends JavaPlugin {
 
 
         getServer().getPluginManager().registerEvents(new Boar(EntityType.HOGLIN), this);
-        getServer().getPluginManager().registerEvents(new Snapper(EntityType.RAVAGER), this);
         getServer().getPluginManager().registerEvents(new Wisps(EntityType.WITCH), this);
         getServer().getPluginManager().registerEvents(new Crawlies(EntityType.CAVE_SPIDER), this);
 
@@ -348,7 +346,7 @@ public final class Florial extends JavaPlugin {
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand(), new DiscordTaskCommand(), new DiscordWarnCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand(), new DiscordTaskCommand(), new DiscordWarnCommand(), new DiscordShopCommand(), new DiscordPayCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();

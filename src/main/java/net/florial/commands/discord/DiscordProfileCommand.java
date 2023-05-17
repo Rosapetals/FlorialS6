@@ -58,11 +58,11 @@ public class DiscordProfileCommand extends SlashCommand {
             }
             MessageEmbed embed = new EmbedBuilder()
                     .setTitle(target.getNickname() + "'s profile")
-                    .setImage(target.getAvatarUrl())
-                    .addField("Join Date", target.getTimeJoined().format(DateTimeFormatter.ofPattern("d MMM uuuu")), false)
-                    .addField(":small_red_triangle: Level", String.valueOf(data.getLevel()), false)
-                    .addField(":small_red_triangle: Experience", data.getExp() + "/100", false)
-                    .addField(":coin: Coins", String.valueOf(data.getCoins()), false)
+                    .setImage("https://media.discordapp.net/attachments/803862530438332417/1108294639674466334/q.png")
+                    .addField("**Joined Florial On**", target.getTimeJoined().format(DateTimeFormatter.ofPattern("d MMM uuuu")), false)
+                    .addField("<:orb:1108295171453493400> Level", String.valueOf(data.getLevel()), false)
+                    .addField("<:orb:1108295171453493400> Experience", data.getExp() + "/100", false)
+                    .addField("<:florialcoin:1108293880971014184> Coins", String.valueOf(data.getCoins()), false)
                     .addField("Minecraft Account", linkedAccount, false)
                     .setColor(Color.PINK)
                     .build();

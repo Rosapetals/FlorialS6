@@ -112,7 +112,6 @@ public class PlayerData {
                 getPlayer().addPotionEffect(effect);}}, 70L);
 
         if (getSpecies().isCanSmell()) {
-            if (Objects.requireNonNull(getPlayer().getInventory().getItem(8)).getType() != Material.AIR) getPlayer().getWorld().dropItem(getPlayer().getLocation(), Objects.requireNonNull(getPlayer().getInventory().getItem(8)));
             getPlayer().getInventory().setItem(8, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#6A3A2F&lSCENT [CLICK]", "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑\n #ffa2c4&l︳#ffa2c4 Right-Click to smell Entity\n #ffa2c4&l︳#ffa2c4 Left-Click to Track Food\n  #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false), 1, "CustomModelData"));
         }
 
