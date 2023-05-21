@@ -53,7 +53,7 @@ public class FloriesMenu {
           //  floriesArrange(50, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTg3OWVkMmIzOWZhMDQ2MmM3NDI5MmY1Y2EzZDE4ODQyMDEyOGI0YTYzYWM3NWRiOGM5N2EwOTRkMWFjNjNmNCJ9fX0"),
                 //    "", "", false), 43, "CustomModelData"), List.of(
                  //   "Rank Crate Key", "Use this by opening the Rank Crate", "at spawn. Chance for a rank. ONE-TIME-USE.", "")),
-            floriesArrange(50, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQxMWMyOGVlZTVkNThkMWI4NjNiNTRlNWNjNjJjMzA3MjM0ZDQzN2MxN2YxZmY3NjMzOGRmZWNjM2NjNjhkNSJ9fX0"),
+            floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQxMWMyOGVlZTVkNThkMWI4NjNiNTRlNWNjNjJjMzA3MjM0ZDQzN2MxN2YxZmY3NjMzOGRmZWNjM2NjNjhkNSJ9fX0"),
                     "", "", false), 43, "CustomModelData"), List.of(
                     "VIP Rank", "Buy this to get VIP rank!", "", "")),
             floriesArrange(200, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGQwN2ZkMDNjMDNjMDViNzQ0Y2ZmN2FjMWE5NWQ4MTYxNzA2MjA2ZjY4YzEyYzRjMjJjOTcwNWY3YzM3ZDA4In19fQ"),
@@ -74,23 +74,23 @@ public class FloriesMenu {
             floriesArrange(75, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWVjODhjNzZlM2Q5YTFlYmQ3ZjRhMmU1NWVjYmNjNDJhOGQyM2Y2OTY3ODRhYTQxMGYwOTUxMmEzYjUzYSJ9fX0"),
                     "", "", false), 39, "CustomModelData"), List.of(
                     "SELL INCREASE-U", "Permanently increase your sell rates.", "Forever Upgrade.", "")),
-            floriesArrange(60, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWVjODhjNzZlM2Q5YTFlYmQ3ZjRhMmU1NWVjYmNjNDJhOGQyM2Y2OTY3ODRhYTQxMGYwOTUxMmEzYjUzYSJ9fX0"),
-                    "", "", false), 41, "CustomModelData"), List.of(
-                    "STRONG NOSE-U", "Higher chances for scent to work.", "Forever Upgrade.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWVjODhjNzZlM2Q5YTFlYmQ3ZjRhMmU1NWVjYmNjNDJhOGQyM2Y2OTY3ODRhYTQxMGYwOTUxMmEzYjUzYSJ9fX0"),
                     "", "", false), 42, "CustomModelData"), List.of(
                     "HASTE II-U", "Gives permanent Haste II.", "Forever Upgrade.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
                     "", "", false), 8, "CustomModelData"), List.of(
-                    "FLOATIE", "Left-Click while underwater to", "immediately go to the surface", "Infinite uses."))
-
-
-
+                    "FLOATIE", "Left-Click while underwater to", "immediately go to the surface", "Infinite uses.")),
+            floriesArrange(300, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.TOTEM_OF_UNDYING),
+                    "", "", false), 16, "CustomModelData"), List.of(
+                    "CAT TOTEM", "Permanent Totem of Undying,", "10 minute cooldown!", "Infinite uses.")),
+            floriesArrange(150, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.TOTEM_OF_UNDYING),
+                    "", "", false), 16, "CustomModelData"), List.of(
+                    "SELL-WAND", "Left-Click to sell all in inventory", "or on a chest.", "Infinite uses."))
     );
 
     private static final List<Integer> floriePrices = List.of(
             100, 100, 100, 300, 75, 50, 50, 50, 200,
-            100, 100, 100, 100, 75, 60, 100, 100
+            100, 100, 100, 100, 75, 100, 100, 300
 
     );
 

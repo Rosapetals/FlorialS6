@@ -11,12 +11,14 @@ import net.florial.features.quests.Quest;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
+import net.florial.utils.general.VaultHandler;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Stream;
 
 public class GrowthMenu {
@@ -32,11 +34,16 @@ public class GrowthMenu {
                     @Override
                     public void init(Player player, InventoryContents contents) {
 
-                        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+                        UUID u = p.getUniqueId();
+
+                        PlayerData data = Florial.getPlayerData().get(u);
 
                         Age age = data.getAge();
                         int requiredDNA = age.getRequiredDNA();
                         int requiredQuests = age.getRequiredQuests();
+
+                        String questDisplay = Florial.getQuest().get(u) != null ? "RE-ROLL QUEST:" : "GET QUEST:";
+                        String rollPrice = Florial.getQuest().get(u) != null ? "Price: " + Quest.rollFormula(VaultHandler.getBalance(p)) : "";
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
                                 "CLICK HERE TO GROW UP\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • YOUR AGE: #ffa2c4 "
@@ -45,10 +52,10 @@ public class GrowthMenu {
                                 + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
                                                 "GET-A-QUEST\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • COMPLETED QUESTS: #ffa2c4 "
-                                                +  data.getGrowth() + "\n #ff79a1&l︳  GET QUEST:\n #ffa2c4&l︳ •#ffa2c4 [CLICK ME]\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • INFO:" +
-                                                "\n #ffa2c4&l︳#ffa2c4 • Progress is tracked at top of screen" +
+                                                +  data.getGrowth() + "\n #ff79a1&l︳  " + questDisplay + "\n #ffa2c4&l︳ •#ffa2c4 [CLICK ME]\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • INFO:" +
                                                 "\n #ffa2c4&l︳#ffa2c4 • 1 quest gives 1 DNA" +
                                                 "\n #ffa2c4&l︳#ffa2c4 • Complete " + requiredQuests + " and get " + requiredDNA + " DNA to Age Up"
+                                                + "\n #ffa2c4&l︳#ffa2c4 • " + rollPrice
                                                 + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
                                                 "GO BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),

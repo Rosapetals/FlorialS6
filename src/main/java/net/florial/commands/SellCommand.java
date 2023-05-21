@@ -12,5 +12,5 @@ public class SellCommand extends BaseCommand {
 
     @CommandAlias("sell")
     @Default
-    public static void onSit(Player p) {sellMenu.sellMenu(p);}
+    public static void onSell(Player p) {sellMenu.sellMenu(p);}
 }

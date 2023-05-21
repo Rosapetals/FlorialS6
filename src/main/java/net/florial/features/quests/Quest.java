@@ -58,8 +58,7 @@ public class Quest {
 
             double balance = VaultHandler.getBalance(p);
 
-            double cost = (balance * 0.10);
-            cost = cost < 50 ? 500 : cost;
+            double cost = rollFormula(balance);
 
             if (balance >= cost) {
                 Florial.getQuestBar().get(u).removePlayer(p);
@@ -82,6 +81,13 @@ public class Quest {
         Florial.getQuestBar().put(p.getUniqueId(), boss);
 
         if (!(givingQuest)) p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f View the top of your screen to view quest progress. Don't like your quest? Click the GET QUEST button again to get a new one for some money!"));
+    }
+
+    public static double rollFormula(double balance) {
+
+        double cost = (balance * 0.10);
+        return cost < 50 ? 500 : cost;
+
     }
 
 

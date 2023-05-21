@@ -20,26 +20,28 @@ import java.util.List;
 
 public class SellMenu {
 
-    private static final List<ItemStack> sellItems = List.of(
+    public static final List<ItemStack> sellItems = List.of(
 
             arrangeItem(3, new ItemStack(Material.ROTTEN_FLESH)),
             arrangeItem(5, new ItemStack(Material.MELON)),
-            arrangeItem(5, new ItemStack(Material.IRON_INGOT)),
+            arrangeItem(30, new ItemStack(Material.IRON_INGOT)),
             arrangeItem(35, new ItemStack(Material.BROWN_MUSHROOM)),
             arrangeItem(35, new ItemStack(Material.RED_MUSHROOM)),
             arrangeItem(20, new ItemStack(Material.BLAZE_ROD)),
             arrangeItem(5, new ItemStack(Material.BONE)),
-            arrangeItem(11, new ItemStack(Material.GOLD_INGOT)),
-            arrangeItem(11, new ItemStack(Material.CHARCOAL))
+            arrangeItem(32, new ItemStack(Material.GOLD_INGOT)),
+            arrangeItem(11, new ItemStack(Material.CHARCOAL)),
+            arrangeItem(25, new ItemStack(Material.COPPER_INGOT))
 
 
 
 
 
-            );
 
-    private static final List<Integer> sellPrices = List.of(
-            3, 5, 5, 35, 35, 20, 5, 11, 11
+    );
+
+    public static final List<Integer> sellPrices = List.of(
+            3, 5, 30, 35, 35, 20, 5, 32, 11, 25
 
 
     );

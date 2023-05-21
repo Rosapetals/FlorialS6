@@ -13,6 +13,7 @@ import dev.morphia.Morphia;
 import dev.morphia.query.filters.Filters;
 import lombok.Getter;
 import lombok.val;
+import net.dv8tion.jda.api.entities.Member;
 import net.florial.Florial;
 import net.florial.models.ChequeData;
 import net.florial.models.DiscordUser;
@@ -22,7 +23,6 @@ import net.florial.utils.GeneralUtils;
 import org.bson.UuidRepresentation;
 import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.exists;
 import static dev.morphia.query.filters.Filters.eq;
-import static net.florial.models.PlayerData.getFieldValue;
+import static net.florial.models.DiscordUser.getFieldValue;
 
 public class FlorialDatabase {
 
@@ -188,23 +188,30 @@ public class FlorialDatabase {
         GeneralUtils.runAsync(new BukkitRunnable() {
             @Override
             public void run() {
-                List<PlayerData> playerList = new ArrayList<>();
-                datastore.find(PlayerData.class)
+                List<DiscordUser> playerList = new ArrayList<>();
+                datastore.find(DiscordUser.class)
                         .filter(Filters.exists(field))
                         .iterator()
                         .forEachRemaining(playerList::add);
 
-                playerList.sort((PlayerData p1, PlayerData p2) -> {
+                playerList.sort((DiscordUser p1, DiscordUser p2) -> {
                     if (descending) return getFieldValue(p2, field) - getFieldValue(p1, field);
                     else return getFieldValue(p1, field) - getFieldValue(p2, field);
                 });
 
                 List<String> sortedList = playerList.subList(0, limit)
                         .stream()
-                        .map(playerData -> {
-                            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(UUID.fromString(playerData.getUUID()));
-                            return offlinePlayer.getName() + ": " + getFieldValue(playerData, field);
+                        .map(discordData -> {
+                            Member discordUser = Florial.getDiscordServer().getMemberById(discordData.getUuid());
+                            if (discordUser == null) {
+                                discordUser = Florial.getDiscordServer().retrieveMemberById(discordData.getUuid()).complete();
+                            }
+                            if (discordUser != null) {
+                                return discordUser.getEffectiveName() + ": " + getFieldValue(discordData, field);
+                            }
+                            return "";
                         })
+                        .filter(str -> !str.isEmpty())
                         .collect(Collectors.toList());
 
                 future.complete(sortedList);

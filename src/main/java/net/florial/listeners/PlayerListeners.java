@@ -9,7 +9,6 @@ import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.thirst.ThirstManager;
-import net.florial.features.upgrades.Upgrade;
 import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
 import net.florial.species.disguises.Morph;
@@ -22,11 +21,14 @@ import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
 import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
@@ -50,6 +52,8 @@ public class PlayerListeners implements Listener {
     private static final Florial florial = Florial.getInstance();
 
     private static final HashMap<UUID, Integer> previousMessages = new HashMap<>();
+
+    private static final HashMap<UUID, MobDisguise> savedDisguise = new HashMap<>();
 
 
     @EventHandler
@@ -131,18 +135,47 @@ public class PlayerListeners implements Listener {
     }
 
     @EventHandler
+    public void concreteCauldron(BlockPlaceEvent event) {
+
+        Block block = event.getBlockPlaced();
+
+        if (!(block.getType().toString().contains("POWDER")) || block.getRelative(BlockFace.DOWN).getType() != Material.CAULDRON) return;
+
+        String[] colors = block.getType().toString().split("_");
+
+        Material concreteMaterial = Material.valueOf(colors[0] + "_CONCRETE");
+
+        block.setType(concreteMaterial);
+
+    }
+
+    @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {preventSliding(e.getPlayer());}
 
     @EventHandler
     public void dimensionChange(PlayerChangedWorldEvent e) {preventSliding(e.getPlayer());}
 
+    @EventHandler
+    public void crashPrevention(PlayerDeathEvent e) {
+
+        Player p = e.getPlayer();
+
+        if (!(p.getName().contains(".")) || DisguiseAPI.getDisguise(p) == null) return;
+
+        MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
+
+        savedDisguise.put(p.getUniqueId(), mobDisguise);
+
+        mobDisguise.stopDisguise();
+    }
+
     private static void preventSliding(Player p) {
 
-        if (DisguiseAPI.getDisguise(p) == null) return;
+        if (DisguiseAPI.getDisguise(p) == null && savedDisguise.get(p.getUniqueId()) == null) return;
+
+        MobDisguise mobDisguise = DisguiseAPI.getDisguise(p) == null && savedDisguise.get(p.getUniqueId()) != null ? savedDisguise.get(p.getUniqueId()) : (MobDisguise) DisguiseAPI.getDisguise(p);
 
         Bukkit.getServer().getScheduler().runTaskLater(florial, () -> {
-
-            MobDisguise mobDisguise = (MobDisguise) DisguiseAPI.getDisguise(p);
 
             mobDisguise.stopDisguise();
             mobDisguise.startDisguise();
@@ -151,18 +184,7 @@ public class PlayerListeners implements Listener {
 
     }
 
-    @EventHandler
-    public void valHallaBlessing(EntityDamageEvent e) {
 
-        if (e.getCause() != EntityDamageEvent.DamageCause.SUFFOCATION
-                && e.getCause() != EntityDamageEvent.DamageCause.FALL
-                && e.getCause() != EntityDamageEvent.DamageCause.FIRE) return;
-
-        if (e.getEntity() instanceof Player
-                && (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() != null)
-                && (Florial.getPlayerData().get(e.getEntity().getUniqueId())).getUpgrades().get(Upgrade.NATUREIMMUNITY) != null) e.setCancelled(true);
-
-    }
 
     @EventHandler
     public void closeInventory(InventoryCloseEvent e) {
@@ -282,40 +304,23 @@ public class PlayerListeners implements Listener {
     }
 
     @EventHandler
-    public void onCommand(PlayerCommandPreprocessEvent event) {
-        if (Florial.getInstance().getStaffToVerify().contains(event.getPlayer().getUniqueId())) {
-            event.setCancelled(true);
-            new Message("&c&lPlease verify through discord").send(event.getPlayer());
-        }
-        Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.commandlogChannel")).sendMessage(event.getPlayer().getName() + " executed command: " + event.getMessage()).queue();
-    }
-
-    @EventHandler
-    public void onMove(PlayerMoveEvent event) {
-        if (Florial.getInstance().getStaffToVerify().contains(event.getPlayer().getUniqueId())) {
-            event.setCancelled(true);
-            new Message("&c&lPlease verify through discord").send(event.getPlayer());
-        }
-    }
-
-    @EventHandler
-    public void onDamage(EntityDamageByEntityEvent event) {
-        if (event.getDamager() instanceof Player) {
-            if (Florial.getInstance().getStaffToVerify().contains(Objects.requireNonNull(((Player) event.getDamager()).getPlayer()).getUniqueId())) {
-                event.setCancelled(true);
-                new Message("&c&lPlease verify through discord").send(((Player) event.getDamager()).getPlayer());
-            }
-        } else if (event.getEntity() instanceof Player) {
-            if (Florial.getInstance().getStaffToVerify().contains(Objects.requireNonNull(((Player) event.getEntity()).getPlayer()).getUniqueId())) {
-                event.setCancelled(true);
-                new Message("&c&lPlease verify through discord").send(((Player) event.getEntity()).getPlayer());
-            }
-        }
-    }
-
-    @EventHandler
     public void healRefresh(PlayerCommandPreprocessEvent e) {
 
         if (e.getMessage().contains("heal")) Florial.getPlayerData().get(e.getPlayer().getUniqueId()).refresh();
     }
+
+    @EventHandler
+    public void punishmentLog(PlayerCommandPreprocessEvent e) {
+
+        Player p = e.getPlayer();
+        String cmd = e.getMessage();
+
+        if (!(p.hasPermission("staff"))) return;
+
+        if (!(cmd.contains("ban")) && (!(cmd.contains("mute")))) return;
+
+        Florial.getDiscordServer().getTextChannelById("950563023607722004").sendMessage("**" + p.getName() + " executed punishment: " + cmd + "**").queue();
+
+    }
+
 }

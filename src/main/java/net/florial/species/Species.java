@@ -32,6 +32,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
@@ -218,13 +219,15 @@ public abstract class Species implements Listener {
         event.setCancelled(true);
 
         Material type = event.getItem().getType();
-        ItemStack heldItem = p.getInventory().getItemInMainHand();
+        ItemStack heldItem = event.getHand() == EquipmentSlot.OFF_HAND ? p.getInventory().getItemInOffHand() : p.getInventory().getItemInMainHand();
 
-        if (heldItem.getAmount() > 1) {
-            heldItem.setAmount(heldItem.getAmount() - 1);
-        } else {
-            p.getInventory().removeItem(heldItem);
-        }
+        Bukkit.getScheduler().runTask(florial, () -> {
+            if (heldItem.getAmount() > 1) {
+                heldItem.setAmount(heldItem.getAmount() - 1);
+            } else {
+                p.getInventory().removeItem(heldItem);
+            }
+        });
 
         if (boneFoods.contains(type)) {
             p.getInventory().addItem(new ItemStack(Material.BONE, 1));

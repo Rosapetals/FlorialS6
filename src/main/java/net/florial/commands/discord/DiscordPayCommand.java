@@ -61,11 +61,11 @@ public class DiscordPayCommand extends SlashCommand {
                     });
                     discordUser.save(true);
 
-                    slashCommandEvent.reply("Successfully paid :coin: " + price + " coins to " + payee.getEffectiveName() + " UwU").setEphemeral(true).queue();
+                    slashCommandEvent.reply("Successfully paid <:florialcoin:1108293880971014184> " + price + " coins to " + payee.getEffectiveName() + " UwU").setEphemeral(true).queue();
 
 
                 } else {
-                    slashCommandEvent.reply("You don't have enough :coin: coins to pay that person. >w<").setEphemeral(true).queue();
+                    slashCommandEvent.reply("You don't have enough <:florialcoin:1108293880971014184> coins to pay that person. >w<").setEphemeral(true).queue();
                 }
 
             }

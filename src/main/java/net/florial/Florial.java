@@ -191,6 +191,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BoardListener(), this);
         getServer().getPluginManager().registerEvents(new TrainListener(), this);
         getServer().getPluginManager().registerEvents(new EventListener(), this);
+        getServer().getPluginManager().registerEvents(new FloriesListener(), this);
 
         getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstManager(), this);
@@ -286,7 +287,6 @@ public final class Florial extends JavaPlugin {
 
     private void setupCommands() {
         PaperCommandManager manager = new PaperCommandManager(this);
-        manager.registerCommand(new SpeciesCheckCommand());
         manager.registerCommand(new ChangeSpeciesCommand());
         manager.registerCommand(new ResetSpeciesCommand());
         manager.registerCommand(new SpeciesCommand());
@@ -346,7 +346,7 @@ public final class Florial extends JavaPlugin {
             builder.forceGuildOnly(getConfig().getString("discord.serverid"));
             builder.setOwnerId("349819317589901323");
             builder.setCoOwnerIds("366301720109776899");
-            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand(), new DiscordTaskCommand(), new DiscordWarnCommand(), new DiscordShopCommand(), new DiscordPayCommand());
+            builder.addSlashCommands(new DiscordUwUCommand(), new DiscordMuteCommand(), new DiscordConfessCommand(), new DiscordAuthCommand(), new DiscordPunishCommand(), new DiscordUpdateDBCommand(), new DiscordLinkCommand(), new DiscordUnlinkCommand(), new DiscordVerifyCommand(), new DiscordSendCommand(), new DiscordProfileCommand(), new DiscordTaskCommand(), new DiscordWarnCommand(), new DiscordShopCommand(), new DiscordPayCommand(), new DiscordLeaderboardCommand(), new DiscordExecuteCommand());
             builder.setHelpWord(null);
             builder.setActivity(Activity.watching("the RosaCage"));
             CommandClient commandClient = builder.build();

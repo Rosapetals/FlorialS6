@@ -11,6 +11,8 @@ import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.lang.reflect.Field;
+
 @Data
 @Entity("discorduser")
 @NoArgsConstructor
@@ -62,6 +64,17 @@ public class DiscordUser {
                 FlorialDatabase.getDatastore().save(user);
             }
         });
+    }
+
+    public static int getFieldValue(DiscordUser discordData, String fieldName) {
+        try {
+            Field field = discordData.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return (int) field.get(discordData);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     public DiscordUser getInstance() {

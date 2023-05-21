@@ -85,6 +85,11 @@ public class InstinctsMenu {
                                         format(List.of(
                                                 "SOPHISTICATION", "3x Experience Gain", "",
                                                 "", "", "", "", "", ""
+                                        )), false),
+                                CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWVjODhjNzZlM2Q5YTFlYmQ3ZjRhMmU1NWVjYmNjNDJhOGQyM2Y2OTY3ODRhYTQxMGYwOTUxMmEzYjUzYSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                        format(List.of(
+                                                "STRONGNOSE", "Higher chance for scent to work.", "",
+                                                "", "", "", "", "", ""
                                         )), false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData")).toList();
 
 
@@ -102,6 +107,7 @@ public class InstinctsMenu {
                         contents.set(List.of(15), IntelligentItem.of(entries.get(7), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
                         contents.set(List.of(20), IntelligentItem.of(entries.get(8), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
                         contents.set(List.of(21), IntelligentItem.of(entries.get(9), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
+                        contents.set(List.of(22), IntelligentItem.of(entries.get(10), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
 
 
 
@@ -137,7 +143,7 @@ public class InstinctsMenu {
 
             if (data.getUpgrades() == null) data.setUpgrades(new HashMap<>(Map.of(Upgrade.DOUBLEHEALTH, false)));
 
-            for (int i = 0; i < 7; i++) {
+            for (int i = 0; i < 9; i++) {
                 if (data.getUpgrades().get(Upgrade.fromID(startId)) != null) amount++;
                 startId++;
             }

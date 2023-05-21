@@ -52,8 +52,7 @@ public class QuestGenerator {
 
     private static final List<Material> fishTypes = List.of(
             Material.COD,
-            Material.SALMON,
-            Material.TROPICAL_FISH
+            Material.SALMON
     );
 
     private static final Random random = new Random();

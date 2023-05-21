@@ -119,17 +119,6 @@ public class PlayerData {
 
     }
 
-    public static int getFieldValue(PlayerData playerData, String fieldName) {
-        try {
-            Field field = playerData.getClass().getDeclaredField(fieldName);
-            field.setAccessible(true);
-            return (int) field.get(playerData);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
 
     public void overwrite() {
         if (Bukkit.getPlayer(UUID) == null) return;
