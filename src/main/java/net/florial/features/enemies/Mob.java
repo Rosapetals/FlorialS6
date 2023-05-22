@@ -22,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Getter
 @ToString
@@ -54,12 +55,18 @@ public abstract class Mob implements Listener {
 
     }
 
+    private static final List<EntityType> entityTypes = List.of(EntityType.WITCH, EntityType.HOGLIN, EntityType.CAVE_SPIDER);
+
+
     @EventHandler
     public void spawnMyself(MobSpawnEvent event) {
 
         if (event.getFormer().getType() != this.iReplace) return;
 
-        Collection<Entity> amINear = event.getW().getNearbyEntitiesByType(this.entity.getEntityClass(), event.getLoc(), 20);
+        Collection<LivingEntity> amINear = event.getW().getNearbyLivingEntities(event.getLoc(), 18)
+                .stream()
+                .filter(entity -> entityTypes.contains(entity.getType()))
+                .toList();
 
         if (amINear.size() > 0) return;
 

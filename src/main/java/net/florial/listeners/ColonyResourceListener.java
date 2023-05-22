@@ -1,5 +1,6 @@
 package net.florial.listeners;
 
+import net.florial.Florial;
 import net.florial.utils.game.RegionDetector;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -81,8 +82,8 @@ public class ColonyResourceListener implements Listener {
             p.playSound(p.getLocation(), Sound.BLOCK_ROOTED_DIRT_STEP, 2, (float) 1);
             e.setCancelled(true);
 
-        } else if (p.getGameMode() == GameMode.SURVIVAL && e.getBlock().getType() != Material.WHEAT) {
-            e.setCancelled(true);
+        } else if (p.getGameMode() == GameMode.SURVIVAL) {
+            if (e.getBlock().getType() != Material.WHEAT || Florial.getQuest().get(p.getUniqueId()) == null) e.setCancelled(true);
         }
 
 

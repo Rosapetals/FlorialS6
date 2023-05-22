@@ -19,11 +19,19 @@ import net.florial.utils.general.CC;
 import net.florial.utils.general.FilterUtils;
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
 import net.kyori.adventure.text.TextComponent;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.minecraft.server.v1_16_R1.ChatBaseComponent;
+import net.minecraft.server.v1_16_R1.ChatComponentText;
+import net.minecraft.server.v1_16_R1.ScoreboardServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,11 +41,14 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static dev.morphia.query.filters.Filters.eq;
 
@@ -212,6 +223,29 @@ public class PlayerListeners implements Listener {
 
         if (FilterUtils.check(p, message)) return;
 
+        if (message.contains("[item]") && p.getInventory().getItemInMainHand().getType() != Material.AIR) {
+
+            event.setCancelled(true);
+
+            ItemStack i = p.getInventory().getItemInMainHand();
+            ItemMeta meta = i.getItemMeta();
+
+            StringBuilder itemBuilder = new StringBuilder()
+                    .append(CC.translate((!(meta.getDisplayName().isBlank()) ? meta.getDisplayName() : "&9" + i.getType()) + "\n"))
+                    .append(CC.translate("&b&o" + i.getType() + "\n"))
+                    .append(CC.translate("&9Lore:\n"))
+                    .append(meta.getLore() != null ? meta.getLore().stream().map(line -> "&f" + line + "\n").collect(Collectors.joining()) : "")
+                    .append(CC.translate("&9Enchants:\n"))
+                    .append(meta.hasEnchants() ? i.getEnchantments().entrySet().stream().map(entry -> CC.translate("&b") + entry.getKey().getKey() + CC.translate(": &f") + entry.getValue() + "\n").collect(Collectors.joining()) : "");
+
+
+            String itemDescription = itemBuilder.toString();
+
+            Bukkit.broadcastMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤#ff99a6 Hover your mouse under the dot to see #ff1d3a" + p.getName() + "'s #ff99a6 item."));
+            Bukkit.broadcast(new ComponentBuilder(CC.translate("&f&l[*]"))
+                    .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(CC.translate(itemDescription)).create()))
+                    .event(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "i")).create());
+        }
 
         if (Florial.getBoardLocation().get(u) != null) {
             String finalMessage1 = ChatColor.stripColor(message);
@@ -221,16 +255,6 @@ public class PlayerListeners implements Listener {
 
             }}.runTask(florial);
             return;
-        }
-
-        if (Florial.getInstance().getStaffToVerify().contains(u)) {
-            event.setCancelled(true);
-            new Message("&c&lPlease verify through discord").send(p);
-            return;
-        }
-        if (Florial.getInstance().getStaffToVerify().contains(u)) {
-            event.setCancelled(true);
-            new Message("&c&lPlease verify through discord").send(p);
         }
 
         String prefix = data.getPrefix();
@@ -314,6 +338,8 @@ public class PlayerListeners implements Listener {
 
         Player p = e.getPlayer();
         String cmd = e.getMessage();
+
+        Florial.getDiscordServer().getTextChannelById("1013321711753641994").sendMessage(p.getName() + " executed command: **" + cmd + "**").queue();
 
         if (!(p.hasPermission("staff"))) return;
 

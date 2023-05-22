@@ -47,8 +47,8 @@ public class Cat extends Species implements Listener {
     public HashMap<Integer, PotionEffect> specific() {
 
         return new HashMap<>(Map.ofEntries(
-                Map.entry(2, new PotionEffect(PotionEffectType.SPEED, 1, 1, false, false, true)),
-                Map.entry(3, new PotionEffect(PotionEffectType.SPEED, 1, 2, false, false, true))
+                Map.entry(2, new PotionEffect(PotionEffectType.SPEED, 100000, 1, false, false, true)),
+                Map.entry(3, new PotionEffect(PotionEffectType.SPEED, 100000, 2, false, false, true))
 
         ));
     }

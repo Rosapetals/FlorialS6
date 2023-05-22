@@ -83,14 +83,14 @@ public class FloriesMenu {
             floriesArrange(300, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.TOTEM_OF_UNDYING),
                     "", "", false), 16, "CustomModelData"), List.of(
                     "CAT TOTEM", "Permanent Totem of Undying,", "10 minute cooldown!", "Infinite uses.")),
-            floriesArrange(150, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.TOTEM_OF_UNDYING),
-                    "", "", false), 16, "CustomModelData"), List.of(
+            floriesArrange(150, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
+                    "", "", false), 10, "CustomModelData"), List.of(
                     "SELL-WAND", "Left-Click to sell all in inventory", "or on a chest.", "Infinite uses."))
     );
 
     private static final List<Integer> floriePrices = List.of(
             100, 100, 100, 300, 75, 50, 50, 50, 200,
-            100, 100, 100, 100, 75, 100, 100, 300
+            100, 100, 100, 100, 75, 100, 100, 300, 150
 
     );
 

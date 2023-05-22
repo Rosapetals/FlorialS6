@@ -4,6 +4,7 @@ import lombok.Getter;
 import net.florial.models.PlayerData;
 import net.florial.species.disguises.Morph;
 import net.florial.utils.general.CC;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -70,6 +71,12 @@ public enum Age {
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 2, 1);
 
             morph.activate(p, 5, false, true, data.getSpecies());
+
+            switch(newAge) {
+                case ADOLESCENT -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " parent add more");
+                case ADULT -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " parent add permitted");
+                case ELDER -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " parent add more2");
+            }
 
         } else {
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You can't age up anymore!"));

@@ -24,9 +24,10 @@ public class FilterUtils {
     public static boolean check(Player p, String s) {
 
         for (String pattern : SLURS) {
-            Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(s.replaceAll(" ", ""));
+            Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(s.replaceAll("", ""));
             if (!(matcher.find())) continue;
             new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + s);}}.runTask(Florial.getInstance());
+            Florial.getDiscordServer().getTextChannelById("950563023607722004").sendMessage("**The Filter muted " + p.getName() + " for saying: " + s).queue();
             return true;
 
         }
