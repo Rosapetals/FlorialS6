@@ -17,7 +17,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
-public class VoteRewardsListener implements Listener {
+public class VoteListener implements Listener {
 
     @EventHandler
     public void onVotifierEvent(VotifierEvent event) {

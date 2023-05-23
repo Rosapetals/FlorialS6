@@ -185,7 +185,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ClickablesListener(), this);
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
-        getServer().getPluginManager().registerEvents(new VoteRewardsListener(), this);
+        getServer().getPluginManager().registerEvents(new VoteListener(), this);
         getServer().getPluginManager().registerEvents(new PoolListener(), this);
         getServer().getPluginManager().registerEvents(new ColonyResourceListener(), this);
         getServer().getPluginManager().registerEvents(new BoardListener(), this);

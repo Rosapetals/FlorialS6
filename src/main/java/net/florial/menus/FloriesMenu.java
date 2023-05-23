@@ -85,12 +85,17 @@ public class FloriesMenu {
                     "CAT TOTEM", "Permanent Totem of Undying,", "10 minute cooldown!", "Infinite uses.")),
             floriesArrange(150, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
                     "", "", false), 10, "CustomModelData"), List.of(
-                    "SELL-WAND", "Left-Click to sell all in inventory", "or on a chest.", "Infinite uses."))
+                    "SELL-WAND", "Left-Click to sell all in inventory", "or on a chest.", "Infinite uses.")),
+            floriesArrange(3, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmM1OGViMDFlYjFlZTliZWM1MmYzNjc1MGUyMDkxNDg5NDgzY2E3M2UxNjA5YzI1ODk5MmNmMTZkNTk2NmRhNSJ9fX0"),
+                    "", "", false), 100, "CustomModelData"), List.of(
+                    "3 FLORIES - 5 DNA-U", "Click here to trade 3 flories", "For 5 DNA in return!", ""))
+
+            
     );
 
     private static final List<Integer> floriePrices = List.of(
             100, 100, 100, 300, 75, 50, 50, 50, 200,
-            100, 100, 100, 100, 75, 100, 100, 300, 150
+            100, 100, 100, 100, 75, 100, 100, 300, 150, 3
 
     );
 
@@ -155,8 +160,8 @@ public class FloriesMenu {
                         case 38 -> data.getUpgrades().put(Upgrade.DOUBLEHEALTH, true);
                         case 39 -> data.getUpgrades().put(Upgrade.SELLINCREASE, true);
                         case 33 -> data.getUpgrades().put(Upgrade.NATUREIMMUNITY, true);
-                        case 41 -> data.getUpgrades().put(Upgrade.STRONGNOSE, true);
                         case 42 -> data.getUpgrades().put(Upgrade.HASTE, true);
+                        case 100 -> data.setDna(data.getDna() + 5);
 
                     }
 

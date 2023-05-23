@@ -23,7 +23,7 @@ import java.util.Map;
 public class ShopBuilder {
 
 
-    private static final Map<Integer, List<ItemStack>> materialLists = new HashMap<>();
+    public static final Map<Integer, List<ItemStack>> materialLists = new HashMap<>();
     private static final Map<Integer, List<Integer>> priceLists = new HashMap<>();
 
     static {

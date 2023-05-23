@@ -42,7 +42,7 @@ public class PlayerData {
     private String discordId = "";
     @Getter @Setter
     private int flories = 0;
-    private int dna = 0;
+    private int dna = 25;
     private int specieId = 0;
 
     private int event = 0;

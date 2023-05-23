@@ -7,6 +7,7 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
+import net.florial.utils.Cooldown;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
@@ -78,8 +79,7 @@ public class SellMenu {
 
     private static void sell(Player p, ItemStack item, int price) {
 
-        p.closeInventory();
-
+        if (Cooldown.isOnCooldown("menu", p)) return;
         int amount = 0;
 
         if (!(p.getInventory().contains(item.getType()))) {
@@ -89,6 +89,8 @@ public class SellMenu {
             return;
 
         }
+
+        Cooldown.addCooldown("menu", p, 1);
 
         for (ItemStack i : p.getInventory().getContents()) {
             if (i != null && i.getType() == item.getType()) {
