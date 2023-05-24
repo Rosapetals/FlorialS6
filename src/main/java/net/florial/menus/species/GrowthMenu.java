@@ -60,15 +60,15 @@ public class GrowthMenu {
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
                                                 "GO BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "KIT", "BE BORN", "Less Health", "Can't Upgrade Skills", "Only 2 Dens(/setden)", "Small")), false),
+                                                "KIT", "BE BORN", "Less Health", "Can't Upgrade Skills", "Only 1 Den(/sethome)", "Small")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "ADOLESCENT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "+1 Den(/setden)", "You're bigger now")), false),
+                                                "ADOLESCENT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "+1 Den(/sethome)", "You're bigger now")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "YOUNG ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "-", "-")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "Instinct Panel; /instincts", "Species-Unique Area; /colony", "-")), false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "ELDER", "Click the Grow Button in this GUI", "2x DNA Multiplier", "+1 Upgrade Slot; All Skills", "+1 Den(/setden)", "Access Potion Area in Spawn")), false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                                "ELDER", "Click the Grow Button in this GUI", "2x DNA Multiplier", "+1 Upgrade Slot; All Skills", "+1 Den(/sethome)", "Access Potion Area in Spawn")), false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
                         //3,4,5,6
                         contents.set(List.of(0, 1), IntelligentItem.of(entries.get(2), event -> loadMenu(p)));

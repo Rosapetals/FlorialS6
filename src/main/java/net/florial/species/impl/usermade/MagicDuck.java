@@ -39,6 +39,13 @@ public class MagicDuck extends Species implements Listener {
     }
 
     @Override
+    public Set<String> descriptions() {
+
+        return new HashSet<>(Arrays.asList(
+                "NONE", "none"));
+    }
+
+    @Override
     public Set<Material> diet() {
         return new HashSet<>(Arrays.asList(
                 Material.COD, Material.SALMON,

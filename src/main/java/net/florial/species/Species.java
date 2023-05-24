@@ -33,7 +33,9 @@ import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
@@ -219,18 +221,24 @@ public abstract class Species implements Listener {
         event.setCancelled(true);
 
         Material type = event.getItem().getType();
-        ItemStack heldItem = event.getHand() == EquipmentSlot.OFF_HAND ? p.getInventory().getItemInOffHand() : p.getInventory().getItemInMainHand();
+        EquipmentSlot hand = event.getHand();
+        PlayerInventory inventory = p.getInventory();
+        ItemStack heldItem = hand == EquipmentSlot.OFF_HAND ? inventory.getItemInOffHand() : inventory.getItemInMainHand();
 
         Bukkit.getScheduler().runTask(florial, () -> {
             if (heldItem.getAmount() > 1) {
                 heldItem.setAmount(heldItem.getAmount() - 1);
             } else {
-                p.getInventory().removeItem(heldItem);
+                if (hand == EquipmentSlot.HAND) {
+                    inventory.removeItem(heldItem);
+                } else {
+                    inventory.setItemInOffHand(null);
+                }
             }
         });
 
         if (boneFoods.contains(type)) {
-            p.getInventory().addItem(new ItemStack(Material.BONE, 1));
+            inventory.addItem(new ItemStack(Material.BONE, 1));
             p.playSound(p, Sound.ENTITY_SKELETON_AMBIENT, (float) 0.8, (float) 0.8);
         }
         

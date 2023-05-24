@@ -298,6 +298,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new GrowCommand());
         manager.registerCommand(new SetDiscordIDCommand());
         manager.registerCommand(new StartShiftCommand());
+        manager.registerCommand(new DailyRewardCommand());
         manager.registerCommand(new EndShiftCommand());
         manager.registerCommand(new LinkCommand());
         manager.registerCommand(new UnlinkCommand());

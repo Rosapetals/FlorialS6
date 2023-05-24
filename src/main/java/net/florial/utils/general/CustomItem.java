@@ -23,7 +23,7 @@ public class CustomItem {
         meta.setLore(lore1);
         meta.setDisplayName(thename);
         i.setItemMeta(meta);
-        if (shiny) i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        if (shiny) i.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 1);
         return i;
     }
 }

@@ -26,7 +26,8 @@ public class PronounCommand extends BaseCommand {
             p.sendMessage((CC.translate("#ff3c55&l⚫&f When someone does /profile " + p.getName() + " they'll see your pronouns. To make it visible in chat, do #ff5b70/pronouns she/her visible/invisible #ff3c55&l⚫")));
         } else if (s2 != null) {
 
-            if (!(s2.contains("/") || s2.length() > 10)) return;
+            if (!(s2.contains("/"))) return;
+            if (s2.length() > 10) return;
             if (FilterUtils.check(p, s2)) return;
 
             PlayerData data = Florial.getPlayerData().get(p.getUniqueId());

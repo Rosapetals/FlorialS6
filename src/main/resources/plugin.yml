@@ -4,4 +4,4 @@ main: net.florial.Florial
 api-version: 1.19
 authors: [ Rosa, Reassembly ]
 description: Florial server core
-depend: [Votifier]
+depend: []

@@ -8,6 +8,8 @@ import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
+import net.florial.features.dailyrewards.Reward;
+import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.menus.species.SpeciesMenu;
 import net.florial.models.PlayerData;
@@ -36,6 +38,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityToggleSwimEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -45,6 +48,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
@@ -84,6 +89,8 @@ public class PlayerListeners implements Listener {
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
 
+        Reward.checkWeekStatus(p);
+
         /*if (p.hasPermission("florial.staff") && (!(p.getName().contains("rosathor")))) {
 
             if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
@@ -95,6 +102,8 @@ public class PlayerListeners implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(u);
         ThirstManager.thirstRunnable(p);
+
+        data.setLastLoggedIn(LocalDate.now());
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), data::refresh, 100L);
 
@@ -331,6 +340,16 @@ public class PlayerListeners implements Listener {
     public void healRefresh(PlayerCommandPreprocessEvent e) {
 
         if (e.getMessage().contains("heal")) Florial.getPlayerData().get(e.getPlayer().getUniqueId()).refresh();
+    }
+
+    @EventHandler
+    public void onPlayerToggleSwim(EntityToggleSwimEvent event) {
+        if (!(event.getEntity() instanceof Player p)) return;
+
+        if (!(event.isSwimming())) return;
+
+        HydrateEvent e = new HydrateEvent(p, null, net.florial.features.thirst.ThirstManager.getThirst(p), 20);
+        Bukkit.getPluginManager().callEvent(e);
     }
 
     @EventHandler

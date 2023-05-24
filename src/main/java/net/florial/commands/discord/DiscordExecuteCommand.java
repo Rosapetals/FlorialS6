@@ -36,7 +36,11 @@ public class DiscordExecuteCommand extends SlashCommand {
             return;
         }
 
-        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+        Bukkit.getScheduler().runTask(Florial.getInstance(), () -> {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+        });
+
+        slashCommandEvent.reply("Successfully executed the command: **" + command + "**").queue();
 
     }
 }

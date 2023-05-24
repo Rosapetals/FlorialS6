@@ -43,12 +43,12 @@ public class QuestGenerator {
             Material.BONE
             );
     private static final List<Material> foodTypes = List.of(
-            Material.BEEF,
-            Material.SALMON,
-            Material.COD,
-            Material.CHICKEN,
             Material.APPLE,
-            Material.PORKCHOP);
+            Material.PUMPKIN_PIE,
+            Material.COD,
+            Material.SALMON,
+            Material.APPLE,
+            Material.RABBIT_STEW);
 
     private static final List<Material> fishTypes = List.of(
             Material.COD,

@@ -11,6 +11,7 @@ import net.florial.Florial;
 import net.florial.Refresh;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.age.Age;
+import net.florial.features.dailyrewards.Weekday;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.species.SpecieType;
@@ -25,6 +26,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import java.lang.reflect.Field;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -54,6 +58,9 @@ public class PlayerData {
   //  @Getter @Setter SpeciesColor color;
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
+    HashMap<Weekday, Boolean> loggedInDays = new HashMap<>(Map.of(Weekday.SUNDAY, false, Weekday.MONDAY, false, Weekday.TUESDAY, false, Weekday.WEDNESDAY, false, Weekday.THURSDAY, false, Weekday.FRIDAY, false, Weekday.SATURDAY, false));
+
+    LocalDate lastLoggedIn = LocalDate.now();
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
     @Getter @Setter String gradient1 = "";
 

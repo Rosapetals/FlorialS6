@@ -3,6 +3,7 @@ package net.florial.species.impl.usermade;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.species.Species;
+import net.florial.utils.game.RegionDetector;
 import org.bukkit.*;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Player;
@@ -34,7 +35,8 @@ public class Endn extends Species implements Listener {
     @EventHandler
     public void silkTouchHands(BlockBreakEvent e) {
 
-        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this) return;
+        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this
+        || (!(RegionDetector.detect(e.getPlayer().getLocation()).contains("none")))) return;
 
         e.setDropItems(false);
 
@@ -54,6 +56,7 @@ public class Endn extends Species implements Listener {
     public void randomTeleport(PlayerInteractEvent event) {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK
         || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
+                || (!(event.getPlayer().isSneaking()))
         || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
 
         Player player = event.getPlayer();
