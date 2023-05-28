@@ -26,12 +26,12 @@ public class RankGiveCommand extends BaseCommand {
 
 
         switch(s) {
-            case "vip" -> giveRewards(arg1, 25, 15000, 0,"vip");
-            case "diamond" -> giveRewards(arg1, 35, 15000, 0,"diamond");
-            case "iridium" -> giveRewards(arg1, 100, 25000, 0,"iridium");
-            case "iridiumplus" -> giveRewards(arg1, 100, 150000, 0,"iridium++");
-            case "flourite" ->  giveRewards(arg1, 200, 350000, 20,"flourite");
-            case "pearlite" -> giveRewards(arg1, 10000, 1000000, 50,"pearlite");
+            case "vip" -> giveRewards(arg1, 200, 15000, 0,"vip");
+            case "diamond" -> giveRewards(arg1, 500, 25000, 10,"diamond");
+            case "iridium" -> giveRewards(arg1, 600, 50000, 20,"iridium");
+            case "iridiumplus" -> giveRewards(arg1, 700, 150000, 25,"iridium++");
+            case "flourite" ->  giveRewards(arg1, 800, 400000, 50,"flourite");
+            case "pearlite" -> giveRewards(arg1, 10000, 1000000, 64,"pearlite");
 
         }
     }

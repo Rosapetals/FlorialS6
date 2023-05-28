@@ -41,9 +41,9 @@ public class Refresh {
         int specific = skills.get(Skill.SPECIFIC);
 
         // let's see if the user has upgraded resistance?
-        if (resistance > 1) mainThread(p, PotionEffectType.DAMAGE_RESISTANCE, null,resistance-2);
+        if (resistance > 1) mainThread(p, PotionEffectType.DAMAGE_RESISTANCE, null,resistance-1);
 
-        if (skills.get(Skill.STRENGTH) > 1)   mainThread(p, PotionEffectType.INCREASE_DAMAGE, null,skills.get(Skill.STRENGTH)-2);
+        if (skills.get(Skill.STRENGTH) > 1)   mainThread(p, PotionEffectType.INCREASE_DAMAGE, null,skills.get(Skill.STRENGTH)-1);
 
         //we use this statement to check if survival is 20 or just 5. because at those levels max health INCREASES!
 

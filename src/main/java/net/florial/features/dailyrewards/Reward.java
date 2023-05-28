@@ -53,13 +53,14 @@ public enum Reward {
         ZonedDateTime lastLoginDate = data.getLastLoggedIn().atStartOfDay(ZoneId.of("America/Chicago"));
 
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
-
         int lastLoginWeek = lastLoginDate.get(weekFields.weekOfWeekBasedYear());
         int currentLoginWeek = currentLoginDate.get(weekFields.weekOfWeekBasedYear());
 
-        if (currentLoginWeek > lastLoginWeek) {
+        if (currentLoginWeek > lastLoginWeek || currentLoginWeek == 1 && lastLoginWeek == 53) {
 
             data.getLoggedInDays().replaceAll((key, value) -> false);
+
+            System.out.println("Did it");
 
         }
 
@@ -72,9 +73,10 @@ public enum Reward {
 
         DayOfWeek dayOfWeek = currentDateTime.getDayOfWeek();
 
+        p.closeInventory();
+
         if (!(dayOfWeek.name().contains(day.name()))) {
 
-            p.closeInventory();
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c It is not " + day.name() + " in the CST timezone. It is currently " + dayOfWeek.name() + " in the CST timezone. Hours until next day in the CST timezone: " + hoursUntilNextDayCST(currentDateTime)));
             return;
 
@@ -86,7 +88,6 @@ public enum Reward {
 
         if (playersWeek.get(day)) {
 
-            p.closeInventory();
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You have already gotten a reward for this day."));
             return;
 
@@ -113,6 +114,9 @@ public enum Reward {
             long hoursUntilNextDay = hoursUntilNextDayCST(currentDateTime);
 
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You have been given your rewards! Check back the next day based on the Central Standard Timezone. Hours until next day: #ff3c55" + hoursUntilNextDay + "&f. Rewards: #ff3c55" + flories + "&f Flories, #ff3c55" + dna + "&f DNA, " + "#ff3c55 $" + money));
+
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c&l Login multiple days in a row for better rewards!"));
+
 
         } else {
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c There was an error giving you your reward. Forward this code via bugreport from /bugreport: null" + completedDays));

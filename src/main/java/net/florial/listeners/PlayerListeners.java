@@ -21,19 +21,14 @@ import net.florial.utils.general.CC;
 import net.florial.utils.general.FilterUtils;
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
 import net.kyori.adventure.text.TextComponent;
-import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
-import net.minecraft.server.v1_16_R1.ChatBaseComponent;
-import net.minecraft.server.v1_16_R1.ChatComponentText;
-import net.minecraft.server.v1_16_R1.ScoreboardServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -49,7 +44,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
@@ -91,19 +85,11 @@ public class PlayerListeners implements Listener {
 
         Reward.checkWeekStatus(p);
 
-        /*if (p.hasPermission("florial.staff") && (!(p.getName().contains("rosathor")))) {
-
-            if (Objects.equals(Florial.getPlayerData().get(u).getDiscordId(), "")) {
-                new Message("&c&lPlease link your account immediately using /link").send(p);
-            } else {
-                Florial.getInstance().getStaffToVerify().add(u);
-            }
-        }*/
-
         PlayerData data = Florial.getPlayerData().get(u);
         ThirstManager.thirstRunnable(p);
 
-        data.setLastLoggedIn(LocalDate.now());
+
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {data.setLastLoggedIn(LocalDate.now());}, 20L);
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), data::refresh, 100L);
 
@@ -348,7 +334,7 @@ public class PlayerListeners implements Listener {
 
         if (!(event.isSwimming())) return;
 
-        HydrateEvent e = new HydrateEvent(p, null, net.florial.features.thirst.ThirstManager.getThirst(p), 20);
+        HydrateEvent e = new HydrateEvent(p, null, net.florial.features.thirst.ThirstManager.getThirst(p), 2);
         Bukkit.getPluginManager().callEvent(e);
     }
 
@@ -367,5 +353,6 @@ public class PlayerListeners implements Listener {
         Florial.getDiscordServer().getTextChannelById("950563023607722004").sendMessage("**" + p.getName() + " executed punishment: " + cmd + "**").queue();
 
     }
+
 
 }

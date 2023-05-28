@@ -52,6 +52,7 @@ public class PearliteCommand extends BaseCommand {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
         data.setDna(data.getDna() + 20);
+        data.setFlories(data.getFlories() + 10);
 
         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1, 3);
 
