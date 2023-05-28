@@ -13,7 +13,7 @@ public class FixWeekCommand extends BaseCommand {
 
     @CommandAlias("fixweek")
     @CommandPermission("op")
-    public void onInfoPanel(Player p, @Optional @Flags("other") Player target){
+    public void onWeekFix(Player p, @Optional @Flags("other") Player target){
 
         PlayerData data = Florial.getPlayerData().get(target.getUniqueId());
 

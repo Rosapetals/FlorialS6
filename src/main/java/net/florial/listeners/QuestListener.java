@@ -18,6 +18,8 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.CraftingInventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.util.Objects;
@@ -29,16 +31,55 @@ public class QuestListener implements Listener {
 
         if (!(Florial.getQuest().containsKey(event.getWhoClicked().getUniqueId()))) return;
 
-        if (Florial.getQuest().get(event.getWhoClicked().getUniqueId()).getCraftType() != Objects.requireNonNull(event.getCurrentItem()).getType()) return;
+        if (Florial.getQuest().get(event.getWhoClicked().getUniqueId()).getCraftType() != Objects.requireNonNull(event.getCurrentItem()).getType())
+            return;
 
-        if (event.getCursor() != null && (!(event.getCursor().getType().isAir()))) return;
+        if (event.getCursor() != null && event.getCursor().getAmount() > 63) return;
 
         Player p = (Player) event.getWhoClicked();
 
-        callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.CRAFT);
+        int amountOfItems = 1;
+
+
+        if (event.isShiftClick()) {
+
+            if (!hasRoom(p)) return;
+            amountOfItems = shiftClickCheck(event.getInventory(), event.getRecipe().getResult()).getAmount();
+
+        }
+
+        for (int i = 0; i < amountOfItems; i++) {
+            callProgressEvent(p, Florial.getQuest().get(p.getUniqueId()), QuestType.CRAFT);
+        }
 
     }
 
+
+    private static ItemStack shiftClickCheck(CraftingInventory inventory, ItemStack result) {
+
+
+        final int resultAmt = result.getAmount();
+        int leastIngredient = -1;
+        for (ItemStack item : inventory.getMatrix()) {
+            if (item != null && !item.getType().equals(Material.AIR)) {
+                final int re = item.getAmount() * resultAmt;
+                if (leastIngredient == -1 || re < leastIngredient) {
+                    leastIngredient = item.getAmount() * resultAmt;
+                }
+            }
+        }
+        return new ItemStack(result.getType(), leastIngredient, result.getDurability());
+    }
+    private static boolean hasRoom(Player p) {
+
+        int freeSlots = 0;
+        for (ItemStack item : p.getInventory().getStorageContents()) {
+            if (item == null || item.getType() == Material.AIR) {
+                freeSlots++;
+            }
+        }
+        return freeSlots > 0;
+    }
 
 
 
