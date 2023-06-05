@@ -37,15 +37,15 @@ public class OreTrackingUI {
 
                         p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_BREATH, 1, 1);
 
-                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.COAL_ORE), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.COAL_ORE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "COAL", "1"), scent), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.IRON_ORE), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        CustomItem.MakeItem(new ItemStack(Material.IRON_ORE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "IRON", "2"), scent), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.EMERALD_ORE), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        CustomItem.MakeItem(new ItemStack(Material.EMERALD_ORE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "EMERALD", "3"), scent), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.LAPIS_ORE), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        CustomItem.MakeItem(new ItemStack(Material.LAPIS_ORE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "LAPIS", "4"), scent), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.DIAMOND_ORE), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        CustomItem.MakeItem(new ItemStack(Material.DIAMOND_ORE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "DIAMOND", "5"), scent), false))
                                 .toList();
 
@@ -86,11 +86,11 @@ public class OreTrackingUI {
 
     private static String format(List<String> iterations, int scent){
         scent = 60-(scent*10);
-        return "  #ff79a1&l︳ " + iterations.get(0) +
-                "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • REQUIRES: #ffa2c4\n #ffa2c4&l︳ • SCENT LVL: #ffa2c4 "
-                + iterations.get(1) + "\n #ffa2c4&l︳ • COOLDOWN:#ffa2c4 "
-                + scent + "\n #ffa2c4&l︳ • [CLICK HERE]" +
-                "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙";}
+        return "  #5a372c&l︳ " + iterations.get(0) +
+                "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • REQUIRES: #6e4837\n #6e4837&l︳ • SCENT LVL: #6e4837 "
+                + iterations.get(1) + "\n #6e4837&l︳ • COOLDOWN:#6e4837 "
+                + scent + "\n #6e4837&l︳ • [CLICK HERE]" +
+                "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙";}
 
 }
 

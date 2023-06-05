@@ -44,22 +44,22 @@ public class Skills {
                             descriptions = new ArrayList<>(Collections.nCopies(6, "This species does not have a unique Skill"));
                         }
 
-                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "SCENT", "" + data.getSkills().get(Skill.SCENT), "#ffa2c4 25 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
+                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "SCENT", "" + data.getSkills().get(Skill.SCENT), "#6e4837 25 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
                                                 "lower cooldown : stronger skill")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "STRENGTH", "" + data.getSkills().get(Skill.STRENGTH), "#ffa2c4 30 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "STRENGTH", "" + data.getSkills().get(Skill.STRENGTH), "#6e4837 30 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
                                                 "Increase in Strength")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "RESISTANCE", "" + data.getSkills().get(Skill.RESISTANCE), "#ffa2c4 50 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "RESISTANCE", "" + data.getSkills().get(Skill.RESISTANCE), "#6e4837 50 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
                                                 "Increase in Resistance")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "SURVIVAL", "" + data.getSkills().get(Skill.SURVIVAL), "#ffa2c4 Will increase as you upgrade other skills",
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "SURVIVAL", "" + data.getSkills().get(Skill.SURVIVAL), "#6e4837 Will increase as you upgrade other skills",
                                                 "More health : higher dmg")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "" + descriptions.get(0), "" + data.getSkills().get(Skill.SPECIFIC), "#ffa2c4 25 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "" + descriptions.get(0), "" + data.getSkills().get(Skill.SPECIFIC), "#6e4837 25 #9ECEFF&lD#FFC2DA&lN#9ECEFF&lA",
                                                 "" + descriptions.get(1))), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", " #ff79a1&l︳ BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", " #5a372c&l︳ BACK\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
                         contents.set(List.of(36,37), IntelligentItem.of(entries.get(5), event -> backButton(p)));
@@ -127,9 +127,9 @@ public class Skills {
     }
 
     private static String format(List<String> iterations){
-        return "  #ff79a1&l︳ " + iterations.get(0) +
-            " SKILL\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • YOUR LEVEL: #ffa2c4 "
-            + iterations.get(1) + "\n #ff79a1&l︳  INCREASE BY:\n #ffa2c4&l︳ •#ffa2c4 "
-            + iterations.get(2) + "\n #ffa2c4&l︳ • [CLICK HERE]\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • LEVELS BRING:\n #ffa2c4&l︳#ffa2c4 "
-            + iterations.get(3) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙";}
+        return "  #5a372c&l︳ " + iterations.get(0) +
+            " SKILL\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • YOUR LEVEL: #6e4837 "
+            + iterations.get(1) + "\n #5a372c&l︳  INCREASE BY:\n #6e4837&l︳ •#6e4837 "
+            + iterations.get(2) + "\n #6e4837&l︳ • [CLICK HERE]\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#5a372c&l INFORMATION\n #6e4837&l︳ • LEVELS BRING:\n #6e4837&l︳#6e4837 "
+            + iterations.get(3) + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙";}
 }

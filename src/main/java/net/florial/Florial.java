@@ -254,10 +254,11 @@ public final class Florial extends JavaPlugin {
                 new ItemStack(Material.LAPIS_LAZULI),
                 key1,
                 null, null, null, null, null, null, null), NBTEditor.set(key2, 2, "Crate"));
-        registerRecipes("event_dandelion", false, "12 ", "   ", "   ", Arrays.asList(
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "&eDandelion Seeds", "&e&oCraft with bonemeal.", false), 6, "CustomModelData"),
-                new ItemStack(Material.BONE_MEAL),
-                null, null, null, null, null, null, null), NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.DANDELION), "&eDandelion", "&e&oTrade these in /event", false), 71, "CustomModelData"));
+        registerRecipes("event_cream", false, " 1 ", " 2 ", " 3 ", Arrays.asList(
+                new ItemStack(Material.SNOWBALL),
+                new ItemStack(Material.SUGAR),
+                new ItemStack(Material.COOKIE),
+                null, null, null, null, null, null), NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#fffffe&l&o&nI#eeeae5&l&o&nC#ddd5cd&l&o&nE #ccc0b4&l&o&nC#bcaa9c&l&o&nR#ab9583&l&o&nE#9a806b&l&o&nA#896b52&l&o&nM", "&f&l&o&nSubmit this in /event", true), 11, "CustomModelData"));
     }
 
     @SuppressWarnings("SameParameterValue")
@@ -337,6 +338,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new PearliteCommand());
         manager.registerCommand(new BuyCommand());
         manager.registerCommand(new FixWeekCommand());
+        manager.registerCommand(new QuestCommand());
 
 
 

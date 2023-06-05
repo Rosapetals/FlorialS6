@@ -45,30 +45,30 @@ public class GrowthMenu {
                         String questDisplay = Florial.getQuest().get(u) != null ? "RE-ROLL QUEST:" : "GET QUEST:";
                         String rollPrice = Florial.getQuest().get(u) != null ? "Price: " + Quest.rollFormula(VaultHandler.getBalance(p)) : "";
 
-                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
-                                "CLICK HERE TO GROW UP\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • YOUR AGE: #ffa2c4 "
-                                + age + "\n #ff79a1&l︳  INCREASE BY:\n #ffa2c4&l︳ •#ffa2c4 "
-                                + requiredDNA + " DNA\n #ffa2c4&l︳ • " + requiredQuests + " Quests\n#ffa2c4&l︳ • [CLICK HERE]\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • HOVER OVER:\n #ffa2c4&l︳#ffa2c4 the other menu options "
-                                + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
-                                                "GET-A-QUEST\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • COMPLETED QUESTS: #ffa2c4 "
-                                                +  data.getGrowth() + "\n #ff79a1&l︳  " + questDisplay + "\n #ffa2c4&l︳ •#ffa2c4 [CLICK ME]\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • INFO:" +
-                                                "\n #ffa2c4&l︳#ffa2c4 • 1 quest gives 1 DNA" +
-                                                "\n #ffa2c4&l︳#ffa2c4 • Complete " + requiredQuests + " and get " + requiredDNA + " DNA to Age Up"
-                                                + "\n #ffa2c4&l︳#ffa2c4 • " + rollPrice
-                                                + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
-                                                "GO BACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ " +
+                                "CLICK HERE TO GROW UP\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • YOUR AGE: #6e4837 "
+                                + age + "\n #5a372c&l︳  INCREASE BY:\n #6e4837&l︳ •#6e4837 "
+                                + requiredDNA + " DNA\n #6e4837&l︳ • " + requiredQuests + " Quests\n#6e4837&l︳ • [CLICK HERE]\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳#5a372c&l INFORMATION\n #6e4837&l︳ • HOVER OVER:\n #6e4837&l︳#6e4837 the other menu options "
+                                + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ " +
+                                                "GET-A-QUEST\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • COMPLETED QUESTS: #6e4837 "
+                                                +  data.getGrowth() + "\n #5a372c&l︳  " + questDisplay + "\n #6e4837&l︳ •#6e4837 [CLICK ME]\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳#5a372c&l INFORMATION\n #6e4837&l︳ • INFO:" +
+                                                "\n #6e4837&l︳#6e4837 • 1 quest gives 1 DNA" +
+                                                "\n #6e4837&l︳#6e4837 • Complete " + requiredQuests + " and get " + requiredDNA + " DNA to Age Up"
+                                                + "\n #6e4837&l︳#6e4837 • " + rollPrice
+                                                + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ " +
+                                                "GO BACK\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "KIT", "BE BORN", "Less Health", "Can't Upgrade Skills", "Only 1 Den(/sethome)", "Small")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "ADOLESCENT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "+1 Den(/sethome)", "You're bigger now")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                                 "YOUNG ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "+1 heart", "-", "-")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "Instinct Panel; /instincts", "Species-Unique Area; /colony", "-")), false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "ELDER", "Click the Grow Button in this GUI", "2x DNA Multiplier", "+1 Upgrade Slot; All Skills", "+1 Den(/sethome)", "Access Potion Area in Spawn")), false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "ADULT", "Click the Grow Button in this GUI", "+1 Upgrade Slot; All Skills", "-", "Species-Unique Area; /colony", "-")), false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "ELDER", "Click the Grow Button in this GUI", "2x DNA Multiplier", "+1 Upgrade Slot; All Skills", "/warp potions", "Unlock Rebirth - /reincarnation")), false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
                         //3,4,5,6
                         contents.set(List.of(0, 1), IntelligentItem.of(entries.get(2), event -> loadMenu(p)));
@@ -103,17 +103,17 @@ public class GrowthMenu {
 
     private static String format(List<String> iterations){
 
-        return  "  #ff79a1&l︳ "
-                + iterations.get(0) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • HOW TO GET:\n #ff79a1&l︳ "
-                + iterations.get(1) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • INFO:" +
-                "\n #ffa2c4&l︳#ffa2c4 • "
+        return  "  #5a372c&l︳ "
+                + iterations.get(0) + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • HOW TO GET:\n #5a372c&l︳ "
+                + iterations.get(1) + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳#5a372c&l INFORMATION\n #6e4837&l︳ • INFO:" +
+                "\n #6e4837&l︳#6e4837 • "
                 + iterations.get(2) +
-                "\n #ffa2c4&l︳#ffa2c4 • "
+                "\n #6e4837&l︳#6e4837 • "
                 + iterations.get(3) +
-                "\n #ffa2c4&l︳#ffa2c4 • "
+                "\n #6e4837&l︳#6e4837 • "
                 + iterations.get(4) +
-                "\n #ffa2c4&l︳#ffa2c4 • "
-                + iterations.get(5) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙";
+                "\n #6e4837&l︳#6e4837 • "
+                + iterations.get(5) + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙";
     }
 
 }

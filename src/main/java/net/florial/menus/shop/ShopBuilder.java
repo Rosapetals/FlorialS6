@@ -184,13 +184,13 @@ public class ShopBuilder {
                         Iterator<Integer> priceIter = (resourcePrices).iterator();
 
                         contents.set(List.of(0,1,2), IntelligentItem.of(NBTEditor.set(CustomItem.MakeItem(
-                                new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "#ff79a1&lBACK\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙",
+                                new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "#5a372c&lBACK\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙",
                         false), 1010, "CustomModelData"), event -> shop.shopMenu(p)));
 
                         contents.set(7, IntelligentItem.of(NBTEditor.set(CustomItem.MakeItem(
-                                new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "#ff79a1&lBULK BUY\n&f\n#ff79a1&l"
-                                + (Florial.getBulkBuy().get(p.getUniqueId()) != null ? Florial.getBulkBuy().get(p.getUniqueId()) : "false") + "\n&f\n#ff79a1 Enable to buy" +
-                                       " x64 of an item" +  "#ff79a1&l┕━━━━━━━━━━━━━━━━━━┙",
+                                new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "#5a372c&lBULK BUY\n&f\n#5a372c&l"
+                                + (Florial.getBulkBuy().get(p.getUniqueId()) != null ? Florial.getBulkBuy().get(p.getUniqueId()) : "false") + "\n&f\n#5a372c Enable to buy" +
+                                       " x64 of an item" +  "#5a372c&l┕━━━━━━━━━━━━━━━━━━┙",
                                 false), 1010, "CustomModelData"), event -> {
                                     ShopMenu.enableBulkBuy(p);
                                     category(p, type);}));

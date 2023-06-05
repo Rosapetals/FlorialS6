@@ -36,14 +36,14 @@ public class ShopMenu {
 
                         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
 
-                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                        "#ff79a1&lRESOURCES\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lBOOKS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lDECORATIONS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lMISCELLANEOUS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                        "#5a372c&lRESOURCES\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lBOOKS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lDECORATIONS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lMISCELLANEOUS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
 
@@ -91,9 +91,9 @@ public class ShopMenu {
 
     public static ItemStack arrangeItem(int price, ItemStack i) {
 
-        return CustomItem.MakeItem(i, "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ "
-                + i.getType() + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • PRICE: #ffa2c4 "
-                + price + "\n #ff79a1&l︳  [CLICK HERE]:\n#ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false);
+        return CustomItem.MakeItem(i, "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ "
+                + i.getType() + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • PRICE: #6e4837 "
+                + price + "\n #5a372c&l︳  [CLICK HERE]:\n#5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false);
 
     }
 

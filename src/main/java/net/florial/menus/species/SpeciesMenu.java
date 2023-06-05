@@ -41,56 +41,56 @@ public class SpeciesMenu {
                     @Override
                     public void init(Player player, InventoryContents contents) {
 
-                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lSKILLS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lINSTINCTS\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#ff79a1&lGROWTH\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ " +
-                                                "CASH TO DNA\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • YOUR CASH: #ffa2c4 "
-                                                + VaultHandler.getBalance(p) + "\n #ff79a1&l︳  CASH NEEDED:\n #ffa2c4&l︳ •#ffa2c4 $10,000 per DNA\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳#ff79a1&l INFORMATION\n #ffa2c4&l︳ • INFO:" +
-                                                "\n #ffa2c4&l︳#ffa2c4 • Get cash by selling items in /sell" +
-                                                "\n #ffa2c4&l︳#ffa2c4 • Use DNA to buy Instincts, upgrade skills," +
-                                                "\n #ffa2c4&l︳#ffa2c4 • or to age up. The choice is yours."
-                                                + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                        List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lSKILLS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lINSTINCTS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lGROWTH\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ " +
+                                                "CASH TO DNA\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • YOUR CASH: #6e4837 "
+                                                + VaultHandler.getBalance(p) + "\n #5a372c&l︳  CASH NEEDED:\n #6e4837&l︳ •#6e4837 $10,000 per DNA\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳#5a372c&l INFORMATION\n #5a372c&l︳ • INFO:" +
+                                                "\n #6e4837&l︳#6e4837 • Get cash by selling items in /sell" +
+                                                "\n #6e4837&l︳#6e4837 • Use DNA to buy Instincts, upgrade skills," +
+                                                "\n #6e4837&l︳#6e4837 • or to age up. The choice is yours."
+                                                + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
-                        List<ItemStack> species = Stream.of(CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTkyNGJlNWY3NGI2NDMxNjYwZmQ1YzRjYzAzMzRkOTFlNzdlNzdmZGQ4OGQyNGVhODVlYjBmMzgzODRjN2YxYSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "#ffa2c4&lFOX", "#ffa2c4&lBITE:#ffa2c4 Melee with an empty hand.", "You will bite heavy.",
-                                                "#ffa2c4&lHEAT ACCLIMATION:#ffa2c4 Your Lavakit", "heritage shows. Get Fire Resistance when hurt by lava/fire.",
-                                                "#ffa2c4&lSPEED II:#ffa2c4 You're faster.", "Make the most of it.",
-                                                "#ffa2c4&lNIGHT VISION:#ffa2c4 You can see in dark.", "Make the most of it.",
-                                                "#ffa2c4&lBURROWER:#ffa2c4 Upgrade your burrow skill to", "break blocks faster and get more materials",
-                                                "#ffa2c4&lWEAK:#ffa2c4 Live with 7 hearts", "Make the most of it.",
-                                                "#ffa2c4&lCARNIVORE:#ffa2c4 Vegetables aren't all that", "healthy. Except Sweet Berries!",
+                        List<ItemStack> species = Stream.of(CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTkyNGJlNWY3NGI2NDMxNjYwZmQ1YzRjYzAzMzRkOTFlNzdlNzdmZGQ4OGQyNGVhODVlYjBmMzgzODRjN2YxYSJ9fX0"), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "#6e4837&lFOX", "#6e4837&lBITE:#6e4837 Melee with an empty hand.", "You will bite heavy.",
+                                                "#6e4837&lHEAT ACCLIMATION:#6e4837 Your Lavakit", "heritage shows. Get Fire Resistance when hurt by lava/fire.",
+                                                "#6e4837&lSPEED II:#6e4837 You're faster.", "Make the most of it.",
+                                                "#6e4837&lNIGHT VISION:#6e4837 You can see in dark.", "Make the most of it.",
+                                                "#6e4837&lBURROWER:#6e4837 Upgrade your burrow skill to", "break blocks faster and get more materials",
+                                                "#6e4837&lWEAK:#6e4837 Live with 7 hearts", "Make the most of it.",
+                                                "#6e4837&lCARNIVORE:#6e4837 Vegetables aren't all that", "healthy. Except Sweet Berries!",
                                                 "", "", "", "")), false),
-                                        CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2UzZTAzYTk2NzE4NDAyMjNhOTZhOTIwOTE0ZDFiODczMTQwNDRjYzZkMzJhYWI3YzI3ZTFmNjQwZWNjMjFkNSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                                "#ffa2c4&lCAT", "#ffa2c4&lNINE LIVES:#ffa2c4 Bounce back when close to death.", "Has a cooldown.",
-                                                "#ffa2c4&lSCRATCH:#ffa2c4 Hit with an empty hand to", "scratch nearby entities in a radius.",
-                                                "#ffa2c4&lPURR:#ffa2c4 Shift+Right-Click anywhere to give", "yourself & those around you Regen II.",
-                                                "#ffa2c4&lNIGHT VISION:#ffa2c4 You can see in dark.", "Make the most of it.",
-                                                "#ffa2c4&lQUICKFEET:#ffa2c4 Land on your feet.", "No fall damage! + Speed I.",
-                                                "#ffa2c4&lSMALL:#ffa2c4 Live with 6 hearts", "Make the most of it.",
-                                                "#ffa2c4&lCARNIVORE:#ffa2c4 Vegetables aren't all that", "healthy.",
+                                        CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2UzZTAzYTk2NzE4NDAyMjNhOTZhOTIwOTE0ZDFiODczMTQwNDRjYzZkMzJhYWI3YzI3ZTFmNjQwZWNjMjFkNSJ9fX0"), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                                "#6e4837&lCAT", "#6e4837&lNINE LIVES:#6e4837 Bounce back when close to death.", "Has a cooldown.",
+                                                "#6e4837&lSCRATCH:#6e4837 Hit with an empty hand to", "scratch nearby entities in a radius.",
+                                                "#6e4837&lPURR:#6e4837 Shift+Right-Click anywhere to give", "yourself & those around you Regen II.",
+                                                "#6e4837&lNIGHT VISION:#6e4837 You can see in dark.", "Make the most of it.",
+                                                "#6e4837&lQUICKFEET:#6e4837 Land on your feet.", "No fall damage! + Speed I.",
+                                                "#6e4837&lSMALL:#6e4837 Live with 6 hearts", "Make the most of it.",
+                                                "#6e4837&lCARNIVORE:#6e4837 Vegetables aren't all that", "healthy.",
                                                 "", "", "", "")), false),
-                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDE0N2MyMGM0ZjM1YmQyN2QzZDQxOTEyNzkyYTc5OGU5ZjRmOWJiZmUwNGYwZDMyNTVkOWJjYWRmOGE0MWFhZSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━&cPEARLITE-EXCLUSIVE#ff79a1&l━━━━━━━━━┑", format(List.of(
-                                        "#ffa2c4&lPEARLITE", "#ffa2c4&lSHAPESHIFTER:#ffa2c4 /shapeshift fox/cat ", "to switch forms.",
-                                        "#ffa2c4&lHEALER:#ffa2c4 Right-Click any entity to heal", "them depending on your heal skill",
-                                        "#ffa2c4&lFLIGHT:#ffa2c4 Shift+Left-Click while looking", "up to fly!",
-                                        "#ffa2c4&lNIGHT VISION:#ffa2c4 You can see in dark.", "Make the most of it.",
-                                        "#ffa2c4&lQUICKFEET:#ffa2c4 Land on your feet.", "No fall damage! + Speed I.",
-                                        "#ffa2c4&lRESILIENT:#ffa2c4 Live with 16 hearts", "Make the most of it.",
-                                        "#ffa2c4&lOMNIVOROUS:#ffa2c4 Everything looks delectably", "healthy.",
+                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDE0N2MyMGM0ZjM1YmQyN2QzZDQxOTEyNzkyYTc5OGU5ZjRmOWJiZmUwNGYwZDMyNTVkOWJjYWRmOGE0MWFhZSJ9fX0"), "#5a372c&l ┍━━━━━━━━━&cPEARLITE-EXCLUSIVE#ff79a1&l━━━━━━━━━┑", format(List.of(
+                                        "#6e4837&lPEARLITE", "#6e4837&lSHAPESHIFTER:#6e4837 /shapeshift fox/cat ", "to switch forms.",
+                                        "#6e4837&lHEALER:#6e4837 Right-Click any entity to heal", "them depending on your heal skill",
+                                        "#6e4837&lFLIGHT:#6e4837 Shift+Left-Click while looking", "up to fly!",
+                                        "#6e4837&lNIGHT VISION:#6e4837 You can see in dark.", "Make the most of it.",
+                                        "#6e4837&lQUICKFEET:#6e4837 Land on your feet.", "No fall damage! + Speed I.",
+                                        "#6e4837&lRESILIENT:#6e4837 Live with 16 hearts", "Make the most of it.",
+                                        "#6e4837&lOMNIVOROUS:#6e4837 Everything looks delectably", "healthy.",
                                         "", "", "", "")), false),
-                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGQ5NmY1YmUxNzIzNGE5N2I2MDMzZGMxM2FkZjRjMzliYTNjMWFkYzAxMjRmYzlkMmNiZjIxYjE4ZDI1NTNjMSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                        "#ffa2c4&lHUMAN", "&c&lWait a minute... ", "&cwhat're you doing in the wilderness?",
-                                        "#ffa2c4&lMEDICAL AID:#ffa2c4 Upgrade your Medical skill to heal", "yourself fast by left-clicking with paper",
+                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGQ5NmY1YmUxNzIzNGE5N2I2MDMzZGMxM2FkZjRjMzliYTNjMWFkYzAxMjRmYzlkMmNiZjIxYjE4ZDI1NTNjMSJ9fX0"), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        "#6e4837&lHUMAN", "&c&lWait a minute... ", "&cwhat're you doing in the wilderness?",
+                                        "#6e4837&lMEDICAL AID:#6e4837 Upgrade your Medical skill to heal", "yourself fast by left-clicking with paper",
                                         "", "",
                                         "", "",
                                         "", "",
-                                        "#ffa2c4&lWEAK STOMACH:#ffa2c4 Raw meat is.. simply", "sickening..",
-                                        "#ffa2c4&lOMNIVOROUS:#ffa2c4 Everything looks delectably", "healthy.",
+                                        "#6e4837&lWEAK STOMACH:#6e4837 Raw meat is.. simply", "sickening..",
+                                        "#6e4837&lOMNIVOROUS:#6e4837 Everything looks delectably", "healthy.",
                                         "", "", "", "")), false)).toList();
 
 
@@ -159,27 +159,27 @@ public class SpeciesMenu {
 
 
         private static String format(List<String> iterations){
-        return "  #ff79a1&l︳ " + iterations.get(0) +
-                "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ •  #ffa2c4 "
-                + iterations.get(1) + "\n#ffa2c4 "
-                + iterations.get(2) + "\n #ffa2c4&l︳ •  #ffa2c4 "
-                + iterations.get(3) + "\n#ffa2c4 "
-                + iterations.get(4) + "\n #ffa2c4&l︳ •  #ffa2c4 "
-                + iterations.get(5) + "\n#ffa2c4 "
-                + iterations.get(6) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n"
-                + "#ffa2c4&l︳ • #ffa2c4 "
-                + iterations.get(7) + "\n#ffa2c4 "
-                + iterations.get(8) + "\n #ffa2c4&l︳ • #ffa2c4 "
-                + iterations.get(9) + "\n#ffa2c4 "
-                + iterations.get(10) + "\n #ffa2c4&l︳ • #ffa2c4 "
-                + iterations.get(11) + "\n#ffa2c4 "
-                + iterations.get(12) + "\n #ffa2c4&l︳ • #ffa2c4 "
-                + iterations.get(13) + "\n#ffa2c4 "
-                + iterations.get(14) + "\n #ffa2c4&l︳ • #ffa2c4 "
-                + iterations.get(15) + "\n#ffa2c4 "
-                + iterations.get(16) + "\n #ffa2c4&l︳ • #ffa2c4 "
-                + iterations.get(17) + "\n#ffa2c4 "
-                + iterations.get(18) + "\n #ffa2c4&l︳ • [CLICK HERE]" +
-                "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙";}
+        return "  #5a372c&l︳ " + iterations.get(0) +
+                "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ •  #6e4837 "
+                + iterations.get(1) + "\n#6e4837 "
+                + iterations.get(2) + "\n #6e4837&l︳ •  #6e4837 "
+                + iterations.get(3) + "\n#6e4837 "
+                + iterations.get(4) + "\n #6e4837&l︳ •  #6e4837 "
+                + iterations.get(5) + "\n#6e4837 "
+                + iterations.get(6) + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n"
+                + "#6e4837&l︳ • #6e4837 "
+                + iterations.get(7) + "\n#6e4837 "
+                + iterations.get(8) + "\n #6e4837&l︳ • #6e4837 "
+                + iterations.get(9) + "\n#6e4837 "
+                + iterations.get(10) + "\n #6e4837&l︳ • #6e4837 "
+                + iterations.get(11) + "\n#6e4837 "
+                + iterations.get(12) + "\n #6e4837&l︳ • #6e4837 "
+                + iterations.get(13) + "\n#6e4837 "
+                + iterations.get(14) + "\n #6e4837&l︳ • #6e4837 "
+                + iterations.get(15) + "\n#6e4837 "
+                + iterations.get(16) + "\n #6e4837&l︳ • #6e4837 "
+                + iterations.get(17) + "\n#6e4837 "
+                + iterations.get(18) + "\n #6e4837&l︳ • [CLICK HERE]" +
+                "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙";}
 
 }

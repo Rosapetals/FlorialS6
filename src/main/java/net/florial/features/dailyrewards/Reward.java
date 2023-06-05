@@ -52,17 +52,12 @@ public enum Reward {
 
         ZonedDateTime lastLoginDate = data.getLastLoggedIn().atStartOfDay(ZoneId.of("America/Chicago"));
 
+
         WeekFields weekFields = WeekFields.of(Locale.getDefault());
         int lastLoginWeek = lastLoginDate.get(weekFields.weekOfWeekBasedYear());
         int currentLoginWeek = currentLoginDate.get(weekFields.weekOfWeekBasedYear());
 
-        HashMap<Weekday, Boolean> playersWeek = data.getLoggedInDays();
-
-        int completedDays = Math.toIntExact(playersWeek.values().stream().filter(Boolean::valueOf).count());
-
-        if (completedDays > 2) {
-            data.getLoggedInDays().replaceAll((key, value) -> false);
-        }
+        data.setLastLoggedIn(LocalDate.now());
 
         if (currentLoginWeek > lastLoginWeek || currentLoginWeek == 1 && lastLoginWeek == 53) {
 

@@ -65,7 +65,7 @@ public class BuyMenu {
                                         CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWM2NDlhMGJiMjY1OWQ4ZjAzNzBjOWRhMWQwMGIzMmI1NmQwOTg5Nzg4ZWJmZGY5ODQwMmNjYmYzZTk2OGE3NSJ9fX0"), "#41116cI#4a1678r#531b84i#5c2190d#64269ci#6d2ba8u#7630b4m", format(List.of(
                                                 "#5c2190", "Adequate", "#41116c", "#7630b4",
                                                 "&l&n$14.99",
-                                                "/kit Iridium - Full diamond, netherite tools",
+                                                "-",
                                                 "/iridiumpumpkins - generate pumpkins nearby",
                                                 "/time - change the server time",
                                                 "/rankflyspeed - adjust your flyspeed",
@@ -81,7 +81,7 @@ public class BuyMenu {
                                         CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzZhOWU0ODFmMDMxMWRjYjU0M2VlZjllNjQ3YzkyYWY5Zjk0MjE0MjAyMDU3YTcyMGIzZDliYzhkY2NhMDlmZCJ9fX0"), "#41116cI#4a1678r#531b84i#5c2190d#64269ci#6d2ba8u#7630b4m++", format(List.of(
                                                 "#5c2190", "Super worth it!", "#41116c", "#7630b4",
                                                 "&l&n$16.99",
-                                                "/kit Iridiumplus - Full netherite",
+                                                "-",
                                                 "/prefix - change your prefix to anything with colors",
                                                 "/iridiumannounce - announce something to the server",
                                                 "/irdiumkeyall - give crate keys to the whole server once a day",
@@ -98,7 +98,7 @@ public class BuyMenu {
                                         CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhmY2EzNDVlNGZkOWM0MjJiNzNjNGMxYzUwNTZmMzc5ZGU5MjUxMGZjOTRiNGNjOTA3ZmIyMGNlNzUwZGM5MCJ9fX0"), "#ffa737F#ffb043l#ffb84eo#ffc15au#ffca66r#ffd372i#ffdb7dt#ffe489e", format(List.of(
                                                 "#ffca66", "PERFECT to buy!", "#ffa737", "#ffe489",
                                                 "&l&n$19.99",
-                                                "/kit flourite - Netherite Tools Efficiency & Sharp",
+                                                "-",
                                                 "/invsee - see into other player's inventories",
                                                 "/gift - give yourself a random item in minecraft",
                                                 "/condense - condense items into a stack",

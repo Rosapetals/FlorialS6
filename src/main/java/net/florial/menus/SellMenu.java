@@ -113,9 +113,9 @@ public class SellMenu {
 
     public static ItemStack arrangeItem(int price, ItemStack i) {
 
-        return CustomItem.MakeItem(i, "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ "
-                + i.getType() + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • SELL PER: #ffa2c4 "
-                + price + "\n #ff79a1&l︳  [CLICK HERE]:\n#ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false);
+        return CustomItem.MakeItem(i, "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ "
+                + i.getType() + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • SELL PER: #6e4837 "
+                + price + "\n #5a372c&l︳  [CLICK HERE]:\n#5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false);
 
     }
 }

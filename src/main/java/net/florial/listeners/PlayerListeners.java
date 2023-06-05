@@ -83,15 +83,11 @@ public class PlayerListeners implements Listener {
             new Message("&a[MONGO] &fLoaded your player data successfully!").showOnHover(Florial.getPlayerData().get(u).toString()).send(p);
         }
 
-        Reward.checkWeekStatus(p);
-
         PlayerData data = Florial.getPlayerData().get(u);
         ThirstManager.thirstRunnable(p);
 
-
-        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {data.setLastLoggedIn(LocalDate.now());}, 20L);
-
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), data::refresh, 100L);
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> Reward.checkWeekStatus(p), 100L);
 
         if (Florial.getQuestBar().containsKey(u)) Florial.getQuestBar().get(u).addPlayer(p);
 

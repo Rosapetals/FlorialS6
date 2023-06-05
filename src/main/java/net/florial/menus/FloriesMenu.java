@@ -185,16 +185,16 @@ public class FloriesMenu {
 
     private static ItemStack floriesArrange(int price, ItemStack i, List<String> iterations){
 
-        return CustomItem.MakeItem(i, "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", "  #ff79a1&l︳ "
-                + iterations.get(0) + "\n #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙\n #ffa2c4&l︳ • PRICE: #ffa2c4 "
+        return CustomItem.MakeItem(i, "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ "
+                + iterations.get(0) + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • PRICE: #6e4837 "
                 + price + " flories"
-                + "\n#ff79a1&l︳#ffa2c4 "
+                + "\n#5a372c&l︳#6e4837 "
                 + iterations.get(1) + "\n"
-                + "\n#ff79a1&l︳#ffa2c4 "
+                + "\n#5a372c&l︳#6e4837 "
                 + iterations.get(2) + "\n"
-                + "\n#ff79a1&l︳#ffa2c4 "
+                + "\n#5a372c&l︳#6e4837 "
                 + iterations.get(3) + "\n"
-                + " #ff79a1&l︳  [CLICK HERE]:\n#ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false);
+                + " #5a372c&l︳  [CLICK HERE]:\n#5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false);
     }
 
 }
