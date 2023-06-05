@@ -4,13 +4,14 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.Default;
 import net.florial.menus.species.InstinctsMenu;
+import net.florial.menus.species.RebirthMenu;
 import org.bukkit.entity.Player;
 
-public class InstinctsMenuCommand extends BaseCommand {
+public class RebirthMenuCommand extends BaseCommand {
 
-    InstinctsMenu instinctsMenu = new InstinctsMenu();
+    RebirthMenu rebirthMenu = new RebirthMenu();
 
-    @CommandAlias("instincts")
+    @CommandAlias("reincarnation")
     @Default
-    public void onInstinctsOpen(Player player) {instinctsMenu.instinctMenu(player);}
+    public void onRebirthOpen(Player player) {rebirthMenu.rebirthMenu(player);}
 }

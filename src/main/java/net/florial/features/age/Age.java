@@ -11,10 +11,10 @@ import org.bukkit.entity.Player;
 public enum Age {
 
     KIT(1, 5, 5, 0),
-    ADOLESCENT(2, 50, 50, 2),
-    YOUNG_ADULT(3, 75, 100, 4),
-    ADULT(4, 100, 200, 8),
-    ELDER(5, 200, 500, 10);
+    ADOLESCENT(2, 25, 50, 2),
+    YOUNG_ADULT(3, 25, 100, 4),
+    ADULT(4, 50, 200, 8),
+    ELDER(5, 50, 500, 10);
 
     private static final Morph morph = new Morph();
 

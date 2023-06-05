@@ -96,7 +96,11 @@ public class Crates implements Listener {
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lVanilla Ice-Cream Cone [Left-Click]", "", false), 2,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lStrawberry Ice-Cream Cone [Left-Click]", "", false), 3,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lS O A P [Left-Click]", "", false), 5,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lPina Colada [Left-Click]", "", false), 7,"CustomModelData")
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lPina Colada [Left-Click]", "", false), 7,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBlue Popsicle [Left-Click]", "", false), 12,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lJuicy Pineapple [Left-Click]", "", false), 15,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lSinner's Pineapple Pizza [Left-Click]", "", false), 16,"CustomModelData")
+
 
 
 

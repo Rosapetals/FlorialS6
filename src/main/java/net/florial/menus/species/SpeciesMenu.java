@@ -28,7 +28,7 @@ public class SpeciesMenu {
     final net.florial.utils.general.GetCustomSkull GetCustomSkull = new GetCustomSkull();
     private static final Skills Skills = new Skills();
 
-    private static final net.florial.menus.species.InstinctsMenu InstinctsMenu = new InstinctsMenu();
+    private static final RebirthMenu rebirthMenu = new RebirthMenu();
 
     private static final net.florial.menus.species.GrowthMenu GrowthMenu = new GrowthMenu();
 
@@ -127,7 +127,7 @@ public class SpeciesMenu {
 
         switch (type) {
             case 1 -> Skills.skillMenu(p);
-            case 2 -> InstinctsMenu.instinctMenu(p);
+            case 2 -> rebirthMenu.rebirthMenu(p);
             case 3 -> GrowthMenu.growthMenu(p);
 
         }
@@ -152,7 +152,7 @@ public class SpeciesMenu {
         } else {
             p.closeInventory();
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 2, 1);
-            p.sendMessage("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least $10,000 to get 1 DNA.");
+            p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least $10,000 to get 1 DNA."));
 
         }
     }

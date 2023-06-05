@@ -80,6 +80,7 @@ public class Morph {
                     }
                 }
                 case 5 -> ((AgeableWatcher)watcher).setAdult();
+                case 6 -> ((AgeableWatcher)watcher).setBaby();
             }
 
         } else {

@@ -25,7 +25,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31
+            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16
     );
 
     @EventHandler
@@ -54,7 +54,7 @@ public class ClickablesListener implements Listener {
             case 35 -> infiniteCookie(e.getPlayer());
             case 36 -> waterJug(e.getPlayer());
             case 37 -> weatherManipulation(e.getPlayer());
-            case 45, 2, 3, 5, 7 -> specialEat(e.getPlayer());
+            case 45, 2, 3, 5, 7, 12, 15, 16 -> specialEat(e.getPlayer());
             case 4 -> useMoneyVoucher(e.getPlayer());
             case 13, 14 -> useDNAVoucher(e.getPlayer());
             case 8 -> useFloatie(e.getPlayer());
@@ -115,13 +115,11 @@ public class ClickablesListener implements Listener {
 
     private static void specialEat(Player p) {
 
-        if (p.getInventory().getItemInMainHand().getType() == Material.GLISTERING_MELON_SLICE) return;
-
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
         removeItem(p.getInventory().getItemInMainHand(), p);
 
-        data.setDna(data.getDna() + 1);
+        data.setDna(data.getDna() + 3);
 
         p.playSound(p.getLocation(), Sound.ITEM_HONEY_BOTTLE_DRINK, 1, (float) 8);
 

@@ -51,6 +51,7 @@ public class PlayerData {
 
     private int event = 0;
     private int growth = 0;
+    private int reincarnations = 0;
     @Nullable
     String pronouns = "";
     @Nullable
@@ -68,7 +69,7 @@ public class PlayerData {
 
 
 
-    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, @org.jetbrains.annotations.Nullable String prefix, Age age, String gradient1, String gradient2) {
+    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, int reincarnations, @org.jetbrains.annotations.Nullable String prefix, Age age, String gradient1, String gradient2) {
 
         this.UUID = uuid;
         this.discordId = discordId;
@@ -80,6 +81,7 @@ public class PlayerData {
         this.upgrades = upgrades;
         this.event = event;
         this.growth = growth;
+        this.reincarnations = reincarnations;
         this.prefix = prefix;
         this.age = age;
         this.gradient1 = gradient1;

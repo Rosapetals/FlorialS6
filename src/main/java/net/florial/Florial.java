@@ -20,7 +20,7 @@ import net.florial.commands.*;
 import net.florial.commands.cheats.*;
 import net.florial.commands.discord.*;
 import net.florial.commands.menu.FloriesMenuCommand;
-import net.florial.commands.menu.InstinctsMenuCommand;
+import net.florial.commands.menu.RebirthMenuCommand;
 import net.florial.commands.menu.ShopCommand;
 import net.florial.commands.menu.SkillsMenuCommand;
 import net.florial.commands.ranks.*;
@@ -322,7 +322,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new SwitchNickNameCommand());
         manager.registerCommand(new PrefixCommand());
         manager.registerCommand(new SellCommand());
-        manager.registerCommand(new InstinctsMenuCommand());
+        manager.registerCommand(new RebirthMenuCommand());
         manager.registerCommand(new VoteCommand());
         manager.registerCommand(new RankFlySpeedCommand());
         manager.registerCommand(new RankGiveCommand());
@@ -337,7 +337,6 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new PronounCommand());
         manager.registerCommand(new PearliteCommand());
         manager.registerCommand(new BuyCommand());
-        manager.registerCommand(new FixWeekCommand());
         manager.registerCommand(new QuestCommand());
 
 

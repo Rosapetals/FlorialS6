@@ -24,7 +24,7 @@ public class ResetSpeciesCommand extends BaseCommand {
         if (data.getDna() >= 25) {
 
             data.setSpecieId(0);
-            data.setDna(0);
+            data.setDna(data.getDna() - 25);
             data.getSkills().replaceAll((s, v) -> 0);
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 1, 1);
