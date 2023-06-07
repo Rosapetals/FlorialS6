@@ -27,6 +27,7 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
@@ -156,6 +157,12 @@ public class PlayerListeners implements Listener {
 
     @EventHandler
     public void dimensionChange(PlayerChangedWorldEvent e) {preventSliding(e.getPlayer());}
+
+    @EventHandler
+    public void hotBarClickSwitch(PlayerItemHeldEvent event) {
+        Player player = event.getPlayer();
+        player.playSound(player.getLocation(), Sound.ENTITY_CHICKEN_STEP, 0.3f, 1f);
+    }
 
     @EventHandler
     public void crashPrevention(PlayerDeathEvent e) {

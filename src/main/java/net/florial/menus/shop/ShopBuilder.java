@@ -8,6 +8,7 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
+import net.florial.utils.general.GetCustomSkull;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -25,6 +26,8 @@ public class ShopBuilder {
 
     public static final Map<Integer, List<ItemStack>> materialLists = new HashMap<>();
     private static final Map<Integer, List<Integer>> priceLists = new HashMap<>();
+
+    private static final GetCustomSkull GetCustomSkull = new GetCustomSkull();
 
     static {
 
@@ -161,6 +164,25 @@ public class ShopBuilder {
 
         materialLists.put(4, List.of(ShopMenu.arrangeItem(15000, new ItemStack(Material.DISC_FRAGMENT_5))));
         priceLists.put(4, List.of(15000));
+
+        materialLists.put(5, List.of(
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYThiNTBmY2U0MzhlNDJjMGIyODc4OGRmMjc3NzdlNTdjOTM5NmQzZmExOTVhMTIwZWM2MjM3Y2ZjNTA5MTk3NiJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTlmZmZkNmFmMDk5OTc4ODlhYmY4OWI3ZGI2MzNiNmExM2VhNzVkZWU3NTY5ZGYyYWNkMjA5NmYxMjkzODFjIn19fQ")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzAxNzhiMmNhOWJhZjUxMDc3YzY4NTcyNGUyNTIwODAzYWUzNmM0NDg0N2Q3NWIxODE4MTJkYWU2OTc5YWJlMSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGQyMjkxYmI3YTcxYzhiZWQyMzBjMjRkYzM4YmRlODk1ZDAxYzY4NDJlMzFhODQxOWY3MWVhMjE3MDkxN2VlYiJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTIxOTVlMjljNzUwNTcyYTUyZWY2NmY2OWNlYmE3MGQ3MWEzODZlNjllZjIwYzBjNmVhYjZhMWRjNmZkMDZlYSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTA2NjM0ZDZjOTBjNWQzMTZjNWVkZjRhZGY0N2FhNjNiMDVhYzU1YzQyMjQzNGI3NDlkNGQ1ODc0ZjYwNmU3ZCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjFjOGM1ODZiNGI5NzYxZDhiNzhmMTZlYjU3MzU4MzM3NGU1MmYxYTI4NzM1NzY3NGUzMWZkMmE4MzgyIn19fQ")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDhjMDBmM2M1YWY0MTY2ODQzZGY3YTQwZTc3MWNhNmRlOGY2OWEyYTlhZGY0N2E1NGMwYjljOTc3OTEyMjIwMiJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTA2NjM0ZDZjOTBjNWQzMTZjNWVkZjRhZGY0N2FhNjNiMDVhYzU1YzQyMjQzNGI3NDlkNGQ1ODc0ZjYwNmU3ZCJ9fX0"))
+
+        ));
+        priceLists.put(5, List.of(
+                1500, 1500, 1500,
+                1500, 1500, 1500,
+                1500, 1500, 1500
+
+        ));
     }
 
     private static final ShopMenu shop = new ShopMenu();

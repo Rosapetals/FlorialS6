@@ -49,7 +49,7 @@ public class RebirthMenu {
                             mileStone2Completed = data.getUpgrades().get(Upgrade.SELLINCREASE) != null ? "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhmY2EzNDVlNGZkOWM0MjJiNzNjNGMxYzUwNTZmMzc5ZGU5MjUxMGZjOTRiNGNjOTA3ZmIyMGNlNzUwZGM5MCJ9fX0" : mileStone2Completed;
                             mileStone3Completed = data.getUpgrades().get(Upgrade.DOUBLEHEALTH) != null ? "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhmY2EzNDVlNGZkOWM0MjJiNzNjNGMxYzUwNTZmMzc5ZGU5MjUxMGZjOTRiNGNjOTA3ZmIyMGNlNzUwZGM5MCJ9fX0" : mileStone3Completed;
                             mileStone4Completed = data.getUpgrades().get(Upgrade.NATUREIMMUNITY) != null ? "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhmY2EzNDVlNGZkOWM0MjJiNzNjNGMxYzUwNTZmMzc5ZGU5MjUxMGZjOTRiNGNjOTA3ZmIyMGNlNzUwZGM5MCJ9fX0" : mileStone4Completed;
-                            mileStone5Completed = data.getUpgrades().get(Upgrade.STRONGNOSE) != null ? "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhmY2EzNDVlNGZkOWM0MjJiNzNjNGMxYzUwNTZmMzc5ZGU5MjUxMGZjOTRiNGNjOTA3ZmIyMGNlNzUwZGM5MCJ9fX0" : mileStone5Completed;
+                            mileStone5Completed = data.getUpgrades().get(Upgrade.DNA) != null ? "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzhmY2EzNDVlNGZkOWM0MjJiNzNjNGMxYzUwNTZmMzc5ZGU5MjUxMGZjOTRiNGNjOTA3ZmIyMGNlNzUwZGM5MCJ9fX0" : mileStone5Completed;
 
 
                         }
@@ -80,14 +80,14 @@ public class RebirthMenu {
                                                         + "#FF9920&l︳ • CLICK REBIRTH TO REINCARNATE"
                                                         + "\n #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(GetCustomSkull.getCustomSkull(mileStone5Completed), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                " #FF9920&l︳• #FFB65FSTRONGER SCENT\n"
-                                                        + " #FF9920&l︳• #FFB65F25 Reincarnations"
+                                                " #FF9920&l︳• #FFB65F3X DNA FOREVER\n"
+                                                        + " #FF9920&l︳• #FFB65F100 Reincarnations"
                                                         + "\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙\n"
                                                         + "#FF9920&l︳ • CLICK REBIRTH TO REINCARNATE"
                                                         + "\n #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
                                                 " #FF9920&l︳• #FFB65FREINCARNATION\n"
-                                                        + " #FF9920&l︳• #FFB65F25 Times Reincarnated: " + data.getReincarnations()
+                                                        + " #FF9920&l︳• #FFB65F Times Reincarnated: " + data.getReincarnations()
                                                         + "\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙\n"
                                                         + "#FF9920&l︳ • Requires Elder Lifestage (/grow)\n"
                                                         + "#FF9920&l︳ • Gives 50 Flories & 1 Reincarnation"
@@ -109,7 +109,7 @@ public class RebirthMenu {
                             unlockMilestone(p, data, 75, Upgrade.NATUREIMMUNITY);
                         }));
                         contents.set(List.of(44), IntelligentItem.of(entries.get(4), event -> {
-                            unlockMilestone(p, data, 100, Upgrade.STRONGNOSE);
+                            unlockMilestone(p, data, 100, Upgrade.DNA);
                         }));
 
                         //13,20,24,36,44

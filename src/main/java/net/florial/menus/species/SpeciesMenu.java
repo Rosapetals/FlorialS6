@@ -8,13 +8,11 @@ import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.features.age.Age;
 import net.florial.features.skills.Skills;
+import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
-import net.florial.utils.general.CC;
-import net.florial.utils.general.CustomItem;
-import net.florial.utils.general.GetCustomSkull;
-import net.florial.utils.general.VaultHandler;
+import net.florial.utils.general.*;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -49,7 +47,7 @@ public class SpeciesMenu {
                                                 "#5a372c&lGROWTH\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ " +
                                                 "CASH TO DNA\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • YOUR CASH: #6e4837 "
-                                                + VaultHandler.getBalance(p) + "\n #5a372c&l︳  CASH NEEDED:\n #6e4837&l︳ •#6e4837 $10,000 per DNA\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳#5a372c&l INFORMATION\n #5a372c&l︳ • INFO:" +
+                                                + MoneyFormatter.put((long) VaultHandler.getBalance(p)) + "\n #5a372c&l︳  CASH NEEDED:\n #6e4837&l︳ •#6e4837 $10,000 per DNA\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳#5a372c&l INFORMATION\n #5a372c&l︳ • INFO:" +
                                                 "\n #6e4837&l︳#6e4837 • Get cash by selling items in /sell" +
                                                 "\n #6e4837&l︳#6e4837 • Use DNA to buy Instincts, upgrade skills," +
                                                 "\n #6e4837&l︳#6e4837 • or to age up. The choice is yours."
@@ -74,7 +72,7 @@ public class SpeciesMenu {
                                                 "#6e4837&lSMALL:#6e4837 Live with 6 hearts", "Make the most of it.",
                                                 "#6e4837&lCARNIVORE:#6e4837 Vegetables aren't all that", "healthy.",
                                                 "", "", "", "")), false),
-                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDE0N2MyMGM0ZjM1YmQyN2QzZDQxOTEyNzkyYTc5OGU5ZjRmOWJiZmUwNGYwZDMyNTVkOWJjYWRmOGE0MWFhZSJ9fX0"), "#5a372c&l ┍━━━━━━━━━&cPEARLITE-EXCLUSIVE#ff79a1&l━━━━━━━━━┑", format(List.of(
+                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDE0N2MyMGM0ZjM1YmQyN2QzZDQxOTEyNzkyYTc5OGU5ZjRmOWJiZmUwNGYwZDMyNTVkOWJjYWRmOGE0MWFhZSJ9fX0"), "#5a372c&l ┍━━━━━━━━━&cPEARLITE-EXCLUSIVE#5a372c&l━━━━━━━━━┑", format(List.of(
                                         "#6e4837&lPEARLITE", "#6e4837&lSHAPESHIFTER:#6e4837 /shapeshift fox/cat ", "to switch forms.",
                                         "#6e4837&lHEALER:#6e4837 Right-Click any entity to heal", "them depending on your heal skill",
                                         "#6e4837&lFLIGHT:#6e4837 Shift+Left-Click while looking", "up to fly!",
@@ -141,7 +139,7 @@ public class SpeciesMenu {
 
             PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-            data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
+            data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : data.getUpgrades().get(Upgrade.DNA) != null ? 3 : 1));
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_FLUTE, 2, 1);
 

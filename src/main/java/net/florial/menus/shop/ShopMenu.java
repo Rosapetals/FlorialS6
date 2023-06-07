@@ -9,6 +9,7 @@ import net.florial.Florial;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
+import net.florial.utils.general.GetCustomSkull;
 import net.florial.utils.general.VaultHandler;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -22,6 +23,7 @@ import java.util.stream.Stream;
 public class ShopMenu {
 
     private static final ShopBuilder shopBuilder = new ShopBuilder();
+    private static final GetCustomSkull GetCustomSkull = new GetCustomSkull();
 
     public void shopMenu(Player p) {
 
@@ -43,7 +45,9 @@ public class ShopMenu {
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
                                                 "#5a372c&lDECORATIONS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#5a372c&lMISCELLANEOUS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                                "#5a372c&lMISCELLANEOUS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzdmMWZhNjFjNDQ5ZDFhNDFhM2IyZDAyMDUyMDQ1NWRhMWU1MDU2MDRjMTJhOGNlZTdjNDY4NmNhMWNhOWI5NSJ9fX0"), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lPRIDE\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
 
@@ -62,6 +66,9 @@ public class ShopMenu {
                         contents.set(List.of(29,28,37,38), IntelligentItem.of(entries.get(2), event -> loadMenu(p, 3)));
 
                         contents.set(List.of(31,32,39,40), IntelligentItem.of(entries.get(3), event -> loadMenu(p, 4)));
+
+                        contents.set(List.of(22), IntelligentItem.of(entries.get(4), event -> loadMenu(p, 5)));
+
 
 
 

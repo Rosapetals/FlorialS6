@@ -13,6 +13,7 @@ public enum Upgrade {
     DOUBLEHEALTH(2, false, 2),
     NATUREIMMUNITY(3, false, 3),
     SELLINCREASE(5, false, 5),
+    DNA(14, false, 14),
 
 
     //instincts

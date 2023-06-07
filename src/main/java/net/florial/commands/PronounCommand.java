@@ -4,6 +4,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.Optional;
 import net.florial.Florial;
+import net.florial.features.age.Age;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.FilterUtils;
@@ -33,7 +34,7 @@ public class PronounCommand extends BaseCommand {
             PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
             data.setPronouns(s2);
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " meta setsuffix \"" + " #ff3c55(" + s2 + "#ff3c55)\"");
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " meta setsuffix \"" + restoreSuffix(p, data, true) + "\"");
             p.sendMessage((CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully set your pronouns to #ff3c55" + s2
             + " want to make them invisible and only viewable through /profile? Do /pronouns " + s2 + " invisible")));
 
@@ -41,14 +42,36 @@ public class PronounCommand extends BaseCommand {
             if (s3 == null) return;
 
             if (s3.contains("visible") && (!(s3.contains("invisible")))) {
-                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " meta setsuffix \"" + " #ff3c55(" + s2 + "#ff3c55)\"");
+                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " meta setsuffix \"" + restoreSuffix(p, data, true) + "\"");
             } else if (s3.contains("invisible")) {
-                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " meta setsuffix \"\"");
+                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " meta setsuffix \"" + restoreSuffix(p, data, false) + "\"");
 
             }
         } else {
             p.sendMessage((CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Correct Usage: /pronouns she/her visible")));
 
         }
+    }
+
+
+
+    private static String restoreSuffix(Player p, PlayerData data, boolean visible) {
+
+        Age age = data.getAge();
+        String ageIcon = "&f";
+        assert data.getPronouns() != null;
+        String pronouns = data.getPronouns().isBlank() ? "" : data.getPronouns();
+
+        switch (age) {
+            case KIT -> ageIcon = "\uE616";
+            case ADOLESCENT -> ageIcon = "\uE617";
+            case YOUNG_ADULT -> ageIcon = "\uE618";
+            case ADULT -> ageIcon = "\uE619";
+            case ELDER -> ageIcon = "\uE620";
+
+        }
+
+        return visible ? "&f" + ageIcon + "#ff3c55(" + pronouns + ")" : "&f" + ageIcon;
+
     }
 }

@@ -338,6 +338,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new PearliteCommand());
         manager.registerCommand(new BuyCommand());
         manager.registerCommand(new QuestCommand());
+        manager.registerCommand(new ShareDNACommand());
 
 
 

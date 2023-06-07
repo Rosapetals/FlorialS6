@@ -3,6 +3,7 @@ package net.florial.features.quests;
 import net.florial.Florial;
 import net.florial.features.age.Age;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
+import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.VaultHandler;
@@ -52,7 +53,7 @@ public class QuestProgressManager implements Listener {
         Florial.getQuest().remove(p.getUniqueId());
 
         data.setGrowth(data.getGrowth() + 1);
-        data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : 1));
+        data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : data.getUpgrades().get(Upgrade.DNA) != null ? 3 : 1));
 
 
         if (type.getMinAmount() == 50) p.setLevel(p.getLevel() + 5);
