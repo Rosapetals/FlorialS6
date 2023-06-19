@@ -25,7 +25,7 @@ public class ShareDNACommand extends BaseCommand {
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c Correct usage: /sharedna <player> <amount>"));
 
 
-        } else if (data2.getDna() >= amount){
+        } else if (data2.getDna() >= amount && amount > 0){
 
             PlayerData data = Florial.getPlayerData().get(arg1.getUniqueId());
 

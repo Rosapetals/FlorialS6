@@ -164,6 +164,7 @@ public class RebirthMenu {
             data.setAge(data.getSpecieId() == 3 ? Age.ADOLESCENT : Age.KIT);
             data.setReincarnations(data.getReincarnations() + 1);
             morph.activate(p, 6, false, true, data.getSpecies());
+            data.setFlories(data.getFlories() + 50);
 
             p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&6&l&o REINCARNATED!"));
 

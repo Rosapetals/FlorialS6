@@ -81,6 +81,17 @@ public class Morph {
                 }
                 case 5 -> ((AgeableWatcher)watcher).setAdult();
                 case 6 -> ((AgeableWatcher)watcher).setBaby();
+                case 7 -> ((CatWatcher)watcher).setType(Cat.Type.CALICO);
+                case 8 -> ((CatWatcher)watcher).setType(Cat.Type.BLACK);
+                case 9 -> ((CatWatcher)watcher).setType(Cat.Type.RAGDOLL);
+                case 10 -> ((CatWatcher)watcher).setType(Cat.Type.SIAMESE);
+                case 11 -> ((CatWatcher)watcher).setType(Cat.Type.TABBY);
+                case 12 -> ((CatWatcher)watcher).setType(Cat.Type.WHITE);
+                case 13 -> ((CatWatcher)watcher).setType(Cat.Type.RED);
+                case 14 -> ((CatWatcher)watcher).setType(Cat.Type.JELLIE);
+                case 15 -> ((CatWatcher)watcher).setType(Cat.Type.PERSIAN);
+                case 16 -> ((CatWatcher)watcher).setType(Cat.Type.ALL_BLACK);
+                case 17 -> ((CatWatcher)watcher).setType(Cat.Type.BRITISH_SHORTHAIR);
             }
 
         } else {

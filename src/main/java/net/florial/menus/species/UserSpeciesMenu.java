@@ -119,6 +119,16 @@ public class UserSpeciesMenu {
                                         "#ffa2c4&lSTAR'S PROTECTION:#ffa2c4 Fire Resistance.", "",
                                         "#ffa2c4&lSTAR'S BLESSING:#ffa2c4 Strength I. Resistance III.", "#ffa2c4&lBy DuckOfKnowledge",
                                         "", "", "", "", "", "", "", "", "", "")), false),
+                                CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTM0OTkzOThmMjI3YjFjMGUxYWZmYmE1ZTIyMWM4MTYzNmI0OWU3ODI1YWFlMzlkYTBkMjgxN2Y5MDcyNWE1NiJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
+                                        "#ffa2c4&lENDERWING", "#ffa2c4&lFAST TRAVEL:#ffa2c4 Shift+Left-Click the air to fly; Left-Click", "while shifting w/ empty hands to TP where you're looking.",
+                                        "#ffa2c4&lPOWER-ROAR:#ffa2c4 Right-click a block with empty hands", "to add a bunch of de-buffs to those around you.",
+                                        "#ffa2c4&lFIRE-BREATHER:#ffa2c4 Left-Click while not sneaking with empty", "hands to shoot a wave of fireballs.",
+                                        "#ffa2c4&lPIGLIN FEAR:#ffa2c4 Zombified Piglins get buffs when", "#ffa2c4they attack you.",
+                                        "#ffa2c4&lHELLISH STOMACH:#ffa2c4 You're a carnivore and have Hunger II always.", "",
+                                        "#ffa2c4&lEXPERIENCE-GATHERER:#ffa2c4 Gain experience in the AFK Pool.", "",
+                                        "#ffa2c4&lTOUGH SCALES:#ffa2c4 Fire Resistance I. Resistance II.", "",
+                                        "#ffa2c4&lLARGE BEAST:#ffa2c4Strength 3. Haste 2. Jump 3.", "Regen 2. Night Vision. Speed 2.",
+                                        "#ffa2c4&lBy Yobishpy", "")), false),
                         CustomItem.MakeItem(new ItemStack(Material.BARRIER), "&c&lNo Species Here!", "&c&lWant to make your OWN species?" +
                                 "\n&c Buy A Species at florial.tebex.io for\n&c ONLY &c&l&n$20!\n&c&lOr $30 AND get the top rank too!", false)).toList();
 
@@ -135,12 +145,13 @@ public class UserSpeciesMenu {
                         contents.set(List.of(18), IntelligentItem.of(species.get(9), event -> Species.become(p, "MAGIC_DUCK")));
                         contents.set(List.of(19), IntelligentItem.of(species.get(10), event -> Species.become(p, "SUNDRAGON")));
                         contents.set(List.of(20), IntelligentItem.of(species.get(11), event -> Species.become(p, "GALACTIC_RESEARCHER")));
+                        contents.set(List.of(21), IntelligentItem.of(species.get(12), event -> Species.become(p, "ENDERWING")));
 
 
-                        int index = 20;
-                        for (int i = 0; i < 24; i++) {
+                        int index = 21;
+                        for (int i = 0; i < 23; i++) {
                             index++;
-                            contents.set(index, IntelligentItem.of(species.get(12), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
+                            contents.set(index, IntelligentItem.of(species.get(13), event -> p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1)));
                         }
 
 

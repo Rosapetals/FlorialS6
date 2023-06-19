@@ -33,7 +33,8 @@ public enum SpecieType {
     THALLIDIAN(13, new Thallidian(13)),
     MAGIC_DUCK(14, new MagicDuck(14)),
     SUNDRAGON(15, new SunDragon(15)),
-    GALACTIC_RESEARCHER(16, new GalacticResearcher(16));
+    GALACTIC_RESEARCHER(16, new GalacticResearcher(16)),
+    ENDERWING(17, new Enderwing(17));
 
 
 

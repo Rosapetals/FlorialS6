@@ -37,7 +37,6 @@ import net.florial.features.skills.attack.AttackSkillListener;
 import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
-import net.florial.listeners.EventListener;
 import net.florial.models.PlayerData;
 import net.florial.models.ShiftData;
 import net.florial.scoreboard.FastBoard;
@@ -190,7 +189,6 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ColonyResourceListener(), this);
         getServer().getPluginManager().registerEvents(new BoardListener(), this);
         getServer().getPluginManager().registerEvents(new TrainListener(), this);
-        getServer().getPluginManager().registerEvents(new EventListener(), this);
         getServer().getPluginManager().registerEvents(new FloriesListener(), this);
 
         getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);

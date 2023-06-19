@@ -34,18 +34,18 @@ public class SellMenu {
             arrangeItem(11, new ItemStack(Material.CHARCOAL)),
             arrangeItem(25, new ItemStack(Material.COPPER_INGOT)),
             arrangeItem(5, new ItemStack(Material.COBBLED_DEEPSLATE)),
-            arrangeItem(5, new ItemStack(Material.COBBLESTONE)),
-            arrangeItem(5, new ItemStack(Material.SAND))
-
-
-
-
-
+            arrangeItem(5, new ItemStack(Material.DIRT)),
+            arrangeItem(5, new ItemStack(Material.STRING)),
+            arrangeItem(5, new ItemStack(Material.SALMON)),
+            arrangeItem(5, new ItemStack(Material.COD)),
+            arrangeItem(25, new ItemStack(Material.TROPICAL_FISH)),
+            arrangeItem(10, new ItemStack(Material.PUFFERFISH))
 
     );
 
     public static final List<Integer> sellPrices = List.of(
-            3, 5, 30, 35, 35, 20, 5, 32, 11, 25, 5, 5, 5
+            3, 5, 30, 35, 35, 20, 5, 32, 11, 25, 5, 5, 5,
+            5, 5, 25, 10
 
 
     );

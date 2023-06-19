@@ -56,7 +56,7 @@ public class ThirstManager implements Listener {
 
         }
 
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("                                                         "+thirstDisplay));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("                         "+thirstDisplay));
     }
 
     public void thirstRunnable(Player p){
