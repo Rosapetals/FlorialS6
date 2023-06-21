@@ -4,6 +4,7 @@ import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
 import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
+import net.florial.menus.CoatSelectionMenu;
 import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
@@ -25,8 +26,10 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16
+            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17
     );
+
+    private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
 
     @EventHandler
     public void clickableNoPlace(BlockPlaceEvent e) {
@@ -59,8 +62,23 @@ public class ClickablesListener implements Listener {
             case 13, 14 -> useDNAVoucher(e.getPlayer());
             case 8 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
+            case 17 -> coatSelector(e.getPlayer());
 
         }
+    }
+
+    private static void coatSelector(Player p) {
+
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        if (data.getSpecieId() == 1) {
+
+            coatSelector.coatSelectionMenu(p);
+            p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 1, (float) 1);
+
+
+        }
+
     }
 
 

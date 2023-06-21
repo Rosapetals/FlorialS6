@@ -54,6 +54,8 @@ public class SpeciesEventManager implements Listener  {
 
         if (p.getName().contains(".")) return;
 
+        Species.refreshTag(p);
+
 
         switch (data.getSpecieType().getId()) {
             case 1 -> {
@@ -74,6 +76,5 @@ public class SpeciesEventManager implements Listener  {
             case 4 -> tabList.activate(p, "http://textures.minecraft.net/texture/8edd730a52c407ffb688d4093d2a25ed77feb29cffad8b1c76ac29b4e64a0567");
         }
 
-        Species.refreshTag(p);
     }
 }

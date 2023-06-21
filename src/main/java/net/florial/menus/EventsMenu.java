@@ -30,7 +30,6 @@ public class EventsMenu {
 
                         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-                        int dna = data.getDna();
                         int eventPoints = data.getEvent();
 
 

@@ -47,8 +47,8 @@ public class Cat extends Species implements Listener {
     public HashMap<Integer, PotionEffect> specific() {
 
         return new HashMap<>(Map.ofEntries(
-                Map.entry(2, new PotionEffect(PotionEffectType.SPEED, 100000, 1, false, false, true)),
-                Map.entry(3, new PotionEffect(PotionEffectType.SPEED, 100000, 2, false, false, true))
+                Map.entry(2, new PotionEffect(PotionEffectType.SPEED, 10000000, 1, false, false, true)),
+                Map.entry(3, new PotionEffect(PotionEffectType.SPEED, 10000000, 2, false, false, true))
 
         ));
     }
@@ -57,8 +57,8 @@ public class Cat extends Species implements Listener {
     public Set<PotionEffect> effects() {
 
         return new HashSet<>(List.of(
-                new PotionEffect(PotionEffectType.SPEED, 1000000, 0, false, false, true),
-                new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 1, false, false, true)));
+                new PotionEffect(PotionEffectType.SPEED, 100000000, 0, false, false, true),
+                new PotionEffect(PotionEffectType.NIGHT_VISION, 100000000, 1, false, false, true)));
     }
 
     @Override
@@ -89,8 +89,9 @@ public class Cat extends Species implements Listener {
             if (e instanceof LivingEntity) ((LivingEntity) ent).addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 1200, ageValue/2, false, false, true));
 
         }
+        p.playSound(p.getLocation(), Sound.ENTITY_CAT_PURR, (float) 0.4, 1);
 
-        Cooldown.addCooldown("c1", p, AgeFormula.get(200, ageValue));
+        Cooldown.addCooldown("c2", p, AgeFormula.get(200, ageValue));
 
 
     }

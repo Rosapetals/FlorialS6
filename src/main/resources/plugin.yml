@@ -1,7 +1,7 @@
 name: Florial
 version: '1.0'
 main: net.florial.Florial
-api-version: 1.19
+api-version: "1.20"
 authors: [ Rosa, Reassembly ]
 description: Florial server core
 depend: []

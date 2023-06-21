@@ -58,13 +58,16 @@ public class ShopBuilder {
                 ShopMenu.arrangeItem(50, new ItemStack(Material.QUARTZ)),
                 ShopMenu.arrangeItem(50, new ItemStack(Material.CLAY)),
                 ShopMenu.arrangeItem(50, new ItemStack(Material.STRING)),
-                ShopMenu.arrangeItem(50, new ItemStack(Material.FLINT))
+                ShopMenu.arrangeItem(50, new ItemStack(Material.FLINT)),
+                ShopMenu.arrangeItem(50, new ItemStack(Material.CHERRY_SAPLING)),
+                ShopMenu.arrangeItem(20, new ItemStack(Material.COBBLESTONE)),
+                ShopMenu.arrangeItem(30, new ItemStack(Material.STONE))
         ));
         priceLists.put(1, List.of(
                 5000, 5000, 5000, 5000, 5000, 5000,
                 1000, 1000, 1000, 1000, 500, 500,
                 500, 500, 500, 500, 300, 300, 300,
-                100, 100, 50, 50, 50, 50, 50
+                100, 100, 50, 50, 50, 50, 50, 50, 20, 30
         ));
 
         materialLists.put(2, List.of(
@@ -130,8 +133,6 @@ public class ShopBuilder {
                 ShopMenu.arrangeItem(200, new ItemStack(Material.KELP)),
                 ShopMenu.arrangeItem(200, new ItemStack(Material.SEA_PICKLE)),
                 ShopMenu.arrangeItem(200, new ItemStack(Material.SEAGRASS)),
-                ShopMenu.arrangeItem(100, new ItemStack(Material.COBBLESTONE)),
-                ShopMenu.arrangeItem(100, new ItemStack(Material.STONE)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.SMALL_DRIPLEAF)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.BIG_DRIPLEAF)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.MUD)),
@@ -150,20 +151,27 @@ public class ShopBuilder {
                 ShopMenu.arrangeItem(20, new ItemStack(Material.BIRCH_LOG)),
                 ShopMenu.arrangeItem(20, new ItemStack(Material.JUNGLE_LOG)),
                 ShopMenu.arrangeItem(20, new ItemStack(Material.WARPED_ROOTS)),
-                ShopMenu.arrangeItem(20, new ItemStack(Material.CRIMSON_ROOTS))
-                ));
+                ShopMenu.arrangeItem(20, new ItemStack(Material.CRIMSON_ROOTS)),
+                ShopMenu.arrangeItem(20, new ItemStack(Material.CHERRY_LOG)),
+                ShopMenu.arrangeItem(20, new ItemStack(Material.CHISELED_BOOKSHELF)),
+                ShopMenu.arrangeItem(20, new ItemStack(Material.BAMBOO_BLOCK))
+        ));
 
         priceLists.put(3, List.of(
                 100, 5000, 100, 100, 100, 1000,
                 1000, 1000, 500, 500, 500, 350,
-                200, 200, 200, 200, 200, 100,
-                100, 100, 100, 100, 50, 50, 50,
+                200, 200, 200, 200, 200, 100, 100, 100, 50, 50, 50,
                 50, 50, 50, 50, 50, 20, 20, 20,
-                20, 20, 20, 20, 20
+                20, 20, 20, 20, 20, 20, 20, 20
         ));
 
-        materialLists.put(4, List.of(ShopMenu.arrangeItem(15000, new ItemStack(Material.DISC_FRAGMENT_5))));
-        priceLists.put(4, List.of(15000));
+        materialLists.put(4, List.of(
+                ShopMenu.arrangeItem(15000, new ItemStack(Material.DISC_FRAGMENT_5)),
+                ShopMenu.arrangeItem(15000, new ItemStack(Material.CAMEL_SPAWN_EGG))
+
+
+                ));
+        priceLists.put(4, List.of(15000, 15000));
 
         materialLists.put(5, List.of(
                 ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYThiNTBmY2U0MzhlNDJjMGIyODc4OGRmMjc3NzdlNTdjOTM5NmQzZmExOTVhMTIwZWM2MjM3Y2ZjNTA5MTk3NiJ9fX0")),

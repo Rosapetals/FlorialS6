@@ -88,14 +88,17 @@ public class FloriesMenu {
                     "SELL-WAND", "Left-Click to sell all in inventory", "or on a chest.", "Infinite uses.")),
             floriesArrange(3, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmM1OGViMDFlYjFlZTliZWM1MmYzNjc1MGUyMDkxNDg5NDgzY2E3M2UxNjA5YzI1ODk5MmNmMTZkNTk2NmRhNSJ9fX0"),
                     "", "", false), 100, "CustomModelData"), List.of(
-                    "3 FLORIES - 5 DNA-U", "Click here to trade 3 flories", "For 5 DNA in return!", ""))
+                    "3 FLORIES - 5 DNA-U", "Click here to trade 3 flories", "For 5 DNA in return!", "")),
+            floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
+                    "", "", false), 17, "CustomModelData"), List.of(
+                    "COAT COLOR SWAPPER", "Use for yourself or friends to swap coat", "colors as a cat.", "Left-Click! Infinite uses."))
 
             
     );
 
     private static final List<Integer> floriePrices = List.of(
             100, 100, 100, 300, 75, 50, 50, 50, 200,
-            100, 100, 100, 100, 75, 100, 100, 300, 150, 3
+            100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100
 
     );
 

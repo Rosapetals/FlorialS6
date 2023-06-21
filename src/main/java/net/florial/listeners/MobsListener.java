@@ -15,6 +15,8 @@ public class MobsListener implements Listener {
     private void CustomMobSpawn(CreatureSpawnEvent e) {
         Entity ent = e.getEntity();
 
+        if (e.getSpawnReason() == CreatureSpawnEvent.SpawnReason.SPAWNER) return;
+
         if (!(ent instanceof Zombie) && (!(ent instanceof Spider) && (!(ent instanceof Skeleton) && (!(ent instanceof Creeper)))) || ent instanceof CaveSpider) return;
 
         e.setCancelled(true);

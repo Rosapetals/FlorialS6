@@ -16,7 +16,8 @@ public class FilterUtils {
             "(ph|f)agg?s?([e0aio]ts?|oted|otry)",
             //  "n[i!j1e]+gg?(rs?|ett?e?s?|lets?|ress?e?s?|r[a0oe]s?|[ie@ao0!]rs?|r[o0]ids?|ab[o0]s?|erest)",
             "trann(ys?|ies)?",
-            "\\bfagg?(s?\\b|ot|y|ier)"
+            "\\bfagg?(s?\\b|ot|y|ier)",
+            "\\uE601|\\uE601|\\uE248|\\uE249|\\uE250|\\uE610|\\uE611|\\uE613|\\uE609|\\uE608|\\uE238|\\uE614|\\uE239|\\uE600"
 
     };
 
@@ -27,7 +28,7 @@ public class FilterUtils {
             Matcher matcher = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE).matcher(s.replaceAll("", ""));
             if (!(matcher.find())) continue;
             new BukkitRunnable() {@Override public void run() {Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mute " + p.getName() + " 3h You were muted for Possible Slurs - Appeal: https://discord.com/invite/TRsjqSfHVq | Source: " + s);}}.runTask(Florial.getInstance());
-            Florial.getDiscordServer().getTextChannelById("950563023607722004").sendMessage("**The Filter muted " + p.getName() + " for saying: " + s).queue();
+            Florial.getDiscordServer().getTextChannelById("950563023607722004").sendMessage("**The Filter muted " + p.getName() + " for saying: " + s + "**").queue();
             return true;
 
         }
