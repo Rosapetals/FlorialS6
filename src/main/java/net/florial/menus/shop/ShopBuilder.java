@@ -167,11 +167,13 @@ public class ShopBuilder {
 
         materialLists.put(4, List.of(
                 ShopMenu.arrangeItem(15000, new ItemStack(Material.DISC_FRAGMENT_5)),
-                ShopMenu.arrangeItem(15000, new ItemStack(Material.CAMEL_SPAWN_EGG))
+                ShopMenu.arrangeItem(100000, new ItemStack(Material.CAMEL_SPAWN_EGG)),
+                ShopMenu.arrangeItem(1000000, new ItemStack(Material.SNIFFER_EGG))
 
 
-                ));
-        priceLists.put(4, List.of(15000, 15000));
+
+        ));
+        priceLists.put(4, List.of(15000, 100000, 1000000));
 
         materialLists.put(5, List.of(
                 ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYThiNTBmY2U0MzhlNDJjMGIyODc4OGRmMjc3NzdlNTdjOTM5NmQzZmExOTVhMTIwZWM2MjM3Y2ZjNTA5MTk3NiJ9fX0")),

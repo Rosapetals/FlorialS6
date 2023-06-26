@@ -50,7 +50,11 @@ public class SpeciesEventManager implements Listener  {
 
         if (data.getSpecies().getMorph() == null) return;
 
+
+
         Player p = event.getPlayer();
+
+        DisguiseAPI.getDisguise(p).setHideArmorFromSelf(true);
 
         if (p.getName().contains(".")) return;
 

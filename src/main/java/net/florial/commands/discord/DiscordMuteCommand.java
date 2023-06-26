@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.florial.Florial;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
@@ -38,11 +39,11 @@ public class DiscordMuteCommand extends SlashCommand {
             slashCommandEvent.reply("There was an error trying to perform this command").queue();
             return;
         }
-        if (!member.hasPermission(Permission.KICK_MEMBERS)) {
+
+        if (!slashCommandEvent.getMember().getRoles().contains(Florial.getDiscordServer().getRoleById("909186243772956732"))) {
             slashCommandEvent.reply("No permissions").setEphemeral(true).queue();
             return;
         }
-        // slashCommandEvent.deferReply().queue();
 
         Member victim = slashCommandEvent.getOption("user").getAsMember();
         if (victim == null) {

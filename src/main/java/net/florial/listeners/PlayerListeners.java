@@ -17,6 +17,7 @@ import net.florial.species.disguises.Morph;
 import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
 import net.florial.utils.Message;
+import net.florial.utils.game.MorphAdjuster;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.FilterUtils;
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
@@ -90,6 +91,9 @@ public class PlayerListeners implements Listener {
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), data::refresh, 100L);
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> Reward.checkWeekStatus(p), 100L);
 
+
+
+
         if (Florial.getQuestBar().containsKey(u)) Florial.getQuestBar().get(u).addPlayer(p);
 
         if (data.getSpecieType().getSpecie() == null) speciesMenu.speciesMenu(p);
@@ -103,12 +107,19 @@ public class PlayerListeners implements Listener {
             return;
         }
 
-        if (data.getSpecies().getMorph() == DisguiseType.FOX) morph.activate(p, 4, false, true, data.getSpecies());
 
-        SpeciesTablistEvent e = new SpeciesTablistEvent(
-                p
-        );
-        Bukkit.getPluginManager().callEvent(e);
+        Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
+
+            MorphAdjuster.activate(p);
+
+            if (data.getSpecies().getMorph() == DisguiseType.FOX) morph.activate(p, 4, false, true, data.getSpecies());
+
+            SpeciesTablistEvent e = new SpeciesTablistEvent(
+                    p
+            );
+            Bukkit.getPluginManager().callEvent(e);
+
+        }, 20L);
     }
 
     @EventHandler
@@ -189,7 +200,7 @@ public class PlayerListeners implements Listener {
             mobDisguise.stopDisguise();
             mobDisguise.startDisguise();
 
-        }, 40);
+        }, 15);
 
     }
 
