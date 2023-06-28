@@ -17,6 +17,7 @@ import net.florial.features.thirst.ThirstManager;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import net.florial.utils.Cooldown;
+import net.florial.utils.game.AgeSuffixAdjuster;
 import net.florial.utils.general.CC;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -202,7 +203,7 @@ public abstract class Species implements Listener {
             assert user != null;
             if (user.getCachedData().getMetaData().getPrefix() != null) {prefix = user.getCachedData().getMetaData().getPrefix();}
 
-            watcher.setCustomName(CC.translate(prefix + nickname));
+            watcher.setCustomName(CC.translate(prefix + nickname + AgeSuffixAdjuster.cache(p)));
 
         }, 40);
 
