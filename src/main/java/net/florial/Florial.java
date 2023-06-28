@@ -47,10 +47,7 @@ import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
 import net.luckperms.api.LuckPerms;
 import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
+import org.bukkit.*;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -146,7 +143,9 @@ public final class Florial extends JavaPlugin {
         }
         ess = (Essentials) Bukkit.getPluginManager().getPlugin("Essentials");
 
-
+        for (World world : Bukkit.getWorlds()) {
+            world.setGameRule(GameRule.KEEP_INVENTORY, true);
+        }
     }
 
 
