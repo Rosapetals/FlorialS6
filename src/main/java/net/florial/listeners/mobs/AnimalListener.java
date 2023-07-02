@@ -1,4 +1,4 @@
-package net.florial.listeners;
+package net.florial.listeners.mobs;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;

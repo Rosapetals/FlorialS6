@@ -1,4 +1,4 @@
-package net.florial.listeners;
+package net.florial.listeners.mobs;
 
 import net.florial.features.enemies.events.MobDeathEvent;
 import net.florial.features.enemies.events.MobSpawnEvent;

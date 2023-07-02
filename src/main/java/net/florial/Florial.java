@@ -37,6 +37,8 @@ import net.florial.features.skills.attack.AttackSkillListener;
 import net.florial.features.skills.scent.ScentManager;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
+import net.florial.listeners.mobs.AnimalListener;
+import net.florial.listeners.mobs.MobsListener;
 import net.florial.models.PlayerData;
 import net.florial.models.ShiftData;
 import net.florial.scoreboard.FastBoard;

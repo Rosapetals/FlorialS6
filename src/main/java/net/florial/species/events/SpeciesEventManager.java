@@ -56,9 +56,9 @@ public class SpeciesEventManager implements Listener  {
 
         DisguiseAPI.getDisguise(p).setHideArmorFromSelf(true);
 
-        if (p.getName().contains(".")) return;
-
         Species.refreshTag(p);
+
+        if (p.getName().contains(".")) return;
 
 
         switch (data.getSpecieType().getId()) {
