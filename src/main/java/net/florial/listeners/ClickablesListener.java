@@ -6,6 +6,7 @@ import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.menus.CoatSelectionMenu;
 import net.florial.models.PlayerData;
+import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
 import net.florial.utils.general.VaultHandler;
 import org.bukkit.*;
@@ -76,7 +77,10 @@ public class ClickablesListener implements Listener {
             coatSelector.coatSelectionMenu(p);
             p.playSound(p.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 1, (float) 1);
 
-
+            SpeciesTablistEvent e = new SpeciesTablistEvent(
+                    p
+            );
+            Bukkit.getPluginManager().callEvent(e);
         }
 
     }

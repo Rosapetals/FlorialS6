@@ -24,7 +24,7 @@ public class Morph {
             "http://textures.minecraft.net/texture/29f16992f3a92c2e62fd38d5d851fd661ceb3e8a810200536ea4b12eb05f341e",
             "http://textures.minecraft.net/texture/3b355ba38901ee86a23d61e9ce101658f2417d6b9b4c3812a904ade581cb4415",
             "http://textures.minecraft.net/texture/24a8a7bf5e750f808e4fbd40894dfe746a07245dc16a113743ae35feb5b0f771",
-            "http://textures.minecraft.net/texture/2cbc0bf3bcb2c51ed4453b20e741a80dc5f065550b1e351c0eafadc502257af5",
+            "http://textures.minecraft.net/texture/fbb986e253e4a7945f4a92109b08e76f25a7dcac2b98d3aa53d2fa5ff0083da1",
             "http://textures.minecraft.net/texture/27f596afb869f806f61085a499b7e75148913d3e60601f166258dfbcb82a3bbf",
             "http://textures.minecraft.net/texture/6d62b4a45c5fa233a4639af6fb910afc1795eb0011e46266a0865d173ebde9ab",
             "http://textures.minecraft.net/texture/5f539293ebeaba4c35f089357e5457f838fa4a5db4da83afbfc295ad2d6d6ea6",

@@ -41,7 +41,7 @@ public class Refresh {
         int specific = skills.get(Skill.SPECIFIC);
 
         // let's see if the user has upgraded resistance?
-        if (resistance > 1) mainThread(p, PotionEffectType.DAMAGE_RESISTANCE, null,resistance-1);
+        if (resistance > 1) mainThread(p, PotionEffectType.DAMAGE_RESISTANCE, null,(resistance < 4 ? resistance-1 : 4));
 
         if (skills.get(Skill.STRENGTH) > 1)   mainThread(p, PotionEffectType.INCREASE_DAMAGE, null,skills.get(Skill.STRENGTH)-1);
 

@@ -217,7 +217,7 @@ public abstract class Species implements Listener {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        if (data.getSpecies() != this) return;
+        if (data.getSpecies() != this || event.getItem().getType().toString().contains("GOLDEN")) return;
 
         event.setCancelled(true);
 

@@ -34,12 +34,12 @@ public class EventsMenu {
 
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", " #5a372c&l︳" +
-                                                " SUBMIT\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • #6e4837 to submit all Ice-Creams"
+                                                " SUBMIT\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • #6e4837 to submit any fireworks"
                                                 + "\n #6e4837&l︳ •#6e4837 in your inventory to the event.\n #6e4837&l︳ • [CLICK HERE]\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", " #5a372c&l︳ " +
-                                                "Monthly Event: Ice-Creams!\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • ICE-CREAMS SUBMITTED: #6e4837 "
-                                                +  eventPoints + "\n #6e4837&l︳ • REQUIRED:#6e4837 10,000\n"
-                                                + " #6e4837&l︳ • REWARD:#6e4837 200 Flories at 10k Ice-Creams\n"
+                                                "Monthly Event: 4th of July Fireworks\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • FIREWORKS SUBMITTED: #6e4837 "
+                                                +  eventPoints + "\n #6e4837&l︳ • REQUIRED:#6e4837 2,000\n"
+                                                + " #6e4837&l︳ • REWARD:#6e4837 200 Flories at 2k Fireworks\n"
                                                 + " #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
@@ -58,7 +58,7 @@ public class EventsMenu {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
 
-        if (data.getEvent() >= 10000) {
+        if (data.getEvent() >= 2000) {
             p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 2);
             data.setFlories(data.getFlories() + 200);
         }
@@ -70,12 +70,11 @@ public class EventsMenu {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
 
-        if (!(data.getEvent() >= 10000)) {
+        if (!(data.getEvent() >= 2000)) {
 
             int count = 0;
 
-            for (ItemStack item : p.getInventory().all(Material.PAPER).values()) {
-                if (NBTEditor.getInt(item, "CustomModelData") != 11) continue;
+            for (ItemStack item : p.getInventory().all(Material.FIREWORK_ROCKET).values()) {
                 count += item.getAmount();
                 p.getInventory().remove(item);
             }
@@ -84,7 +83,7 @@ public class EventsMenu {
 
             if (count > 0) {
                 p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully submitted " + count + " ice-cream cones!"));
-                if (data.getEvent() > 10000) data.setEvent(10000);
+                if (data.getEvent() > 2000) data.setEvent(10000);
                 completeEvent(p, data);
 
             } else {

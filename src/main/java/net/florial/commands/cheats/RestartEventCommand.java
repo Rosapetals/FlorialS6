@@ -12,6 +12,8 @@ public class RestartEventCommand extends BaseCommand {
     @CommandPermission("op")
     public void restartEventCommand(CommandSender p) {
 
-        FlorialDatabase.restartEvent();
+        if (p.getName().equals("rosabel")) {
+            FlorialDatabase.restartEvent();
+        }
     }
 }

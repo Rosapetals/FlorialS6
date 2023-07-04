@@ -19,10 +19,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
 import net.florial.commands.cheats.*;
 import net.florial.commands.discord.*;
-import net.florial.commands.menu.FloriesMenuCommand;
-import net.florial.commands.menu.RebirthMenuCommand;
-import net.florial.commands.menu.ShopCommand;
-import net.florial.commands.menu.SkillsMenuCommand;
+import net.florial.commands.menu.*;
 import net.florial.commands.ranks.*;
 import net.florial.commands.species.*;
 import net.florial.commands.staff.*;
@@ -39,6 +36,8 @@ import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
 import net.florial.listeners.mobs.AnimalListener;
 import net.florial.listeners.mobs.MobsListener;
+import net.florial.features.playershops.ShopInteractionListener;
+import net.florial.features.playershops.TulipInteractionListener;
 import net.florial.models.PlayerData;
 import net.florial.models.ShiftData;
 import net.florial.scoreboard.FastBoard;
@@ -191,6 +190,8 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BoardListener(), this);
         getServer().getPluginManager().registerEvents(new TrainListener(), this);
         getServer().getPluginManager().registerEvents(new FloriesListener(), this);
+        getServer().getPluginManager().registerEvents(new ShopInteractionListener(), this);
+        getServer().getPluginManager().registerEvents(new TulipInteractionListener(), this);
 
         getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstManager(), this);
@@ -338,6 +339,8 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new BuyCommand());
         manager.registerCommand(new QuestCommand());
         manager.registerCommand(new ShareDNACommand());
+        manager.registerCommand(new RestartEventCommand());
+
 
 
 

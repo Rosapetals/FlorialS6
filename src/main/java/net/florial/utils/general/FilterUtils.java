@@ -17,7 +17,7 @@ public class FilterUtils {
             //  "n[i!j1e]+gg?(rs?|ett?e?s?|lets?|ress?e?s?|r[a0oe]s?|[ie@ao0!]rs?|r[o0]ids?|ab[o0]s?|erest)",
             "trann(ys?|ies)?",
             "\\bfagg?(s?\\b|ot|y|ier)",
-            "\\uE601|\\uE601|\\uE248|\\uE249|\\uE250|\\uE610|\\uE611|\\uE613|\\uE609|\\uE608|\\uE238|\\uE614|\\uE239|\\uE600"
+            "\\uE601|\\uE601|\\uE248|\\uE249|\\uE250|\\uE610|\\uE611|\\uE613|\\uE609|\\uE608|\\uE238|\\uE614|\\uE239|\\uE600|\\uE630|\\uE631"
 
     };
 

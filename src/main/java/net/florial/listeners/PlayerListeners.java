@@ -9,6 +9,7 @@ import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.dailyrewards.Reward;
+import net.florial.features.playershops.PlayerShopsMenu;
 import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.menus.species.SpeciesMenu;
@@ -18,6 +19,7 @@ import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
 import net.florial.utils.Message;
 import net.florial.utils.game.MorphAdjuster;
+import net.florial.utils.game.RegionDetector;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.FilterUtils;
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
@@ -31,6 +33,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -257,12 +260,26 @@ public class PlayerListeners implements Listener {
         }
 
         if (Florial.getBoardLocation().get(u) != null) {
-            String finalMessage1 = ChatColor.stripColor(message);
-            new BukkitRunnable() {@Override public void run() {
-                BoardListener.writeBoard(p, finalMessage1, Florial.getBoardLocation().get(u));
-                Florial.getBoardLocation().remove(u);
 
-            }}.runTask(florial);
+            String finalMessage1 = ChatColor.stripColor(message);
+
+            if (RegionDetector.detect(p.getLocation()).contains("shops")) {
+
+                new BukkitRunnable() {@Override public void run() {
+                    Sign sign = (Sign) Florial.getBoardLocation().get(u).getBlock().getState();
+                    sign.setLine(3, ChatColor.stripColor(finalMessage1));
+                    sign.update();
+                    Florial.getBoardLocation().remove(u);
+
+                }}.runTask(florial);
+
+            } else {
+                new BukkitRunnable() {@Override public void run() {
+                    BoardListener.writeBoard(p, finalMessage1, Florial.getBoardLocation().get(u));
+                    Florial.getBoardLocation().remove(u);
+
+                }}.runTask(florial);
+            }
             return;
         }
 
