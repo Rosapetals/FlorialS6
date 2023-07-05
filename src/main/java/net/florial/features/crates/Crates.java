@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.*;
 import java.util.List;
@@ -93,13 +94,19 @@ public class Crates implements Listener {
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 50,"CustomModelData"),
 
 
+                createFirework(),
+
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lVanilla Ice-Cream Cone [Left-Click]", "", false), 2,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lStrawberry Ice-Cream Cone [Left-Click]", "", false), 3,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lS O A P [Left-Click]", "", false), 5,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lPina Colada [Left-Click]", "", false), 7,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBlue Popsicle [Left-Click]", "", false), 12,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lJuicy Pineapple [Left-Click]", "", false), 15,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lSinner's Pineapple Pizza [Left-Click]", "", false), 16,"CustomModelData")
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lSinner's Pineapple Pizza [Left-Click]", "", false), 16,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lAmerican Flag [Left-Click] [DNA]", "", false), 18,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBBQ Ribs[Left-Click]", "", false), 19,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lDIET PILLS [Left-Click]", "", false), 20,"CustomModelData")
+
 
 
 
@@ -159,7 +166,10 @@ public class Crates implements Listener {
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
 
-            checkItems(p, true, List.of(openingDrops.get(rand.nextInt(openingDrops.size()))));
+            for (int i = 0; i < 3; i++) {
+                checkItems(p, true, List.of(openingDrops.get(rand.nextInt(openingDrops.size()))));
+            }
+
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BIT, 1, 2);
             FireWorkSpawner.spawn(3, Color.FUCHSIA, Color.WHITE, p);
 
@@ -182,6 +192,27 @@ public class Crates implements Listener {
                 player.getInventory().addItem(item);
             }
         }
+    }
+
+
+    private static ItemStack createFirework() {
+
+        ItemStack fireworkItem = new ItemStack(Material.FIREWORK_ROCKET, 5);
+        FireworkMeta fireworkMeta = (FireworkMeta) fireworkItem.getItemMeta();
+
+        FireworkEffect effect = FireworkEffect.builder()
+                .with(FireworkEffect.Type.BALL)
+                .withColor(Color.RED)
+                .withFade(Color.WHITE)
+                .withFade(Color.BLUE)
+                .build();
+
+        fireworkMeta.addEffect(effect);
+        fireworkMeta.setPower(1);
+
+        fireworkItem.setItemMeta(fireworkMeta);
+
+        return fireworkItem;
     }
 
 

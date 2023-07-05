@@ -27,7 +27,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17
+            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17, 18, 19, 20
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -58,9 +58,9 @@ public class ClickablesListener implements Listener {
             case 35 -> infiniteCookie(e.getPlayer());
             case 36 -> waterJug(e.getPlayer());
             case 37 -> weatherManipulation(e.getPlayer());
-            case 45, 2, 3, 5, 7, 12, 15, 16 -> specialEat(e.getPlayer());
+            case 45, 2, 3, 5, 7, 12, 15, 16, 19, 20 -> specialEat(e.getPlayer());
             case 4 -> useMoneyVoucher(e.getPlayer());
-            case 13, 14 -> useDNAVoucher(e.getPlayer());
+            case 13, 14, 18 -> useDNAVoucher(e.getPlayer());
             case 8 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
             case 17 -> coatSelector(e.getPlayer());

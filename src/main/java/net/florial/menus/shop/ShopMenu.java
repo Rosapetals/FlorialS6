@@ -46,8 +46,8 @@ public class ShopMenu {
                                                 "#5a372c&lDECORATIONS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
                                                 "#5a372c&lMISCELLANEOUS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzdmMWZhNjFjNDQ5ZDFhNDFhM2IyZDAyMDUyMDQ1NWRhMWU1MDU2MDRjMTJhOGNlZTdjNDY4NmNhMWNhOWI5NSJ9fX0"), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                "#5a372c&lPRIDE\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTI1MDRlY2Q2ZDBhNjFiMzJhNDE5ZjIwOGFmNzZlZWJiMTllOWJjNDBmODViMDZiZmFiZGJlNTFhZWQ0M2RlIn19fQ"), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
+                                                "#5a372c&lJULY\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑",
                                                 "#5a372c&lWEALTH ITEMS\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();

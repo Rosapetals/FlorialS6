@@ -82,12 +82,12 @@ public class EventsMenu {
             data.setEvent(data.getEvent() + count);
 
             if (count > 0) {
-                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully submitted " + count + " ice-cream cones!"));
+                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully submitted " + count + " firework(s)!"));
                 if (data.getEvent() > 2000) data.setEvent(10000);
                 completeEvent(p, data);
 
             } else {
-                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least 1 Ice-Cream Cone to submit it. Please visit /spawn to view the recipe for Ice-Cream Cones. Ice-Creams from crates may not be used!"));
+                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least 1 Firework to submit it."));
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
 
             }

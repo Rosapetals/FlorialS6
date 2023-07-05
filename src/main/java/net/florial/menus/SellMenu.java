@@ -39,13 +39,15 @@ public class SellMenu {
             arrangeItem(5, new ItemStack(Material.SALMON)),
             arrangeItem(5, new ItemStack(Material.COD)),
             arrangeItem(25, new ItemStack(Material.TROPICAL_FISH)),
-            arrangeItem(10, new ItemStack(Material.PUFFERFISH))
+            arrangeItem(10, new ItemStack(Material.PUFFERFISH)),
+            arrangeItem(15, new ItemStack(Material.CACTUS))
+
 
     );
 
     public static final List<Integer> sellPrices = List.of(
             3, 5, 30, 35, 35, 20, 5, 32, 11, 25, 5, 5, 5,
-            5, 5, 25, 10
+            5, 5, 25, 10, 15
 
 
     );
