@@ -47,11 +47,11 @@ public class Crates implements Listener {
                 key3,
                 key4,
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 5), "#ff7a8b&lFlories [Left-Click]", "", false), 50, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 50, "CustomModelData"),
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l10000", false), 4, "CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l15000", false), 4, "CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l5000", false), 4, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l800", false), 4, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l1500", false), 4, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l1000", false), 4, "CustomModelData"),
 
                 new ItemStack(Material.DIAMOND),
                 new ItemStack(Material.QUARTZ, 10),

@@ -151,12 +151,16 @@ public class FlorialDatabase {
             @Override
             public void run() {
 
-                datastore.find(PlayerData.class)
-                        .filter(Filters.exists("event"))
-                        .iterator()
-                        .forEachRemaining(document -> {
-                            document.setEvent(0);
+
+                Bson filter = exists("event");
+
+                datastore.getDatabase().getCollection("playerdata", PlayerData.class)
+                        .find()
+                        .forEach(document -> {
+                            datastore.getDatabase().getCollection("playerdata")
+                                    .updateOne(filter, Updates.set("event", 0));
                             datastore.save(document);
+                            System.out.println(" " + document);
                         });
             }
 

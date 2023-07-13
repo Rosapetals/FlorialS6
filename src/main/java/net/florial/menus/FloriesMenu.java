@@ -97,7 +97,7 @@ public class FloriesMenu {
     );
 
     private static final List<Integer> floriePrices = List.of(
-            100, 100, 100, 300, 75, 50, 50, 50, 200,
+            100, 100, 100, 300, 75, 50, 50, 100, 200,
             100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100
 
     );

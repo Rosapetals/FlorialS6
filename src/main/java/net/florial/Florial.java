@@ -25,6 +25,7 @@ import net.florial.commands.species.*;
 import net.florial.commands.staff.*;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.crates.Crates;
+import net.florial.features.duels.Duel;
 import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
 import net.florial.features.enemies.impl.Wisps;
@@ -82,6 +83,8 @@ public final class Florial extends JavaPlugin {
     @Getter private static final HashMap<String, List<String>> answers = new HashMap<>();
     @Getter private static final HashMap<UUID, Boolean> bulkBuy = new HashMap<>();
     @Getter private static final HashMap<UUID, Location> signLocation = new HashMap<>();
+    @Getter private static final HashMap<UUID, Duel> ongoingDuel = new HashMap<>();
+
 
 
 
@@ -206,14 +209,6 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Wisps(EntityType.WITCH), this);
         getServer().getPluginManager().registerEvents(new Crawlies(EntityType.CAVE_SPIDER), this);
 
-
-
-        if (!(Bukkit.getOnlinePlayers().size() > 0)) return;
-        for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
-            Florial.getPlayerData().put(p.getUniqueId(), playerData);});
-            ThirstManager.thirstRunnable(p);
-            Scoreboard.boardRunnable(p.getUniqueId(), p);}
-
         if (!(Cooldown.getCooldownMap("spam") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("spam")).clear();
         if (!(Cooldown.getCooldownMap("c1") == null)) Cooldown.getCooldownMap("c1").clear();
         if (!(Cooldown.getCooldownMap("c2") == null)) Cooldown.getCooldownMap("c2").clear();
@@ -236,6 +231,12 @@ public final class Florial extends JavaPlugin {
         if (Cooldown.getCooldownMap("key") == null) Cooldown.createCooldown("key");
         if (Cooldown.getCooldownMap("spam") == null) Cooldown.createCooldown("spam");
         if (Cooldown.getCooldownMap("sign") == null) Cooldown.createCooldown("sign");
+
+        if (!(Bukkit.getOnlinePlayers().size() > 0)) return;
+        for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
+            Florial.getPlayerData().put(p.getUniqueId(), playerData);});
+            ThirstManager.thirstRunnable(p);
+            Scoreboard.boardRunnable(p.getUniqueId(), p);}
 
 
     }
@@ -340,6 +341,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new QuestCommand());
         manager.registerCommand(new ShareDNACommand());
         manager.registerCommand(new RestartEventCommand());
+        manager.registerCommand(new SetEventCommand());
 
 
 
@@ -395,13 +397,13 @@ public final class Florial extends JavaPlugin {
     }
 
     public PlayerData getPlayerData(Player player) {return playerData.get(player.getUniqueId());}
-
     public static HashMap<UUID, Integer> getThirst(){return thirst;}
-
     public static HashMap<UUID, Quest> getQuest(){return questData;}
     public static HashMap<UUID, BossBar> getQuestBar(){return questBar;}
-
     public static HashMap<UUID, Location> getBoardLocation(){return signLocation;}
+    public static HashMap<UUID, Duel> ongoingDuel(){return ongoingDuel;}
+
+
 
 
 }
