@@ -195,6 +195,7 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new FloriesListener(), this);
         getServer().getPluginManager().registerEvents(new ShopInteractionListener(), this);
         getServer().getPluginManager().registerEvents(new TulipInteractionListener(), this);
+        getServer().getPluginManager().registerEvents(new DuelListener(), this);
 
         getServer().getPluginManager().registerEvents(new SpeciesEventManager(), this);
         getServer().getPluginManager().registerEvents(new ThirstManager(), this);
@@ -342,6 +343,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ShareDNACommand());
         manager.registerCommand(new RestartEventCommand());
         manager.registerCommand(new SetEventCommand());
+        manager.registerCommand(new DuelCommand());
 
 
 

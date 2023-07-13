@@ -67,6 +67,7 @@ public class DuelMenu {
         if (isRisky) {
             duel.setOpponentWhoInvitedWageredItem(new ItemStack(Material.AIR));
             duel.setOpponentWhoWasInvitedWageredItem(new ItemStack(Material.AIR));
+            duel.update();
         }
 
         Player target = Bukkit.getPlayer(targetUUID);

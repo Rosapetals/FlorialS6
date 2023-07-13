@@ -9,6 +9,7 @@ import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.dailyrewards.Reward;
+import net.florial.features.duels.Duel;
 import net.florial.features.playershops.PlayerShopsMenu;
 import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
@@ -134,7 +135,9 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
 
-        UUID u = event.getPlayer().getUniqueId();
+        Player p = event.getPlayer();
+
+        UUID u = p.getUniqueId();
 
         Florial.getInstance().getStaffToVerify().remove(u);
 
