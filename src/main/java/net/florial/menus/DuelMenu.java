@@ -76,7 +76,7 @@ public class DuelMenu {
             return;
         }
 
-        target.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤#ff3c55 " + p.getName() + " has sent you a duel request for a #ff3c55" + (isRisky ? "RISKY" : "CASUAL" + "&f duel. Do #ff3c55/duel accept&f to accept it or /duel deny to deny it.")));
+        target.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤#ff3c55 " + p.getName() + " has sent you a duel request for a #ff3c55" + (isRisky ? "RISKY" : "CASUAL") + "&f duel. Do #ff3c55/duel accept&f to accept it or /duel deny to deny it."));
         p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully sent the request."));
 
     }
