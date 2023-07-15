@@ -6,7 +6,6 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
-import net.florial.commands.DuelCommand;
 import net.florial.features.duels.Duel;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;

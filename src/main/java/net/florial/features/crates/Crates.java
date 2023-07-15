@@ -14,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.*;
-import java.util.List;
 
 
 public class Crates implements Listener {

@@ -17,7 +17,6 @@ import net.florial.utils.math.GetChance;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
-import org.bukkit.block.Biome;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;

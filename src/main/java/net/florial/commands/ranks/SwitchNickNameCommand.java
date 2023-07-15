@@ -6,15 +6,11 @@ import co.aikar.commands.annotation.Flags;
 import co.aikar.commands.annotation.Optional;
 import lombok.Getter;
 import net.florial.Florial;
-import net.florial.species.SpecieType;
-import net.florial.species.Species;
 import net.florial.utils.general.CC;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class SwitchNickNameCommand extends BaseCommand {
 

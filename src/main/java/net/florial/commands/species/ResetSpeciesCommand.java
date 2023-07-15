@@ -5,14 +5,11 @@ import co.aikar.commands.annotation.CommandAlias;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
-import net.florial.features.skills.Skill;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
-
-import java.util.HashMap;
 
 public class ResetSpeciesCommand extends BaseCommand {
 

@@ -11,7 +11,9 @@ import me.libraryaddict.disguise.disguisetypes.watchers.SlimeWatcher;
 import net.florial.species.Species;
 import net.florial.species.events.impl.SpeciesTablistEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Cat;
+import org.bukkit.entity.Fox;
+import org.bukkit.entity.Player;
 
 import java.util.List;
 

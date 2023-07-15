@@ -3,7 +3,6 @@ package net.florial.listeners;
 import de.netzkronehd.wgregionevents.events.RegionEnteredEvent;
 import me.libraryaddict.disguise.DisguiseAPI;
 import me.libraryaddict.disguise.disguisetypes.DisguiseType;
-import me.libraryaddict.disguise.disguisetypes.TargetedDisguise;
 import net.florial.Florial;
 import net.florial.features.quests.Quest;
 import net.florial.features.quests.QuestType;

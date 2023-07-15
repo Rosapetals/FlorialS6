@@ -11,7 +11,6 @@ import net.florial.models.ChequeData;
 import net.florial.models.DiscordUser;
 import net.florial.models.PlayerData;
 import net.milkbowl.vault.economy.EconomyResponse;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class CashoutCommand extends BaseCommand {

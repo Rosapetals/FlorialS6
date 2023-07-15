@@ -16,13 +16,8 @@ import net.florial.models.ChequeData;
 import net.florial.models.DiscordUser;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-import static io.netty.handler.codec.http.multipart.InterfaceHttpData.HttpDataType.FileUpload;
 
 @CommandInfo(name = "task")
 public class DiscordTaskCommand extends SlashCommand {

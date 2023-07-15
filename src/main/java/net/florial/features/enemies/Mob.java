@@ -11,7 +11,6 @@ import net.florial.features.enemies.events.MobSpawnEvent;
 import net.florial.utils.game.MobSpawn;
 import org.bukkit.Bukkit;
 import org.bukkit.attribute.Attribute;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Hoglin;
 import org.bukkit.entity.LivingEntity;
@@ -22,7 +21,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Getter
 @ToString

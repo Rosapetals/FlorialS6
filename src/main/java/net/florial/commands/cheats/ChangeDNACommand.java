@@ -7,7 +7,6 @@ import co.aikar.commands.annotation.Flags;
 import co.aikar.commands.annotation.Optional;
 import net.florial.Florial;
 import net.florial.models.PlayerData;
-import net.florial.species.SpecieType;
 import org.bukkit.entity.Player;
 
 public class ChangeDNACommand extends BaseCommand {

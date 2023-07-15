@@ -1,7 +1,6 @@
 package net.florial.utils.iridiumcolorapi;
 
 import com.google.common.collect.ImmutableMap;
-
 import net.florial.utils.iridiumcolorapi.patterns.GradientPattern;
 import net.florial.utils.iridiumcolorapi.patterns.Pattern;
 import net.florial.utils.iridiumcolorapi.patterns.RainbowPattern;
@@ -13,9 +12,9 @@ import org.bukkit.Bukkit;
 import javax.annotation.Nonnull;
 import java.awt.*;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Collection;
 import java.util.stream.Collectors;
 
 public class IridiumColorAPI {
