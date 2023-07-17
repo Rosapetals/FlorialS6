@@ -27,7 +27,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17, 18, 19, 20
+            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17, 18, 19, 20, 150
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -64,6 +64,7 @@ public class ClickablesListener implements Listener {
             case 8 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
             case 17 -> coatSelector(e.getPlayer());
+            case 150 -> e.getPlayer().getInventory().addItem(new ItemStack(Material.LIGHT));
 
         }
     }

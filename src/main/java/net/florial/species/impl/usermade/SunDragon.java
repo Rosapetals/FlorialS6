@@ -43,7 +43,8 @@ public class SunDragon extends Species implements Listener {
         if (e.getAction() != Action.LEFT_CLICK_AIR
                 || Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this
         || Cooldown.isOnCooldown("c1", e.getPlayer())
-        || e.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
+        || e.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR
+        || Florial.getOngoingDuel().get(e.getPlayer().getUniqueId()) != null) return;
 
         Player p = e.getPlayer();
 

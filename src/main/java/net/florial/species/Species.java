@@ -366,7 +366,9 @@ public abstract class Species implements Listener {
 
         if (!(event.getEntity() instanceof Player)
                 || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this
-                || this.sharedAbilities() == null || (!(this.sharedAbilities().contains(4)))) return;
+                || this.sharedAbilities() == null
+                || (!(this.sharedAbilities().contains(4))
+                || Florial.getOngoingDuel().get(event.getEntity().getUniqueId()) != null)) return;
 
 
         if (event.getEntity().getLocation().getBlock().getLightLevel() > 10) return;
@@ -383,7 +385,8 @@ public abstract class Species implements Listener {
                 || (event.getCause() != EntityDamageEvent.DamageCause.FIRE)
                 || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this
                 || this.sharedAbilities() == null
-                || ((!this.sharedAbilities().contains(5)))) return;
+                || ((!this.sharedAbilities().contains(5))
+                || Florial.getOngoingDuel().get(event.getEntity().getUniqueId()) != null)) return;
 
         event.setDamage(event.getDamage() + 6);
     }

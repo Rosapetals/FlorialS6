@@ -53,7 +53,8 @@ public class NekoRyu extends Species implements Listener {
 
         if (!(event.getRightClicked() instanceof LivingEntity entity)
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
-                || Cooldown.isOnCooldown("c2", event.getPlayer())) return;
+                || Cooldown.isOnCooldown("c2", event.getPlayer())
+                || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
         Player player = event.getPlayer();
 
@@ -119,8 +120,9 @@ public class NekoRyu extends Species implements Listener {
     @EventHandler
     public void sunlightVulnerability(EntityDamageEvent event) {
 
-        if (!(event.getEntity() instanceof Player)
-                || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this) return;
+        if (!(event.getEntity() instanceof Player p)
+                || Florial.getPlayerData().get(p.getUniqueId()).getSpecies() != this
+        || Florial.getOngoingDuel().get(p.getUniqueId()) != null) return;
 
 
         if (event.getEntity().getLocation().getBlock().getLightLevel() < 10) return;

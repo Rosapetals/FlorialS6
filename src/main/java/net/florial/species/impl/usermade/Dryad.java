@@ -4,6 +4,7 @@ import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.species.Species;
 import net.florial.utils.Cooldown;
+import net.florial.utils.game.RegionDetector;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.TreeType;
@@ -66,7 +67,9 @@ public class Dryad extends Species implements Listener {
 
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
-                || Cooldown.isOnCooldown("c1", event.getPlayer())) return;
+                || Cooldown.isOnCooldown("c1", event.getPlayer())
+                || event.getClickedBlock().getType() != Material.GRASS_BLOCK
+                || (!(RegionDetector.detect(event.getPlayer().getLocation()).contains("none")))) return;
 
         Block block = event.getClickedBlock();
 
@@ -85,7 +88,8 @@ public class Dryad extends Species implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
                 || (!(event.getPlayer().isSneaking())
-                || Cooldown.isOnCooldown("c2", event.getPlayer()))) return;
+                || Cooldown.isOnCooldown("c2", event.getPlayer())
+                || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null)) return;
 
         Player player = event.getPlayer();
 

@@ -60,7 +60,8 @@ public class Draconic extends Species implements Listener {
         if (event.getAction() != Action.LEFT_CLICK_AIR
         || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
         || Cooldown.isOnCooldown("c1", event.getPlayer())
-        || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
+        || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR
+        || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
 
         Player player = event.getPlayer();

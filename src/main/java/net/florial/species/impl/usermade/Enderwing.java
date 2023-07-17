@@ -73,7 +73,8 @@ public class Enderwing extends Species implements Listener {
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
                 || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR
                 || event.getPlayer().getInventory().getItemInOffHand().getType() != Material.AIR
-                || Cooldown.isOnCooldown("c1", event.getPlayer())) return;
+                || Cooldown.isOnCooldown("c1", event.getPlayer())
+                || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
         event.getPlayer().teleport(event.getPlayer().getTargetBlock(null, 50).getLocation());
         Cooldown.addCooldown("c1", event.getPlayer(), 5);
@@ -88,7 +89,8 @@ public class Enderwing extends Species implements Listener {
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
                 || Cooldown.isOnCooldown("c2", event.getPlayer())
                 || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR
-                || event.getPlayer().getInventory().getItemInOffHand().getType() != Material.AIR) return;
+                || event.getPlayer().getInventory().getItemInOffHand().getType() != Material.AIR
+                || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
 
         Player player = event.getPlayer();
@@ -120,7 +122,8 @@ public class Enderwing extends Species implements Listener {
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
                 || Cooldown.isOnCooldown("c3", event.getPlayer())
                 || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR
-                || event.getPlayer().getInventory().getItemInOffHand().getType() != Material.AIR) return;
+                || event.getPlayer().getInventory().getItemInOffHand().getType() != Material.AIR
+                || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
 
         Player player = event.getPlayer();

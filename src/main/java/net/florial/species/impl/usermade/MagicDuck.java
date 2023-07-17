@@ -57,7 +57,8 @@ public class MagicDuck extends Species implements Listener {
     public void farPoison(PlayerInteractEvent e) {
         if (e.getAction() != Action.LEFT_CLICK_AIR
         || Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this
-        || Cooldown.isOnCooldown("c1", e.getPlayer())) return;
+        || Cooldown.isOnCooldown("c1", e.getPlayer())
+        || Florial.getOngoingDuel().get(e.getPlayer().getUniqueId()) != null) return;
 
         Player p = e.getPlayer();
 

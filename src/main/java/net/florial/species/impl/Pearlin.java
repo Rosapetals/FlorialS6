@@ -52,7 +52,8 @@ public class Pearlin extends Species implements Listener {
 
         if (!(e.getRightClicked() instanceof LivingEntity)
                 || Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this
-                || (Cooldown.isOnCooldown("c1", e.getPlayer()))) return;
+                || (Cooldown.isOnCooldown("c1", e.getPlayer())
+                || Florial.getOngoingDuel().get(e.getPlayer().getUniqueId()) != null)) return;
 
         Player p = e.getPlayer();
 

@@ -54,7 +54,8 @@ public class Windowsian extends Species implements Listener {
     public void powerUsageAttack(EntityDamageByEntityEvent event) {
 
         if (!(event.getDamager() instanceof Player p)
-            || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this) return;
+            || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this
+            || Florial.getOngoingDuel().get(p.getUniqueId()) != null) return;
 
         powerUsage(p);
 

@@ -47,11 +47,8 @@ public class Crates implements Listener {
                 key3,
                 key4,
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 50, "CustomModelData"),
-
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l800", false), 4, "CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l1500", false), 4, "CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l1000", false), 4, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l500", false), 4, "CustomModelData"),
 
                 new ItemStack(Material.DIAMOND),
                 new ItemStack(Material.QUARTZ, 10),
@@ -87,6 +84,8 @@ public class Crates implements Listener {
                 new ItemStack(Material.GOLDEN_APPLE, 64),
 
                 new ItemStack(Material.PINK_SHULKER_BOX, 5),
+
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 2), "#ff7a8b&lFlories [Left-Click]", "", false), 50, "CustomModelData"),
 
 
                 key2,

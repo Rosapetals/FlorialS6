@@ -57,7 +57,8 @@ public class Endn extends Species implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK
         || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
                 || (!(event.getPlayer().isSneaking()))
-        || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
+        || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR
+        || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
         Player player = event.getPlayer();
         Location currentLocation = player.getLocation();

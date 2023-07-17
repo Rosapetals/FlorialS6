@@ -53,9 +53,10 @@ public class Thallidian extends Species implements Listener {
     @EventHandler
     public void poisonTouch(EntityDamageByEntityEvent event) {
 
-        if (!(event.getDamager() instanceof Player)
+        if (!(event.getDamager() instanceof Player p)
                 || (!(event.getEntity() instanceof LivingEntity target)
-                || Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this)) return;
+                || Florial.getPlayerData().get(p.getUniqueId()).getSpecies() != this)
+                || Florial.getOngoingDuel().get(p.getUniqueId()) != null) return;
 
         target.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 4800, 1, false, false, true));
 

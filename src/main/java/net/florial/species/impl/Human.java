@@ -52,7 +52,8 @@ public class Human extends Species implements Listener {
 
         if (event.getAction() != Action.LEFT_CLICK_AIR
         || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
-        || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.PAPER) return;
+        || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.PAPER
+        || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
         Player p = event.getPlayer();
 
