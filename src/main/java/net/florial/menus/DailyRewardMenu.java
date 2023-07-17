@@ -1,6 +1,5 @@
 package net.florial.menus;
 
-import io.github.bananapuncher714.nbteditor.NBTEditor;
 import io.github.rysefoxx.inventory.plugin.content.IntelligentItem;
 import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
@@ -17,8 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Stream;
 
 public class DailyRewardMenu {
 

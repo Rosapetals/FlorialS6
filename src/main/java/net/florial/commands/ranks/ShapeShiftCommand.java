@@ -11,8 +11,6 @@ import me.libraryaddict.disguise.disguisetypes.watchers.CatWatcher;
 import me.libraryaddict.disguise.disguisetypes.watchers.FoxWatcher;
 import net.florial.species.Species;
 import net.florial.species.disguises.Morph;
-import net.florial.species.events.impl.SpeciesTablistEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Cat;
 import org.bukkit.entity.Fox;
 import org.bukkit.entity.Player;

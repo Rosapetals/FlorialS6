@@ -16,8 +16,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.UUID;
-
 public class RankGiveCommand extends BaseCommand {
 
     @CommandAlias("rankgive")

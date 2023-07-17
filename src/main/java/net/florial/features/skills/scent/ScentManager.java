@@ -13,8 +13,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.util.Arrays;
-
 public class ScentManager implements Listener {
 
     private static final ScentUI ScentUI = new ScentUI();

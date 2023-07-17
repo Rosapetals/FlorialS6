@@ -3,7 +3,6 @@ package net.florial.features.upgrades;
 import dev.morphia.annotations.Transient;
 import lombok.Getter;
 import lombok.Setter;
-import net.florial.species.SpecieType;
 
 public enum Upgrade {
 

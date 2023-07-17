@@ -19,7 +19,10 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
 import net.florial.commands.cheats.*;
 import net.florial.commands.discord.*;
-import net.florial.commands.menu.*;
+import net.florial.commands.menu.FloriesMenuCommand;
+import net.florial.commands.menu.RebirthMenuCommand;
+import net.florial.commands.menu.ShopCommand;
+import net.florial.commands.menu.SkillsMenuCommand;
 import net.florial.commands.ranks.*;
 import net.florial.commands.species.*;
 import net.florial.commands.staff.*;
@@ -29,6 +32,8 @@ import net.florial.features.duels.Duel;
 import net.florial.features.enemies.impl.Boar;
 import net.florial.features.enemies.impl.Crawlies;
 import net.florial.features.enemies.impl.Wisps;
+import net.florial.features.playershops.ShopInteractionListener;
+import net.florial.features.playershops.TulipInteractionListener;
 import net.florial.features.quests.Quest;
 import net.florial.features.quests.QuestProgressManager;
 import net.florial.features.skills.attack.AttackSkillListener;
@@ -37,8 +42,6 @@ import net.florial.features.thirst.ThirstManager;
 import net.florial.listeners.*;
 import net.florial.listeners.mobs.AnimalListener;
 import net.florial.listeners.mobs.MobsListener;
-import net.florial.features.playershops.ShopInteractionListener;
-import net.florial.features.playershops.TulipInteractionListener;
 import net.florial.models.PlayerData;
 import net.florial.models.ShiftData;
 import net.florial.scoreboard.FastBoard;
@@ -237,7 +240,8 @@ public final class Florial extends JavaPlugin {
         for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
             Florial.getPlayerData().put(p.getUniqueId(), playerData);});
             ThirstManager.thirstRunnable(p);
-            Scoreboard.boardRunnable(p.getUniqueId(), p);}
+            Scoreboard.boardRunnable(p.getUniqueId(), p);
+        }
 
 
     }

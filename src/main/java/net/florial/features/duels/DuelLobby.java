@@ -2,7 +2,6 @@ package net.florial.features.duels;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.florial.species.SpecieType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 

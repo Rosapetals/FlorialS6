@@ -1,6 +1,5 @@
 package net.florial.species.impl.usermade;
 
-import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import net.florial.Florial;
 import net.florial.species.Species;
 import net.florial.utils.math.GetChance;

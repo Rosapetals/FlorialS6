@@ -9,8 +9,6 @@ import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 import net.florial.Florial;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.dailyrewards.Reward;
-import net.florial.features.duels.Duel;
-import net.florial.features.playershops.PlayerShopsMenu;
 import net.florial.features.thirst.HydrateEvent;
 import net.florial.features.thirst.ThirstManager;
 import net.florial.menus.species.SpeciesMenu;
@@ -49,7 +47,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
