@@ -64,8 +64,8 @@ public class Crates implements Listener {
                 new ItemStack(Material.EXPERIENCE_BOTTLE, 600),
                 new ItemStack(Material.EXPERIENCE_BOTTLE, 64),
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l10", false), 13, "CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l20", false), 14, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l5", false), 13, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.MUSIC_DISC_CAT), "#ff7a8b&lDNA Voucher", "#ff7a8b&l5", false), 14, "CustomModelData"),
 
                 new ItemStack(Material.GOLDEN_APPLE, 64),
                 new ItemStack(Material.GOLDEN_APPLE, 50),
@@ -103,7 +103,8 @@ public class Crates implements Listener {
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lSinner's Pineapple Pizza [Left-Click]", "", false), 16,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lAmerican Flag [Left-Click] [DNA]", "", false), 18,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBBQ Ribs[Left-Click]", "", false), 19,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lDIET PILLS [Left-Click]", "", false), 20,"CustomModelData")
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lDIET PILLS [Left-Click]", "", false), 20,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCORN ON THE COB [Left-Click]", "", false), 21,"CustomModelData")
 
 
 

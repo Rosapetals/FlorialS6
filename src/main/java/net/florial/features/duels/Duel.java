@@ -202,11 +202,13 @@ public class Duel {
         opponent.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You won the duel!" + (wasRisky ? "Go pick up the wagered item that has just dropped!" : "")));
         opponent.playSound(opponent.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_1, 2, 1);
 
-        p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You lost the duel" + (wasRisky ? "AND your wagered item! Oh well... better luck next time." : "")));
+        p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You lost the duel" + (wasRisky ? " AND your wagered item! Oh well... better luck next time." : "")));
         p.playSound(opponent.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_4, 2, 1);
 
         alterDisguises(p, opponent, false);
         getDuelLobby().setInUse(false);
+
+        Bukkit.broadcastMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤#ff5b70 " + p.getName() + "&f just lost in a duel to #ff5b70" + opponent.getName()));
 
         delete();
     }

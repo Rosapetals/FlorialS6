@@ -47,8 +47,10 @@ public class AnimalListener implements Listener {
         if (e.getSpawnReason() != CreatureSpawnEvent.SpawnReason.NATURAL) return;
 
         EntityType ent = e.getEntityType();
-        if (!List.of(EntityType.SHEEP, EntityType.COW, EntityType.CHICKEN, EntityType.PIG, EntityType.RABBIT).contains(ent))
+        if (!List.of(EntityType.SHEEP, EntityType.COW, EntityType.CHICKEN, EntityType.PIG, EntityType.RABBIT).contains(ent)) {
             return;
+
+        }
 
         if (!(GetChance.chanceOf(15))) {
             e.setCancelled(true);

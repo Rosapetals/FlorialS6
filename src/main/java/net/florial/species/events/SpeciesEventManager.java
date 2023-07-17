@@ -75,9 +75,9 @@ public class SpeciesEventManager implements Listener  {
                     index++;
                 }
             }
-            case 2 -> tabList.activate(p, "http://textures.minecraft.net/texture/797538c0e9a8c2c34bc20b03c62124b371e146615c59599b2e5399fd1ee8c082");
+            case 2 -> tabList.activate(p, "http://textures.minecraft.net/texture/d59d8c84bda200491e151ecb6e6ba8478c05391d120709e1ef4dfa79d81e271d");
 
-            case 4 -> tabList.activate(p, "http://textures.minecraft.net/texture/8edd730a52c407ffb688d4093d2a25ed77feb29cffad8b1c76ac29b4e64a0567");
+            case 4 -> tabList.activate(p, "http://textures.minecraft.net/texture/48ae65f811f1d95fcc2917eccec6e1dfe864ea147bba2d829c25dbc42596a96e");
         }
 
     }

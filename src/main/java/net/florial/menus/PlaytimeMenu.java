@@ -7,6 +7,7 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
 import net.florial.features.playtimerewards.Tier;
+import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.CustomItem;
@@ -91,7 +92,7 @@ public class PlaytimeMenu {
                         contents.set(List.of(24), IntelligentItem.of(entries.get(2), event -> unlockPlayTimeReward(player, tiers, Tier.TIER3, hours, data)));
                         contents.set(List.of(36), IntelligentItem.of(entries.get(3), event -> unlockPlayTimeReward(player, tiers, Tier.TIER4, hours, data)));
                         contents.set(List.of(44), IntelligentItem.of(entries.get(4), event -> unlockPlayTimeReward(player, tiers, Tier.TIER5, hours, data)));
-                        contents.set(List.of(39), IntelligentItem.of(entries.get(5), event -> unlockPlayTimeReward(player, tiers, Tier.TIER6, hours, data)));
+                        contents.set(List.of(40), IntelligentItem.of(entries.get(5), event -> unlockPlayTimeReward(player, tiers, Tier.TIER6, hours, data)));
 
 
                     }
@@ -121,16 +122,18 @@ public class PlaytimeMenu {
                 int money = tier.getMoney();
                 int flories = tier.getFlories();
 
-                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You have unlocked this tier and earned " + flories + " flories, $" + money + ", " + dna + " DNA, and " + seasonalKeys + " Seasonal Keys."));
+                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You have unlocked this tier and earned " + flories + " flories, $" + money + ", " + dna + " DNA, and " + seasonalKeys + " Seasonal Keys."));
                 p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, (float) 1.3);
 
                 ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "CustomModelData");
+                key3 = NBTEditor.set(key3, 3, "Crate");
 
                 for (int i = 0; i < seasonalKeys; i++) {p.getInventory().addItem(key3);}
                 VaultHandler.addMoney(p, money);
                 data.setDna(data.getDna() + dna);
                 data.setFlories(data.getFlories() + flories);
 
+                data.getPlaytimeTiers().put(tier, true);
 
             } else {
                 p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need " + requiredHours + " hours to unlock this. You only have " +  hours + " hours."));

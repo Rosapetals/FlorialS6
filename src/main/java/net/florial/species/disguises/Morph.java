@@ -21,16 +21,16 @@ public class Morph {
 
     public final List<String> skinTextures = List.of(
             "http://textures.minecraft.net/texture/7e3e03a9671840223a96a920914d1b87314044cc6d32aab7c27e1f640ecc21d5",
-            "http://textures.minecraft.net/texture/490becff2f313999df856ee4b9cd4b90273df46c1867aac23b7a2395226652fe",
-            "http://textures.minecraft.net/texture/7197946165027d6e8c21353443e3b103eef4bee1a1c238984fe0afb066859d45",
-            "http://textures.minecraft.net/texture/29f16992f3a92c2e62fd38d5d851fd661ceb3e8a810200536ea4b12eb05f341e",
-            "http://textures.minecraft.net/texture/3b355ba38901ee86a23d61e9ce101658f2417d6b9b4c3812a904ade581cb4415",
-            "http://textures.minecraft.net/texture/24a8a7bf5e750f808e4fbd40894dfe746a07245dc16a113743ae35feb5b0f771",
-            "http://textures.minecraft.net/texture/fbb986e253e4a7945f4a92109b08e76f25a7dcac2b98d3aa53d2fa5ff0083da1",
+            "http://textures.minecraft.net/texture/f213961f49c1e3e6e45863bb11c781bf060f40167d508a101ec9a363f2147bdf",
+            "http://textures.minecraft.net/texture/cca8a5f90689b806646be6625283a1bdf3a4f115f03ba2945550bb325249faa1",
+            "http://textures.minecraft.net/texture/7f303675f4725105ff47cea69d7a4077f5ef0778bb3abf4efff66639df326d48",
+            "http://textures.minecraft.net/texture/8e216e48547417173ae7389f9062a48e86203b57e3b2d9f784472327b474c5ae",
+            "http://textures.minecraft.net/texture/dfebff4cf3f650d5bf852c27fbc9d9671fc3d1f2c954c620a859a01f9bc82352",
+            "http://textures.minecraft.net/texture/b2011f08f1591e9f1020e374146d9ea7ddfced0beeb855a28ade3348098ccc3b",
             "http://textures.minecraft.net/texture/27f596afb869f806f61085a499b7e75148913d3e60601f166258dfbcb82a3bbf",
-            "http://textures.minecraft.net/texture/6d62b4a45c5fa233a4639af6fb910afc1795eb0011e46266a0865d173ebde9ab",
-            "http://textures.minecraft.net/texture/5f539293ebeaba4c35f089357e5457f838fa4a5db4da83afbfc295ad2d6d6ea6",
-            "http://textures.minecraft.net/texture/1fcd2e0c2b5df9482ef45f5e1d3cf07778febdd8455d3f02d326029ad79f41cf"
+            "http://textures.minecraft.net/texture/fd3a837135c19cc756848fcf3596bb1d0aaccbb28526342fd572fac5d1bd5676",
+            "http://textures.minecraft.net/texture/d66db92e9b1543a9f5d1d4cc3bbb3754d1de7c8d150b66a06961bb51fb5d224e",
+            "http://textures.minecraft.net/texture/e5b678587b1c0c9c9f6a94d23ccfd6e5a77a57d1426086ca9a35adab7480519f"
     );
 
     public final List<String> textureNames = List.of(
