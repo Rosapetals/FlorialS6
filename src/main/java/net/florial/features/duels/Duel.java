@@ -189,7 +189,7 @@ public class Duel {
 
     public void lose(Player p) {
 
-        boolean wasRisky = getOpponentWhoWasInvited() != null;
+        boolean wasRisky = getOpponentWhoWasInvitedWageredItem() != null;
 
         if (wasRisky) {
             ItemStack wagered = wageredItemOf(p);
