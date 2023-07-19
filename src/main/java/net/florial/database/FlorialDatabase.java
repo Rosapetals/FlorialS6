@@ -54,20 +54,24 @@ public class FlorialDatabase {
             return;
         }
 
-        // mongo = MongoClients.create(Florial.getInstance().getConfig().getString("mongo.uri"));
-        val settings = MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString(Florial.getInstance().getConfig().getString("mongo.uri")))
-                .uuidRepresentation(UuidRepresentation.STANDARD)
-                .serverApi(ServerApi.builder().version(ServerApiVersion.V1).build())
-                .build();
+        GeneralUtils.runAsync(new BukkitRunnable() {
+            @Override
+            public void run() {
+                val settings = MongoClientSettings.builder()
+                        .applyConnectionString(new ConnectionString(Florial.getInstance().getConfig().getString("mongo.uri")))
+                        .uuidRepresentation(UuidRepresentation.STANDARD)
+                        .serverApi(ServerApi.builder().version(ServerApiVersion.V1).build())
+                        .build();
 
-        mongo = MongoClients.create(settings);
-        database = mongo.getDatabase(Florial.getInstance().getConfig().getString("mongo.database"));
-        datastore = Morphia.createDatastore(mongo, Florial.getInstance().getConfig().getString("mongo.database"));
-        datastore.getMapper().map(PlayerData.class);
-        datastore.getMapper().map(FilterEntry.class);
-        datastore.getMapper().map(DiscordUser.class);
-        datastore.ensureIndexes();
+                mongo = MongoClients.create(settings);
+                database = mongo.getDatabase(Florial.getInstance().getConfig().getString("mongo.database"));
+                datastore = Morphia.createDatastore(mongo, Florial.getInstance().getConfig().getString("mongo.database"));
+                datastore.getMapper().map(PlayerData.class);
+                datastore.getMapper().map(FilterEntry.class);
+                datastore.getMapper().map(DiscordUser.class);
+                datastore.ensureIndexes();
+            }
+        });
     }
 
     /**
@@ -265,6 +269,15 @@ public class FlorialDatabase {
 
     public static void closeConnection() {
         mongo.close();
+    }
+
+    public static boolean isConnected() {
+        try {
+            mongo.listDatabases();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }
 

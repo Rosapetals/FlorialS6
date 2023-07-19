@@ -22,6 +22,7 @@ import net.florial.utils.game.RegionDetector;
 import net.florial.utils.general.CC;
 import net.florial.utils.general.FilterUtils;
 import net.florial.utils.iridiumcolorapi.IridiumColorAPI;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -73,6 +74,11 @@ public class PlayerListeners implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
         UUID u = p.getUniqueId();
+
+        if (!FlorialDatabase.isConnected()) {
+            event.getPlayer().kick(Component.text("The server is not ready to accept players, please try again in a moment"));
+            return;
+        }
 
         FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
             Florial.getPlayerData().put(u, playerData);
