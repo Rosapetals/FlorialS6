@@ -63,7 +63,8 @@ public class BassBeast extends Species implements Listener {
         if (!(event.getDamager() instanceof Player p)) return;
 
         if (Florial.getPlayerData().get(event.getDamager().getUniqueId()).getSpecies() != this
-                || (!(event.getEntity() instanceof LivingEntity target))) return;
+                || (!(event.getEntity() instanceof LivingEntity target))
+                || Florial.getOngoingDuel().get(event.getEntity().getUniqueId()) != null) return;
 
 
         if (Cooldown.isOnCooldown("c1", p)
@@ -82,7 +83,8 @@ public class BassBeast extends Species implements Listener {
         if (event.getAction() != Action.LEFT_CLICK_AIR
                 || Florial.getPlayerData().get(event.getPlayer().getUniqueId()).getSpecies() != this
                 || Cooldown.isOnCooldown("c3", event.getPlayer())
-                || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR) return;
+                || event.getPlayer().getInventory().getItemInMainHand().getType() != Material.AIR
+                || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
 
         Player player = event.getPlayer();

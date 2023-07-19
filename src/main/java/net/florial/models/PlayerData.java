@@ -12,6 +12,7 @@ import net.florial.Refresh;
 import net.florial.database.FlorialDatabase;
 import net.florial.features.age.Age;
 import net.florial.features.dailyrewards.Weekday;
+import net.florial.features.playtimerewards.Tier;
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.species.SpecieType;
@@ -52,7 +53,6 @@ public class PlayerData {
     String pronouns = "";
     @Nullable
     String prefix = "";
-  //  @Getter @Setter SpeciesColor color;
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Weekday, Boolean> loggedInDays = new HashMap<>(Map.of(Weekday.SUNDAY, false, Weekday.MONDAY, false, Weekday.TUESDAY, false, Weekday.WEDNESDAY, false, Weekday.THURSDAY, false, Weekday.FRIDAY, false, Weekday.SATURDAY, false));
@@ -63,9 +63,11 @@ public class PlayerData {
 
     @Getter @Setter String gradient2 = "";
 
+    HashMap<Tier, Boolean> playtimeTiers = new HashMap<>();
 
 
-    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, int reincarnations, @org.jetbrains.annotations.Nullable String prefix, Age age, String gradient1, String gradient2) {
+
+    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, int reincarnations, @org.jetbrains.annotations.Nullable String prefix, Age age, String gradient1, String gradient2, HashMap<Tier,Boolean> playtimeTiers) {
 
         this.UUID = uuid;
         this.discordId = discordId;
@@ -82,6 +84,7 @@ public class PlayerData {
         this.age = age;
         this.gradient1 = gradient1;
         this.gradient2 = gradient2;
+        this.playtimeTiers = playtimeTiers;
     }
 
     public PlayerData(String uuid) {

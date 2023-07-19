@@ -1,17 +1,23 @@
 package net.florial.features.quests;
 
+import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
 import net.florial.features.age.Age;
 import net.florial.features.quests.events.impl.QuestProgressEvent;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.models.PlayerData;
+import net.florial.utils.game.FireWorkSpawner;
 import net.florial.utils.general.CC;
+import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
+import org.bukkit.Color;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -55,6 +61,10 @@ public class QuestProgressManager implements Listener {
         data.setGrowth(data.getGrowth() + 1);
         data.setDna(data.getDna() + (data.getAge() == Age.ELDER ? 2 : data.getUpgrades().get(Upgrade.DNA) != null ? 3 : 1));
 
+        FireWorkSpawner.spawn(3, Color.WHITE, Color.WHITE, p);
+        ItemStack key1 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lTulip Crate Key", "", false), 1, "CustomModelData");
+        key1= NBTEditor.set(key1, 1, "Crate");
+        p.getInventory().addItem(key1);
 
         if (type.getMinAmount() == 50) p.setLevel(p.getLevel() + 5);
 

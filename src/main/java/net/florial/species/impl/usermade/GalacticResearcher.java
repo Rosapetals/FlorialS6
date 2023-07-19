@@ -15,10 +15,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GalacticResearcher extends Species implements Listener {
 
@@ -66,10 +63,13 @@ public class GalacticResearcher extends Species implements Listener {
     @EventHandler
     public void sunFists(EntityDamageByEntityEvent e) {
 
-        if (!(e.getDamager() instanceof Player) || (!(e.getEntity() instanceof LivingEntity ent))) return;
+        if (!(e.getDamager() instanceof Player p) || (!(e.getEntity() instanceof LivingEntity ent))) return;
 
-        if (Florial.getPlayerData().get(e.getDamager().getUniqueId()).getSpecies() == null
-        || Florial.getPlayerData().get(e.getDamager().getUniqueId()).getSpecies() != this) return;
+        UUID u = p.getUniqueId();
+
+        if (Florial.getPlayerData().get(u).getSpecies() == null
+        || Florial.getPlayerData().get(u).getSpecies() != this
+        || Florial.getOngoingDuel().get(u) != null) return;
 
         ent.setFireTicks(120);
         ent.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 500, 0, false, false, true));

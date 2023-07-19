@@ -66,7 +66,8 @@ public class Fox extends Species implements Listener {
     @EventHandler
     public void foxBite(EntityDamageByEntityEvent e) {
 
-        if (!(e.getDamager() instanceof Player p) || (!(e.getEntity() instanceof LivingEntity))) return;
+        if (!(e.getDamager() instanceof Player p) || (!(e.getEntity() instanceof LivingEntity))
+        || Florial.getOngoingDuel().get(p.getUniqueId()) == null) return;
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
@@ -83,7 +84,10 @@ public class Fox extends Species implements Listener {
     @EventHandler
     public void foxHeatAcclimation(EntityDamageEvent e) {
 
-        if (!(e.getEntity() instanceof Player p) || e.getCause() != EntityDamageEvent.DamageCause.LAVA && e.getCause() != EntityDamageEvent.DamageCause.FIRE) return;
+        if (!(e.getEntity() instanceof Player p)
+                || Florial.getOngoingDuel().get(p.getUniqueId()) != null
+                || e.getCause() != EntityDamageEvent.DamageCause.LAVA
+                && e.getCause() != EntityDamageEvent.DamageCause.FIRE) return;
         
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
@@ -98,10 +102,14 @@ public class Fox extends Species implements Listener {
     @EventHandler
     public void doubleMaterials(BlockBreakEvent e) {
 
-        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() != this
-            || (!(Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC) > 3))) return;
+        Player p = e.getPlayer();
+        UUID u = p.getUniqueId();
 
-        int value = Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSkills().get(Skill.SPECIFIC);
+        if (Florial.getPlayerData().get(u).getSpecies() != this
+            || (!(Florial.getPlayerData().get(u).getSkills().get(Skill.SPECIFIC) > 3))
+            || Florial.getOngoingDuel().get(u) != null) return;
+
+        int value = Florial.getPlayerData().get(u).getSkills().get(Skill.SPECIFIC);
 
         int chance = (value == 4) ? 30 : (value == 5) ? 50 : 0;
 
@@ -112,9 +120,15 @@ public class Fox extends Species implements Listener {
     @EventHandler
     public void onFoxSneak(PlayerToggleSneakEvent e) {
 
-        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecies() == null) return;
-        if (DisguiseAPI.getDisguise(e.getPlayer()) == null || DisguiseAPI.getDisguise(e.getPlayer()).getType() != DisguiseType.FOX) return;
-        if (Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecieId() == 2 || Florial.getPlayerData().get(e.getPlayer().getUniqueId()).getSpecieId() == 4) morph.activate(e.getPlayer(), 1, e.isSneaking(), true, this);
+        Player p = e.getPlayer();
+        UUID u = p.getUniqueId();
+
+        if (Florial.getPlayerData().get(u).getSpecies() == null
+                || Florial.getOngoingDuel().get(u) != null
+                || DisguiseAPI.getDisguise(p) == null
+                || DisguiseAPI.getDisguise(p).getType() != DisguiseType.FOX) return;
+
+        if (Florial.getPlayerData().get(u).getSpecieId() == 2 || Florial.getPlayerData().get(u).getSpecieId() == 4) morph.activate(e.getPlayer(), 1, e.isSneaking(), true, this);
 
     }
 

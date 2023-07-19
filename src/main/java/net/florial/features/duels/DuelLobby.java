@@ -7,14 +7,14 @@ import org.bukkit.Location;
 
 public enum DuelLobby {
 
-    ARENA1(new Location (Bukkit.getWorld("world"), 0, 0, 0),
-            new Location (Bukkit.getWorld("world"), 0, 0, 0),
+    ARENA1(new Location (Bukkit.getWorld("world"), 7186, 188, 7401),
+            new Location (Bukkit.getWorld("world"), 7209, 188, 7399),
             false),
-    ARENA2(new Location (Bukkit.getWorld("world"), 0, 0, 0),
-            new Location (Bukkit.getWorld("world"), 0, 0, 0),
+    ARENA2(new Location (Bukkit.getWorld("world"), 7177, 188, 7401),
+            new Location (Bukkit.getWorld("world"), 7140, 188, 7397),
             false),
-    ARENA3(new Location (Bukkit.getWorld("world"), 0, 0, 0),
-            new Location (Bukkit.getWorld("world"), 0, 0, 0),
+    ARENA3(new Location (Bukkit.getWorld("world"), 7129, 186, 7330),
+            new Location (Bukkit.getWorld("world"), 7150, 186, 7327),
             false);
 
     @Getter

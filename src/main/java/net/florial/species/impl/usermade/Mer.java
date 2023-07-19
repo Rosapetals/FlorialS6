@@ -102,7 +102,8 @@ public class Mer extends Species implements Listener {
     @EventHandler
     public void landVulnerability(EntityDamageEvent event) {
 
-        if (!(event.getEntity() instanceof Player p)) return;
+        if (!(event.getEntity() instanceof Player p)
+        || Florial.getOngoingDuel().get(p.getUniqueId()) != null) return;
 
         if (Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this) return;
 

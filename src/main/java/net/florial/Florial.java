@@ -19,10 +19,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.florial.commands.*;
 import net.florial.commands.cheats.*;
 import net.florial.commands.discord.*;
-import net.florial.commands.menu.FloriesMenuCommand;
-import net.florial.commands.menu.RebirthMenuCommand;
-import net.florial.commands.menu.ShopCommand;
-import net.florial.commands.menu.SkillsMenuCommand;
+import net.florial.commands.menu.*;
 import net.florial.commands.ranks.*;
 import net.florial.commands.species.*;
 import net.florial.commands.staff.*;
@@ -251,10 +248,10 @@ public final class Florial extends JavaPlugin {
         ItemStack key1 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lTulip Crate Key", "", false), 1, "CustomModelData");
         ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "CustomModelData");
         key1= NBTEditor.set(key1, 1, "Crate");
-        registerRecipes("tulip_key", true, "111", "121", "111", Arrays.asList(
-                new ItemStack(Material.GOLD_INGOT),
-                new ItemStack(Material.PINK_TULIP),
-                null, null, null, null, null, null, null), key1);
+       // registerRecipes("tulip_key", true, "111", "121", "111", Arrays.asList(
+         //       new ItemStack(Material.GOLD_INGOT),
+           //     new ItemStack(Material.PINK_TULIP),
+            //    null, null, null, null, null, null, null), key1);
 
         registerRecipes("xp_key", true, "111", "121", "111", Arrays.asList(
                 new ItemStack(Material.LAPIS_LAZULI),
@@ -348,6 +345,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new RestartEventCommand());
         manager.registerCommand(new SetEventCommand());
         manager.registerCommand(new DuelCommand());
+        manager.registerCommand(new PTreeCommand());
 
 
 

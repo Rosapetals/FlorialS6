@@ -27,7 +27,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17, 18, 19, 20
+            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17, 18, 19, 20, 150, 21
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -58,12 +58,13 @@ public class ClickablesListener implements Listener {
             case 35 -> infiniteCookie(e.getPlayer());
             case 36 -> waterJug(e.getPlayer());
             case 37 -> weatherManipulation(e.getPlayer());
-            case 45, 2, 3, 5, 7, 12, 15, 16, 19, 20 -> specialEat(e.getPlayer());
+            case 45, 2, 3, 5, 7, 12, 15, 16, 19, 20, 21 -> specialEat(e.getPlayer(), value);
             case 4 -> useMoneyVoucher(e.getPlayer());
             case 13, 14, 18 -> useDNAVoucher(e.getPlayer());
             case 8 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
             case 17 -> coatSelector(e.getPlayer());
+            case 150 -> e.getPlayer().getInventory().addItem(new ItemStack(Material.LIGHT));
 
         }
     }
@@ -135,13 +136,17 @@ public class ClickablesListener implements Listener {
         p.setFoodLevel(20);
     }
 
-    private static void specialEat(Player p) {
+    private static void specialEat(Player p, int value) {
+
+        ItemStack item = p.getInventory().getItemInMainHand();
+
+        if (value == 2 || value == 3 && item.getType() != Material.PAPER) return;
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
-        removeItem(p.getInventory().getItemInMainHand(), p);
+        removeItem(item, p);
 
-        data.setDna(data.getDna() + 3);
+        data.setDna(data.getDna() + 2);
 
         p.playSound(p.getLocation(), Sound.ITEM_HONEY_BOTTLE_DRINK, 1, (float) 8);
 

@@ -45,8 +45,9 @@ public class Lynx extends Species implements Listener {
     @EventHandler
     public void vulnerableBody(EntityDamageEvent event) {
 
-        if (!(event.getEntity() instanceof Player)
-                || Florial.getPlayerData().get(event.getEntity().getUniqueId()).getSpecies() != this) return;
+        if (!(event.getEntity() instanceof Player p)
+                || Florial.getPlayerData().get(p.getUniqueId()).getSpecies() != this
+                || Florial.getOngoingDuel().get(p.getUniqueId()) != null) return;
 
         event.setDamage(event.getDamage() + 6);
     }

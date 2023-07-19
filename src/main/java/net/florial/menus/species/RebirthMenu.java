@@ -56,35 +56,45 @@ public class RebirthMenu {
 
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(GetCustomSkull.getCustomSkull(mileStone1Completed), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                        " #FF9920&l︳• #FFB65FSTRONGER SCENT\n"
-                                                + " #FF9920&l︳• #FFB65F15 Reincarnations"
-                                                + "\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙\n"
-                                                + "#FF9920&l︳ • CLICK REBIRTH TO REINCARNATE"
-                                                + "\n #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                                """
+                                                         #FF9920&l︳• #FFB65FSTRONGER SCENT
+                                                         #FF9920&l︳• #FFB65F15 Reincarnations
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙
+                                                         #FF9920&l︳ • CLICK REBIRTH TO REINCARNATE
+                                                         #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙""", false),
                                         CustomItem.MakeItem(GetCustomSkull.getCustomSkull(mileStone2Completed), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                " #FF9920&l︳• #FFB65F2x SELL INCREASE\n"
-                                                        + " #FF9920&l︳• #FFB65F35 Reincarnations"
-                                                        + "\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙\n"
-                                                        + "#FF9920&l︳ • CLICK REBIRTH TO REINCARNATE"
-                                                        + "\n #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                                """
+                                                         #FF9920&l︳• #FFB65F2x SELL INCREASE
+                                                         #FF9920&l︳• #FFB65F35 Reincarnations
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙
+                                                         #FF9920&l︳ • CLICK REBIRTH TO REINCARNATE
+                                                         #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙""", false),
                                         CustomItem.MakeItem(GetCustomSkull.getCustomSkull(mileStone3Completed), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                " #FF9920&l︳• #FFB65F2X ROW HEARTS\n"
-                                                        + " #FF9920&l︳• #FFB65F50 Reincarnations"
-                                                        + "\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙\n"
-                                                        + "#FF9920&l︳ • CLICK REBIRTH TO REINCARNATE"
-                                                        + "\n #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                                """
+                                                         #FF9920&l︳• #FFB65F2X ROW HEARTS
+                                                         #FF9920&l︳• #FFB65F50 Reincarnations
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙
+                                                         #FF9920&l︳ • CLICK REBIRTH TO REINCARNATE
+                                                         #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙""", false),
                                         CustomItem.MakeItem(GetCustomSkull.getCustomSkull(mileStone4Completed), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                " #FF9920&l︳• #FFB65FNATURE IMMUNITY\n"
-                                                        + " #FF9920&l︳• #FFB65F75 Reincarnations"
-                                                        + "\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙\n"
-                                                        + "#FF9920&l︳ • CLICK REBIRTH TO REINCARNATE"
-                                                        + "\n #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                                """
+                                                         #FF9920&l︳• #FFB65FNATURE IMMUNITY
+                                                         #FF9920&l︳• #FFB65F75 Reincarnations
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙
+                                                         #FF9920&l︳ • CLICK REBIRTH TO REINCARNATE
+                                                         #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙""", false),
                                         CustomItem.MakeItem(GetCustomSkull.getCustomSkull(mileStone5Completed), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
-                                                " #FF9920&l︳• #FFB65F3X DNA FOREVER\n"
-                                                        + " #FF9920&l︳• #FFB65F100 Reincarnations"
-                                                        + "\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙\n"
-                                                        + "#FF9920&l︳ • CLICK REBIRTH TO REINCARNATE"
-                                                        + "\n #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]\n #FF9920&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                                """
+                                                         #FF9920&l︳• #FFB65F3X DNA FOREVER
+                                                         #FF9920&l︳• #FFB65F100 Reincarnations
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙
+                                                         #FF9920&l︳ • CLICK REBIRTH TO REINCARNATE
+                                                         #FF9920&l︳•#FFB65F [CLICK TO UNLOCK]
+                                                         #FF9920&l┕━━━━━━━━━━━━━━━━━━┙""", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#FF9920&l ┍━━━━━━━━━━━━━━━━━━┑",
                                                 " #FF9920&l︳• #FFB65FREINCARNATION\n"
                                                         + " #FF9920&l︳• #FFB65F Times Reincarnated: " + data.getReincarnations()
@@ -96,24 +106,14 @@ public class RebirthMenu {
                                 ).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
-                        contents.set(List.of(13), IntelligentItem.of(entries.get(0), event -> {
-                            unlockMilestone(p, data, 15, Upgrade.STRONGNOSE);
-                        }));
-                        contents.set(List.of(20), IntelligentItem.of(entries.get(1), event -> {
-                            unlockMilestone(p, data, 35, Upgrade.SELLINCREASE);
-                        }));
-                        contents.set(List.of(24), IntelligentItem.of(entries.get(2), event -> {
-                            unlockMilestone(p, data, 50, Upgrade.DOUBLEHEALTH);
-                        }));
-                        contents.set(List.of(36), IntelligentItem.of(entries.get(3), event -> {
-                            unlockMilestone(p, data, 75, Upgrade.NATUREIMMUNITY);
-                        }));
-                        contents.set(List.of(44), IntelligentItem.of(entries.get(4), event -> {
-                            unlockMilestone(p, data, 100, Upgrade.DNA);
-                        }));
+                        contents.set(List.of(13), IntelligentItem.of(entries.get(0), event -> unlockMilestone(p, data, 15, Upgrade.STRONGNOSE)));
+                        contents.set(List.of(20), IntelligentItem.of(entries.get(1), event -> unlockMilestone(p, data, 35, Upgrade.SELLINCREASE)));
+                        contents.set(List.of(24), IntelligentItem.of(entries.get(2), event -> unlockMilestone(p, data, 50, Upgrade.DOUBLEHEALTH)));
+                        contents.set(List.of(36), IntelligentItem.of(entries.get(3), event -> unlockMilestone(p, data, 75, Upgrade.NATUREIMMUNITY)));
+                        contents.set(List.of(44), IntelligentItem.of(entries.get(4), event -> unlockMilestone(p, data, 100, Upgrade.DNA)));
 
                         //13,20,24,36,44
-                          contents.set(List.of(29,30,31,32,33,38,39,40,41,42), IntelligentItem.of(entries.get(5), event -> {activateReincarnation(p, data);}));
+                          contents.set(List.of(29,30,31,32,33,38,39,40,41,42), IntelligentItem.of(entries.get(5), event -> activateReincarnation(p, data)));
 
                     }
                 })
