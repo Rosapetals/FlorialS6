@@ -6,7 +6,6 @@ import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.theokanning.openai.service.OpenAiService;
-import com.vexsoftware.votifier.Votifier;
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import io.github.rysefoxx.inventory.plugin.pagination.InventoryManager;
 import lombok.Getter;
@@ -188,7 +187,8 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ClickablesListener(), this);
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
-        new VotingListener();
+        // new VotingListener();
+        getServer().getPluginManager().registerEvents(new VotingListener(), this);
         getServer().getPluginManager().registerEvents(new PoolListener(), this);
         getServer().getPluginManager().registerEvents(new ColonyResourceListener(), this);
         getServer().getPluginManager().registerEvents(new BoardListener(), this);
