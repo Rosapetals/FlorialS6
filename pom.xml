@@ -273,5 +273,10 @@
             <version>v1.7.3</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.deanveloper</groupId>
+            <artifactId>SkullCreator</artifactId>
+            <version>main-73f5b2a946-1</version>
+        </dependency>
     </dependencies>
 </project>
