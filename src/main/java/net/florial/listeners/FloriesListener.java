@@ -42,7 +42,7 @@ public class FloriesListener implements Listener {
         ItemStack item = e.getItem();
 
         if (item.getType() != Material.TOTEM_OF_UNDYING
-                || NBTEditor.getInt(item, "CustomModelData") != 16
+                || NBTEditor.getInt(item, "CustomModelData") != 206
                 || Cooldown.isOnCooldown("c3", p)) return;
 
         Cooldown.addCooldown("c3", p, 600);

@@ -43,7 +43,7 @@ public class EventsMenu {
                                                 + " #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
-                        contents.set(List.of(18,19,20), IntelligentItem.of(entries.get(0), event -> {submitIceCream(p, data);}));
+                        contents.set(List.of(18,19,20), IntelligentItem.of(entries.get(0), event -> {submitFirework(p, data);}));
                         contents.set(List.of(3,4,13,14,5), IntelligentItem.of(entries.get(1), event -> {completeEvent(p, data);}));
 
                     }
@@ -58,14 +58,15 @@ public class EventsMenu {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
 
-        if (data.getEvent() >= 2000) {
+        if (data.getEvent() >= 2000 && (!(data.getEvent() >= 10000))) {
             p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 2);
             data.setFlories(data.getFlories() + 200);
+            data.setEvent(10000);
         }
 
     }
 
-    private static void submitIceCream(Player p, PlayerData data) {
+    private static void submitFirework(Player p, PlayerData data) {
 
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();

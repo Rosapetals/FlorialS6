@@ -182,9 +182,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.vexsoftware</groupId>
-      <artifactId>votifier</artifactId>
-      <version>v1.9</version>
+      <groupId>com.github.NuVotifier.NuVotifier</groupId>
+      <artifactId>nuvotifier-bukkit</artifactId>
+      <version>2.7.2</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

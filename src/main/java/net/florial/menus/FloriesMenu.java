@@ -36,7 +36,7 @@ public class FloriesMenu {
                     "", "", false), 31, "CustomModelData"), List.of(
                     "BLUE SUPER-DRILL", "Left-Click with this near any water", "to instantly drain it. Forever use.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTg3OWVkMmIzOWZhMDQ2MmM3NDI5MmY1Y2EzZDE4ODQyMDEyOGI0YTYzYWM3NWRiOGM5N2EwOTRkMWFjNjNmNCJ9fX0"),
-                    "", "", false), 32, "CustomModelData"), List.of(
+                    "", "", false), 201, "CustomModelData"), List.of(
                     "TULIP'S SHADOW", "Left-Click with this to go invisible", "and Left-Click again to be visible. Forever use.", "")),
             floriesArrange(300, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzM4YjBiMGYxZjM1YzU2YjdkNjRlMGUyYjk2NjE4MDFmOTEyZjMxOGZhOWM4YzFkODNlOTE3ZGI0ZjJlNjUyMSJ9fX0"),
                     "", "", false), 33, "CustomModelData"), List.of(
@@ -57,16 +57,16 @@ public class FloriesMenu {
                     "", "", false), 43, "CustomModelData"), List.of(
                     "VIP Rank", "Buy this to get VIP rank!", "", "")),
             floriesArrange(200, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGQwN2ZkMDNjMDNjMDViNzQ0Y2ZmN2FjMWE5NWQ4MTYxNzA2MjA2ZjY4YzEyYzRjMjJjOTcwNWY3YzM3ZDA4In19fQ"),
-                    "", "", false), 34, "CustomModelData"), List.of(
+                    "", "", false), 202, "CustomModelData"), List.of(
                     "HEALING ORB", "Left-Click to regain full health.", "Cooldown. Forever use.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.COOKIE),
-                    "", "", false), 35, "CustomModelData"), List.of(
+                    "", "", false), 203, "CustomModelData"), List.of(
                     "INFINITE COOKIE", "Get full food and saturation when Left-Clicking", "with this weirdly delicious cookie.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmU5NzNjNGFlOTEyZTQ3ZjcxNGZkZjg3NmU1NmIwOGNkNzI3MjdjODM0ZTg4M2I5MjYzNTJiMTBkMGMyMGEwOSJ9fX0"),
-                    "", "", false), 36, "CustomModelData"), List.of(
+                    "", "", false), 204, "CustomModelData"), List.of(
                     "WATER JUG", "Left-Click with this item to fill", "your thirst. Infinite and permanent use.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhmNzdiMmVmZWZjZjMxYzMzMTUwYzAxNWRlNTMwMzg1MDk1NjMyY2RkNmIyNDZkMzFmOWY3NjY4NmMwZDBmOSJ9fX0"),
-                    "", "", false), 37, "CustomModelData"), List.of(
+                    "", "", false), 205, "CustomModelData"), List.of(
                     "WEATHER MANIPULATOR", "Left-Click with this item to make it stormy.", "Left-Click again to make it sunny. Forever use.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWVjODhjNzZlM2Q5YTFlYmQ3ZjRhMmU1NWVjYmNjNDJhOGQyM2Y2OTY3ODRhYTQxMGYwOTUxMmEzYjUzYSJ9fX0"),
                     "", "", false), 38, "CustomModelData"), List.of(
@@ -81,7 +81,7 @@ public class FloriesMenu {
                     "", "", false), 8, "CustomModelData"), List.of(
                     "FLOATIE", "Left-Click while underwater to", "immediately go to the surface", "Infinite uses.")),
             floriesArrange(300, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.TOTEM_OF_UNDYING),
-                    "", "", false), 16, "CustomModelData"), List.of(
+                    "", "", false), 206, "CustomModelData"), List.of(
                     "CAT TOTEM", "Permanent Totem of Undying,", "10 minute cooldown!", "Infinite uses.")),
             floriesArrange(150, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
                     "", "", false), 10, "CustomModelData"), List.of(
@@ -90,10 +90,10 @@ public class FloriesMenu {
                     "", "", false), 100, "CustomModelData"), List.of(
                     "3 FLORIES - 5 DNA-U", "Click here to trade 3 flories", "For 5 DNA in return!", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
-                    "", "", false), 17, "CustomModelData"), List.of(
+                    "", "", false), 71, "CustomModelData"), List.of(
                     "COAT COLOR SWAPPER", "Use for yourself or friends to swap coat", "colors as a cat.", "Left-Click! Infinite uses.")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWQyZjA4OWI2ODYyMGFmY2VmOWIzZWI4ZjgzMzBlN2RmY2E2MDliYzk3Zjk5ODMxMjk3Mzk4OGRmNzNiNWQ0ZSJ9fX0"),
-                    "", "", false), 150, "CustomModelData"), List.of(
+                    "", "", false), 165, "CustomModelData"), List.of(
                     "LIGHT SOURCE", "Get infinite Light Blocks to use", "You can't delete them once placed!", "Provides a light source."))
 
 

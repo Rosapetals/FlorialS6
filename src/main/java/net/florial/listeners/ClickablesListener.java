@@ -53,18 +53,18 @@ public class ClickablesListener implements Listener {
         int value = NBTEditor.getInt(e.getItem(), "CustomModelData");
 
         switch(value) {
-            case 32 -> tulipsShadow(e.getPlayer());
-            case 34 -> healingOrb(e.getPlayer());
-            case 35 -> infiniteCookie(e.getPlayer());
-            case 36 -> waterJug(e.getPlayer());
-            case 37 -> weatherManipulation(e.getPlayer());
+            case 201 -> tulipsShadow(e.getPlayer());
+            case 202 -> healingOrb(e.getPlayer());
+            case 203 -> infiniteCookie(e.getPlayer());
+            case 204 -> waterJug(e.getPlayer());
+            case 205 -> weatherManipulation(e.getPlayer());
             case 45, 2, 3, 5, 7, 12, 15, 16, 19, 20, 21 -> specialEat(e.getPlayer(), value);
             case 4 -> useMoneyVoucher(e.getPlayer());
             case 13, 14, 18 -> useDNAVoucher(e.getPlayer());
-            case 8 -> useFloatie(e.getPlayer());
+            case 81 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
-            case 17 -> coatSelector(e.getPlayer());
-            case 150 -> e.getPlayer().getInventory().addItem(new ItemStack(Material.LIGHT));
+            case 71 -> coatSelector(e.getPlayer());
+            case 165 -> e.getPlayer().getInventory().addItem(new ItemStack(Material.LIGHT));
 
         }
     }
