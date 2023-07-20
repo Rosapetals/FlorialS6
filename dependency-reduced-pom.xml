@@ -38,6 +38,10 @@
   </build>
   <repositories>
     <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+    <repository>
       <id>dv8tion</id>
       <name>m2-dv8tion</name>
       <url>https://m2.dv8tion.net/releases</url>
@@ -45,10 +49,6 @@
     <repository>
       <id>md_5-public</id>
       <url>https://repo.md-5.net/content/groups/public/</url>
-    </repository>
-    <repository>
-      <id>chew-m2-snapshots</id>
-      <url>https://m2.chew.pro/snapshots/</url>
     </repository>
     <repository>
       <id>jcenter</id>
@@ -64,16 +64,8 @@
       <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
     </repository>
     <repository>
-      <id>jitpack.io</id>
-      <url>https://jitpack.io</url>
-    </repository>
-    <repository>
       <id>sk89q-repo</id>
       <url>https://maven.enginehub.org/repo/</url>
-    </repository>
-    <repository>
-      <id>papermc-repo</id>
-      <url>https://papermc.io/repo/repository/maven-public/</url>
     </repository>
     <repository>
       <id>papermc</id>
@@ -98,10 +90,6 @@
     <repository>
       <id>enginehub-maven</id>
       <url>https://maven.enginehub.org/repo/</url>
-    </repository>
-    <repository>
-      <id>jitpack</id>
-      <url>https://jitpack.io</url>
     </repository>
     <repository>
       <id>dmulloy2-repo</id>
@@ -191,6 +179,12 @@
       <groupId>com.sk89q.worldedit</groupId>
       <artifactId>worldedit-bukkit</artifactId>
       <version>7.2.12</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.vexsoftware</groupId>
+      <artifactId>votifier</artifactId>
+      <version>v1.9</version>
       <scope>provided</scope>
     </dependency>
     <dependency>

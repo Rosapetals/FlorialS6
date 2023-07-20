@@ -1,5 +1,6 @@
 package net.florial.listeners;
 
+import com.vexsoftware.votifier.model.VoteListener;
 import com.vexsoftware.votifier.model.VotifierEvent;
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
@@ -12,17 +13,16 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import com.vexsoftware.votifier.model.Vote;
 
 import java.util.UUID;
 
-public class VoteListener implements Listener {
+public class VotingListener implements VoteListener {
 
-    @EventHandler
-    public void onVotifierEvent(VotifierEvent event) {
-
-        Player p = Bukkit.getPlayer(event.getVote().getUsername());
+    @Override
+    public void voteMade(Vote vote) {
+        Player p = Bukkit.getPlayer(vote.getUsername());
         UUID u = p.getUniqueId();
 
         PlayerData data = Florial.getPlayerData().get(u);
@@ -39,6 +39,5 @@ public class VoteListener implements Listener {
         p.getInventory().addItem(key4);
 
         Bukkit.broadcastMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤ #ff5b70" + p.getName() + "&f just voted using #ff5b70/vote&f and #ff5b70&learned&f flories, money, and Vote Keys!!"));
-
     }
 }
