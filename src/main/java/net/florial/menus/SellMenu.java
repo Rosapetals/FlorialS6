@@ -34,7 +34,7 @@ public class SellMenu {
             arrangeItem(11, new ItemStack(Material.CHARCOAL)),
             arrangeItem(25, new ItemStack(Material.COPPER_INGOT)),
             arrangeItem(5, new ItemStack(Material.COBBLED_DEEPSLATE)),
-            arrangeItem(10, new ItemStack(Material.STONE)),
+            arrangeItem(1, new ItemStack(Material.STONE)),
             arrangeItem(5, new ItemStack(Material.STRING)),
             arrangeItem(5, new ItemStack(Material.SALMON)),
             arrangeItem(5, new ItemStack(Material.COD)),
@@ -46,7 +46,7 @@ public class SellMenu {
     );
 
     public static final List<Integer> sellPrices = List.of(
-            3, 5, 5, 35, 35, 20, 5, 2, 11, 25, 5, 10, 5,
+            3, 5, 5, 35, 35, 20, 5, 2, 11, 25, 5, 1, 5,
             5, 5, 25, 10, 15
 
 

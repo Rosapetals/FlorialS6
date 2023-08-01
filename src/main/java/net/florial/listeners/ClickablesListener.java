@@ -8,6 +8,7 @@ import net.florial.menus.CoatSelectionMenu;
 import net.florial.models.PlayerData;
 import net.florial.species.events.impl.SpeciesTablistEvent;
 import net.florial.utils.Cooldown;
+import net.florial.utils.general.CustomItem;
 import net.florial.utils.general.VaultHandler;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -19,6 +20,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -27,7 +29,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            32, 34, 35, 36, 37, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 30, 31, 12, 15, 16, 17, 18, 19, 20, 150, 21
+            201, 202, 203, 204, 205, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -41,7 +43,6 @@ public class ClickablesListener implements Listener {
         e.setCancelled(true);
 
     }
-
 
     @EventHandler
     public void clickableUse(PlayerInteractEvent e) {
@@ -58,18 +59,60 @@ public class ClickablesListener implements Listener {
             case 203 -> infiniteCookie(e.getPlayer());
             case 204 -> waterJug(e.getPlayer());
             case 205 -> weatherManipulation(e.getPlayer());
-            case 45, 2, 3, 5, 7, 12, 15, 16, 19, 20, 21 -> specialEat(e.getPlayer(), value);
+            case 45, 2, 3, 5, 7, 12, 15, 16, 19, 20, 21, 82, 83 -> specialEat(e.getPlayer(), value);
             case 4 -> useMoneyVoucher(e.getPlayer());
             case 13, 14, 18 -> useDNAVoucher(e.getPlayer());
             case 81 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
-            case 71 -> coatSelector(e.getPlayer());
+            case 71 -> coatSelectorUse(e.getPlayer());
+            case 6 -> iceCubeUse(e.getPlayer());
+            case 208 -> useSunScreen(e.getPlayer());
+            case 207 -> mermaidTailUse(e.getPlayer());
             case 165 -> e.getPlayer().getInventory().addItem(new ItemStack(Material.LIGHT));
 
         }
     }
 
-    private static void coatSelector(Player p) {
+    private static void useSunScreen(Player p) {
+
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 3000, 0, false, false, true));
+
+        p.playSound(p.getLocation(), Sound.BLOCK_SPORE_BLOSSOM_STEP, 1, 3);
+
+    }
+
+
+    private static void iceCubeUse(Player p) {
+
+        ItemStack key1 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lTulip Crate Key", "", false), 1, "Crate");
+
+        ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "Crate");
+
+        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "Crate");
+
+        PlayerInventory inventory = p.getInventory();
+
+        inventory.addItem(key1, key2, key3);
+
+        removeItem(inventory.getItemInMainHand(), p);
+
+    }
+
+
+    private static void mermaidTailUse(Player p) {
+
+
+        p.setVelocity(p.getLocation().getDirection().multiply(3));
+
+        p.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 1200, 0, false, false, true));
+
+        p.playSound(p.getLocation(), Sound.ENTITY_TROPICAL_FISH_HURT, 1, (float) 1);
+
+
+
+    }
+
+    private static void coatSelectorUse(Player p) {
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 

@@ -94,7 +94,10 @@ public class FloriesMenu {
                     "COAT COLOR SWAPPER", "Use for yourself or friends to swap coat", "colors as a cat.", "Left-Click! Infinite uses.")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWQyZjA4OWI2ODYyMGFmY2VmOWIzZWI4ZjgzMzBlN2RmY2E2MDliYzk3Zjk5ODMxMjk3Mzk4OGRmNzNiNWQ0ZSJ9fX0"),
                     "", "", false), 165, "CustomModelData"), List.of(
-                    "LIGHT SOURCE", "Get infinite Light Blocks to use", "You can't delete them once placed!", "Provides a light source."))
+                    "LIGHT SOURCE", "Get infinite Light Blocks to use", "You can't delete them once placed!", "Provides a light source.")),
+            floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
+                    "", "", false), 207, "CustomModelData"), List.of(
+                    "MERMAID'S TAIL", "Left-Click whilst holding in", "water to get a massive speed boost.", ""))
 
 
             
@@ -102,7 +105,7 @@ public class FloriesMenu {
 
     private static final List<Integer> floriePrices = List.of(
             100, 100, 100, 300, 75, 50, 50, 100, 200,
-            100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100, 100
+            100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100, 100, 100
 
     );
 

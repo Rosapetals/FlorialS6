@@ -93,11 +93,14 @@ public class DiscordListeners extends ListenerAdapter {
                     e.addField("**Have you read the rules?**", Florial.getAnswers().get(user.getId()).get(1), false);
                     e.addField("**What do you plan to do in Florial?**", Florial.getAnswers().get(user.getId()).get(2), false);
                     e.addField("**Minecraft Username:**", Florial.getAnswers().get(user.getId()).get(3), false);
+                    e.addField("**Account Created:** ", "" + user.getTimeCreated(), false);
                     e.setColor(Color.pink);
                     e.setThumbnail(user.getAvatarUrl());
                     e.setImage("https://media.discordapp.net/attachments/842010486009626625/1055353813965475870/bow.png");
                     e.setTimestamp(Instant.now());
-                    event.getJDA().getTextChannelById("950565475107098654").sendMessageEmbeds(e.build()).queue();
+                    TextChannel channel = event.getJDA().getTextChannelById("950565475107098654");
+                    channel.sendMessageEmbeds(e.build()).queue();
+                    channel.sendMessage("" + user.getAsMention());
                     Bukkit.getScheduler().runTaskLater(Florial.getInstance(), new Runnable() {
                         public void run() {
                             Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.verificationChannel")).sendMessage("@here")

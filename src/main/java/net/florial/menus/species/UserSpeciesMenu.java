@@ -55,13 +55,12 @@ public class UserSpeciesMenu {
                                         "#ffa2c4&lBEE FRIEND:#ffa2c4 Immune to bee", "stings.",
                                         "#ffa2c4&lBy Kyushuuuu", "", "", "", "", "")), false),
                                 CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTA2NjgyYjJiMjBiY2U2NTE4NDBlZmQ0YjIxY2U4N2ZkM2M1OGQ3ZGM1ODgyODhjZDEyYTY3YTYzNTU3YSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
-                                        "#ffa2c4&lENDN", "#ffa2c4&lSILK TOUCH:#ffa2c4 Bounce back when close to death.", "Has a cooldown.",
-                                        "#ffa2c4&lDRYAD", "#ffa2c4&lMOTHER NATURE:#ffa2c4 Right-Click a block to spawn a", "random sapling.",
+                                        "#ffa2c4&lENDN", "#ffa2c4&lSILK TOUCH:#ffa2c4 Breaking a block w/ empty hand", "gives the raw block.",
                                         "#ffa2c4&lTELEPORTATION:#ffa2c4 Right-Click a block w/ an empty", "hand to randomly teleport.",
-                                        "#ffa2c4&lFRENEMY:#ffa2c4 Other endermen can not", "damage you.",
+                                        "#ffa2c4&lFEAR:#ffa2c4 Added damage in water.", "",
                                         "#ffa2c4&lRESILIENT:#ffa2c4 +2 hearts.", "Make the most of it.",
-                                        "#ffa2c4&lFEAR:#ffa2c4 Gain more damage from", "more vulnerable to fire.",
-                                        "#ffa2c4&lBy bggvaulted", "", "", "", "", "")), false),
+                                        "#ffa2c4&lFRENEMY:#ffa2c4 Other endermen can not damage you.",
+                                        "", "#ffa2c4&lBy bggvaulted", "", "", "", "", "", "", "")), false),
                                 CustomItem.MakeItem(GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODBjNjU3NGQ3ZTJhZjBhZjRiMTFhZjUzZTY5NzdjMTM5MWJjMTI2MmQ5NjJlMGE5ZmQ5ZTlkYmYyODcyYTU1MSJ9fX0"), "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑", format(List.of(
                                         "#ffa2c4&lLYNX", "#ffa2c4&lWILD:#ffa2c4 Strength I &", "Speed II.s",
                                         "#ffa2c4&lPRACTICAL:#ffa2c4 XP gain in the AFK + double", "DNA gain in the pool.",

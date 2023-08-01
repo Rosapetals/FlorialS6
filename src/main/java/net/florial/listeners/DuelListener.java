@@ -73,6 +73,7 @@ public class DuelListener implements Listener {
         if (event.getAction() != Action.LEFT_CLICK_AIR
                 || p.getInventory().getItemInMainHand().getType() == Material.AIR
                 || Florial.getOngoingDuel().get(u) == null
+                || Florial.getOngoingDuel().get(u).wageredItemOf(p) == null
                 || Florial.getOngoingDuel().get(u).wageredItemOf(p).getType() != Material.AIR) return;
 
         Duel duel = Florial.getOngoingDuel().get(u);

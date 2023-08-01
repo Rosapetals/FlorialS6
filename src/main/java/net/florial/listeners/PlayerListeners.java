@@ -27,10 +27,7 @@ import net.kyori.adventure.text.TextComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
@@ -40,9 +37,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityToggleSwimEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -352,7 +347,7 @@ public class PlayerListeners implements Listener {
             previousMessages.put(u, 0);
             return true;
         } else if (!(Cooldown.isOnCooldown("spam", p))) {
-            Cooldown.addCooldown("spam", p, 3);
+            Cooldown.addCooldown("spam", p, 6);
             previousMessages.put(u, 0);
             return false;
         }
@@ -391,6 +386,7 @@ public class PlayerListeners implements Listener {
         Florial.getDiscordServer().getTextChannelById("950563023607722004").sendMessage("**" + p.getName() + " executed punishment: " + cmd + "**").queue();
 
     }
+
 
 
 }

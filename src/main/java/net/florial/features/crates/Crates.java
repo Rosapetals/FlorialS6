@@ -104,7 +104,10 @@ public class Crates implements Listener {
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lAmerican Flag [Left-Click] [DNA]", "", false), 18,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBBQ Ribs[Left-Click]", "", false), 19,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lDIET PILLS [Left-Click]", "", false), 20,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCORN ON THE COB [Left-Click]", "", false), 21,"CustomModelData")
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCORN ON THE COB [Left-Click]", "", false), 21,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lChocolate Ice-Cream [Left-Click]", "", false), 82,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCookie Dough Ice-Cream [Left-Click]", "", false), 83,"CustomModelData")
+
 
 
 
