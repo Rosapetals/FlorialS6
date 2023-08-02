@@ -347,7 +347,7 @@ public class PlayerListeners implements Listener {
             previousMessages.put(u, 0);
             return true;
         } else if (!(Cooldown.isOnCooldown("spam", p))) {
-            Cooldown.addCooldown("spam", p, 6);
+            Cooldown.createCooldown("spam", p, 6);
             previousMessages.put(u, 0);
             return false;
         }

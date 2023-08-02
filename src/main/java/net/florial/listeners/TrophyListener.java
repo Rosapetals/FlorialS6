@@ -11,6 +11,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.block.data.type.WallSign;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -53,23 +54,25 @@ public class TrophyListener implements Listener {
         Sign sign = (Sign) event.getBlock().getState();
         Block b = event.getBlock();
 
+        b.getRelative(((WallSign) b.getBlockData()).getFacing().getOppositeFace()).setType(Material.AIR);
+
         event.setCancelled(true);
         b.setType(Material.AIR);
-
-        b.getRelative(((WallSign) event.getBlock().getBlockData()).getFacing().getOppositeFace()).setType(Material.AIR);
 
         String placeLine = sign.getLine(0);
         String fieldLine = sign.getLine(1);
 
         ItemStack trophy = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.DRAGON_EGG), "&6&lTROPHY -", "&6" + placeLine + "\n&6" + fieldLine, false), 210, "CustomModelData");
 
-
-
         Location loc = b.getLocation();
+
+        for (Entity entity : loc.getWorld().getNearbyEntities(loc, 1, 1, 1)) {entity.remove();}
 
         loc.getWorld().dropItem(loc, trophy);
 
         p.playSound(p.getLocation(), Sound.BLOCK_STONE_BREAK, 1, 2);
+
+
 
     }
 

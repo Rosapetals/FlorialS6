@@ -131,7 +131,7 @@ public class ShopMenu {
                 p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least $" + price*amount + " to buy this. You are " + ((price*amount) - VaultHandler.getBalance(p)) + " short"));
             }
 
-            Cooldown.addCooldown("menu", p, 1);
+            Cooldown.createCooldown("menu", p, 1);
 
         }
     }
