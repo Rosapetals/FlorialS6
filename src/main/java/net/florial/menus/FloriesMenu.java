@@ -40,7 +40,7 @@ public class FloriesMenu {
                     "TULIP'S SHADOW", "Left-Click with this to go invisible", "and Left-Click again to be visible. Forever use.", "")),
             floriesArrange(300, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzM4YjBiMGYxZjM1YzU2YjdkNjRlMGUyYjk2NjE4MDFmOTEyZjMxOGZhOWM4YzFkODNlOTE3ZGI0ZjJlNjUyMSJ9fX0"),
                     "", "", false), 33, "CustomModelData"), List.of(
-                    "VALHALLA'S BLESSING", "Immune to certain natural damages like", "falling, suffocation, and fire. Forever use.", "")),
+                    "VALHALLA'S BLESSING", "Immune to certain natural damages like", "falling, suffocation, and more. Forever use.", "")),
             floriesArrange(75, CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhjMjE4YzNmMjFiYmMxYzZmODZhNDc5NTk1ODM3ZTg3M2E3NzA3YjVhYTk4YjQ5ZTAxMDgzMTNlNzFlIn19fQ"),
                     "", "", false), List.of(
                     "/fly command", "fly", "Permanent access to /fly", "")),
@@ -97,7 +97,10 @@ public class FloriesMenu {
                     "LIGHT SOURCE", "Get infinite Light Blocks to use", "You can't delete them once placed!", "Provides a light source.")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
                     "", "", false), 207, "CustomModelData"), List.of(
-                    "MERMAID'S TAIL", "Left-Click whilst holding in", "water to get a massive speed boost.", ""))
+                    "MERMAID'S TAIL", "Left-Click whilst holding in", "water to get a massive speed boost.", "")),
+            floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
+                    "", "", false), 208, "CustomModelData"), List.of(
+                    "SUNSCREEN", "Left-Click to initiate", "fire and heat resistance.", ""))
 
 
             
@@ -105,7 +108,7 @@ public class FloriesMenu {
 
     private static final List<Integer> floriePrices = List.of(
             100, 100, 100, 300, 75, 50, 50, 100, 200,
-            100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100, 100, 100
+            100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100, 100, 100, 100
 
     );
 

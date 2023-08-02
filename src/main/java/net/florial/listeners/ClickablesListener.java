@@ -21,15 +21,17 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Collections;
 import java.util.List;
 public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            201, 202, 203, 204, 205, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
+            201, 202, 203, 204, 205, 207, 208, 210, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -68,16 +70,39 @@ public class ClickablesListener implements Listener {
             case 6 -> iceCubeUse(e.getPlayer());
             case 208 -> useSunScreen(e.getPlayer());
             case 207 -> mermaidTailUse(e.getPlayer());
+            case 210 -> trophyRedeem(e.getPlayer(), e.getItem());
             case 165 -> e.getPlayer().getInventory().addItem(new ItemStack(Material.LIGHT));
 
         }
+    }
+
+    private static void trophyRedeem(Player p, ItemStack i) {
+
+        String worthLine = i.getLore().get(0);
+        String placeLine = i.getLore().get(1);
+
+        int worthValue = Integer.parseInt(ChatColor.stripColor(worthLine).replace("WORTH: ", ""));
+
+        i.setLore(null);
+        i.setLore(Collections.singletonList(placeLine));
+
+        PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
+
+        data.setFlories(data.getFlories() + worthValue);
+
+        p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_USE, 1, 1);
+        p.playSound(p.getLocation(), Sound.ENTITY_PILLAGER_CELEBRATE, 1, 2);
+
+
+
     }
 
     private static void useSunScreen(Player p) {
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 3000, 0, false, false, true));
 
-        p.playSound(p.getLocation(), Sound.BLOCK_SPORE_BLOSSOM_STEP, 1, 3);
+        p.playSound(p.getLocation(), Sound.BLOCK_SPORE_BLOSSOM_STEP, 1, 1);
+        p.playSound(p.getLocation(), Sound.ITEM_BUCKET_FILL_POWDER_SNOW, 1, 1);
 
     }
 
@@ -95,6 +120,10 @@ public class ClickablesListener implements Listener {
         inventory.addItem(key1, key2, key3);
 
         removeItem(inventory.getItemInMainHand(), p);
+
+        p.playSound(p.getLocation(), Sound.BLOCK_GLASS_FALL, 1, 2);
+        p.playSound(p.getLocation(), Sound.BLOCK_GLASS_BREAK, 1, 3);
+
 
     }
 

@@ -26,8 +26,7 @@ public class FloriesListener implements Listener {
     public void valHallaBlessing(EntityDamageEvent e) {
 
         if (e.getCause() != EntityDamageEvent.DamageCause.SUFFOCATION
-                && e.getCause() != EntityDamageEvent.DamageCause.FALL
-                && e.getCause() != EntityDamageEvent.DamageCause.FIRE) return;
+                && e.getCause() != EntityDamageEvent.DamageCause.FALL) return;
 
         if (e.getEntity() instanceof Player
                 && (Florial.getPlayerData().get(e.getEntity().getUniqueId()).getUpgrades() != null)

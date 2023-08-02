@@ -174,19 +174,27 @@ public class ShopBuilder {
         priceLists.put(4, List.of(15000, 100000, 1000000));
 
         materialLists.put(5, List.of(
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTI1MDRlY2Q2ZDBhNjFiMzJhNDE5ZjIwOGFmNzZlZWJiMTllOWJjNDBmODViMDZiZmFiZGJlNTFhZWQ0M2RlIn19fQ")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjU1ZWE0M2U1OTI3ODVkMDE2YWNkZWVhOWE0YTZmOWNmMjJjMjc1M2U2OTU0MDVlOGM4M2QyZTA5ZWJjZjY0NyJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTFjZmM3YzUzYjdiNzBiNTI2ZmIxNWZkYjJiYjM1NzljZDk3YTg5NTRlNzEyODIwYmFiNmJkM2JjYmJhOWM0In19fQ")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzE4ZTM1ZWM0YjRiNGMxNTkxYzUxNzczODZkZTE4Nzk3NDU0Mjk4Yjc0NTU5ODJlM2FlODNiYWNjZWQwZjFhMiJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2I4MTcyYzJkZmUzZjk0ZTkyZWVhZjcyZjc4ZmNmNjM0ZTk5NjY1N2ZmNzRkNzNkOTNlNTc4MTUyOGI0NTgzIn19fQ")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTg2ZjE5YmYyM2QyNDhlNjYyYzljOGI3ZmExNWVmYjhhMWYxZDViZGFjZDNiODYyNWE5YjU5ZTkzYWM4YSJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTA0NDdkYjViMGRhODRjYzc3Mzc2MDRlMTRkMzhlNTBiZDM5MWY5OTdhOTNkZjJiODQ3YjQ1YjUxYmE5ZDc1ZiJ9fX0"))
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU3MGViYjkxYTk1ZjIzZGUwZjkwOWNkYjY5MzE4ZWExNTg1NzAwMWYxMmE2MWRlMTE4ZDM0Zjc5ODliZWJiZSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNThkMGY3MDgxMDBkNTNhZjgxMjZlZmQyZTcwY2QwYjlhNDk2OGFmZjQ5YjRkZmNiYjY5YmJhYjU0YzZlYmMwMCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhmMjg0OGUwZjEyMWIyNDJkZWYzNGQxMjIyYjEyM2U1MmZhOTJkNjVmNzc5MzBiYmE5N2ExMWMzNTNjZGRmZCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZkMGFmOTQ1NGYzMmNjMDRhZmJlYjVmYjI5OWRiZmVhMjQyMDkxZWI2ZjgxN2ZmZjg2YTAzNzg4ZDk2NTIwZSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDZhMjdlYzVlZDNmMDFlMzAxNjc3Zjg4ZmRiZGQ5NjJjMDgzNjg2MDA5MDdlZWMzN2EyZDRkZDhjN2Y4MzVmYyJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODRmNjAwZWFmYzhkODE0NjE1ZDFlZmFkMTYyODcyM2YxMDZhNjhjM2I3MWMyYTcwOWY4NTdmZTI3NDE2YWUxZSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWJkNDg3OTU0ZDI2N2NiMTk4MjM2Zjg0MDZkYjgzNDllZGFlZGQxYzU0ZWY4MTJhMzEwYmY5NzNhNGNlYTFkNCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjkwNGY2Yzg2ZDlkZTQxNTEyNmRkMWVjOGRkMDliZGVmNzkyOWY0M2YwZGIwOTI3ODQ1N2Y1YzEzZjgzMWQzMSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTY0ZTI5NGVhYWI0ODZlYWIzZDQ5YWM5NWFjNmM3ZGYxYmEyM2RiN2Y1N2UwODJmOGMyMDNiNThiM2JhZThiYSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGFiODQxOTJhMDBlMjAwZjM0OTZkZDJkYTczNzdjYWE0ZjhmNmMxMjMwZDQ4MGFhZTA5OGRhY2ViYzRlNmE1NCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY0ZmJlMjEzMWRhNzJlYTRiZjU1ZDQ5NTYwZmQ4OGQ2OGY5NTBhYjcwZWUxNmJlMGIwYmY3MmIyNGI5OGE2NiJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTNjMmYxYzVkMmM4ZjBlMzM3MzBjMTRkY2ExYzFkMWUxYWJkODU5NmIwODM5ZDY3MzhkMThmNDY0MzJiNmZhNiJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWRkNWI2YWVkNDRmZmUzMjUzNjE0YTgyZmRmNTJjNzBhNmRjMGQ1MjRmMzNlODVmM2EwMWM4MzhkYTUxNCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTBhY2RlZWQ2MDcyNWQ5NWI2OTExNDM3MmQ3MDI0ZjlkNjY4ZjlmZTc0NjkzN2UwNTkzMjhiYmZiZmY2In19fQ"))
 
         ));
         priceLists.put(5, List.of(
-                1500, 1500, 1500,
-                1500, 1500, 1500,
-                1500, 1500, 1500
+                1500, 1500, 1500, 1500,
+                1500, 1500, 1500, 1500,
+                1500, 1500, 1500, 1500,
+                1500, 1500
 
         ));
 
