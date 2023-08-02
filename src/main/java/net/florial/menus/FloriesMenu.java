@@ -78,7 +78,7 @@ public class FloriesMenu {
                     "", "", false), 42, "CustomModelData"), List.of(
                     "HASTE II-U", "Gives permanent Haste II.", "Forever Upgrade.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
-                    "", "", false), 8, "CustomModelData"), List.of(
+                    "", "", false), 81, "CustomModelData"), List.of(
                     "FLOATIE", "Left-Click while underwater to", "immediately go to the surface", "Infinite uses.")),
             floriesArrange(300, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.TOTEM_OF_UNDYING),
                     "", "", false), 206, "CustomModelData"), List.of(

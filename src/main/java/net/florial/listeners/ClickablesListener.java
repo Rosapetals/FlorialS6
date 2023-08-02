@@ -21,11 +21,10 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 public class ClickablesListener implements Listener {
 
@@ -78,13 +77,15 @@ public class ClickablesListener implements Listener {
 
     private static void trophyRedeem(Player p, ItemStack i) {
 
+        if (!(ChatColor.stripColor(i.getLore().toString()).contains("WORTH"))) return;
+
         String worthLine = i.getLore().get(0);
         String placeLine = i.getLore().get(1);
+        String fieldLine = i.getLore().get(2);
 
         int worthValue = Integer.parseInt(ChatColor.stripColor(worthLine).replace("WORTH: ", ""));
 
-        i.setLore(null);
-        i.setLore(Collections.singletonList(placeLine));
+        i.setLore(Arrays.asList(placeLine, fieldLine));
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
@@ -109,15 +110,12 @@ public class ClickablesListener implements Listener {
 
     private static void iceCubeUse(Player p) {
 
-        ItemStack key1 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lTulip Crate Key", "", false), 1, "Crate");
-
-        ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "Crate");
-
-        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "Crate");
-
         PlayerInventory inventory = p.getInventory();
 
-        inventory.addItem(key1, key2, key3);
+        inventory.addItem
+                (NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "",
+                        false), 3, "Crate", "CustomModelData"), NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "Crate", "CustomModelData"),
+ NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "Crate", "CustomModelData"));
 
         removeItem(inventory.getItemInMainHand(), p);
 

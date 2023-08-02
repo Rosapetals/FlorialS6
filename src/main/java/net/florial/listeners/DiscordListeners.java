@@ -100,17 +100,13 @@ public class DiscordListeners extends ListenerAdapter {
                     e.setTimestamp(Instant.now());
                     TextChannel channel = event.getJDA().getTextChannelById("950565475107098654");
                     channel.sendMessageEmbeds(e.build()).queue();
-                    channel.sendMessage("" + user.getAsMention());
-                    Bukkit.getScheduler().runTaskLater(Florial.getInstance(), new Runnable() {
-                        public void run() {
-                            Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.verificationChannel")).sendMessage("@here")
-                                    .addActionRow(
-                                            Button.primary("ide," + Florial.getAnswers().get(user.getId()).get(3) + "," + user.getId(), "Grant Access"))
-                                    .addActionRow(
-                                            Button.primary("ida" + user.getId(), "Deny Access"))
-                                    .queue();
-                        }
-                    }, 110L);
+                    channel.sendMessage("**Make sure to look at their profile!:** " + user.getAsMention()).queue();
+                    Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.verificationChannel")).sendMessage("@here")
+                            .addActionRow(
+                                    Button.primary("ide," + Florial.getAnswers().get(user.getId()).get(3) + "," + user.getId(), "Grant Access"))
+                            .addActionRow(
+                                    Button.primary("ida" + user.getId(), "Deny Access"))
+                            .queue(), 110L);
                     Florial.getBotState().remove(user.getId());
                     break;
             }
@@ -255,7 +251,7 @@ public class DiscordListeners extends ListenerAdapter {
             userid = userid.replaceAll("ida", "");
             System.out.print(userid);
             event.getJDA().retrieveUserById(userid).queue((user) -> {
-                event.reply("The member has been denied access, " + event.getUser() + ". Be sure to tell them why with the /send command.").setEphemeral(true).queue();
+                event.reply("The member has been denied access, " + user.getName() + ". Be sure to tell them why with the /send command.").setEphemeral(true).queue();
                 user.openPrivateChannel().queue((channel2) -> channel2.sendMessage("You were denied entry into Florial Official. Shortly, the reason will be stated.").queue());
                 Florial.getBotState().remove(user.getId());
                 event.getMessage().delete().queue();

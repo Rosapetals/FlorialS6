@@ -188,7 +188,6 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AttackSkillListener(), this);
         getServer().getPluginManager().registerEvents(new QuestListener(), this);
         getServer().getPluginManager().registerEvents(new TrophyListener(), this);
-        // new VotingListener();
         getServer().getPluginManager().registerEvents(new VotingListener(), this);
         getServer().getPluginManager().registerEvents(new PoolListener(), this);
         getServer().getPluginManager().registerEvents(new ColonyResourceListener(), this);
@@ -334,7 +333,6 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new ProfileCommand());
         manager.registerCommand(new KeyAllCommand());
         manager.registerCommand(new ViewSelfCommand());
-        manager.registerCommand(new NoFontCommand());
         manager.registerCommand(new PackOffCommand());
         manager.registerCommand(new ColonyCommand());
         manager.registerCommand(new EventCommand());
@@ -348,6 +346,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new SetEventCommand());
         manager.registerCommand(new DuelCommand());
         manager.registerCommand(new PTreeCommand());
+        manager.registerCommand(new TrophyCommand());
 
 
 

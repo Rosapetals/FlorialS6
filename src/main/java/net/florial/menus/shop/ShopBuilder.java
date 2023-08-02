@@ -247,7 +247,7 @@ public class ShopBuilder {
                         contents.set(7, IntelligentItem.of(NBTEditor.set(CustomItem.MakeItem(
                                 new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "#5a372c&lBULK BUY\n&f\n#5a372c&l"
                                 + (Florial.getBulkBuy().get(p.getUniqueId()) != null ? Florial.getBulkBuy().get(p.getUniqueId()) : "false") + "\n&f\n#5a372c Enable to buy" +
-                                       " x64 of an item" +  "#5a372c&l┕━━━━━━━━━━━━━━━━━━┙",
+                                       " x128 of an item" +  "#5a372c&l┕━━━━━━━━━━━━━━━━━━┙",
                                 false), 1010, "CustomModelData"), event -> {
                                     ShopMenu.enableBulkBuy(p);
                                     category(p, type);}));

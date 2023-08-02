@@ -117,7 +117,7 @@ public class ShopMenu {
 
             UUID u = p.getUniqueId();
 
-            int amount = Florial.getBulkBuy().get(u) != null && Florial.getBulkBuy().get(u) ? 64 : 1;
+            int amount = Florial.getBulkBuy().get(u) != null && Florial.getBulkBuy().get(u) ? 128 : 1;
             price = p.hasPermission("pearlite") && ShopBuilder.materialLists.get(3).contains(item) ? 0 : price;
 
             if (VaultHandler.getBalance(p) >= price*amount) {
