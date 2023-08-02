@@ -211,29 +211,6 @@ public final class Florial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Wisps(EntityType.WITCH), this);
         getServer().getPluginManager().registerEvents(new Crawlies(EntityType.CAVE_SPIDER), this);
 
-        if (!(Cooldown.getCooldownMap("spam") == null)) Objects.requireNonNull(Cooldown.getCooldownMap("spam")).clear();
-        if (!(Cooldown.getCooldownMap("c1") == null)) Cooldown.getCooldownMap("c1").clear();
-        if (!(Cooldown.getCooldownMap("c2") == null)) Cooldown.getCooldownMap("c2").clear();
-        if (!(Cooldown.getCooldownMap("c3") == null)) Cooldown.getCooldownMap("c3").clear();
-        if (!(Cooldown.getCooldownMap("c4") == null)) Cooldown.getCooldownMap("c4").clear();
-        if (!(Cooldown.getCooldownMap("menu") == null)) Cooldown.getCooldownMap("menu").clear();
-        if (!(Cooldown.getCooldownMap("fly") == null)) Cooldown.getCooldownMap("fly").clear();
-        if (!(Cooldown.getCooldownMap("sign") == null)) Cooldown.getCooldownMap("sign").clear();
-        if (!(Cooldown.getCooldownMap("scent") == null)) Cooldown.getCooldownMap("scent").clear();
-        if (!(Cooldown.getCooldownMap("drill") == null)) Cooldown.getCooldownMap("drill").clear();
-        if (!(Cooldown.getCooldownMap("key") == null)) Cooldown.getCooldownMap("key").clear();
-        if (Cooldown.getCooldownMap("c1") == null) Cooldown.createCooldown("c1");
-        if (Cooldown.getCooldownMap("c2") == null) Cooldown.createCooldown("c2");
-        if (Cooldown.getCooldownMap("c3") == null) Cooldown.createCooldown("c3");
-        if (Cooldown.getCooldownMap("menu") == null) Cooldown.createCooldown("menu");
-        if (Cooldown.getCooldownMap("fly") == null) Cooldown.createCooldown("fly");
-        if (Cooldown.getCooldownMap("scent") == null) Cooldown.createCooldown("scent");
-        if (Cooldown.getCooldownMap("drill") == null) Cooldown.createCooldown("drill");
-        if (Cooldown.getCooldownMap("c4") == null) Cooldown.createCooldown("c4");
-        if (Cooldown.getCooldownMap("key") == null) Cooldown.createCooldown("key");
-        if (Cooldown.getCooldownMap("spam") == null) Cooldown.createCooldown("spam");
-        if (Cooldown.getCooldownMap("sign") == null) Cooldown.createCooldown("sign");
-
         if (!(Bukkit.getOnlinePlayers().size() > 0)) return;
         for (Player p : Bukkit.getOnlinePlayers()) {FlorialDatabase.getPlayerData(p).thenAccept(playerData -> {
             Florial.getPlayerData().put(p.getUniqueId(), playerData);});

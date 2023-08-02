@@ -52,7 +52,7 @@ public class SunDragon extends Species implements Listener {
         f.setYield(0);
         f.setVelocity(p.getLocation().getDirection().multiply(2));
 
-        Cooldown.addCooldown("c1", p, 15);
+        Cooldown.createCooldown("c1", p, 15);
 
     }
 

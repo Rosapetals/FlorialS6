@@ -64,8 +64,7 @@ public class NekoRyu extends Species implements Listener {
 
         entity.damage(4, player);
 
-        Cooldown.addCooldown("c2", player, 20);
-
+        Cooldown.createCooldown("c2", player, 20);
     }
 
     @EventHandler
