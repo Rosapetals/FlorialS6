@@ -77,7 +77,7 @@ public class Enderwing extends Species implements Listener {
                 || Florial.getOngoingDuel().get(event.getPlayer().getUniqueId()) != null) return;
 
         event.getPlayer().teleport(event.getPlayer().getTargetBlock(null, 50).getLocation());
-        Cooldown.addCooldown("c1", event.getPlayer(), 5);
+        Cooldown.createCooldown("c1", event.getPlayer(), 5);
 
 
     }
@@ -112,7 +112,7 @@ public class Enderwing extends Species implements Listener {
                     livingEntity.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 30, 1));
                 });
 
-        Cooldown.addCooldown("c2", player, 120);
+        Cooldown.createCooldown("c2", player, 120);
     }
 
     @EventHandler
@@ -150,7 +150,7 @@ public class Enderwing extends Species implements Listener {
             }
         }.runTaskTimer(Florial.getInstance(), 20L, 20L);
 
-        Cooldown.addCooldown("c3", player, 10);
+        Cooldown.createCooldown("c3", player, 10);
     }
 
     @EventHandler

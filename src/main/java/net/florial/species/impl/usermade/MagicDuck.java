@@ -69,7 +69,7 @@ public class MagicDuck extends Species implements Listener {
         ent.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 200, 0, false, false, true));
         ent.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 200, 0, false, false, true));
 
-        Cooldown.addCooldown("c1", p, 30);
+        Cooldown.createCooldown("c1", p, 30);
     }
 
 
@@ -98,7 +98,7 @@ public class MagicDuck extends Species implements Listener {
         p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 1, false, false, true));
         p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 1, false, false, true));
         p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 2400, 1, false, false, true));
-        Cooldown.addCooldown("c2", p, 300);
+        Cooldown.createCooldown("c2", p, 300);
 
     }
 

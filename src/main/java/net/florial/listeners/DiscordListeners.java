@@ -1,5 +1,8 @@
 package net.florial.listeners;
 
+import com.theokanning.openai.OpenAiHttpException;
+import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.completion.CompletionResult;
 import dev.morphia.query.filters.Filters;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -63,7 +66,47 @@ public class DiscordListeners extends ListenerAdapter {
 
         Message message = event.getMessage();
 
-        if (event.getMessage().isFromType(ChannelType.PRIVATE)) {
+            TextChannel chatBotChannel = Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.chatbotChannel"));
+
+            if (event.getChannelType() == ChannelType.TEXT) {
+                if (event.getChannel().asTextChannel() == chatBotChannel) {
+                    if (event.getMessage().getContentRaw().startsWith(",")) return;
+                    chatBotChannel.sendTyping().queue();
+                    String prompt = String.format("""
+                        Your name is Tulip, you are a strict, lovable, mysterious and logical demigodess with an inner soft side for anyone who does not like to show themselves, you keep the peace, but only silently, but can't stop death or wars from happening. During conversation, do not act inappropriately or suggestive towards anyone.
+                                        
+                        User: Who are you?
+                        Tulip: I lurk around our world, I'm a mediator, but I don't like to show myself. I suppose I'm a god, but not one anybody believes in.
+                        User: Am I cute?
+                        Tulip: I'm not sure how am I expected to answer that.. but I think yes!
+                        User: Is this a furry server?
+                        Tulip: I don't know what that is.
+                        User: How old are you?
+                        Tulip: I do not know...
+                        User: What is the purpose of reality?
+                        Tulip: We were sent here to live, where mortals die, and immortals do not die
+                        User: %s
+                        Tulip: """, event.getMessage().getContentRaw());
+
+                    try {
+                        CompletionRequest request = CompletionRequest.builder()
+                                .prompt(prompt)
+                                .model("curie")
+                                .maxTokens(50)
+                                .stop(List.of("User:"))
+                                .build();
+                        CompletionResult result = Florial.getOpenAi().createCompletion(request);
+                        result.getChoices().forEach(System.out::println);
+                        event.getMessage().reply((Florial.getOpenAi().createCompletion(request).getChoices().get(0).getText())).queue();
+                    } catch (OpenAiHttpException e) {
+                        event.getMessage().reply("This isn't an AI generated response, tell Rosa that we've run out of OpenAI credit\n\n ||" + e.getMessage() + "||").queue();
+                    }
+                }
+
+            }
+
+
+            if (event.getMessage().isFromType(ChannelType.PRIVATE)) {
             User user = event.getAuthor();
             Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.verificationChannel")).sendMessage("**" + event.getAuthor().getName() + ":** " + event.getMessage().getContentRaw()).queue();
             if (Florial.getBotState().get(user.getId()) == null) return;
@@ -382,4 +425,5 @@ public class DiscordListeners extends ListenerAdapter {
 
         return future;
     }
+
 }

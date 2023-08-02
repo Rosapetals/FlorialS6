@@ -145,7 +145,7 @@ public class SpeciesMenu {
 
             VaultHandler.removeMoney(p, 10000);
 
-            Cooldown.addCooldown("c2", p, 1);
+            Cooldown.createCooldown("c2", p, 1);
 
         } else {
             p.closeInventory();

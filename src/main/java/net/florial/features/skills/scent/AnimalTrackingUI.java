@@ -96,7 +96,7 @@ public class AnimalTrackingUI {
             return;
         }
 
-        Cooldown.addCooldown("c3", p, 60-(scent*10));
+        Cooldown.createCooldown("c3", p, 60-(scent*10));
 
         double x = loc.getX() + (Math.random() * 25 + 15) * (Math.random() < 0.5 ? -1 : 1);
         double z = loc.getZ() + (Math.random() * 25 + 15) * (Math.random() < 0.5 ? -1 : 1);

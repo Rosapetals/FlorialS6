@@ -77,7 +77,7 @@ public class Fox extends Species implements Listener {
 
         p.playSound(p.getLocation(), Sound.ENTITY_EVOKER_FANGS_ATTACK, 1, (float) 0.5);
 
-        Cooldown.addCooldown("c1", p, 6);
+        Cooldown.createCooldown("c1", p, 6);
 
     }
 
@@ -95,7 +95,7 @@ public class Fox extends Species implements Listener {
 
         p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 600, 1, false, false, true));
 
-        Cooldown.addCooldown("c2", p, AgeFormula.get(30, data.getAge().getIncrease()));
+        Cooldown.createCooldown("c2", p, AgeFormula.get(30, data.getAge().getIncrease()));
 
     }
 

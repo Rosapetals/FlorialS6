@@ -164,7 +164,7 @@ public class ClickablesListener implements Listener {
 
         } else {
             p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1000000, 1, false, false, true));
-            Cooldown.addCooldown("c3", p, 2);
+            Cooldown.createCooldown("c3", p, 2);
 
         }
     }
@@ -172,7 +172,7 @@ public class ClickablesListener implements Listener {
     private static void healingOrb(Player p) {
 
         if (!(Cooldown.isOnCooldown("c4", p))) p.setHealth(p.getMaxHealth());
-        Cooldown.addCooldown("c4", p, 240);
+        Cooldown.createCooldown("c4", p, 240);
     }
 
     private static void waterJug(Player p) {
@@ -194,7 +194,7 @@ public class ClickablesListener implements Listener {
 
         p.getWorld().setStorm(!p.getWorld().hasStorm());
 
-        Cooldown.addCooldown("c4", p, 300);
+        Cooldown.createCooldown("c4", p, 300);
 
 
 

@@ -91,7 +91,7 @@ public class BassBeast extends Species implements Listener {
 
         player.playSound(player.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 1.0f, 1.0f);
 
-        Cooldown.addCooldown("c3", player, 10);
+        Cooldown.createCooldown("c3", player, 10);
     }
 
     @EventHandler

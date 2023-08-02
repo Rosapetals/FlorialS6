@@ -31,7 +31,7 @@ public class PoolListener implements Listener {
         data.setDna(data.getDna()+bonus);
         if (data.getSpecieId() == 10 || data.getSpecieId() == 17) p.giveExp(1000);
 
-        Cooldown.addCooldown("c3", p, 120);
+        Cooldown.createCooldown("c3", p, 120);
 
 
 

@@ -90,7 +90,7 @@ public class NekoRyu extends Species implements Listener {
             case POPPY: if (specific > 1) p.getWorld().spawnEntity(Objects.requireNonNull(event.getClickedBlock()).getLocation(), EntityType.CHICKEN);
         }
 
-        Cooldown.addCooldown("c1", p, 20);
+        Cooldown.createCooldown("c1", p, 20);
 
     }
 

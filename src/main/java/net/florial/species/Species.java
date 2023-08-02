@@ -323,7 +323,7 @@ public abstract class Species implements Listener {
 
              p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f You are now flying!#ff3c55 Left-Click + Sneak to get out of this!"));
 
-             Cooldown.addCooldown("c2", p, 4);
+             Cooldown.createCooldown("c2", p, 4);
         }
         else if (p.isGliding()) {
             p.setGliding(false);

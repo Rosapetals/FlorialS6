@@ -95,7 +95,7 @@ public class Cat extends Species implements Listener {
         }
         p.playSound(p.getLocation(), Sound.ENTITY_CAT_PURR, (float) 0.4, 1);
 
-        Cooldown.addCooldown("c2", p, AgeFormula.get(200, ageValue));
+        Cooldown.createCooldown("c2", p, AgeFormula.get(200, ageValue));
 
 
     }
@@ -117,7 +117,7 @@ public class Cat extends Species implements Listener {
         p.playSound(p.getLocation(), Sound.ITEM_TOTEM_USE, (float) 0.4, 1);
         p.playSound(p.getLocation(), Sound.ENTITY_CAT_BEG_FOR_FOOD, 1, 1);
 
-        Cooldown.addCooldown("c1", p, AgeFormula.get(300, data.getAge().getIncrease()));
+        Cooldown.createCooldown("c1", p, AgeFormula.get(300, data.getAge().getIncrease()));
 
 
     }
@@ -162,7 +162,7 @@ public class Cat extends Species implements Listener {
                 ((LivingEntity) e).damage(damage, attacker);
             }
 
-            Cooldown.addCooldown("c1", attacker, 10);
+            Cooldown.createCooldown("c1", attacker, 10);
         }
     }
 
@@ -194,7 +194,7 @@ public class Cat extends Species implements Listener {
 
         Player p = e.getPlayer();
         pounce(p, 3);
-        Cooldown.addCooldown("c2", p, 5);
+        Cooldown.createCooldown("c2", p, 5);
 
     }
 

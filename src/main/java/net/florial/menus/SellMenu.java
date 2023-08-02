@@ -95,7 +95,7 @@ public class SellMenu {
 
         }
 
-        Cooldown.addCooldown("menu", p, 1);
+        Cooldown.createCooldown("menu", p, 1);
 
         for (ItemStack i : p.getInventory().getContents()) {
             if (i != null && i.getType() == item.getType()) {

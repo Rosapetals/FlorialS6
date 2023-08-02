@@ -57,7 +57,7 @@ public class GalacticResearcher extends Species implements Listener {
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission unset galactic");
         }, 40L);
 
-        Cooldown.addCooldown("c1", p, 300);
+        Cooldown.createCooldown("c1", p, 300);
     }
 
     @EventHandler

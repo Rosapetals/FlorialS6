@@ -44,7 +44,7 @@ public class FloriesListener implements Listener {
                 || NBTEditor.getInt(item, "CustomModelData") != 206
                 || Cooldown.isOnCooldown("c3", p)) return;
 
-        Cooldown.addCooldown("c3", p, 600);
+        Cooldown.createCooldown("c3", p, 600);
     }
 
     @EventHandler

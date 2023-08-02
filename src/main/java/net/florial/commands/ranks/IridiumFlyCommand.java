@@ -27,7 +27,7 @@ public class IridiumFlyCommand extends BaseCommand {
 
             p.sendMessage("Successfully gave flight to " + target.getName() + "!");
 
-            Cooldown.addCooldown("fly", p, 300);
+            Cooldown.createCooldown("fly", p, 300);
 
 
         } else {

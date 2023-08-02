@@ -76,7 +76,7 @@ public class Dryad extends Species implements Listener {
         assert block != null;
         block.getWorld().generateTree(block.getLocation(), saplings.get(new Random().nextInt(saplings.size())));
 
-        Cooldown.addCooldown("c1", event.getPlayer(), 10);
+        Cooldown.createCooldown("c1", event.getPlayer(), 10);
 
     }
 
@@ -98,7 +98,7 @@ public class Dryad extends Species implements Listener {
         ThrownPotion thrownPotion = player.launchProjectile(ThrownPotion.class);
         thrownPotion.setItem(potion);
 
-        Cooldown.addCooldown("c2", player, 20);
+        Cooldown.createCooldown("c2", player, 20);
     }
 
     @EventHandler

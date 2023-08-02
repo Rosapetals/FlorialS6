@@ -64,7 +64,7 @@ public class Pearlin extends Species implements Listener {
         p.setHealth(newHealth);
         p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, specific*200, (specific+1)-2, false, false, true));
 
-        Cooldown.addCooldown("c1", p, 10);
+        Cooldown.createCooldown("c1", p, 10);
         p.getWorld().spawnParticle(Particle.HEART, p.getLocation(), 10, 0.5, 0.5, 0.5, 0.1);
 
     }

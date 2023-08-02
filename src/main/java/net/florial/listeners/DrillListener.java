@@ -41,7 +41,7 @@ public class DrillListener implements Listener {
                 Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission unset worldedit.*");
             }, 40L);
 
-            Cooldown.addCooldown("drill", p, 7);
+            Cooldown.createCooldown("drill", p, 7);
         }
 
     }

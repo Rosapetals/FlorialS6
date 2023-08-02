@@ -6,17 +6,12 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class Cooldown {
-    public static HashMap<String, HashMap<UUID, Long>> cooldown = new HashMap();
+    public static Set<String> cooldown = new HashSet<>();
 
-    public Cooldown() {
-    }
+    private Cooldown() {}
 
-    public static void createCooldown(String k) {
-        if (cooldown.containsKey(k)) {
-            throw new IllegalArgumentException("Cooldown already exists.");
-        } else {
-            cooldown.put(k, new HashMap());
-        }
+    private static String createKey(String key, Player player) {
+        return key + "_" + player.getUniqueId();
     }
 
     public static HashMap<UUID, Long> getCooldownMap(String k) {

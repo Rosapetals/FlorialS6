@@ -68,7 +68,7 @@ public class Mer extends Species implements Listener {
         player.getInventory().addItem(new ItemStack(fishTypes.get(new Random().nextInt(fishTypes.size()))));
         player.playSound(player.getLocation(), Sound.ENTITY_COD_FLOP, 1.0f, 1.0f);
 
-        Cooldown.addCooldown("c1", player, 10);
+        Cooldown.createCooldown("c1", player, 10);
 
     }
 

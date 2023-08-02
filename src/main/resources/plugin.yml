@@ -4,4 +4,6 @@ main: net.florial.Florial
 api-version: "1.20"
 authors: [ Rosa, Reassembly ]
 description: Florial server core
-depend: []
+depend:
+  - PlaceholderAPI
+  - ProtocolLib
