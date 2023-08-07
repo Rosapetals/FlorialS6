@@ -118,6 +118,11 @@
             <url>https://m2.chew.pro/releases</url>
         </repository>
 
+        <repository>
+            <id>glaremasters repo</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
+        </repository>
+
     </repositories>
 
     <dependencies>
@@ -264,6 +269,13 @@
             <groupId>com.github.deanveloper</groupId>
             <artifactId>SkullCreator</artifactId>
             <version>main-73f5b2a946-1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.palmergames.bukkit.towny</groupId>
+            <artifactId>towny</artifactId>
+            <version>0.99.5.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
