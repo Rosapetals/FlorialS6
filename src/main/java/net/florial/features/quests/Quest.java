@@ -85,7 +85,7 @@ public class Quest {
 
     public static double rollFormula(double balance) {
 
-        double cost = (balance * 0.10);
+        double cost = 0.02 * balance;
         return cost < 50 ? 500 : cost;
 
     }

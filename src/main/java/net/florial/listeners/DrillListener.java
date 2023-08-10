@@ -3,6 +3,7 @@ package net.florial.listeners;
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
 import net.florial.utils.Cooldown;
+import net.florial.utils.game.RegionDetector;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -18,7 +19,8 @@ public class DrillListener implements Listener {
     public void SuperDrill(PlayerInteractEvent e) {
 
         if (!(e.getAction() == Action.LEFT_CLICK_AIR)
-                && (!(e.getAction() == Action.LEFT_CLICK_BLOCK))) return;
+                && (!(e.getAction() == Action.LEFT_CLICK_BLOCK)
+                && (!(RegionDetector.detect(e.getPlayer().getLocation()).contains("none"))))) return;
 
         if (e.getItem() == null)  return;
 

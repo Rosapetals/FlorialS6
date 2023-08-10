@@ -134,13 +134,17 @@ public class Cat extends Species implements Listener {
             return;
         }
 
+        if ((Cooldown.isOnCooldown("c1", attacker))) {
+            return;
+        }
+
         PlayerData data = Florial.getPlayerData().get(attacker.getUniqueId());
 
         if (data.getSpecies() != this) {
             return;
         }
 
-        if (Florial.getOngoingDuel().get(attacker.getUniqueId()) != null || attacker.getInventory().getItemInMainHand().getType() == Material.AIR || (!(Cooldown.isOnCooldown("c1", attacker)))) {
+        if (Florial.getOngoingDuel().get(attacker.getUniqueId()) != null || attacker.getInventory().getItemInMainHand().getType() == Material.AIR) {
             Location particleLoc = attacker.getLocation().clone()
                     .add(0.0, 1.0, 0.0)
                     .add(attacker.getLocation().getDirection().clone().normalize().multiply(0.75));

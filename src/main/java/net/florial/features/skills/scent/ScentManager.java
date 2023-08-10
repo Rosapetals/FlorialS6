@@ -47,7 +47,7 @@ public class ScentManager implements Listener {
 
     @EventHandler
     public void scentProhibitDrop(PlayerDropItemEvent e) {
-        if (e.getItemDrop().getItemStack().getType() != Material.PAPER || (!NBTEditor.contains(e.getItemDrop().getItemStack(), "CustomModelData", 1))) return;
+        if (e.getItemDrop().getItemStack().getType() != Material.PAPER || (NBTEditor.getInt(e.getItemDrop().getItemStack(), "CustomModelData") != 1)) return;
         e.setCancelled(true);
     }
 }

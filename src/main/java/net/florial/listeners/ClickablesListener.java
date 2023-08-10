@@ -112,10 +112,16 @@ public class ClickablesListener implements Listener {
 
         PlayerInventory inventory = p.getInventory();
 
-        inventory.addItem
-                (NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "",
-                        false), 3, "Crate", "CustomModelData"), NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "Crate", "CustomModelData"),
- NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "Crate", "CustomModelData"));
+        ItemStack key1 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lTulip Crate Key", "", false), 1, "CustomModelData");
+        key1 = NBTEditor.set(key1, 1, "Crate");
+
+        ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "CustomModelData");
+        key2 = NBTEditor.set(key2, 2, "Crate");
+
+        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "CustomModelData");
+        key3 = NBTEditor.set(key3, 3, "Crate");
+
+        inventory.addItem(key1, key2, key3);
 
         removeItem(inventory.getItemInMainHand(), p);
 
@@ -210,7 +216,9 @@ public class ClickablesListener implements Listener {
 
         ItemStack item = p.getInventory().getItemInMainHand();
 
-        if (value == 2 || value == 3 && item.getType() != Material.PAPER) return;
+        if (value == 2 || value == 3) {
+            if (item.getType() != Material.PAPER) return;
+        }
 
         PlayerData data = Florial.getPlayerData().get(p.getUniqueId());
 
