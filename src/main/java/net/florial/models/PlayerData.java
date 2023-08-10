@@ -23,12 +23,14 @@ import org.bson.types.ObjectId;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Data
 @Entity("playerdata")
@@ -113,6 +115,7 @@ public class PlayerData {
     @BsonIgnore
     public void refresh() {
 
+        Player p = getPlayer();
         if (getSpecieType().getSpecie() == null) return;
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
@@ -120,7 +123,12 @@ public class PlayerData {
                 getPlayer().addPotionEffect(effect);}}, 70L);
 
         if (getSpecies().isCanSmell()) {
-            getPlayer().getInventory().setItem(8, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#6A3A2F&lSCENT [CLICK]", "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑\n #ffa2c4&l︳#ffa2c4 Right-Click to smell Entity\n #ffa2c4&l︳#ffa2c4 Left-Click to Track Food\n  #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false), 1, "CustomModelData"));
+            Inventory inv = p.getInventory();
+            if (inv.getItem(8) != null && Objects.requireNonNull(inv.getItem(8)).getType() != Material.AIR) {
+                p.getWorld().dropItem(p.getLocation(), Objects.requireNonNull(inv.getItem(8)));
+            }
+            inv.setItem(8, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#6A3A2F&lSCENT [CLICK]", "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑\n #ffa2c4&l︳#ffa2c4 Right-Click to smell Entity\n #ffa2c4&l︳#ffa2c4 Left-Click to Track Food\n  #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false), 1, "CustomModelData"));
+
         }
 
         Refresh.load(getPlayer(), this);
