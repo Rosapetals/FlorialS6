@@ -7,6 +7,7 @@ import net.florial.utils.Cooldown;
 import net.florial.utils.game.RegionDetector;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,23 +17,21 @@ import com.palmergames.bukkit.towny.TownyAPI;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.Town;
 
-import java.util.Objects;
-
 
 public class DrillListener implements Listener {
 
+    private static final TownyAPI tapi = TownyAPI.getInstance();
+
 
     @EventHandler
-    public void SuperDrill(PlayerInteractEvent e) throws NotRegisteredException {
+    public void SuperDrill(PlayerInteractEvent e) {
         if (!(e.getAction() == Action.LEFT_CLICK_AIR) && !(e.getAction() == Action.LEFT_CLICK_BLOCK))
             return;
 
         if (e.getItem() == null)
             return;
 
-        if (!(e.getAction() == Action.LEFT_CLICK_AIR)
-                && (!(e.getAction() == Action.LEFT_CLICK_BLOCK)
-                && (!(RegionDetector.detect(e.getPlayer().getLocation()).contains("none"))))) return;
+        if (!(RegionDetector.detect(e.getPlayer().getLocation()).contains("none"))) return;
 
 
         int value = NBTEditor.getInt(e.getItem(), "CustomModelData");
@@ -41,35 +40,32 @@ public class DrillListener implements Listener {
             return;
 
         Player p = e.getPlayer();
-        Resident resident = TownyAPI.getInstance().getResident(p.getName());
+        Resident resident = tapi.getResident(p.getName());
+
+        Town town = tapi.getTown(p.getLocation());
+        if (town != null && (!town.hasResident(resident) || town.isMayor(resident))) {
+            return;
+        }
 
         if (value == 30) {
-            if (e.getClickedBlock() == null)
+
+            Block b = e.getClickedBlock();
+
+            if (b == null)
                 return;
 
-            Town town = Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(e.getClickedBlock().getLocation())).getTown();
-            if (town != null && !(town.hasResident(resident) || town.isMayor(resident))) {
-                return;
-            }
-
-            p.breakBlock(e.getClickedBlock());
+            p.breakBlock(b);
 
         } else {
             if (!(p.getWorld().getBlockAt(p.getLocation()).getType() == Material.WATER))
                 return;
-
-            Town town = Objects.requireNonNull(TownyAPI.getInstance().getTownBlock(p.getLocation())).getTown();
-            if (town != null && !(town.hasResident(resident) || town.isMayor(resident))) {
-                return;
-            }
-
             Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission set worldedit.*");
             Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
                 Bukkit.dispatchCommand(p, "/drain 20");
                 Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission unset worldedit.*");
             }, 40L);
-
             Cooldown.createCooldown("drill", p, 7);
+
         }
     }
 }
