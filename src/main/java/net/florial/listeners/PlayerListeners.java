@@ -121,6 +121,9 @@ public class PlayerListeners implements Listener {
             );
             Bukkit.getPluginManager().callEvent(e);
 
+            p.sendMessage((CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Do #ff7a8b&l/ptree&f to unlock rewards for your playtime!")));
+
+
         }, 20L);
 
     }
