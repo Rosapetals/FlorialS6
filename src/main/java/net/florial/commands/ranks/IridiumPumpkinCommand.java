@@ -17,10 +17,10 @@ public class IridiumPumpkinCommand extends BaseCommand {
     public void iridiumPumpkin(Player p) {
 
 
-        Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission set worldedit.*");
+        Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission set worldedit.generation.pumpkins");
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
             Bukkit.dispatchCommand(p, "pumpkins 10");
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission unset worldedit.*");
+            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "lp user " + p.getName() + " permission unset worldedit.generation.pumpkins");
         }, 40L);
 
 
