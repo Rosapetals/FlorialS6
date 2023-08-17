@@ -43,7 +43,9 @@ public class DrillListener implements Listener {
         Resident resident = tapi.getResident(p.getName());
 
         Town town = tapi.getTown(p.getLocation());
-        if (town != null && (!town.hasResident(resident) || town.isMayor(resident))) {
+        if (town == null) {
+            return;
+        } else if (!town.hasResident(resident) && (!(town.isMayor(resident)))) {
             return;
         }
 
