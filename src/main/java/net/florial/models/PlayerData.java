@@ -17,6 +17,7 @@ import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
 import net.florial.species.SpecieType;
 import net.florial.species.Species;
+import net.florial.utils.GeneralUtils;
 import net.florial.utils.general.CustomItem;
 import org.bson.codecs.pojo.annotations.BsonIgnore;
 import org.bson.types.ObjectId;
@@ -25,7 +26,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -120,14 +123,23 @@ public class PlayerData {
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
             for (PotionEffect effect : getSpecies().effects()) {
-                getPlayer().addPotionEffect(effect);}}, 70L);
+                getPlayer().addPotionEffect(effect);
+            }
+        }, 70L);
+
 
         if (getSpecies().isCanSmell()) {
-            Inventory inv = p.getInventory();
-            if (inv.getItem(8) != null && Objects.requireNonNull(inv.getItem(8)).getType() != Material.AIR) {
-                p.getWorld().dropItem(p.getLocation(), Objects.requireNonNull(inv.getItem(8)));
-            }
-            inv.setItem(8, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#6A3A2F&lSCENT [CLICK]", "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑\n #ffa2c4&l︳#ffa2c4 Right-Click to smell Entity\n #ffa2c4&l︳#ffa2c4 Left-Click to Track Food\n  #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false), 1, "CustomModelData"));
+            GeneralUtils.runAsync(new BukkitRunnable() {
+                @Override
+                public void run() {
+                    PlayerInventory inv = p.getInventory();
+                    if (inv.getStorageContents()[8] != null && inv.getStorageContents()[8].getType() != Material.PAPER) {
+                        p.getWorld().dropItem(p.getLocation(), inv.getStorageContents()[8]);
+                    }
+                    inv.setItem(8, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#6A3A2F&lSCENT [CLICK]", "#ff79a1&l ┍━━━━━━━━━━━━━━━━━━┑\n #ffa2c4&l︳#ffa2c4 Right-Click to smell Entity\n #ffa2c4&l︳#ffa2c4 Left-Click to Track Food\n  #ff79a1&l┕━━━━━━━━━━━━━━━━━━┙", false), 1, "CustomModelData"));
+                }
+            });
+
 
         }
 
