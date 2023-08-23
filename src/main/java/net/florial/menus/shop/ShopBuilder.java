@@ -39,21 +39,21 @@ public class ShopBuilder {
                 ShopMenu.arrangeItem(5000, new ItemStack(Material.POTATO)),
                 ShopMenu.arrangeItem(5000, new ItemStack(Material.CARROT)),
                 ShopMenu.arrangeItem(5000, new ItemStack(Material.SWEET_BERRIES)),
-                ShopMenu.arrangeItem(1000, new ItemStack(Material.NETHER_WART)),
-                ShopMenu.arrangeItem(1000, new ItemStack(Material.SPONGE)),
-                ShopMenu.arrangeItem(1000, new ItemStack(Material.HONEYCOMB)),
+                ShopMenu.arrangeItem(90, new ItemStack(Material.NETHER_WART)),
+                ShopMenu.arrangeItem(90, new ItemStack(Material.SPONGE)),
+                ShopMenu.arrangeItem(100, new ItemStack(Material.HONEYCOMB)),
                 ShopMenu.arrangeItem(1000, new ItemStack(Material.NAME_TAG)),
-                ShopMenu.arrangeItem(500, new ItemStack(Material.SLIME_BALL)),
-                ShopMenu.arrangeItem(500, new ItemStack(Material.MAGMA_CREAM)),
-                ShopMenu.arrangeItem(500, new ItemStack(Material.LEATHER)),
-                ShopMenu.arrangeItem(500, new ItemStack(Material.BOOK)),
-                ShopMenu.arrangeItem(500, new ItemStack(Material.LAPIS_LAZULI)),
-                ShopMenu.arrangeItem(500, new ItemStack(Material.COAL)),
-                ShopMenu.arrangeItem(300, new ItemStack(Material.GUNPOWDER)),
-                ShopMenu.arrangeItem(300, new ItemStack(Material.SUGAR_CANE)),
-                ShopMenu.arrangeItem(300, new ItemStack(Material.PAPER)),
-                ShopMenu.arrangeItem(100, new ItemStack(Material.ROTTEN_FLESH)),
-                ShopMenu.arrangeItem(100, new ItemStack(Material.GLOW_INK_SAC)),
+                ShopMenu.arrangeItem(50, new ItemStack(Material.SLIME_BALL)),
+                ShopMenu.arrangeItem(50, new ItemStack(Material.MAGMA_CREAM)),
+                ShopMenu.arrangeItem(75, new ItemStack(Material.LEATHER)),
+                ShopMenu.arrangeItem(50, new ItemStack(Material.BOOK)),
+                ShopMenu.arrangeItem(50, new ItemStack(Material.LAPIS_LAZULI)),
+                ShopMenu.arrangeItem(30, new ItemStack(Material.COAL)),
+                ShopMenu.arrangeItem(30, new ItemStack(Material.GUNPOWDER)),
+                ShopMenu.arrangeItem(30, new ItemStack(Material.SUGAR_CANE)),
+                ShopMenu.arrangeItem(30, new ItemStack(Material.PAPER)),
+                ShopMenu.arrangeItem(85, new ItemStack(Material.ROTTEN_FLESH)),
+                ShopMenu.arrangeItem(50, new ItemStack(Material.GLOW_INK_SAC)),
                 ShopMenu.arrangeItem(50, new ItemStack(Material.REDSTONE)),
                 ShopMenu.arrangeItem(50, new ItemStack(Material.QUARTZ)),
                 ShopMenu.arrangeItem(50, new ItemStack(Material.CLAY)),
@@ -65,9 +65,9 @@ public class ShopBuilder {
         ));
         priceLists.put(1, List.of(
                 5000, 5000, 5000, 5000, 5000, 5000,
-                1000, 1000, 1000, 1000, 500, 500,
-                500, 500, 500, 500, 300, 300, 300,
-                100, 100, 50, 50, 50, 50, 50, 50, 20, 30
+                90, 90, 100, 1000, 50, 50,
+                75, 50, 50, 30, 30, 30, 30,
+                85, 50, 50, 50, 50, 50, 50, 50, 20, 30
         ));
 
         materialLists.put(2, List.of(
@@ -117,7 +117,7 @@ public class ShopBuilder {
 
         materialLists.put(3, List.of(
                 ShopMenu.arrangeItem(100, new ItemStack(Material.WHITE_TULIP)),
-                ShopMenu.arrangeItem(5000, new ItemStack(Material.PINK_TULIP)),
+                ShopMenu.arrangeItem(100, new ItemStack(Material.PINK_TULIP)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.RED_TULIP)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.ORANGE_TULIP)),
                 ShopMenu.arrangeItem(100, new ItemStack(Material.POPPY)),
@@ -156,7 +156,7 @@ public class ShopBuilder {
         ));
 
         priceLists.put(3, List.of(
-                100, 5000, 100, 100, 100, 1000,
+                100, 100, 100, 100, 100, 1000,
                 1000, 1000, 500, 500, 500, 350,
                 200, 200, 200, 200, 200, 100, 100, 100, 50, 50, 50,
                 50, 50, 50, 50, 50, 20, 20, 20,

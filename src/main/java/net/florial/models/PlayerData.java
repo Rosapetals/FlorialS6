@@ -28,12 +28,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 @Data
 @Entity("playerdata")
@@ -119,10 +121,18 @@ public class PlayerData {
     public void refresh() {
 
         Player p = getPlayer();
+        java.util.UUID u = p.getUniqueId();
         if (getSpecieType().getSpecie() == null) return;
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
+
+
             for (PotionEffect effect : getSpecies().effects()) {
+
+                if (Florial.optionsEffects().get(u) != null) break;
+
+                if (Florial.getOptionsNV().get(u) != null && effect.getType() == PotionEffectType.NIGHT_VISION) continue;
+
                 getPlayer().addPotionEffect(effect);
             }
         }, 70L);

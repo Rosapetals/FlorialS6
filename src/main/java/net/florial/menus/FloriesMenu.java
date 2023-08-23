@@ -55,7 +55,7 @@ public class FloriesMenu {
                  //   "Rank Crate Key", "Use this by opening the Rank Crate", "at spawn. Chance for a rank. ONE-TIME-USE.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQxMWMyOGVlZTVkNThkMWI4NjNiNTRlNWNjNjJjMzA3MjM0ZDQzN2MxN2YxZmY3NjMzOGRmZWNjM2NjNjhkNSJ9fX0"),
                     "", "", false), 43, "CustomModelData"), List.of(
-                    "VIP Rank", "Buy this to get VIP rank!", "", "")),
+                    "VIP Rank-U", "Buy this to get VIP rank!", "", "")),
             floriesArrange(200, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGQwN2ZkMDNjMDNjMDViNzQ0Y2ZmN2FjMWE5NWQ4MTYxNzA2MjA2ZjY4YzEyYzRjMjJjOTcwNWY3YzM3ZDA4In19fQ"),
                     "", "", false), 202, "CustomModelData"), List.of(
                     "HEALING ORB", "Left-Click to regain full health.", "Cooldown. Forever use.", "")),
@@ -100,7 +100,10 @@ public class FloriesMenu {
                     "MERMAID'S TAIL", "Left-Click whilst holding in", "water to get a massive speed boost.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER),
                     "", "", false), 208, "CustomModelData"), List.of(
-                    "SUNSCREEN", "Left-Click to initiate", "fire and heat resistance.", ""))
+                    "SUNSCREEN", "Left-Click to initiate", "fire and heat resistance.", "")),
+            floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjBkYmI0YWRlOGM5OWIxY2QxOGM1YzZiYzI0ZmJkMzZiNjVhOGI2NmQyODNlNzFmZDRmZjkxOTRkNmFlN2E0In19fQ"),
+                    "", "", false), 209, "CustomModelData"), List.of(
+                    "COOLDOWN-FREE WILD", "Left-Click with this to do /wild an", "infinite amount of times with only a", "5 second cooldown."))
 
 
             
@@ -108,7 +111,7 @@ public class FloriesMenu {
 
     private static final List<Integer> floriePrices = List.of(
             100, 100, 100, 300, 75, 50, 50, 100, 200,
-            100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100, 100, 100, 100
+            100, 100, 100, 100, 75, 100, 100, 300, 150, 3, 100, 100, 100, 100, 100
 
     );
 
@@ -174,9 +177,12 @@ public class FloriesMenu {
                         case 39 -> data.getUpgrades().put(Upgrade.SELLINCREASE, true);
                         case 33 -> data.getUpgrades().put(Upgrade.NATUREIMMUNITY, true);
                         case 42 -> data.getUpgrades().put(Upgrade.HASTE, true);
+                        case 43 -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user " + p.getName() + " parent add vip");
                         case 100 -> data.setDna(data.getDna() + 5);
 
                     }
+
+                    data.refresh();
 
 
                 } else {
