@@ -71,46 +71,46 @@ public class ShopBuilder {
         ));
 
         materialLists.put(2, List.of(
-                ShopMenu.arrangeItem(100000, book(Enchantment.MENDING)),
-                ShopMenu.arrangeItem(75000, book(Enchantment.PROTECTION_ENVIRONMENTAL)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.LOOT_BONUS_BLOCKS)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.DAMAGE_ALL)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.LOOT_BONUS_MOBS)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.ARROW_INFINITE)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.RIPTIDE)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.THORNS)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.MULTISHOT)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.PIERCING)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.ARROW_KNOCKBACK)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.ARROW_DAMAGE)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.WATER_WORKER)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.QUICK_CHARGE)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.SWIFT_SNEAK)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.LOYALTY)),
-                ShopMenu.arrangeItem(50000, book(Enchantment.PROTECTION_FALL)),
-                ShopMenu.arrangeItem(30000, book(Enchantment.KNOCKBACK)),
-                ShopMenu.arrangeItem(30000, book(Enchantment.SWEEPING_EDGE)),
-                ShopMenu.arrangeItem(30000, book(Enchantment.BINDING_CURSE)),
-                ShopMenu.arrangeItem(30000, book(Enchantment.VANISHING_CURSE)),
-                ShopMenu.arrangeItem(30000, book(Enchantment.OXYGEN)),
-                ShopMenu.arrangeItem(25000, book(Enchantment.SILK_TOUCH)),
-                ShopMenu.arrangeItem(100000, book(Enchantment.FIRE_ASPECT)),
-                ShopMenu.arrangeItem(25000, book(Enchantment.DEPTH_STRIDER)),
-                ShopMenu.arrangeItem(25000, book(Enchantment.SOUL_SPEED)),
-                ShopMenu.arrangeItem(15000, book(Enchantment.DURABILITY)),
-                ShopMenu.arrangeItem(15000, book(Enchantment.DIG_SPEED)),
-                ShopMenu.arrangeItem(15000, book(Enchantment.LURE)),
-                ShopMenu.arrangeItem(15000, book(Enchantment.FROST_WALKER)),
-                ShopMenu.arrangeItem(25000, new ItemStack(Material.ENCHANTING_TABLE))
+                ShopMenu.arrangeItem(25000, book(Enchantment.MENDING)),
+                ShopMenu.arrangeItem(10000, book(Enchantment.PROTECTION_ENVIRONMENTAL)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.LOOT_BONUS_BLOCKS)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.DAMAGE_ALL)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.LOOT_BONUS_MOBS)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.ARROW_INFINITE)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.RIPTIDE)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.THORNS)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.MULTISHOT)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.PIERCING)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.ARROW_KNOCKBACK)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.ARROW_DAMAGE)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.WATER_WORKER)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.QUICK_CHARGE)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.SWIFT_SNEAK)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.LOYALTY)),
+                ShopMenu.arrangeItem(15000, book(Enchantment.PROTECTION_FALL)),
+                ShopMenu.arrangeItem(10000, book(Enchantment.KNOCKBACK)),
+                ShopMenu.arrangeItem(10000, book(Enchantment.SWEEPING_EDGE)),
+                ShopMenu.arrangeItem(10000, book(Enchantment.BINDING_CURSE)),
+                ShopMenu.arrangeItem(10000, book(Enchantment.VANISHING_CURSE)),
+                ShopMenu.arrangeItem(10000, book(Enchantment.OXYGEN)),
+                ShopMenu.arrangeItem(9000, book(Enchantment.SILK_TOUCH)),
+                ShopMenu.arrangeItem(40000, book(Enchantment.FIRE_ASPECT)),
+                ShopMenu.arrangeItem(9000, book(Enchantment.DEPTH_STRIDER)),
+                ShopMenu.arrangeItem(9000, book(Enchantment.SOUL_SPEED)),
+                ShopMenu.arrangeItem(8000, book(Enchantment.DURABILITY)),
+                ShopMenu.arrangeItem(8000, book(Enchantment.DIG_SPEED)),
+                ShopMenu.arrangeItem(8000, book(Enchantment.LURE)),
+                ShopMenu.arrangeItem(8000, book(Enchantment.FROST_WALKER)),
+                ShopMenu.arrangeItem(9000, new ItemStack(Material.ENCHANTING_TABLE))
 
         ));
 
         priceLists.put(2, List.of(
-                100000, 750000, 50000, 50000, 50000, 50000, 50000,
-                50000, 50000, 50000, 50000, 50000, 50000, 50000,
-                50000, 50000, 50000, 30000, 30000, 30000, 30000,
-                30000, 25000, 100000, 25000, 25000, 15000, 15000,
-                15000, 15000, 25000
+                25000, 10000, 15000, 15000, 15000, 15000, 15000,
+                15000, 15000, 15000, 15000, 15000, 15000, 15000,
+                15000, 15000, 15000, 15000, 15000, 15000, 15000,
+                15000, 9000, 40000, 9000, 9000, 8000, 8000,
+                8000, 8000, 9000
 
         ));
 
@@ -199,23 +199,33 @@ public class ShopBuilder {
         ));
 
         materialLists.put(6, List.of(
-                ShopMenu.arrangeItem(100000, new ItemStack(Material.NETHER_STAR)),
-                ShopMenu.arrangeItem(50000, new ItemStack(Material.WITHER_SKELETON_SKULL)),
-                ShopMenu.arrangeItem(1100000, new ItemStack(Material.BEACON)),
-                ShopMenu.arrangeItem(25000, new ItemStack(Material.ENDER_EYE)),
-                ShopMenu.arrangeItem(75000, new ItemStack(Material.DIAMOND)),
+                ShopMenu.arrangeItem(20000, new ItemStack(Material.NETHER_STAR)),
+                ShopMenu.arrangeItem(5000, new ItemStack(Material.WITHER_SKELETON_SKULL)),
+                ShopMenu.arrangeItem(22000, new ItemStack(Material.BEACON)),
+                ShopMenu.arrangeItem(100, new ItemStack(Material.ENDER_EYE)),
+                ShopMenu.arrangeItem(50, new ItemStack(Material.QUARTZ)),
                 ShopMenu.arrangeItem(6000, new ItemStack(Material.EMERALD)),
-                ShopMenu.arrangeItem(250000, new ItemStack(Material.SCULK_SENSOR)),
-                ShopMenu.arrangeItem(200000, new ItemStack(Material.SCULK)),
-                ShopMenu.arrangeItem(300000, new ItemStack(Material.SCULK_SHRIEKER)),
-                ShopMenu.arrangeItem(10000, new ItemStack(Material.ENDER_EYE)),
-                ShopMenu.arrangeItem(350000, new ItemStack(Material.NETHERITE_INGOT))
+                ShopMenu.arrangeItem(1000, new ItemStack(Material.SCULK_SENSOR)),
+                ShopMenu.arrangeItem(1000, new ItemStack(Material.SCULK)),
+                ShopMenu.arrangeItem(1000, new ItemStack(Material.SCULK_SHRIEKER)),
+                ShopMenu.arrangeItem(100, new ItemStack(Material.IRON_INGOT)),
+                ShopMenu.arrangeItem(10000, new ItemStack(Material.NETHERITE_INGOT)),
+                ShopMenu.arrangeItem(90000, new ItemStack(Material.NETHERITE_BLOCK)),
+                ShopMenu.arrangeItem(200, new ItemStack(Material.GOLD_INGOT)),
+                ShopMenu.arrangeItem(200, new ItemStack(Material.QUARTZ_BLOCK)),
+                ShopMenu.arrangeItem(9000, new ItemStack(Material.DIAMOND_BLOCK)),
+                ShopMenu.arrangeItem(450, new ItemStack(Material.EMERALD_BLOCK)),
+                ShopMenu.arrangeItem(450, new ItemStack(Material.REDSTONE_BLOCK))
+
+
+
 
 
         ));
         priceLists.put(6, List.of(
-                100000, 50000, 1100000,
-                25000, 75000, 6000, 250000, 200000, 300000, 10000, 350000
+                20000, 5000, 22000,
+                100, 50, 6000, 1000, 1000, 1000, 100, 10000, 90000, 200,
+                200, 9000, 450, 450
 
         ));
     }
