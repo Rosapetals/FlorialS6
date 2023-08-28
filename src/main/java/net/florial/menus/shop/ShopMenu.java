@@ -124,7 +124,9 @@ public class ShopMenu {
 
                 VaultHandler.removeMoney(p, price * amount);
 
-                for (int i = 0; i < amount; i++) {p.getInventory().addItem(item);}
+                ItemStack finalItem = item.getType() == Material.ENCHANTED_BOOK || item.getType() == Material.PLAYER_HEAD ? item : new ItemStack(item.getType());
+
+                for (int i = 0; i < amount; i++) {p.getInventory().addItem(finalItem);}
 
             } else {
                 p.closeInventory();

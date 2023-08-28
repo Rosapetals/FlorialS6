@@ -11,6 +11,7 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Refresh {
@@ -82,8 +83,12 @@ public class Refresh {
 
     private static void mainThread(Player p, PotionEffectType effect, PotionEffect potion, int amount) {
 
+        UUID u = p.getUniqueId();
+
+        if (Florial.optionsEffects().get(u) != null) return;
+
         Bukkit.getScheduler().runTaskLater(florial, () -> {
-            p.addPotionEffect(Objects.requireNonNullElseGet(potion, () -> new PotionEffect(effect, 1000000, amount, false, false, true)));
+            p.addPotionEffect(Objects.requireNonNullElseGet(potion, () -> new PotionEffect(effect, 100000000, amount, false, false, true)));
         }, 5L);
 
     }

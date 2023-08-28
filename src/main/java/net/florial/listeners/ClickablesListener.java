@@ -30,7 +30,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            201, 202, 203, 204, 205, 207, 208, 210, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
+            201, 202, 203, 204, 205, 207, 208, 209, 210, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -68,11 +68,25 @@ public class ClickablesListener implements Listener {
             case 71 -> coatSelectorUse(e.getPlayer());
             case 6 -> iceCubeUse(e.getPlayer());
             case 208 -> useSunScreen(e.getPlayer());
+            case 209 -> noCoolDownWild(e.getPlayer());
             case 207 -> mermaidTailUse(e.getPlayer());
             case 210 -> trophyRedeem(e.getPlayer(), e.getItem());
             case 165 -> e.getPlayer().getInventory().addItem(new ItemStack(Material.LIGHT));
 
         }
+    }
+
+    private static void noCoolDownWild(Player p) {
+
+        if (Cooldown.isOnCooldown("wild", p)) return;
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "rtp " + p.getName() + " 120");
+
+        p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 2);
+
+
+        Cooldown.createCooldown("wild", p, 5);
+
     }
 
     private static void trophyRedeem(Player p, ItemStack i) {
@@ -251,6 +265,8 @@ public class ClickablesListener implements Listener {
     }
 
     private static void useMoneyVoucher(Player p) {
+
+        if (p.getInventory().getItemInMainHand().getType() == Material.GLISTERING_MELON_SLICE) return;
 
         ItemStack heldItem = p.getInventory().getItemInMainHand();
 
