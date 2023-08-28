@@ -324,11 +324,8 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new DuelCommand());
         manager.registerCommand(new PTreeCommand());
         manager.registerCommand(new TrophyCommand());
-
-
-
-
-
+        manager.registerCommand(new StaffChatCommand());
+        manager.registerCommand(new FlorialCommand());
     }
 
     private void initializeDiscord() {

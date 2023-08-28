@@ -16,3 +16,6 @@ discord:
   verifiedRole:
   chatlogChannel:
   commandlogChannel:
+
+general:
+  staffChatFormat: "" # Use minimessage formatting, %player% will get the player, %message% will get the message
