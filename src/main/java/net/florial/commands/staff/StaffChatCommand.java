@@ -19,7 +19,7 @@ public class StaffChatCommand extends BaseCommand {
     public void staffChat(Player player, String msg) {
         String format = Florial.getInstance().getConfig().getString("general.staffChatFormat");
 
-        format = format.replaceAll("%player%", player.getName()).replaceAll("%message%", msg);
+        format = format.replaceAll("%player%", player.getName()).replaceAll("%message%", msg).replaceAll("@", "@~");
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (p.hasPermission("staff")) p.sendMessage(MiniMessage.miniMessage().deserialize(format));
