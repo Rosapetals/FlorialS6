@@ -34,7 +34,7 @@ public class Crates implements Listener {
         ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "CustomModelData");
         key2 = NBTEditor.set(key2, 2, "Crate");
 
-        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "CustomModelData");
+        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#fb4e0e&lA#fb5418&lu#fc5a21&lt#fc602b&lu#fc6634&lm#fd6c3e&ln #fd7248&lC#fd7851&lr#fd7e5b&la#fe8465&lt#fe8a6e&le #fe9078&lK#ff9681&le#ff9c8b&ly", "", false), 3, "CustomModelData");
         key3 = NBTEditor.set(key3, 3, "Crate");
 
         ItemStack key4 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lVote Crate Key", "", false), 4, "CustomModelData");
@@ -94,20 +94,20 @@ public class Crates implements Listener {
 
                 createFirework(),
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lVanilla Ice-Cream Cone [Left-Click]", "", false), 2,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lStrawberry Ice-Cream Cone [Left-Click]", "", false), 3,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.ORANGE_TULIP), "#ff7a8b&lPUMPKIN [Left-Click]", "", false), 3,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lS O A P [Left-Click]", "", false), 5,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lPina Colada [Left-Click]", "", false), 7,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBlue Popsicle [Left-Click]", "", false), 12,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lJuicy Pineapple [Left-Click]", "", false), 15,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lApple Cider [Left-Click]", "", false), 12,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lJuicy Grapes [Left-Click]", "", false), 15,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lSinner's Pineapple Pizza [Left-Click]", "", false), 16,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lAmerican Flag [Left-Click] [DNA]", "", false), 18,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lBBQ Ribs[Left-Click]", "", false), 19,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lDIET PILLS [Left-Click]", "", false), 20,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCheese [Left-Click] [DNA]", "", false), 18,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCaramelized Apple [Left-Click]", "", false), 19,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCranberries [Left-Click]", "", false), 20,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCORN ON THE COB [Left-Click]", "", false), 21,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER), "#ff7a8b&lBETTER CORN ON THE COB [Left-Click]", "", false), 21,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lChocolate Ice-Cream [Left-Click]", "", false), 82,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCookie Dough Ice-Cream [Left-Click]", "", false), 83,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lICE CUBE [Left-Click]", "", false), 6,"CustomModelData")
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.CAKE), "#ff7a8b&lCarrot Cake [Left-Click]", "", false), 83,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMAPLE LEAF [Left-Click]", "", false), 6,"CustomModelData")
 
 
 
@@ -175,7 +175,7 @@ public class Crates implements Listener {
             }
 
             p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BIT, 1, 2);
-            FireWorkSpawner.spawn(3, Color.FUCHSIA, Color.WHITE, p);
+            FireWorkSpawner.spawn(3, Color.ORANGE, Color.RED, p);
 
 
         }, 40);

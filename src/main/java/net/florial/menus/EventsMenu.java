@@ -34,12 +34,12 @@ public class EventsMenu {
 
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", " #5a372c&l︳" +
-                                                " SUBMIT\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • #6e4837 to submit kelp"
+                                                " SUBMIT\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • #6e4837 to submit leaves"
                                                 + "\n #6e4837&l︳ •#6e4837 in your inventory to the event.\n #6e4837&l︳ • [CLICK HERE]\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
                                         CustomItem.MakeItem(new ItemStack(Material.MAP), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", " #5a372c&l︳ " +
-                                                "Monthly Event: Mermadic Kelp\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • KELP SUBMITTED: #6e4837 "
-                                                +  eventPoints + "\n #6e4837&l︳ • REQUIRED:#6e4837 2,000\n"
-                                                + " #6e4837&l︳ • REWARD:#6e4837 200 Flories at 5k Kelp\n"
+                                                "Monthly Event: Leaf Round-Up\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙\n #6e4837&l︳ • LEAVES SUBMITTED: #6e4837 "
+                                                +  eventPoints + "\n #6e4837&l︳ • REQUIRED:#6e4837 8,000\n"
+                                                + " #6e4837&l︳ • REWARD:#6e4837 200 Flories at 8k Leaves\n"
                                                 + " #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
@@ -58,7 +58,7 @@ public class EventsMenu {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
 
-        if (data.getEvent() >= 5000 && (!(data.getEvent() >= 10000))) {
+        if (data.getEvent() >= 8000 && (!(data.getEvent() >= 10000))) {
             p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1, 2);
             data.setFlories(data.getFlories() + 200);
             data.setEvent(10000);
@@ -71,23 +71,25 @@ public class EventsMenu {
         p.playSound(p.getLocation(), Sound.ENTITY_CHICKEN_STEP, 1, 1);
         p.closeInventory();
 
-        if (!(data.getEvent() >= 5000)) {
+        if (!(data.getEvent() >= 8000)) {
 
             int count = 0;
 
-            for (ItemStack item : p.getInventory().all(Material.DRIED_KELP).values()) {
-                count += item.getAmount();
-                p.getInventory().remove(item);
+            for (ItemStack item : p.getInventory().getContents()) {
+                if (item != null && item.getType().toString().contains("LEAVES")) {
+                    count += item.getAmount();
+                    p.getInventory().remove(item);
+                }
             }
 
             data.setEvent(data.getEvent() + count);
 
             if (count > 0) {
-                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully submitted " + count + " dried kelp!"));
+                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&f Successfully submitted " + count + " leaves!"));
                 completeEvent(p, data);
 
             } else {
-                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least 1 Dried Kelp to submit it."));
+                p.sendMessage(CC.translate("#ffd7dc&l&nF#ffb8c1&l&nl#ff99a6&l&no#ff7a8b&l&nr#ff5b70&l&ni#ff3c55&l&na#ff1d3a&l&nl&r #ff3c55&l➤&c You need at least 1 Leaf Block to submit it."));
                 p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
 
             }

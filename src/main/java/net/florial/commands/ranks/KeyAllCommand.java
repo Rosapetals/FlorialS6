@@ -27,7 +27,7 @@ public class KeyAllCommand extends BaseCommand {
         ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "CustomModelData");
         key2 = NBTEditor.set(key2, 2, "Crate");
 
-        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "CustomModelData");
+        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#fb4e0e&lA#fb5418&lu#fc5a21&lt#fc602b&lu#fc6634&lm#fd6c3e&ln #fd7248&lC#fd7851&lr#fd7e5b&la#fe8465&lt#fe8a6e&le #fe9078&lK#ff9681&le#ff9c8b&ly", "", false), 3, "CustomModelData");
         key3 = NBTEditor.set(key3, 3, "Crate");
 
         for (Player player : Bukkit.getOnlinePlayers()) {

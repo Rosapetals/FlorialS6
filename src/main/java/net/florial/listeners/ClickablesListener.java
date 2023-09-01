@@ -30,7 +30,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            201, 202, 203, 204, 205, 207, 208, 209, 210, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
+            201, 202, 203, 204, 205, 207, 208, 209, 400, 210, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -66,7 +66,7 @@ public class ClickablesListener implements Listener {
             case 81 -> useFloatie(e.getPlayer());
             case 50 -> gainFlories(e.getPlayer());
             case 71 -> coatSelectorUse(e.getPlayer());
-            case 6 -> iceCubeUse(e.getPlayer());
+            case 400 -> mapleLeafUse(e.getPlayer());
             case 208 -> useSunScreen(e.getPlayer());
             case 209 -> noCoolDownWild(e.getPlayer());
             case 207 -> mermaidTailUse(e.getPlayer());
@@ -122,7 +122,7 @@ public class ClickablesListener implements Listener {
     }
 
 
-    private static void iceCubeUse(Player p) {
+    private static void mapleLeafUse(Player p) {
 
         PlayerInventory inventory = p.getInventory();
 
@@ -132,15 +132,15 @@ public class ClickablesListener implements Listener {
         ItemStack key2 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lExperience Crate Key", "", false), 2, "CustomModelData");
         key2 = NBTEditor.set(key2, 2, "Crate");
 
-        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#ff7a8b&lSeasonal Crate Key", "", false), 3, "CustomModelData");
+        ItemStack key3 = NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.GLISTERING_MELON_SLICE), "#fb4e0e&lA#fb5418&lu#fc5a21&lt#fc602b&lu#fc6634&lm#fd6c3e&ln #fd7248&lC#fd7851&lr#fd7e5b&la#fe8465&lt#fe8a6e&le #fe9078&lK#ff9681&le#ff9c8b&ly", "", false), 3, "CustomModelData");
         key3 = NBTEditor.set(key3, 3, "Crate");
 
         inventory.addItem(key1, key2, key3);
 
         removeItem(inventory.getItemInMainHand(), p);
 
-        p.playSound(p.getLocation(), Sound.BLOCK_GLASS_FALL, 1, 2);
-        p.playSound(p.getLocation(), Sound.BLOCK_GLASS_BREAK, 1, 3);
+        p.playSound(p.getLocation(), Sound.BLOCK_AZALEA_LEAVES_BREAK, 1, 2);
+        p.playSound(p.getLocation(), Sound.BLOCK_BAMBOO_BREAK, 1, 3);
 
 
     }
