@@ -30,7 +30,7 @@ public class ClickablesListener implements Listener {
 
     private static final List<Integer> nbtData = List.of(
 
-            201, 202, 203, 204, 205, 207, 208, 209, 400, 210, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
+            201, 202, 203, 204, 205, 207, 208, 209, 400, 401, 210, 45, 50, 2, 3, 4, 5, 13, 14, 7, 8, 81, 71, 12, 15, 16, 17, 18, 19, 20, 165, 21, 82, 83, 6
     );
 
     private static final CoatSelectionMenu coatSelector = new CoatSelectionMenu();
@@ -64,7 +64,7 @@ public class ClickablesListener implements Listener {
             case 4 -> useMoneyVoucher(e.getPlayer());
             case 13, 14, 18 -> useDNAVoucher(e.getPlayer());
             case 81 -> useFloatie(e.getPlayer());
-            case 50 -> gainFlories(e.getPlayer());
+            case 401 -> gainFlories(e.getPlayer());
             case 71 -> coatSelectorUse(e.getPlayer());
             case 400 -> mapleLeafUse(e.getPlayer());
             case 208 -> useSunScreen(e.getPlayer());

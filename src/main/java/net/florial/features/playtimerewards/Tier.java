@@ -33,4 +33,11 @@ public enum Tier {
         this.dna = dna;
         this.money = money;
     }
+
+    public static Tier fromID(int id) {
+        for (Tier e : values())
+            if (e.id == id) return e;
+
+        return null;
+    }
 }

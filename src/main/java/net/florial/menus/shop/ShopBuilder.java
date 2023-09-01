@@ -174,20 +174,16 @@ public class ShopBuilder {
         priceLists.put(4, List.of(15000, 100000, 1000000));
 
         materialLists.put(5, List.of(
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU3MGViYjkxYTk1ZjIzZGUwZjkwOWNkYjY5MzE4ZWExNTg1NzAwMWYxMmE2MWRlMTE4ZDM0Zjc5ODliZWJiZSJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNThkMGY3MDgxMDBkNTNhZjgxMjZlZmQyZTcwY2QwYjlhNDk2OGFmZjQ5YjRkZmNiYjY5YmJhYjU0YzZlYmMwMCJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhmMjg0OGUwZjEyMWIyNDJkZWYzNGQxMjIyYjEyM2U1MmZhOTJkNjVmNzc5MzBiYmE5N2ExMWMzNTNjZGRmZCJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZkMGFmOTQ1NGYzMmNjMDRhZmJlYjVmYjI5OWRiZmVhMjQyMDkxZWI2ZjgxN2ZmZjg2YTAzNzg4ZDk2NTIwZSJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDZhMjdlYzVlZDNmMDFlMzAxNjc3Zjg4ZmRiZGQ5NjJjMDgzNjg2MDA5MDdlZWMzN2EyZDRkZDhjN2Y4MzVmYyJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODRmNjAwZWFmYzhkODE0NjE1ZDFlZmFkMTYyODcyM2YxMDZhNjhjM2I3MWMyYTcwOWY4NTdmZTI3NDE2YWUxZSJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWJkNDg3OTU0ZDI2N2NiMTk4MjM2Zjg0MDZkYjgzNDllZGFlZGQxYzU0ZWY4MTJhMzEwYmY5NzNhNGNlYTFkNCJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjkwNGY2Yzg2ZDlkZTQxNTEyNmRkMWVjOGRkMDliZGVmNzkyOWY0M2YwZGIwOTI3ODQ1N2Y1YzEzZjgzMWQzMSJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTY0ZTI5NGVhYWI0ODZlYWIzZDQ5YWM5NWFjNmM3ZGYxYmEyM2RiN2Y1N2UwODJmOGMyMDNiNThiM2JhZThiYSJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGFiODQxOTJhMDBlMjAwZjM0OTZkZDJkYTczNzdjYWE0ZjhmNmMxMjMwZDQ4MGFhZTA5OGRhY2ViYzRlNmE1NCJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY0ZmJlMjEzMWRhNzJlYTRiZjU1ZDQ5NTYwZmQ4OGQ2OGY5NTBhYjcwZWUxNmJlMGIwYmY3MmIyNGI5OGE2NiJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTNjMmYxYzVkMmM4ZjBlMzM3MzBjMTRkY2ExYzFkMWUxYWJkODU5NmIwODM5ZDY3MzhkMThmNDY0MzJiNmZhNiJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWRkNWI2YWVkNDRmZmUzMjUzNjE0YTgyZmRmNTJjNzBhNmRjMGQ1MjRmMzNlODVmM2EwMWM4MzhkYTUxNCJ9fX0")),
-                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTBhY2RlZWQ2MDcyNWQ5NWI2OTExNDM3MmQ3MDI0ZjlkNjY4ZjlmZTc0NjkzN2UwNTkzMjhiYmZiZmY2In19fQ"))
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzc1NDU1OTliMTI2ZTk5MzAzZmNlZmYwYzJiOWUxY2IxNTA2NjFiN2ExMjNiNjQ2MTM5ZTUxOTZiMmU4ZjQ0In19fQ")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTJmNDUxN2ZiNGU5ZjQyYzYwN2YyMTMzYzYxNzg4NDhiOTVmODg0NzViN2U2ZTMwMmYwZDM3NzMwNGU5YmFkMCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmVhMzI0ZDE1OTBhM2E2MjFiNWNkMDU5YTQzZmUxNWFmZTYzZDUwZDYxYzFkMWFhOTQ4NmY0NjNlODliMDY2OSJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTVlNzkxY2I3YjlkNjE1ZDJkYWVkYzJlYTliNTRkNGE4YmM3N2IxZmU1MWFiYTEwZTEyYmQwNmU2ZWE0OWI5NCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWZlMDJmZDViNGM2NTI2MDg1Y2JkZjNlZTM1ZDE4ZDA3ZDUxYTY3MjVmZTU0MTdhZDVhZDdmNDdkYmExYzVlIn19fQ")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGJkMjM5NjVkNjMyNTNmMjMzMzkxMTE5NTJjYTcyZjM3MzMyZTViNDgzYTdmNDE1NzA3MTZiNzk1OTA0NjMyNiJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmMzYTE0MWY2NWQ0MTAxMzU1ZTNlZjBlZDg4ZGEwODhlNmQwMDNhYjZlYzkxMDY1NDhlYTEzMTI4OTExZjMzNCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjEyYTNlZmM5NmJiN2EwYjI5MWYzNzM3MTlhZDJlNTZlYWQ0ZTg5NWVmOWNmNmRhNmQ3YWNhOWVlZmFkNzNjZCJ9fX0")),
+                ShopMenu.arrangeItem(1500, GetCustomSkull.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzg0ZjVhZGNmMDQ4MDA1NWY5NjllMjBhMjg0ZDc1NDRlM2UxOWVmMzQwYTAzN2M2OGQ2ZTY1OWI3ZmE0OTEyOSJ9fX0"))
+
 
         ));
         priceLists.put(5, List.of(

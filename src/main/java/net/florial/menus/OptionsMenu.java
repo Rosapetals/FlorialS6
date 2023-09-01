@@ -6,7 +6,6 @@ import io.github.rysefoxx.inventory.plugin.content.InventoryContents;
 import io.github.rysefoxx.inventory.plugin.content.InventoryProvider;
 import io.github.rysefoxx.inventory.plugin.pagination.RyseInventory;
 import net.florial.Florial;
-import net.florial.features.upgrades.Upgrade;
 import net.florial.models.OptionType;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
@@ -18,7 +17,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -43,9 +41,9 @@ public class OptionsMenu {
 
 
                         List<ItemStack> entries = Stream.of(CustomItem.MakeItem(new ItemStack(Material.PINK_CONCRETE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ " +
-                                                "NIGHT VISION\n #6e4837&l︳ • " + (options.get(OptionType.NIGHT_VISION) ? "ON" : "OFF") + "\n#5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
-                                        CustomItem.MakeItem(new ItemStack(Material.PINK_CONCRETE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", "  #5a372c&l︳ " +
-                                                "ALL EFFECTS\n #6e4837&l︳ • " + (options.get(OptionType.ALL_EFFECTS) ? "ON" : "OFF") + "\n#5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
+                                                "NIGHT VISION\n #6e4837&l︳ • " + (options.get(OptionType.NIGHT_VISION) ? "ON" : "OFF") + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false),
+                                        CustomItem.MakeItem(new ItemStack(Material.PINK_CONCRETE), "#5a372c&l ┍━━━━━━━━━━━━━━━━━━┑", " #5a372c&l︳ " +
+                                                "ALL EFFECTS\n #6e4837&l︳ • " + (options.get(OptionType.ALL_EFFECTS) ? "ON" : "OFF") + "\n #5a372c&l┕━━━━━━━━━━━━━━━━━━┙", false)).map(i -> NBTEditor.set(i, 1010, "CustomModelData"))
                                 .toList();
 
 

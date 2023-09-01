@@ -329,6 +329,7 @@ public final class Florial extends JavaPlugin {
         manager.registerCommand(new StaffChatCommand());
         manager.registerCommand(new FlorialCommand());
         manager.registerCommand(new OptionsCommand());
+        manager.registerCommand(new BundleMenuCommand());
 
 
 

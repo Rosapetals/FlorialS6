@@ -2,6 +2,7 @@ package net.florial.features.crates;
 
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
+import net.florial.models.SeasonalCrateItem;
 import net.florial.utils.game.FireWorkSpawner;
 import net.florial.utils.general.CustomItem;
 import org.bukkit.*;
@@ -14,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Crates implements Listener {
@@ -77,6 +79,23 @@ public class Crates implements Listener {
 
                 key1,
 
+                Objects.requireNonNull(SeasonalCrateItem.fromID(1, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(2, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(3, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(4, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(5, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(6, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(7, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(9, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(10, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(11, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(12, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(13, 1)),
+                Objects.requireNonNull(SeasonalCrateItem.fromID(14, 1)),
+
+
+
+
                 new ItemStack(Material.PUMPKIN, 30),
                 new ItemStack(Material.SWEET_BERRIES, 64),
 
@@ -88,42 +107,20 @@ public class Crates implements Listener {
 
 
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 2), "#ff7a8b&lFlories [Left-Click]", "", false), 50, "CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER, 2), "#ff7a8b&lFlories [Left-Click]", "", false), 401, "CustomModelData"),
 
 
                 key2,
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 50,"CustomModelData"),
-
-
-
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.ORANGE_TULIP), "#ff7a8b&lPUMPKIN [Left-Click]", "", false), 3,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lS O A P [Left-Click]", "", false), 5,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lPina Colada [Left-Click]", "", false), 7,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lApple Cider [Left-Click]", "", false), 12,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lJuicy Grapes [Left-Click]", "", false), 15,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lSinner's Pineapple Pizza [Left-Click]", "", false), 16,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCheese [Left-Click] [DNA]", "", false), 18,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCaramelized Apple [Left-Click]", "", false), 19,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCranberries [Left-Click]", "", false), 20,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lCORN ON THE COB [Left-Click]", "", false), 21,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER), "#ff7a8b&lBETTER CORN ON THE COB [Left-Click]", "", false), 21,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lChocolate Ice-Cream [Left-Click]", "", false), 82,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.CAKE), "#ff7a8b&lCarrot Cake [Left-Click]", "", false), 83,"CustomModelData"),
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMAPLE LEAF [Left-Click]", "", false), 6,"CustomModelData")
-
-
-
-
-
-
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 401,"CustomModelData")
 
 
         ));
 
+
         crateDrops.put(4, List.of(
 
-                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER), "#ff7a8b&lFlories [Left-Click]", "", false), 50,"CustomModelData"),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 401,"CustomModelData"),
 
                 new ItemStack(Material.GOLDEN_APPLE, 10),
                 new ItemStack(Material.EXPERIENCE_BOTTLE, 600),

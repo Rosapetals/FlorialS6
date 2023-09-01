@@ -27,7 +27,7 @@ public class FloriesMenu {
 
     private static final GetCustomSkull heads = new GetCustomSkull();
 
-    private static final List<ItemStack> florieItems = List.of(
+    public final List<ItemStack> florieItems = List.of(
 
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmFjNTEzMmYyOWU2NDRhNmQ2YTI0NzkzNWQwOTA2ZWZiZWY5MmEyYzVjMmNmZGFjOWJlNWY2MDVmMzc2Yjg4YSJ9fX0"),
                     "", "", false), 30, "CustomModelData"), List.of(
@@ -50,9 +50,6 @@ public class FloriesMenu {
             floriesArrange(50, CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjhjMjE4YzNmMjFiYmMxYzZmODZhNDc5NTk1ODM3ZTg3M2E3NzA3YjVhYTk4YjQ5ZTAxMDgzMTNlNzFlIn19fQ"),
                     "", "", false), List.of(
                     "/skull command", "skull", "Permanent access to /skull", "")),
-          //  floriesArrange(50, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTg3OWVkMmIzOWZhMDQ2MmM3NDI5MmY1Y2EzZDE4ODQyMDEyOGI0YTYzYWM3NWRiOGM5N2EwOTRkMWFjNjNmNCJ9fX0"),
-                //    "", "", false), 43, "CustomModelData"), List.of(
-                 //   "Rank Crate Key", "Use this by opening the Rank Crate", "at spawn. Chance for a rank. ONE-TIME-USE.", "")),
             floriesArrange(100, NBTEditor.set(CustomItem.MakeItem(heads.getCustomSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQxMWMyOGVlZTVkNThkMWI4NjNiNTRlNWNjNjJjMzA3MjM0ZDQzN2MxN2YxZmY3NjMzOGRmZWNjM2NjNjhkNSJ9fX0"),
                     "", "", false), 43, "CustomModelData"), List.of(
                     "VIP Rank-U", "Buy this to get VIP rank!", "", "")),

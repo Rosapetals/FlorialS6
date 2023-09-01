@@ -44,6 +44,7 @@ public class DrillListener implements Listener {
 
         Town town = tapi.getTown(p.getLocation());
         if (town != null) {
+            Bukkit.broadcastMessage("" + town);
             if (!town.hasResident(resident) && (!(town.isMayor(resident)))) return;
         }
 
