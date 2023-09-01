@@ -26,8 +26,10 @@ import net.florial.models.DiscordUser;
 import net.florial.models.PlayerData;
 import net.florial.utils.general.CC;
 import net.florial.utils.math.GetChance;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.apache.commons.lang3.tuple.Pair;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -69,6 +71,19 @@ public class DiscordListeners extends ListenerAdapter {
             TextChannel chatBotChannel = Florial.getDiscordServer().getTextChannelById(Florial.getInstance().getConfig().getString("discord.chatbotChannel"));
 
             if (event.getChannelType() == ChannelType.TEXT) {
+
+                if (event.getChannel().asTextChannel().getId().contains("803862530438332417")) {
+                    if (event.getMessage().getContentRaw().startsWith(">")) {
+                        for (Player p : Bukkit.getOnlinePlayers()) {
+                            String format = Florial.getInstance().getConfig().getString("general.staffChatFormat");
+                            String msg = event.getMessage().getContentRaw().replaceFirst(">", "");
+                            format = format.replaceAll("%player%", event.getAuthor().getName()).replaceAll("%message%", msg);
+
+                            if (p.hasPermission("staff")) p.sendMessage(MiniMessage.miniMessage().deserialize("<blue>[DISCORD STAFF]</blue> " + format));
+                        }
+                        return;
+                    }
+                }
                 if (event.getChannel().asTextChannel() == chatBotChannel) {
                     if (event.getMessage().getContentRaw().startsWith(",")) return;
                     chatBotChannel.sendTyping().queue();
