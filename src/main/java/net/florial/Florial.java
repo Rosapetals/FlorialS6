@@ -85,10 +85,6 @@ public final class Florial extends JavaPlugin {
     @Getter private static final HashMap<UUID, Location> signLocation = new HashMap<>();
     @Getter private static final HashMap<UUID, Duel> ongoingDuel = new HashMap<>();
 
-    @Getter private static final HashMap<UUID, Boolean> optionsNV = new HashMap<>();
-
-    @Getter private static final HashMap<UUID, Boolean> optionsEffects = new HashMap<>();
-
 
 
 
@@ -393,9 +389,6 @@ public final class Florial extends JavaPlugin {
     public static HashMap<UUID, Quest> getQuest(){return questData;}
     public static HashMap<UUID, BossBar> getQuestBar(){return questBar;}
     public static HashMap<UUID, Location> getBoardLocation(){return signLocation;}
-    public static HashMap<UUID, Boolean> optionsNV(){return optionsNV;}
-
-    public static HashMap<UUID, Boolean> optionsEffects(){return optionsEffects;}
 
 
 

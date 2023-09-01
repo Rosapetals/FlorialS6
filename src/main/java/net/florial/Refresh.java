@@ -2,6 +2,7 @@ package net.florial;
 
 import net.florial.features.skills.Skill;
 import net.florial.features.upgrades.Upgrade;
+import net.florial.models.OptionType;
 import net.florial.models.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -42,21 +43,21 @@ public class Refresh {
         int specific = skills.get(Skill.SPECIFIC);
 
         // let's see if the user has upgraded resistance?
-        if (resistance > 1) mainThread(p, PotionEffectType.DAMAGE_RESISTANCE, null,(resistance < 3 ? resistance-1 : 3));
+        if (resistance > 1) mainThread(p, PotionEffectType.DAMAGE_RESISTANCE, null,(resistance < 3 ? resistance-1 : 3), data);
 
-        if (skills.get(Skill.STRENGTH) > 1)   mainThread(p, PotionEffectType.INCREASE_DAMAGE, null,skills.get(Skill.STRENGTH)-1);
+        if (skills.get(Skill.STRENGTH) > 1)   mainThread(p, PotionEffectType.INCREASE_DAMAGE, null,skills.get(Skill.STRENGTH)-1, data);
 
         //we use this statement to check if survival is 20 or just 5. because at those levels max health INCREASES!
 
         if (survival > 4) additions = survival >= 20 ? 6 : 4;
 
-        if (survival > 14)  mainThread(p, PotionEffectType.REGENERATION, null, 0);
+        if (survival > 14)  mainThread(p, PotionEffectType.REGENERATION, null, 0, data);
 
         //let's loop through their specie's unique skill set and apply all necessary effects
         for (Map.Entry<Integer, PotionEffect> entry : data.getSpecies().specific().entrySet()) {
             boolean applicable = specific >= entry.getKey() && entry.getValue() != null;
             if (applicable) {
-                mainThread(p, null, entry.getValue(), 0);
+                mainThread(p, null, entry.getValue(), 0, data);
             } else {
                 break;
             }
@@ -69,7 +70,7 @@ public class Refresh {
         if (upgrades.isEmpty()) return;
         Map<Upgrade, Runnable> upgradeHandlers = new HashMap<>() {{
             put(Upgrade.DOUBLEHEALTH, () -> maxHealth.set(Math.max(maxHealth.get(), 40)));
-            put(Upgrade.HASTE, () ->  mainThread(p, PotionEffectType.FAST_DIGGING, null,1));
+            put(Upgrade.HASTE, () ->  mainThread(p, PotionEffectType.FAST_DIGGING, null,1, data));
         }};
 
         for (Map.Entry<Upgrade, Runnable> entry : upgradeHandlers.entrySet()) {
@@ -81,11 +82,9 @@ public class Refresh {
         p.setMaxHealth(maxHealth.get() + additions);
     }
 
-    private static void mainThread(Player p, PotionEffectType effect, PotionEffect potion, int amount) {
+    private static void mainThread(Player p, PotionEffectType effect, PotionEffect potion, int amount, PlayerData data) {
 
-        UUID u = p.getUniqueId();
-
-        if (Florial.optionsEffects().get(u) != null) return;
+        if (!data.getOptions().get(OptionType.ALL_EFFECTS)) return;
 
         Bukkit.getScheduler().runTaskLater(florial, () -> {
             p.addPotionEffect(Objects.requireNonNullElseGet(potion, () -> new PotionEffect(effect, 100000000, amount, false, false, true)));

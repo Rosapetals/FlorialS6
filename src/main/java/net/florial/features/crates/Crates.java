@@ -77,12 +77,16 @@ public class Crates implements Listener {
 
                 key1,
 
-                new ItemStack(Material.MELON, 30),
+                new ItemStack(Material.PUMPKIN, 30),
                 new ItemStack(Material.SWEET_BERRIES, 64),
 
                 new ItemStack(Material.GOLDEN_APPLE, 64),
 
                 new ItemStack(Material.PINK_SHULKER_BOX, 5),
+                new ItemStack(Material.PUMPKIN_PIE, 5),
+                NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lMoney Voucher", "#ff7a8b&l800", false), 4, "CustomModelData"),
+
+
 
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 2), "#ff7a8b&lFlories [Left-Click]", "", false), 50, "CustomModelData"),
 
@@ -92,7 +96,6 @@ public class Crates implements Listener {
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.SUNFLOWER, 1), "#ff7a8b&lFlories [Left-Click]", "", false), 50,"CustomModelData"),
 
 
-                createFirework(),
 
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.ORANGE_TULIP), "#ff7a8b&lPUMPKIN [Left-Click]", "", false), 3,"CustomModelData"),
                 NBTEditor.set(CustomItem.MakeItem(new ItemStack(Material.PAPER), "#ff7a8b&lS O A P [Left-Click]", "", false), 5,"CustomModelData"),
@@ -198,26 +201,6 @@ public class Crates implements Listener {
         }
     }
 
-
-    private static ItemStack createFirework() {
-
-        ItemStack fireworkItem = new ItemStack(Material.FIREWORK_ROCKET, 5);
-        FireworkMeta fireworkMeta = (FireworkMeta) fireworkItem.getItemMeta();
-
-        FireworkEffect effect = FireworkEffect.builder()
-                .with(FireworkEffect.Type.BALL)
-                .withColor(Color.RED)
-                .withFade(Color.WHITE)
-                .withFade(Color.BLUE)
-                .build();
-
-        fireworkMeta.addEffect(effect);
-        fireworkMeta.setPower(1);
-
-        fireworkItem.setItemMeta(fireworkMeta);
-
-        return fireworkItem;
-    }
 
 
 

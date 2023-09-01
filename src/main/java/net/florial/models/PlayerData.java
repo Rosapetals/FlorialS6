@@ -63,7 +63,7 @@ public class PlayerData {
     Age age = Age.KIT;
     HashMap<Skill, Integer> skills = new HashMap<>(Map.of(Skill.SCENT,1, Skill.RESISTANCE,1, Skill.STRENGTH,1, Skill.SURVIVAL,1, Skill.SPECIFIC,1));
     HashMap<Weekday, Boolean> loggedInDays = new HashMap<>(Map.of(Weekday.SUNDAY, false, Weekday.MONDAY, false, Weekday.TUESDAY, false, Weekday.WEDNESDAY, false, Weekday.THURSDAY, false, Weekday.FRIDAY, false, Weekday.SATURDAY, false));
-
+    HashMap<OptionType, Boolean> options = new HashMap<>(Map.of(OptionType.NIGHT_VISION, true, OptionType.ALL_EFFECTS, true));
     LocalDate lastLoggedIn = LocalDate.now();
     HashMap<Upgrade, Boolean> upgrades = new HashMap<>();
     @Getter @Setter String gradient1 = "";
@@ -74,7 +74,7 @@ public class PlayerData {
 
 
 
-    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, int reincarnations, @org.jetbrains.annotations.Nullable String prefix, Age age, String gradient1, String gradient2, HashMap<Tier,Boolean> playtimeTiers) {
+    public PlayerData(String uuid, String discordId, int flories, int dna, int specieId, @org.jetbrains.annotations.Nullable String pronouns, HashMap<Skill,Integer> skills, HashMap<Upgrade,Boolean> upgrades, int event, int growth, int reincarnations, @org.jetbrains.annotations.Nullable String prefix, Age age, String gradient1, String gradient2, HashMap<Tier,Boolean> playtimeTiers, HashMap<OptionType,Boolean> options) {
 
         this.UUID = uuid;
         this.discordId = discordId;
@@ -92,6 +92,7 @@ public class PlayerData {
         this.gradient1 = gradient1;
         this.gradient2 = gradient2;
         this.playtimeTiers = playtimeTiers;
+        this.options = options;
     }
 
     public PlayerData(String uuid) {
@@ -121,7 +122,6 @@ public class PlayerData {
     public void refresh() {
 
         Player p = getPlayer();
-        java.util.UUID u = p.getUniqueId();
         if (getSpecieType().getSpecie() == null) return;
 
         Bukkit.getScheduler().runTaskLater(Florial.getInstance(), () -> {
@@ -129,9 +129,9 @@ public class PlayerData {
 
             for (PotionEffect effect : getSpecies().effects()) {
 
-                if (Florial.optionsEffects().get(u) != null) break;
+                if (!options.get(OptionType.ALL_EFFECTS)) break;
 
-                if (Florial.getOptionsNV().get(u) != null && effect.getType() == PotionEffectType.NIGHT_VISION) continue;
+                if (!(options.get(OptionType.NIGHT_VISION)) && effect.getType() == PotionEffectType.NIGHT_VISION) continue;
 
                 getPlayer().addPotionEffect(effect);
             }
