@@ -1,6 +1,8 @@
 package net.florial.listeners;
 
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.TownyPermission;
+import com.palmergames.bukkit.towny.utils.PlayerCacheUtil;
 import io.github.bananapuncher714.nbteditor.NBTEditor;
 import net.florial.Florial;
 import net.florial.utils.Cooldown;
@@ -28,7 +30,9 @@ public class DrillListener implements Listener {
         if (!(e.getAction() == Action.LEFT_CLICK_AIR) && !(e.getAction() == Action.LEFT_CLICK_BLOCK))
             return;
 
-        if (e.getItem() == null)
+        Block b = e.getClickedBlock();
+
+        if (e.getItem() == null || b == null)
             return;
 
         if (!(RegionDetector.detect(e.getPlayer().getLocation()).contains("none"))) return;
@@ -40,20 +44,15 @@ public class DrillListener implements Listener {
             return;
 
         Player p = e.getPlayer();
-        Resident resident = tapi.getResident(p.getName());
 
         Town town = tapi.getTown(p.getLocation());
+        boolean canBreak = PlayerCacheUtil.getCachePermission(p, b.getLocation(), b.getType(), TownyPermission.ActionType.DESTROY);
+
         if (town != null) {
-            Bukkit.broadcastMessage("" + town);
-            if (!town.hasResident(resident) && (!(town.isMayor(resident)))) return;
+            if (!canBreak) return;
         }
 
         if (value == 30) {
-
-            Block b = e.getClickedBlock();
-
-            if (b == null)
-                return;
 
             p.breakBlock(b);
 
